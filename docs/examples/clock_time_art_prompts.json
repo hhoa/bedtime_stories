@@ -1,0 +1,106 @@
+{
+  "setting": "the same cozy kid bedroom in every picture: a low wooden bed with a lavender blanket and a soft white pillow on the right, a small round wooden bedside table standing on the left next to the bed whose round top is completely empty (nothing on it at all, no clock, no lamp, no objects), a window on the back wall, a soft round cream rug on the floor. Absolutely no clock anywhere in the picture",
+  "outfits": {
+    "b2_rush": "a plain soft yellow t-shirt and navy blue shorts",
+    "b3_lulu_fix": "a plain soft yellow t-shirt and navy blue shorts",
+    "a2_ready": "a plain soft yellow t-shirt and navy blue shorts, white socks and small sneakers",
+    "icon_stretch": "a plain soft yellow t-shirt and navy blue shorts"
+  },
+  "pictures": {
+    "cover": "{hero} and Lulu sit on the soft rug, one on each side of the small round wooden bedside table, both smiling up at a round friendly alarm clock with two little bells on its top standing on the table; the clock face is plain cream with only two simple hands and no numbers; the window behind shows warm morning sun on its left half and a dark night sky with a crescent moon on its right half",
+    "s1_ring": "Early morning, warm golden sunlight through the window. {hero} lies in bed under the lavender blanket, just waking up, head on the pillow, both arms resting on top of the blanket, eyes half open. Nobody else in the picture",
+    "s2_lulu_clock": "Morning, warm sunlight through the window. Lulu sits on the top of the small round bedside table, at its back edge, leaving the front middle of the tabletop empty, looking at that empty spot with a happy face. {hero} lies in bed under the lavender blanket, head on the pillow, awake and curious, looking at Lulu",
+    "b1_snooze": "Morning, sunlight through the window. {hero} is completely hidden under the lavender blanket, pulled over the head, only a little tuft of dark hair peeking out on the pillow: a round sleepy lump. Lulu sits on the edge of the bed near the bedside table, calm and patient, both paws in her lap",
+    "b2_rush": "Bright morning. {hero} stands in the middle of the soft rug, flustered and in a hurry, cheeks pink: the yellow t-shirt is on backwards (the little white tag of the collar shows at the front under the chin), one foot has a white sock, the other foot is bare, and one hand holds the other white sock low by the side. Behind, a small low table with a plate of bread and a cup of milk, not eaten. The child is alone in the room",
+    "b3_lulu_fix": "Bright morning. {hero} stands on the soft rug, a little worried; Lulu floats softly glowing at the shoulder of {hero} and gently holds the collar of the yellow t-shirt with both paws, helping to turn it the right way round. Calm, caring mood",
+    "a1_stretch": "Morning, warm sunlight. {hero} stands on the rug in front of the bed in pajamas, wide awake, arms relaxed down by the sides, a happy fresh face. Lulu stands on top of the soft white pillow on the bed, smiling",
+    "a2_ready": "Bright morning. {hero} stands near the open bedroom door, dressed for school with a small light-blue backpack on both shoulders, arms down, smiling. Lulu sits on the top of the small round bedside table, at its back edge, leaving the front middle of the tabletop empty",
+    "n1_nine": "Night: dark blue sky with a crescent moon and a few stars in the window, a small warm lamp glowing on the wall shelf. {hero} in pajamas sits cross-legged on the soft rug, head down, drawing on a big sheet of paper with crayons, a few crayons scattered around. Lulu sits on the top of the small round bedside table at its back edge, leaving the front middle of the tabletop empty, one paw raised as if asking a question",
+    "e1_turn": "Night: crescent moon bright in the window, warm lamp light. {hero} in pajamas stands next to the small round bedside table, facing it, one hand resting on the table edge, eyes a bit droopy and sleepy. The child is alone in the room",
+    "e2_lulu_back": "Night: crescent moon in the window, warm lamp light. {hero} in pajamas stands next to the small round bedside table, sleepy but calm; Lulu floats softly glowing beside {hero}, holding the hand of {hero} with her paw, both looking at the empty top of the table",
+    "d1_goodnight": "Night: crescent moon and stars in the window, soft warm lamp light. {hero} in pajamas sits on the edge of the bed, ready to sleep, smiling, hands in the lap, looking toward the bedside table. Lulu sits on the soft white pillow. A small cup full of crayons stands neatly on the rug",
+    "end_asleep": "Night: crescent moon and stars in the window, very soft dim warm light. {hero} sleeps peacefully in bed under the lavender blanket with a small smile, head on the pillow in the middle of the picture; Lulu is curled up and softly glowing on the corner of the pillow",
+    "icon_stretch": "{hero} standing with both arms stretched high above the head, a big happy smile, a small warm sun behind",
+    "icon_snooze": "a round lump under a lavender blanket on a soft white pillow, only a tuft of dark hair peeking out, sleepy and cozy",
+    "icon_bed": "{hero} asleep with the head on a soft white pillow under a lavender blanket, a small crescent moon above",
+    "icon_turn": "a round friendly alarm clock with two little bells on top and a plain cream face with only two simple hands and no numbers, with a big curved arrow going around it backwards (anticlockwise)"
+  },
+  "plates": {
+    "s1_ring": "hero",
+    "s2_lulu_clock": "hero,lulu",
+    "b1_snooze": "lulu",
+    "b2_rush": "hero",
+    "b3_lulu_fix": "hero",
+    "a1_stretch": "hero,lulu",
+    "a2_ready": "hero,lulu",
+    "n1_nine": "hero,lulu",
+    "e1_turn": "hero",
+    "e2_lulu_back": "lulu",
+    "d1_goodnight": "hero,lulu",
+    "end_asleep": "lulu"
+  },
+  "poses": {
+    "s1_ring": {
+      "hero": {
+        "yawn": "the child stays lying in bed under the blanket but opens the mouth wide in a big sleepy yawn, eyes squeezed shut",
+        "rub_eye": "the child stays lying in bed under the blanket but rubs one eye with a small fist, the other eye half open"
+      }
+    },
+    "s2_lulu_clock": {
+      "hero": {
+        "sit_up": "the child sits up in bed, the blanket still over the legs, looking curiously toward the bedside table"
+      },
+      "lulu": {
+        "point": "Lulu points one paw toward the empty front middle of the tabletop, smiling"
+      }
+    },
+    "b1_snooze": {
+      "lulu": {
+        "chin": "Lulu rests her chin on one paw, elbow on her knee, waiting patiently"
+      }
+    },
+    "b2_rush": {
+      "hero": {
+        "oops": "the child puts both hands on the cheeks, eyes wide and mouth in a round 'oh!' (surprised, not scared), still holding the sock in one hand",
+        "sock_up": "the child holds the white sock high up in one raised hand, puffing a little with puffed cheeks"
+      }
+    },
+    "b3_lulu_fix": {
+      "hero": {
+        "smile": "the child is calm now and smiles softly"
+      }
+    },
+    "a1_stretch": {
+      "hero": {
+        "stretch": "the child stretches both arms high above the head, eyes closed in a happy big stretch, standing on tiptoes"
+      },
+      "lulu": {
+        "clap": "Lulu claps her paws together in front of her chest, laughing"
+      }
+    },
+    "a2_ready": {
+      "hero": {
+        "wave": "the child waves one hand high, smiling big"
+      },
+      "lulu": {
+        "wave": "Lulu waves one paw high back at the child, smiling"
+      }
+    },
+    "n1_nine": {
+      "hero": {
+        "look_up": "the child looks up from the drawing toward the bedside table, mouth open as if answering, crayon still in hand"
+      }
+    },
+    "e1_turn": {
+      "hero": {
+        "reach": "the child reaches out one hand and touches the empty front middle of the tabletop with one finger",
+        "yawn": "the child keeps the hand on the table edge and opens the mouth in a big long yawn, eyes nearly closed"
+      }
+    },
+    "d1_goodnight": {
+      "hero": {
+        "wave": "the child waves one hand toward the bedside table, smiling sleepily"
+      }
+    }
+  }
+}

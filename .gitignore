@@ -1,0 +1,36 @@
+# Flutter / Dart
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+.pub-cache/
+.pub/
+build/
+*.iml
+.idea/
+.metadata.bak
+
+# FVM
+.fvm/
+
+# Firebase
+.firebase/
+
+# Python
+__pycache__/
+
+# Personal voice data: never upload (see CLAUDE.md)
+tool/voice/.venv
+tool/voice/models/
+tool/voice/ref/
+tool/voice/F5-TTS-Vietnamese
+audio_backup/
+
+# Claude local settings
+.claude/settings.local.json
+
+# OS
+.DS_Store
+
+# API keys (tool/gen_image.py)
+.env
+tool/cutout/.venv

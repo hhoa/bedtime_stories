@@ -1,0 +1,68 @@
+name: bedtime_stories
+description: "Bedtime stories with choices that teach kind habits."
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.12.2
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  cupertino_icons: ^1.0.8
+  flutter_bloc: ^9.1.1
+  freezed_annotation: ^3.1.0
+  json_annotation: ^4.12.0
+  dartz: ^0.10.1
+  go_router: ^18.1.3
+  just_audio: ^0.10.6
+  flutter_animate: ^4.5.2
+  flutter_svg: ^2.3.2
+  shared_preferences: ^2.5.6
+  equatable: ^3.0.0
+  flutter_localizations:
+    sdk: flutter
+  record: ^7.1.2
+  path_provider: ^2.1.6
+  http: ^1.6.0
+  web: ^1.1.1
+  firebase_core: ^5.1.0
+  firebase_analytics: ^13.0.1
+  permission_handler: ^13.0.2
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  flutter_lints: ^6.0.0
+  build_runner: ^2.15.1
+  freezed: ^3.2.5
+  json_serializable: ^6.15.2
+  bloc_test: ^10.0.0
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - assets/fonts/OFL.txt
+    - assets/images/
+    - assets/audio/ui/vi/
+    - assets/audio/ui/en/
+    - assets/stories/
+    # Each story adds: assets/stories/<id>/, images/, images/layers/ (if cut),
+    # audio/vi/, audio/en/
+
+  fonts:
+    - family: Baloo2
+      fonts:
+        - asset: assets/fonts/Baloo2.ttf
+    - family: BeVietnamPro
+      fonts:
+        - asset: assets/fonts/BeVietnamPro-Regular.ttf
+          weight: 400
+        - asset: assets/fonts/BeVietnamPro-SemiBold.ttf
+          weight: 600
+        - asset: assets/fonts/BeVietnamPro-Bold.ttf
+          weight: 700

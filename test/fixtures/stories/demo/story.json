@@ -1,0 +1,79 @@
+{
+  "id": "demo",
+  "theme": "sleep",
+  "hero": "kid",
+  "title": {"vi": "{name} và Lulu đi ngủ", "en": "{name} and Lulu go to bed"},
+  "cover": "images/cover.webp",
+  "start": "s1",
+  "nodes": [
+    {
+      "id": "s1", "type": "scene", "image": "images/s1.webp", "next": "s2", "ambient": "stars",
+      "text": {"vi": "Tích tắc, tích tắc. Trời tối rồi. Bé ôm Lulu thật chặt.",
+               "en": "Tick tock, tick tock. It is night. The little one hugs Lulu tight."},
+      "cues": {"vi": [{"word": "Tích tắc", "part": "clock", "action": "wiggle"}],
+               "en": [{"word": "Tick tock", "part": "clock", "action": "wiggle"}]}
+    },
+    {
+      "id": "s2", "type": "scene", "image": "images/s2.webp", "next": "c1", "ambient": "sparkles",
+      "text": {"vi": "Tưng, tưng! Lulu nhảy lên gối. Mình đi ngủ chưa nhỉ, {name}?",
+               "en": "Boing, boing! Lulu hops onto the pillow. Is it bedtime yet, {name}?"},
+      "cues": {"vi": [{"word": "Tưng", "part": "lulu", "action": "hop"},
+                      {"word": "tưng", "part": "lulu", "action": "hop"}],
+               "en": [{"word": "Boing", "part": "lulu", "action": "hop"},
+                      {"word": "boing", "part": "lulu", "action": "hop"}]}
+    },
+    {
+      "id": "c1", "type": "choice", "image": "images/s2.webp", "ambient": "sparkles",
+      "text": {"vi": "{name} ơi, giờ mình làm gì nhỉ?", "en": "{name}, what should we do now?"},
+      "options": [
+        {"id": "bed", "kind": "kind", "icon": "images/icon_bed.webp",
+         "label": {"vi": "Đi ngủ", "en": "Go to bed"}, "next": "a1"},
+        {"id": "play", "kind": "learn", "icon": "images/icon_play.webp",
+         "label": {"vi": "Chơi thêm", "en": "Play more"}, "next": "b1"}
+      ]
+    },
+    {
+      "id": "b1", "type": "scene", "image": "images/s1.webp", "next": "b3",
+      "text": {"vi": "Bé chơi thêm một lúc. Mắt bé díp lại.",
+               "en": "The little one plays a bit more. Eyes get heavy."}
+    },
+    {
+      "id": "b3", "type": "scene", "image": "images/s1.webp", "next": "n1", "offer_rewind_to": "c1",
+      "text": {"vi": "Ngủ sớm thì mai dậy thật khoẻ.", "en": "Sleeping early makes us strong tomorrow."}
+    },
+    {
+      "id": "a1", "type": "scene", "image": "images/a1.webp", "next": "n1", "ambient": "motes",
+      "text": {"vi": "Bé leo lên giường. Lulu vỗ tay.", "en": "The little one climbs into bed. Lulu claps."},
+      "cues": {"vi": [{"word": "vỗ tay", "part": "lulu", "action": "pulse"}],
+               "en": [{"word": "claps", "part": "lulu", "action": "pulse"}]}
+    },
+    {
+      "id": "n1", "type": "scene", "image": "images/s2.webp", "next": "c2", "ambient": "stars",
+      "text": {"vi": "Trăng lên cao rồi.", "en": "The moon is up high."}
+    },
+    {
+      "id": "c2", "type": "choice", "image": "images/s2.webp", "ambient": "stars",
+      "poses": {"lulu": "clap"},
+      "text": {"vi": "Mình đếm sao hay xem ti vi, {name}?", "en": "Count the stars or watch TV, {name}?"},
+      "options": [
+        {"id": "stars", "kind": "kind", "icon": "images/icon_stars.webp",
+         "label": {"vi": "Đếm sao", "en": "Count stars"}, "next": "d1"},
+        {"id": "tv", "kind": "learn", "icon": "images/icon_tv.webp",
+         "label": {"vi": "Xem ti vi", "en": "Watch TV"}, "next": "e1"}
+      ]
+    },
+    {
+      "id": "e1", "type": "scene", "image": "images/s1.webp", "next": "d1", "offer_rewind_to": "c2",
+      "text": {"vi": "Ti vi sáng quá, bé không ngủ được.", "en": "The TV is too bright. The little one can't sleep."}
+    },
+    {
+      "id": "d1", "type": "scene", "image": "images/a1.webp", "next": "end",
+      "text": {"vi": "Một ngôi sao, hai ngôi sao.", "en": "One star, two stars."}
+    },
+    {
+      "id": "end", "type": "ending", "image": "images/a1.webp", "sticker": "images/sticker.webp",
+      "ambient": "zzz", "ambient_origin": [0.3, 0.4],
+      "text": {"vi": "Bé ngủ say rồi. Chúc ngủ ngon.", "en": "Fast asleep. Good night."}
+    }
+  ]
+}

@@ -1,0 +1,119 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
+import 'package:bedtime_stories/core/theme/app_colors.dart';
+import 'package:bedtime_stories/core/theme/app_spacing.dart';
+import 'package:bedtime_stories/core/theme/app_typography.dart';
+import 'package:bedtime_stories/core/utils/app_constants.dart';
+import 'package:bedtime_stories/core/widgets/story_image.dart';
+
+enum ChoiceCardState { idle, reading, selected, faded }
+
+/// One big picture option. Glows while its label is read aloud, pops when
+/// tapped, fades when the other option was picked.
+class ChoiceCard extends StatelessWidget {
+  const ChoiceCard({
+    required this.iconAsset,
+    required this.label,
+    required this.state,
+    required this.horizontal,
+    required this.onTap,
+    super.key,
+  });
+
+  final String iconAsset;
+  final String label;
+  final ChoiceCardState state;
+
+  /// Icon beside label (wide panel) vs icon above label (phone).
+  final bool horizontal;
+  final VoidCallback onTap;
+
+  bool get _lit =>
+      state == ChoiceCardState.reading || state == ChoiceCardState.selected;
+
+  @override
+  Widget build(BuildContext context) {
+    final iconSize = horizontal
+        ? AppConstants.choiceIconSize
+        : AppConstants.choiceIconSizeCompact;
+    final icon = ClipRRect(
+      borderRadius: BorderRadius.circular(AppRadius.lg),
+      child: StoryImage(iconAsset, width: iconSize, height: iconSize),
+    );
+    final text = Text(
+      label,
+      style: AppText.kidLabel,
+      textAlign: horizontal ? TextAlign.start : TextAlign.center,
+      maxLines: 3,
+      overflow: TextOverflow.ellipsis,
+    );
+
+    final content = horizontal
+        ? Row(
+            children: [
+              icon,
+              const SizedBox(width: AppSpace.lg),
+              Expanded(child: text),
+            ],
+          )
+        : Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              icon,
+              const SizedBox(height: AppSpace.sm),
+              text,
+            ],
+          );
+
+    return Semantics(
+      button: true,
+      label: label,
+      child: AnimatedOpacity(
+        duration: AppConstants.sceneFadeDuration,
+        opacity: state == ChoiceCardState.faded ? 0.35 : 1,
+        child: AnimatedScale(
+          duration: const Duration(milliseconds: 300),
+          curve: Curves.easeOutBack,
+          scale: state == ChoiceCardState.reading ? 1.04 : 1,
+          child:
+              AnimatedContainer(
+                    duration: const Duration(milliseconds: 300),
+                    constraints: const BoxConstraints(
+                      minHeight: AppConstants.kidMinTarget,
+                    ),
+                    decoration: BoxDecoration(
+                      color: AppColors.nightSurface,
+                      borderRadius: BorderRadius.circular(AppRadius.xl),
+                      border: Border.all(
+                        color: _lit ? AppColors.amber : AppColors.nightBorder,
+                        width: _lit ? 4 : 2,
+                      ),
+                      boxShadow: _lit
+                          ? [
+                              BoxShadow(
+                                color: AppColors.amber.withValues(alpha: 0.45),
+                                blurRadius: 28,
+                              ),
+                            ]
+                          : const [],
+                    ),
+                    child: Material(
+                      type: MaterialType.transparency,
+                      child: InkWell(
+                        borderRadius: BorderRadius.circular(AppRadius.xl),
+                        onTap: state == ChoiceCardState.faded ? null : onTap,
+                        child: Padding(
+                          padding: const EdgeInsets.all(AppSpace.md),
+                          child: content,
+                        ),
+                      ),
+                    ),
+                  )
+                  .animate(target: state == ChoiceCardState.selected ? 1 : 0)
+                  .scaleXY(end: 1.1, curve: Curves.elasticOut)
+                  .shimmer(color: AppColors.amber.withValues(alpha: 0.5)),
+        ),
+      ),
+    );
+  }
+}

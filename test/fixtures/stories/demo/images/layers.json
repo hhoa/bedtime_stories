@@ -1,0 +1,8 @@
+{
+  "s2.webp": [
+    {"file": "layers/s2_0.webp"},
+    {"file": "layers/s2_1.webp", "kind": "lulu", "box": [0.6, 0.4, 0.25, 0.4], "pivot": [0.72, 0.8],
+     "rect": [0.55, 0.35, 0.35, 0.5], "idle": "float", "tap": "hop",
+     "poses": {"clap": "layers/s2_1_clap.webp"}}
+  ]
+}
