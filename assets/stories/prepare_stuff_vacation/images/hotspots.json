@@ -1,0 +1,338 @@
+{
+  "s1_backpack.webp": [
+    {
+      "kind": "suitcase",
+      "box": [
+        0.8,
+        0.3,
+        0.17,
+        0.37
+      ]
+    },
+    {
+      "kind": "hero",
+      "box": [
+        0.37,
+        0.22,
+        0.28,
+        0.62
+      ],
+      "burst": "hearts"
+    }
+  ],
+  "s2_lulu.webp": [
+    {
+      "kind": "backpack",
+      "box": [
+        0.38,
+        0.62,
+        0.16,
+        0.24
+      ]
+    },
+    {
+      "kind": "hero",
+      "box": [
+        0.5,
+        0.35,
+        0.22,
+        0.48
+      ],
+      "burst": "hearts"
+    },
+    {
+      "kind": "lulu",
+      "box": [
+        0.14,
+        0.1,
+        0.28,
+        0.38
+      ],
+      "burst": "sparkles"
+    }
+  ],
+  "b1_stuffed.webp": [
+    {
+      "kind": "backpack",
+      "box": [
+        0.32,
+        0.58,
+        0.2,
+        0.27
+      ]
+    },
+    {
+      "kind": "hero",
+      "box": [
+        0.41,
+        0.35,
+        0.24,
+        0.47
+      ],
+      "burst": "hearts"
+    }
+  ],
+  "b2_heavy.webp": [
+    {
+      "kind": "backpack",
+      "box": [
+        0.26,
+        0.54,
+        0.2,
+        0.3
+      ]
+    },
+    {
+      "kind": "hero",
+      "box": [
+        0.45,
+        0.35,
+        0.3,
+        0.54
+      ],
+      "burst": "hearts"
+    }
+  ],
+  "b3_lulu_help.webp": [
+    {
+      "kind": "blocks",
+      "box": [
+        0.33,
+        0.79,
+        0.14,
+        0.12
+      ]
+    },
+    {
+      "kind": "hero",
+      "box": [
+        0.56,
+        0.36,
+        0.19,
+        0.47
+      ],
+      "burst": "hearts"
+    },
+    {
+      "kind": "lulu",
+      "box": [
+        0.18,
+        0.48,
+        0.24,
+        0.35
+      ],
+      "burst": "sparkles"
+    }
+  ],
+  "a1_pack.webp": [
+    {
+      "kind": "bucket",
+      "box": [
+        0.41,
+        0.48,
+        0.1,
+        0.11
+      ]
+    },
+    {
+      "kind": "clothes",
+      "box": [
+        0.42,
+        0.76,
+        0.29,
+        0.16
+      ]
+    },
+    {
+      "kind": "hat",
+      "box": [
+        0.69,
+        0.7,
+        0.19,
+        0.15
+      ]
+    },
+    {
+      "kind": "hero",
+      "box": [
+        0.5,
+        0.26,
+        0.25,
+        0.5
+      ],
+      "burst": "hearts"
+    },
+    {
+      "kind": "lulu",
+      "box": [
+        0.21,
+        0.56,
+        0.17,
+        0.23
+      ],
+      "burst": "sparkles"
+    }
+  ],
+  "e1_squash.webp": [
+    {
+      "kind": "hat",
+      "box": [
+        0.32,
+        0.47,
+        0.19,
+        0.15
+      ]
+    },
+    {
+      "kind": "clothes",
+      "box": [
+        0.3,
+        0.57,
+        0.22,
+        0.13
+      ]
+    },
+    {
+      "kind": "hero",
+      "box": [
+        0.51,
+        0.26,
+        0.25,
+        0.58
+      ],
+      "burst": "hearts"
+    }
+  ],
+  "e2_hat.webp": [
+    {
+      "kind": "clothes",
+      "box": [
+        0.37,
+        0.77,
+        0.33,
+        0.2
+      ]
+    },
+    {
+      "kind": "hero",
+      "box": [
+        0.53,
+        0.33,
+        0.22,
+        0.5
+      ],
+      "burst": "hearts"
+    },
+    {
+      "kind": "lulu",
+      "box": [
+        0.21,
+        0.46,
+        0.28,
+        0.35
+      ],
+      "burst": "sparkles"
+    }
+  ],
+  "d1_fold.webp": [
+    {
+      "kind": "clothes",
+      "box": [
+        0.31,
+        0.75,
+        0.18,
+        0.15
+      ]
+    },
+    {
+      "kind": "hero",
+      "box": [
+        0.5,
+        0.25,
+        0.24,
+        0.55
+      ],
+      "burst": "hearts"
+    },
+    {
+      "kind": "lulu",
+      "box": [
+        0.19,
+        0.5,
+        0.23,
+        0.3
+      ],
+      "burst": "sparkles"
+    }
+  ],
+  "d2_ready.webp": [
+    {
+      "kind": "suitcase",
+      "box": [
+        0.76,
+        0.38,
+        0.2,
+        0.47
+      ]
+    },
+    {
+      "kind": "backpack",
+      "box": [
+        0.67,
+        0.57,
+        0.18,
+        0.3
+      ]
+    },
+    {
+      "kind": "hat",
+      "box": [
+        0.69,
+        0.57,
+        0.16,
+        0.13
+      ]
+    },
+    {
+      "kind": "hero",
+      "box": [
+        0.49,
+        0.29,
+        0.18,
+        0.56
+      ],
+      "burst": "hearts"
+    },
+    {
+      "kind": "lulu",
+      "box": [
+        0.29,
+        0.42,
+        0.19,
+        0.25
+      ],
+      "burst": "sparkles"
+    }
+  ],
+  "end_asleep.webp": [
+    {
+      "kind": "backpack",
+      "box": [
+        0.73,
+        0.55,
+        0.15,
+        0.24
+      ]
+    },
+    {
+      "kind": "lulu",
+      "box": [
+        0.06,
+        0.33,
+        0.13,
+        0.14
+      ],
+      "burst": "sparkles"
+    }
+  ]
+}

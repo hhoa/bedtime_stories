@@ -220,8 +220,9 @@ class _KenBurns extends StatelessWidget {
     if (MediaQuery.disableAnimationsOf(context)) {
       return SizedBox.expand(child: child);
     }
+    // Boundary: the zoom only moves the drawn picture, never redraws it.
     return SizedBox.expand(
-      child: child
+      child: RepaintBoundary(child: child)
           .animate()
           .scaleXY(
             begin: 1,

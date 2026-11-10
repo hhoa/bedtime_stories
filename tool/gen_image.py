@@ -36,8 +36,22 @@ No API credit? Make them by hand in the Gemini or ChatGPT app:
      python3 tool/gen_image.py --story tidy_toys --prompts-out ~/Downloads/art_prompts
    Paste each .txt (attach the listed reference sheets), download the
    image under the "Save the image as" name, then bring them in:
-     python3 tool/import_art.py --refs ~/Downloads/story_art      # girl/boy/kid/lulu.png
-     python3 tool/import_art.py tidy_toys ~/Downloads/story_art/tidy_toys
+     tool/cutout/.venv/bin/python tool/import_art.py --refs ~/Downloads/story_art
+     tool/cutout/.venv/bin/python tool/import_art.py tidy_toys ~/Downloads/story_art/tidy_toys --new
+   (or /story-art tidy_toys: import, watermark, checks, cut-outs)
+
+Kit stories (few pictures: one empty room + sheets of poses and props that
+tool/sprite_sheet.py cuts apart and tool/stage.py composes into scenes) keep
+their prompts under "kit" in art_prompts.json:
+     "kit": {"room": {"attach": "<picture to edit, or nothing>", "prompt": "..."},
+             "sheets": {"hero_a": {"who": "hero", "figures": {"sit_play": "the child sits ...", ...}},
+                        "lulu_a": {"who": "lulu", "figures": {...}},
+                        "props": {"who": "props", "figures": {"ball": "a red-and-white ball", ...}}}}
+     python3 tool/gen_image.py --story tidy_toys --kit --prompts-out ~/Downloads/art_prompts
+   A sheet may set "columns", a "note" (extra sentence) and "attach" (a picture
+   made earlier, e.g. kit/hero_a.png for hero_b). Save as kit/<name>.png.
+   Top-level "attach": {"cover": ["kit/room.png", "kit/props.png"]} lists earlier
+   pictures to attach to a normal picture's prompt (--prompts-out only).
 
 Then set the node images in story.json to images/<name>.webp.
 Only drawn reference sheets and text are sent: never photos of the real
@@ -234,18 +248,25 @@ def build_prompt(text: str, hero: str | None, setting: str | None, name: str,
     return ' '.join(parts), refs, shape
 
 
-def write_prompt(args, label: str, prompt: str, refs: list[Path], target: str, aspect: str):
-    """--prompts-out: one .txt per picture to paste into the Gemini/ChatGPT app."""
+def name_tag(target: str) -> str:
+    """Opening line of a pasted prompt, so the Gemini chat shows which file it is."""
+    return f'[{target}] (file name for my notes only, never draw it)\n'
+
+
+def write_prompt(args, label: str, prompt: str, refs: list[Path], target: str, aspect: str,
+                 extra: list[str] | None = None):
+    """--prompts-out: one .txt per picture to paste into the Gemini/ChatGPT app.
+    `extra`: pictures the parent made earlier to attach too (art_prompts.json "attach")."""
     out = Path(args.prompts_out).expanduser()
     out.mkdir(parents=True, exist_ok=True)
     args.n_written = getattr(args, 'n_written', 0) + 1
     f = out / f'{args.n_written:02d}_{label}.txt'
-    attach = ', '.join(r.name for r in refs) or 'nothing'
+    attach = ', '.join([r.name for r in refs] + (extra or [])) or 'nothing'
     f.write_text(
         f'Attach first: {attach}  (your character sheets, also in tool/image_refs/)\n'
         f'Shape: {aspect}\n'
         f'Save the image as: {target}\n\n'
-        f'{prompt}\n', encoding='utf-8')
+        f'{name_tag(target)}{prompt}\n', encoding='utf-8')
     print(f'{f}')
 
 
@@ -300,7 +321,8 @@ def run_story(args):
         prompt, refs, shape = build_prompt(text, hero, spec.get('setting'), name,
                                            spec.get('outfits', {}).get(name))
         if args.prompts_out:
-            write_prompt(args, name, prompt, refs, f'{name}.png', shape.aspect)
+            write_prompt(args, name, prompt, refs, f'{name}.png', shape.aspect,
+                         spec.get('attach', {}).get(name))
             continue
         missing = [r for r in refs if not r.exists()]
         if missing and not args.dry:
@@ -309,7 +331,8 @@ def run_story(args):
             print(f'--- {dest.relative_to(ROOT)} [{shape.aspect}, refs: {[r.name for r in refs]}]\n{prompt}\n')
             continue
         print(f'making {dest.relative_to(ROOT)} with {args.engine} ...', flush=True)
-        out = save_art(call(args, prompt, shape, refs, transparent=sticker), dest)
+        out = save_art(call(args, prompt, shape, refs, transparent=sticker), dest,
+                       unmark=False)  # API pictures have no visible sparkle
         print(f'  -> {out.stat().st_size // 1024} KB')
 
 
@@ -332,6 +355,7 @@ def run_plates(args):
             f'Save the image as: plates/{scene}.png\n'
             f'Then: tool/cutout/.venv/bin/python tool/cutout.py {args.story} {scene} --parts {parts} '
             f'--plate ~/Downloads/story_art/{args.story}/plates/{scene}.png\n\n'
+            f'{name_tag(f"plates/{scene}.png")}'
             f'Edit the attached picture. Keep it exactly the same: same size, framing, camera angle, '
             f'room, furniture, lighting and colors, and keep everything else in place. Only remove {who}, '
             f'and fill the space where they were with what would naturally be behind them '
@@ -361,6 +385,7 @@ def run_poses(args):
                 f.write_text(
                     f'Attach first: {scene}.png  (the picture you made for this scene)\n'
                     f'Save the image as: {target}\n\n'
+                    f'{name_tag(target)}'
                     f'Edit the attached picture. Keep it exactly the same: same size, framing, camera angle, '
                     f'room, furniture, lighting, colors and style, and keep every other character exactly as '
                     f'they are. Only change {who}: {change}. {who[0].upper() + who[1:]} stays in the same '
@@ -373,6 +398,82 @@ def run_poses(args):
                   f'--plate ~/Downloads/story_art/{args.story}/plates/{scene}.png {" ".join(flags)}')
 
 
+SHEET_RULES = (
+    'Rules for the sheet: every figure is complete, nothing cut off by the picture edge. Wide empty '
+    'space around every figure: no figure touches or overlaps another. Every figure is drawn at the '
+    'same scale, as if seen from the same distance, from the front and slightly above, like in a '
+    'picture book. Plain flat pale warm-grey background and nothing else: no floor line, no furniture, '
+    'no shadow on the background, no frame, no numbers, no labels, no text. Soft warm lamp light from '
+    'the upper left on every figure, like a cozy bedroom at night.'
+)
+SHEET_WHO = {'lulu': ('lulu', 'Lulu the bunny'), 'props': (None, 'things')}
+
+
+def kit_sheet_prompt(sheet: dict, hero: str) -> tuple[str, list[Path]]:
+    """One sheet of the kit: several figures on a plain background, cut apart
+    by tool/sprite_sheet.py in this order."""
+    figures = sheet['figures']
+    who = sheet.get('who', 'hero')
+    ref, noun = SHEET_WHO.get(who, (hero, 'the same child'))
+    cols = sheet.get('columns', 3 if len(figures) <= 6 else 4)
+    rows = -(-len(figures) // cols)
+    listing = ' '.join(f'{i}) {text}.' for i, text in enumerate(figures.values(), start=1))
+    if who == 'props':
+        head = (f'A sheet of {len(figures)} separate toys and things for a picture book, each drawn once, '
+                f'in a grid of {cols} columns and {rows} rows.')
+        look = 'Soft rounded toy-like shapes, the same art style for all of them.'
+    else:
+        head = (f'A pose sheet: {len(figures)} separate full-body pictures of {noun}, '
+                f'in a grid of {cols} columns and {rows} rows.')
+        look = (f'Draw {noun} exactly like the reference picture in every figure, same face, hair, '
+                f'clothes, colors and body size: {CHARACTERS[ref]}')
+    extra = f' {sheet["note"]}' if sheet.get('note') else ''
+    prompt = (f'{STYLE} {head} In reading order, row by row, left to right: {listing} '
+              f'{SHEET_RULES} {look}{extra}')
+    return prompt, ([REFS / f'{ref}.png'] if ref else [])
+
+
+def run_kit(args):
+    """--kit --prompts-out: prompts for the kit (art_prompts.json "kit": one
+    empty room + sheets of poses and props), for tool/sprite_sheet.py and tool/stage.py."""
+    spec = json.loads((ROOT / 'docs/stories' / args.story / 'art_prompts.json').read_text(encoding='utf-8'))
+    kit = spec.get('kit')
+    if not kit:
+        return
+    hero = story_hero(args.story, spec)
+    out = Path(args.prompts_out).expanduser()
+    out.mkdir(parents=True, exist_ok=True)
+    n = 0
+    room = kit.get('room')
+    if room and not (args.only and 'room' not in args.only):
+        n += 1
+        f = out / f'{n:02d}_kit_room.txt'
+        f.write_text(
+            f'Attach first: {room.get("attach", "nothing")}\n'
+            f'Shape: {SCENE.aspect}\n'
+            f'Save the image as: kit/room.png\n\n'
+            f'{name_tag("kit/room.png")}{room["prompt"]}\n', encoding='utf-8')
+        print(f)
+    for name, sheet in kit.get('sheets', {}).items():
+        if args.only and name not in args.only:
+            continue
+        n += 1
+        prompt, refs = kit_sheet_prompt(sheet, hero)
+        # "attach": extra pictures after the character sheet, e.g. the first
+        # pose sheet so the second one draws the child at the same size.
+        attach = [r.name for r in refs] + ([sheet['attach']] if sheet.get('attach') else [])
+        f = out / f'{n:02d}_kit_{name}.txt'
+        f.write_text(
+            f'Attach first: {", ".join(attach) or "nothing"}\n'
+            f'Shape: {SCENE.aspect}\n'
+            f'Save the image as: kit/{name}.png\n\n'
+            f'{name_tag(f"kit/{name}.png")}{prompt}\n', encoding='utf-8')
+        print(f)
+        print(f'  then: tool/cutout/.venv/bin/python tool/sprite_sheet.py '
+              f'~/Downloads/story_art/{args.story}/kit/{name}.png --names {",".join(sheet["figures"])}'
+              + (' --fill-holes' if sheet.get('who') == 'lulu' else ''))
+
+
 def main():
     load_dotenv()
     ap = argparse.ArgumentParser(description=__doc__.split('\n')[0],
@@ -383,6 +484,9 @@ def main():
                     help='with --story and --prompts-out: clean-plate edit prompts for tool/cutout.py')
     ap.add_argument('--poses', action='store_true',
                     help='with --story and --prompts-out: pose edit prompts for tool/cutout.py --pose')
+    ap.add_argument('--kit', action='store_true',
+                    help='with --story and --prompts-out: room + sheet prompts (art_prompts.json "kit") '
+                         'for tool/sprite_sheet.py and tool/stage.py')
     ap.add_argument('--only', type=lambda s: set(s.split(',')), help='comma list of picture names')
     ap.add_argument('--force', action='store_true', help='redo existing files')
     ap.add_argument('--dry', action='store_true', help='print prompts only, no API call')
@@ -406,6 +510,10 @@ def main():
         if not args.prompts_out:
             ap.error('--poses needs --prompts-out')
         run_poses(args)
+    elif args.story and args.kit:
+        if not args.prompts_out:
+            ap.error('--kit needs --prompts-out')
+        run_kit(args)
     elif args.story:
         run_story(args)
     else:

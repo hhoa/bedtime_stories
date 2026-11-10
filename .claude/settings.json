@@ -1,0 +1,48 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python3 tool/story_status.py *)",
+      "Bash(python3 tool/check_story.py *)",
+      "Bash(python3 tool/check_assets.py *)",
+      "Bash(python3 tool/wire_story.py *)",
+      "Bash(python3 tool/gen_audio.py *)",
+      "Bash(python3 tool/clean_audio.py *)",
+      "Bash(python3 tool/prompts_page.py *)",
+      "Bash(python3 tool/preview_hotspots.py *)",
+      "Bash(python3 tool/gen_image.py * --dry*)",
+      "Bash(python3 tool/gen_image.py * --prompts-out *)",
+      "Bash(tool/cutout/.venv/bin/python tool/*)",
+      "Bash(fvm flutter analyze*)",
+      "Bash(fvm flutter test*)",
+      "Bash(fvm flutter pub get*)",
+      "Bash(fvm dart format *)",
+      "Bash(fvm dart run build_runner *)",
+      "Bash(ffprobe *)",
+      "Bash(python3 -)",
+      "Bash(python3 tool/clean_audio.py --check --story prepare_stuff_vacation)",
+      "Bash(awk '{s+=$5} END {print \"vi KB\", s/1024}')"
+    ],
+    "ask": [
+      "Bash(python3 tool/gen_audio.py * --force*)",
+      "Bash(python3 tool/clean_audio.py * --restore*)",
+      "Bash(python3 tool/clean_audio.py * --redo*)"
+    ]
+  },
+  "skillOverrides": {
+    "bedtime_story:new-story": "off",
+    "bedtime_story:story-audio": "off"
+  },
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 \"$CLAUDE_PROJECT_DIR/tool/story_status.py\" --brief 2>/dev/null || true",
+            "timeout": 20
+          }
+        ]
+      }
+    ]
+  }
+}

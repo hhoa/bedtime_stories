@@ -7,10 +7,10 @@ Errors (exit 1) are things the app or the house rules reject:
     reachable ending, cue actions known
   - every text (title, node text, option label) in every language (vi, en);
     cues per language: {"vi": [...], "en": [...]}, words found in order
-  - {name} only where the kid is asked something: in a choice question, or
-    in a scene sentence ending with "?"; always at the start or end of its
-    sentence (so it records as name + one clip); never in option labels
-    (keep in sync with namePlacementError in story.dart)
+  - {name} once per line at most, as its first or last word (so it records as
+    name + one clip); never in option labels
+    (keep in sync with namePlacementError in story.dart; both run
+    test/fixtures/name_rule_cases.json)
   - learn path must reach a scene with offer_rewind_to = that choice
   - gendered words about the hero (say "bé" / "the little one")
   - image paths must be under images/ (one folder per story, no {hero})
@@ -27,6 +27,7 @@ Warnings are for the reviewer to judge:
 Usage:
   python3 tool/check_story.py <id>
   python3 tool/check_story.py <id> --art
+  python3 tool/check_story.py --selftest   # shared {name} cases (test/fixtures/name_rule_cases.json)
 """
 import argparse
 import json
@@ -69,19 +70,21 @@ def split_sentences(text):
     return [s.strip() for s in re.split(r'(?<=[.!?…])(?:["”»])?\s+', text) if s.strip()]
 
 
-def name_error(text, question_only):
-    """Why text breaks the {name} rule, or None. Mirrors story.dart."""
-    for s in split_sentences(text):
-        if NAME not in s:
-            continue
-        if s.count(NAME) > 1:
-            return f'"{s}": {NAME} more than once in a sentence'
-        core = re.sub(r'^["“«\s]+', '', s)
-        core = re.sub(r'[.!?…,"”»\s]+$', '', core)
-        if not core.startswith(NAME) and not core.endswith(NAME):
-            return f'"{s}": {NAME} must start or end the sentence'
-        if question_only and not re.search(r'\?["”»]?$', s):
-            return f'"{s}": {NAME} only in questions to the kid; say "bé" / "the little one"'
+def name_error(text):
+    """Why text breaks the {name} rule, or None. Mirrors story.dart.
+
+    At most once per line (scene, choice question, ending), and only as the
+    first or last word of the whole line, so it records as name + one clip.
+    """
+    n = text.count(NAME)
+    if n == 0:
+        return None
+    if n > 1:
+        return f'{NAME} more than once in the line'
+    core = re.sub(r'^["“«\s]+', '', text.strip())
+    core = re.sub(r'[.!?…,"”»\s]+$', '', core)
+    if not core.startswith(NAME) and not core.endswith(NAME):
+        return f'"{text}": {NAME} must be the first or last word of the line'
     return None
 
 
@@ -161,7 +164,7 @@ def check(story, r):
         texts = local(where, n.get('text'), r)
         for lang, t in texts.items():
             check_text(f'{where} ({lang})', t, lang, r)
-            e = name_error(t, question_only=kind != 'choice')
+            e = name_error(t)
             if e:
                 r.err(f'{where} ({lang}): {e}')
         amb = n.get('ambient')
@@ -202,6 +205,9 @@ def check(story, r):
                 if c.get('action') == 'move' and not (
                         isinstance(to, list) and len(to) == 2 and all(0 <= v <= 1 for v in to)):
                     r.err(f'{where}: move cue "{w}" needs "to": [x, y] in 0..1')
+                when = c.get('at')
+                if when is not None and not (isinstance(when, (int, float)) and 0 <= when <= 1):
+                    r.err(f'{where}: cue "{w}" needs "at" in 0..1 (fraction of its clip)')
         if cues and set(cues) != set(LANGS):
             r.warn(f'{where}: cues only for {sorted(cues)}; the other language won\'t move')
 
@@ -325,7 +331,22 @@ def check_art(story_id, story, r):
                       f'(has: {", ".join(sorted(poses.get(part, []))) or "none"})')
 
 
+NAME_CASES = ROOT / 'test/fixtures/name_rule_cases.json'
+
+
+def selftest():
+    """Runs the shared {name} cases (the Dart test runs the same file)."""
+    cases = json.loads(NAME_CASES.read_text(encoding='utf-8'))['cases']
+    bad = [c for c in cases if (name_error(c['text']) is None) != c['ok']]
+    for c in bad:
+        print(f'FAIL  {c["text"]!r}: expected {"ok" if c["ok"] else "error"}')
+    print(f'name rule: {len(cases) - len(bad)}/{len(cases)} cases pass')
+    sys.exit(1 if bad else 0)
+
+
 def main():
+    if '--selftest' in sys.argv[1:]:
+        selftest()
     parser = argparse.ArgumentParser()
     parser.add_argument('story_id')
     parser.add_argument('--art', action='store_true', help='also check images, layers, cue parts, poses')

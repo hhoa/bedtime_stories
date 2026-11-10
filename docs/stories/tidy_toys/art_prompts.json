@@ -1,0 +1,93 @@
+{
+  "hero": "girl",
+  "setting": "a cozy kid bedroom at night, the same room as in the attached room picture if one is attached: soft warm peach walls, wooden floor, a low wooden bed with a rounded headboard along the back wall on the left, seen from its long side, with a white pillow at the headboard and a smooth lavender blanket; a small warm glowing lamp on a little wooden shelf on the back wall; a window in the middle of the back wall showing a dark blue night sky with a crescent moon and a few stars; a round cream rug on the floor in front of the bed; a rounded light-wood door on the right wall. Props look the same in every picture: the toy box is a rounded wooden toy chest painted soft sky-blue with one yellow star on its front and a lid hinged at the back; the blocks are colorful wooden blocks (red, yellow, blue, green); the ball is a small ball with wide red and white stripes, like a little beach ball; the teddy bear is small, round and light brown with round ears and a peach tummy and muzzle. Few props, soft warm light, gentle shadows. The bottom-right corner of the picture is plain wooden floor with nothing important in it",
+  "reference": {
+    "kit": "first kit story: no picture per scene. kit/room.png is the one room of every scene; hero_a, hero_b, lulu_a and props are sheets cut into sprites (tool/sprite_sheet.py) and placed per scene by docs/stories/tidy_toys/stage.json (tool/stage.py). Only cover and sticker are normal pictures",
+    "room": "edit of the vacation story's end_asleep picture: child, Lulu, suitcase, backpack and hat removed, bed made, bed raised on short legs with a dark gap under its front side",
+    "bed": "along the back wall on the left, seen from its long side; headboard and pillow at the LEFT end; lavender blanket smooth and flat; dark gap under the front side (the ball rolls in there)",
+    "window": "middle of the back wall, crescent moon, a few stars",
+    "lamp": "small warm glowing lamp on a little wooden shelf on the back wall, between the bed's headboard and the window",
+    "rug": "round cream rug on the floor in front of the bed, partly under it",
+    "door": "rounded light-wood door on the right wall; the floor in front of it is the toy box's spot",
+    "toybox": "rounded wooden chest, soft sky-blue, one yellow star on the front, lid hinged at the back; about the child's waist height. Three states, same box: open and empty, open with blocks peeking over the rim, closed",
+    "blocks": "five colorful wooden blocks (red, yellow, blue, green) in one loose low cluster",
+    "ball": "small ball with wide red and white stripes, like a little beach ball (same as the vacation story)",
+    "teddy": "small round light-brown teddy bear, round ears, peach tummy and muzzle, little smile; lying on its back or sitting up",
+    "hero": "girl sheet, mint-green pajamas with little white stars, barefoot, in every figure",
+    "lulu": "Lulu sheet, about the size of a cat; no halo or sparkles drawn around her on the sheet (the app adds glow and sparkles)",
+    "light": "soft warm lamp light from the upper left on every sprite, to match the room"
+  },
+  "pictures": {
+    "cover": "Night, crescent moon in the window. {hero} kneels on the round cream rug with both arms up, beaming. To the right of {hero}, on the floor just left of the door and well away from the bottom-right corner, stands the open sky-blue toy box with the yellow star, full of colorful wooden blocks with the red-and-white striped ball on top. The small round light-brown teddy bear with round ears and a peach tummy sits on the bed on the left. Lulu floats in the air above the rug, clapping her paws. {hero} and Lulu do not touch. The floor is clean and tidy. If a room picture or a props sheet is attached, the room, toy box, blocks, ball and teddy look exactly like in them",
+    "sticker": "a closed rounded wooden toy chest painted soft sky-blue; on its front, a sleepy happy face (closed curved eyes, small smile) with one small yellow star above the face; a small round light-brown teddy bear with round ears, a peach tummy and muzzle and a little smile sitting on its lid"
+  },
+  "attach": {
+    "cover": [
+      "kit/room.png",
+      "kit/props.png"
+    ]
+  },
+  "kit": {
+    "room": {
+      "attach": "end_asleep.png  (the vacation story's last picture, in ~/Downloads/story_art/prepare_stuff_vacation/)",
+      "prompt": "Edit the attached picture. Keep the same room, camera angle, framing, walls, window with the crescent moon, lamp on the little shelf, round cream rug, wooden floor, door, warm night lighting, colors and soft 3D art style. Remove the sleeping child, the small glowing bunny on the headboard together with its glow and sparkles on the wall, the teal suitcase with the red heart tag, the orange backpack with the yellow star and the straw hat with the pink ribbon, and fill those places with what is behind them (wall, floor, door, bed). Keep the bed in exactly the same place and size, headboard against the left wall, seen from its long side. The bed is now empty and neatly made: the lavender blanket lies smooth and flat over the whole mattress, the white pillow sits at the headboard on the left. Raise the bed a little on four short wooden legs, so that a clearly visible dark empty gap, about as tall as a small ball, runs under the whole front side of the bed between the bed frame and the floor. The floor on the right, in front of the door, is empty. Add nothing else: no toys, no people, no animals, no text."
+    },
+    "sheets": {
+      "hero_a": {
+        "who": "hero",
+        "columns": 3,
+        "note": "The child's head is exactly the same size in every figure; sitting, kneeling and lying figures are simply smaller in the cell, never enlarged to fill it.",
+        "figures": {
+          "sit_play": "the child sits cross-legged on the floor, turned a little to the right, happy and relaxed, looking down to the right, both hands open in front of the tummy, palms up, empty",
+          "sit_look_up": "the child sits cross-legged in the same way, head tilted up and looking up to the right, surprised and delighted, eyes wide, mouth a little open, hands on the knees",
+          "bed_sit": "the child sits up straight on the floor, seen in three-quarter view facing right, both legs stretched straight out to the RIGHT and close together, head turned toward the viewer and tilted, both hands open and lifted at the sides, a puzzled 'where is it?' face",
+          "kneel_search": "the child kneels on the floor leaning forward to the right, lifting one red wooden block in one hand and peeking under it, curious face, the other hand on the floor",
+          "kneel_yawn": "the child kneels sitting back on the heels, in a huge sleepy yawn: mouth wide open, eyes squeezed shut, one fist rubbing an eye, shoulders drooping",
+          "kneel_happy": "the child kneels up tall with both arms thrown up and open wide, a big open-mouth smile, eyes shining"
+        }
+      },
+      "hero_b": {
+        "who": "hero",
+        "columns": 3,
+        "attach": "kit/hero_a.png (the sheet you made before this one)",
+        "note": "The child's head is exactly the same size in every figure; sitting, kneeling and lying figures are simply smaller in the cell, never enlarged to fill it. The child is exactly the same size as in the second attached sheet (kit/hero_a.png).",
+        "figures": {
+          "bend_place": "the child stands turned to the right and bends forward a little, both arms reaching forward and down to the right with open empty hands at waist height, nothing in or under the hands, soft careful smile, looking at the hands",
+          "stand_ball": "the child stands turned a little to the right, holding a small ball with wide red and white stripes (like a little beach ball) in both hands in front of the chest, smiling",
+          "throw": "the child stands turned to the right in a big throwing follow-through: one arm stretched forward and up toward the right, the other arm back, one foot forward, excited open-mouth face, both hands open and empty, nothing in the air",
+          "tummy_reach": "the child lies flat on the tummy on the floor, head to the LEFT, one arm stretched far out to the left reaching for something, cheek low, tongue tip out with effort, legs straight behind to the right",
+          "hug_teddy": "the child kneels and hugs a small round light-brown teddy bear with round ears, a peach tummy and muzzle and a little smile, tight against the chest with both arms, eyes closed, cheek on the teddy's head, a big happy smile",
+          "asleep": "the child lies asleep on one side, facing the viewer, head to the LEFT, eyes closed with a peaceful little smile, one hand resting in front of the face, body and legs stretched out to the right, lying on nothing: no pillow, no blanket, no bed"
+        }
+      },
+      "lulu_a": {
+        "who": "lulu",
+        "columns": 3,
+        "note": "Only the bunny in every figure. Her soft glow stays on her own fur only: no halo, no glow cloud, no light rays, no sparkles, no stars and no shadow anywhere around or under her, even though the reference picture shows some.",
+        "figures": {
+          "float": "Lulu floats upright, facing the viewer, relaxed and happy, paws at her sides, ears up",
+          "talk": "Lulu floats turned a little to the left and looks down to the left, one paw raised as if explaining, mouth open in a friendly smile",
+          "glow": "Lulu floats with both arms spread wide and her head lifted, eyes closed in a happy smile, the amber crescent moon on her belly shining bright yellow",
+          "point": "Lulu floats and points one paw clearly down to the right, looking that way, smiling",
+          "clap": "Lulu floats and claps both paws together in front of her chest, laughing, eyes closed",
+          "whisper": "Lulu floats leaning forward to the left, one paw beside her mouth as if whispering, eyes soft and half closed"
+        }
+      },
+      "props": {
+        "who": "props",
+        "columns": 4,
+        "note": "The three toy chests are the very same chest at the same size and from the same angle (from the front, slightly from above); only the lid and what is inside change. No faces on the chests, blocks, ball or blanket; only the teddy has its own little face. Sizes compared with the chest: the ball is about one fifth of the chest's width; each block is about the size of the ball; the block pile is about as wide as the lying teddy and a little taller than it; the sitting teddy is about half as tall as the chest; the blanket mound is about twice as long as the chest is wide.",
+        "figures": {
+          "toybox_empty": "a rounded wooden toy chest painted soft sky-blue with one yellow star on its front, lid open and tilted up behind it, completely empty inside",
+          "toybox_full": "the same sky-blue toy chest with the yellow star, lid open and tilted up behind it, colorful wooden blocks peeking over its rim",
+          "toybox_closed": "the same sky-blue toy chest with the yellow star, lid closed",
+          "blocks": "five colorful wooden blocks (red, yellow, blue, green, red) lying close together in one low loose cluster, all touching, one leaning on another",
+          "ball": "one small ball with wide red and white stripes, like a little beach ball",
+          "teddy_lying": "a small round light-brown teddy bear with round ears, a peach tummy and muzzle and a little smile, lying on its back with its arms out",
+          "teddy_sitting": "the same light-brown teddy bear sitting up, legs forward, arms at its sides",
+          "blanket_lump": "a long low mound of soft lavender blanket seen from the side, with a few soft folds: the top edge is folded back at the LEFT end, the mound is higher on the left and gets flatter toward the right end where it drapes down; nobody and nothing shows under or out of it"
+        }
+      }
+    }
+  }
+}

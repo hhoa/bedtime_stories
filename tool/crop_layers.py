@@ -20,9 +20,18 @@ from PIL import Image
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from layer_crop import crop_group  # noqa: E402
+from check_assets import LAYER_MAX  # noqa: E402
+from webp_save import save_webp  # noqa: E402
 
 ROOT = Path(__file__).resolve().parent.parent
 QUALITY = 92  # re-encoding: high enough that the second pass is invisible
+
+
+def save_layer(img: Image.Image, path: Path) -> None:
+    """Best WebP quality (from QUALITY down) that fits the cut-layer budget."""
+    _, q, size, over = save_webp(img, path, LAYER_MAX, q_hi=QUALITY)
+    if over or q < QUALITY:
+        print(f'  {path.name}: q{q}, {size // 1024} KB' + ('  OVER budget' if over else ''))
 
 
 def main():
@@ -56,7 +65,7 @@ def main():
             if args.dry:
                 continue
             for p, c in zip(paths, crops):
-                c.save(p, 'WEBP', quality=QUALITY, method=6)
+                save_layer(c, p)
             layer['rect'] = rect
 
     print(f'decoded memory, all cut layers: {before / 1e6:.0f} MB -> {after / 1e6:.0f} MB')

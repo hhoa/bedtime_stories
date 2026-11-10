@@ -1,0 +1,613 @@
+{
+ "s1_ring.webp": [
+  {
+   "file": "layers/s1_ring_0.webp"
+  },
+  {
+   "file": "layers/s1_ring_1.webp",
+   "kind": "hero",
+   "box": [
+    0.2856,
+    0.2992,
+    0.3463,
+    0.2808
+   ],
+   "pivot": [
+    0.4947,
+    0.58
+   ],
+   "idle": "breathe",
+   "tap": "wiggle",
+   "poses": {
+    "yawn": "layers/s1_ring_1_yawn.webp",
+    "rub_eye": "layers/s1_ring_1_rub_eye.webp"
+   },
+   "rect": [
+    0.28125,
+    0.294167,
+    0.355,
+    0.290833
+   ]
+  },
+  {
+   "file": "layers/s1_ring_clock.svg",
+   "kind": "clock",
+   "box": [
+    0.1035,
+    0.4292,
+    0.1731,
+    0.2008
+   ],
+   "pivot": [
+    0.19,
+    0.63
+   ],
+   "idle": "sway",
+   "tap": "wiggle"
+  }
+ ],
+ "s2_lulu_clock.webp": [
+  {
+   "file": "layers/s2_lulu_clock_0.webp"
+  },
+  {
+   "file": "layers/s2_lulu_clock_1.webp",
+   "kind": "hero",
+   "box": [
+    0.3719,
+    0.2608,
+    0.3387,
+    0.3167
+   ],
+   "pivot": [
+    0.5821,
+    0.5616
+   ],
+   "idle": "breathe",
+   "tap": "wiggle",
+   "poses": {
+    "sit_up": "layers/s2_lulu_clock_1_sit_up.webp"
+   },
+   "rect": [
+    0.3675,
+    0.255,
+    0.346875,
+    0.328333
+   ]
+  },
+  {
+   "file": "layers/s2_lulu_clock_2.webp",
+   "kind": "lulu",
+   "box": [
+    0.1237,
+    0.3133,
+    0.192,
+    0.2942
+   ],
+   "pivot": [
+    0.2193,
+    0.4604
+   ],
+   "idle": "float",
+   "tap": "hop",
+   "poses": {
+    "point": "layers/s2_lulu_clock_2_point.webp"
+   },
+   "rect": [
+    0.12,
+    0.308333,
+    0.199375,
+    0.305
+   ]
+  },
+  {
+   "file": "layers/s2_lulu_clock_clock.svg",
+   "kind": "clock",
+   "box": [
+    0.7608,
+    0.1694,
+    0.1385,
+    0.1606
+   ],
+   "pivot": [
+    0.83,
+    0.33
+   ],
+   "idle": "sway",
+   "tap": "wiggle"
+  }
+ ],
+ "b1_snooze.webp": [
+  {
+   "file": "layers/b1_snooze_0.webp"
+  },
+  {
+   "file": "layers/b1_snooze_1.webp",
+   "kind": "lulu",
+   "box": [
+    0.6731,
+    0.1292,
+    0.1663,
+    0.2467
+   ],
+   "pivot": [
+    0.78,
+    0.22
+   ],
+   "idle": "float",
+   "tap": "hop",
+   "poses": {
+    "chin": "layers/b1_snooze_1_chin.webp"
+   },
+   "rect": [
+    0.669375,
+    0.124167,
+    0.17375,
+    0.2575
+   ]
+  },
+  {
+   "file": "layers/b1_snooze_clock.svg",
+   "kind": "clock",
+   "box": [
+    0.0978,
+    0.3993,
+    0.1644,
+    0.1907
+   ],
+   "pivot": [
+    0.18,
+    0.59
+   ],
+   "idle": "sway",
+   "tap": "wiggle"
+  }
+ ],
+ "b2_rush.webp": [
+  {
+   "file": "layers/b2_rush_0.webp"
+  },
+  {
+   "file": "layers/b2_rush_1.webp",
+   "kind": "hero",
+   "box": [
+    0.3738,
+    0.2467,
+    0.3068,
+    0.6325
+   ],
+   "pivot": [
+    0.4969,
+    0.8784
+   ],
+   "idle": "breathe",
+   "tap": "hop",
+   "poses": {
+    "oops": "layers/b2_rush_1_oops.webp",
+    "sock_up": "layers/b2_rush_1_sock_up.webp"
+   },
+   "rect": [
+    0.368125,
+    0.240833,
+    0.316875,
+    0.644167
+   ]
+  },
+  {
+   "file": "layers/b2_rush_clock.svg",
+   "kind": "clock",
+   "box": [
+    0.0878,
+    0.3693,
+    0.1644,
+    0.1907
+   ],
+   "pivot": [
+    0.17,
+    0.56
+   ],
+   "idle": "sway",
+   "tap": "wiggle"
+  }
+ ],
+ "a1_stretch.webp": [
+  {
+   "file": "layers/a1_stretch_0.webp"
+  },
+  {
+   "file": "layers/a1_stretch_1.webp",
+   "kind": "hero",
+   "box": [
+    0.2725,
+    0.2383,
+    0.2543,
+    0.6508
+   ],
+   "pivot": [
+    0.3941,
+    0.8833
+   ],
+   "idle": "breathe",
+   "tap": "hop",
+   "poses": {
+    "stretch": "layers/a1_stretch_1_stretch.webp"
+   },
+   "rect": [
+    0.2675,
+    0.231667,
+    0.263125,
+    0.6625
+   ]
+  },
+  {
+   "file": "layers/a1_stretch_2.webp",
+   "kind": "lulu",
+   "box": [
+    0.5519,
+    0.275,
+    0.2412,
+    0.3367
+   ],
+   "pivot": [
+    0.6672,
+    0.405
+   ],
+   "idle": "float",
+   "tap": "hop",
+   "poses": {
+    "clap": "layers/a1_stretch_2_clap.webp"
+   },
+   "rect": [
+    0.548125,
+    0.269167,
+    0.249375,
+    0.3475
+   ]
+  },
+  {
+   "file": "layers/a1_stretch_clock.svg",
+   "kind": "clock",
+   "box": [
+    0.0835,
+    0.4442,
+    0.1731,
+    0.2008
+   ],
+   "pivot": [
+    0.17,
+    0.645
+   ],
+   "idle": "sway",
+   "tap": "wiggle",
+   "poses": {
+    "big": "layers/a1_stretch_clock_big.svg"
+   }
+  }
+ ],
+ "a2_ready.webp": [
+  {
+   "file": "layers/a2_ready_0.webp"
+  },
+  {
+   "file": "layers/a2_ready_1.webp",
+   "kind": "hero",
+   "box": [
+    0.1412,
+    0.255,
+    0.29,
+    0.6317
+   ],
+   "pivot": [
+    0.2674,
+    0.8867
+   ],
+   "idle": "breathe",
+   "tap": "hop",
+   "poses": {
+    "wave": "layers/a2_ready_1_wave.webp"
+   },
+   "rect": [
+    0.136875,
+    0.25,
+    0.29875,
+    0.6425
+   ]
+  },
+  {
+   "file": "layers/a2_ready_2.webp",
+   "kind": "lulu",
+   "box": [
+    0.4925,
+    0.17,
+    0.1325,
+    0.175
+   ],
+   "pivot": [
+    0.56,
+    0.2583
+   ],
+   "idle": "float",
+   "tap": "hop",
+   "poses": {
+    "wave": "layers/a2_ready_2_wave.webp"
+   },
+   "rect": [
+    0.474375,
+    0.165,
+    0.154375,
+    0.185
+   ]
+  },
+  {
+   "file": "layers/a2_ready_clock.svg",
+   "kind": "clock",
+   "box": [
+    0.4571,
+    0.4193,
+    0.1558,
+    0.1807
+   ],
+   "pivot": [
+    0.535,
+    0.6
+   ],
+   "idle": "sway",
+   "tap": "wiggle"
+  }
+ ],
+ "n1_nine.webp": [
+  {
+   "file": "layers/n1_nine_0.webp"
+  },
+  {
+   "file": "layers/n1_nine_1.webp",
+   "kind": "hero",
+   "box": [
+    0.3656,
+    0.3808,
+    0.2363,
+    0.4392
+   ],
+   "pivot": [
+    0.474,
+    0.82
+   ],
+   "idle": "breathe",
+   "tap": "hop",
+   "poses": {
+    "look_up": "layers/n1_nine_1_look_up.webp"
+   },
+   "rect": [
+    0.36125,
+    0.375,
+    0.245,
+    0.450833
+   ]
+  },
+  {
+   "file": "layers/n1_nine_2.webp",
+   "kind": "lulu",
+   "box": [
+    0.27,
+    0.0975,
+    0.14,
+    0.1975
+   ],
+   "pivot": [
+    0.34,
+    0.1963
+   ],
+   "idle": "float",
+   "tap": "hop",
+   "rect": [
+    0.265625,
+    0.091667,
+    0.14875,
+    0.208333
+   ]
+  },
+  {
+   "file": "layers/n1_nine_clock.svg",
+   "kind": "clock",
+   "box": [
+    0.1378,
+    0.3293,
+    0.1644,
+    0.1907
+   ],
+   "pivot": [
+    0.22,
+    0.52
+   ],
+   "idle": "sway",
+   "tap": "wiggle"
+  }
+ ],
+ "e1_turn.webp": [
+  {
+   "file": "layers/e1_turn_0.webp"
+  },
+  {
+   "file": "layers/e1_turn_1.webp",
+   "kind": "hero",
+   "box": [
+    0.2769,
+    0.2175,
+    0.2681,
+    0.6542
+   ],
+   "pivot": [
+    0.4109,
+    0.8708
+   ],
+   "idle": "breathe",
+   "tap": "hop",
+   "poses": {
+    "reach": "layers/e1_turn_1_reach.webp",
+    "yawn": "layers/e1_turn_1_yawn.webp"
+   },
+   "rect": [
+    0.2725,
+    0.211667,
+    0.2775,
+    0.665
+   ]
+  },
+  {
+   "file": "layers/e1_turn_clock.svg",
+   "kind": "clock",
+   "box": [
+    0.1135,
+    0.4192,
+    0.1731,
+    0.2008
+   ],
+   "pivot": [
+    0.2,
+    0.62
+   ],
+   "idle": "sway",
+   "tap": "wiggle",
+   "poses": {
+    "turned": "layers/e1_turn_clock_turned.svg"
+   }
+  }
+ ],
+ "d1_goodnight.webp": [
+  {
+   "file": "layers/d1_goodnight_0.webp"
+  },
+  {
+   "file": "layers/d1_goodnight_1.webp",
+   "kind": "hero",
+   "box": [
+    0.4294,
+    0.2133,
+    0.3106,
+    0.6075
+   ],
+   "pivot": [
+    0.6297,
+    0.8208
+   ],
+   "idle": "breathe",
+   "tap": "hop",
+   "poses": {
+    "wave": "layers/d1_goodnight_1_wave.webp"
+   },
+   "rect": [
+    0.425625,
+    0.2075,
+    0.31875,
+    0.619167
+   ]
+  },
+  {
+   "file": "layers/d1_goodnight_clock.svg",
+   "kind": "clock",
+   "box": [
+    0.1135,
+    0.4142,
+    0.1731,
+    0.2008
+   ],
+   "pivot": [
+    0.2,
+    0.615
+   ],
+   "idle": "sway",
+   "tap": "wiggle"
+  }
+ ],
+ "b3_lulu_fix.webp": [
+  {
+   "file": "layers/b3_lulu_fix_0.webp"
+  },
+  {
+   "file": "layers/b3_lulu_fix_1.webp",
+   "kind": "hero",
+   "box": [
+    0.2906,
+    0.2042,
+    0.3956,
+    0.6783
+   ],
+   "pivot": [
+    0.4884,
+    0.8825
+   ],
+   "idle": "breathe",
+   "tap": "hop",
+   "poses": {
+    "smile": "layers/b3_lulu_fix_1_smile.webp"
+   },
+   "rect": [
+    0.285,
+    0.198333,
+    0.405625,
+    0.689167
+   ]
+  },
+  {
+   "file": "layers/b3_lulu_fix_clock.svg",
+   "kind": "clock",
+   "box": [
+    0.0678,
+    0.4093,
+    0.1644,
+    0.1907
+   ],
+   "pivot": [
+    0.15,
+    0.6
+   ],
+   "idle": "sway",
+   "tap": "wiggle"
+  }
+ ],
+ "e2_lulu_back.webp": [
+  {
+   "file": "e2_lulu_back.webp"
+  },
+  {
+   "file": "layers/e2_lulu_back_clock.svg",
+   "kind": "clock",
+   "box": [
+    0.1135,
+    0.4592,
+    0.1731,
+    0.2008
+   ],
+   "pivot": [
+    0.2,
+    0.66
+   ],
+   "idle": "sway",
+   "tap": "wiggle",
+   "poses": {
+    "back": "layers/e2_lulu_back_clock_back.svg"
+   }
+  }
+ ],
+ "end_asleep.webp": [
+  {
+   "file": "end_asleep.webp"
+  },
+  {
+   "file": "layers/end_asleep_clock.svg",
+   "kind": "clock",
+   "box": [
+    0.2078,
+    0.4193,
+    0.1644,
+    0.1907
+   ],
+   "pivot": [
+    0.29,
+    0.61
+   ],
+   "idle": "sway",
+   "tap": "wiggle"
+  }
+ ]
+}

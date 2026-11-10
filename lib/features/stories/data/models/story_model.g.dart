@@ -32,6 +32,7 @@ CueModel _$CueModelFromJson(Map<String, dynamic> json) => CueModel(
   to: (json['to'] as List<dynamic>?)
       ?.map((e) => (e as num).toDouble())
       .toList(),
+  at: (json['at'] as num?)?.toDouble(),
 );
 
 Map<String, dynamic> _$CueModelToJson(CueModel instance) => <String, dynamic>{
@@ -40,6 +41,7 @@ Map<String, dynamic> _$CueModelToJson(CueModel instance) => <String, dynamic>{
   'action': instance.action,
   'pose': instance.pose,
   'to': instance.to,
+  'at': instance.at,
 };
 
 StoryNodeModel _$StoryNodeModelFromJson(Map<String, dynamic> json) =>

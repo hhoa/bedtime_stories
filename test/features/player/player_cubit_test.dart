@@ -55,7 +55,7 @@ void main() {
 
     expect(cubit.state.nodeId, 'c1');
     expect(cubit.state.phase, PlayerPhase.choosing);
-    // Name only in questions, at the start or end: one clip + the name.
+    // Name at the start or end of a sentence: one clip + the name.
     // No recording: the bundled "bé" clip stands in for it.
     expect(narrator.played, [
       '$_audio/s1.m4a',
@@ -219,6 +219,24 @@ void main() {
       ..choose('bed')
       ..choose('play');
     expect(cubit.state.path.single.optionId, 'bed');
+  });
+
+  test('tapping the picture mid-line does not restart it', () async {
+    narrator.clipDuration = const Duration(milliseconds: 40);
+    await cubit.load();
+    await Future<void>.delayed(const Duration(milliseconds: 10));
+
+    cubit.replay();
+    await Future<void>.delayed(const Duration(milliseconds: 10));
+    expect(narrator.played, ['$_audio/s1.m4a']);
+
+    // Once the choice has been read in full, a tap reads it again.
+    await Future<void>.delayed(const Duration(milliseconds: 400));
+    expect(cubit.state.nodeId, 'c1');
+    final before = narrator.played.length;
+    cubit.replay();
+    await Future<void>.delayed(const Duration(milliseconds: 10));
+    expect(narrator.played.sublist(before), [_be]);
   });
 
   test('close disposes narrator', () async {

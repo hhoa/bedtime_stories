@@ -222,28 +222,44 @@ void main() {
   });
 
   group('{name} rule', () {
-    test('scene: only in a question, at its start or end', () {
-      String? check(String text) =>
-          namePlacementError(text, questionOnly: true);
+    test('first or last word of the whole line, once', () {
+      String? check(String text) => namePlacementError(text);
       expect(check('Trời tối rồi. Mình ngủ chưa nhỉ, {name}?'), isNull);
       expect(check('{name} ơi, mình ngủ nhé?'), isNull);
       expect(check('"{name} ơi, mấy giờ rồi?" Lulu hỏi.'), isNull);
-      expect(check('{name} vươn vai thật cao.'), isNotNull);
+      expect(check('{name} vươn vai thật cao. Lulu vỗ tay.'), isNull);
+      expect(check('Ngủ ngon nhé, {name}.'), isNull);
+      expect(check('Reng reng! {name} ngáp một cái.'), isNotNull);
+      expect(check('Lulu xoay áo cho {name}. Bé mỉm cười.'), isNotNull);
       expect(check('Chào {name}, chào buổi sáng?'), isNotNull);
-      expect(check('Ngủ ngon nhé, {name}.'), isNotNull);
-    });
-
-    test('choice question: start or end of any sentence', () {
-      String? check(String text) =>
-          namePlacementError(text, questionOnly: false);
-      expect(check('{name} ơi, bảy giờ rồi. Mình làm gì nhỉ?'), isNull);
-      expect(check('Bảy giờ rồi, mình làm gì nhỉ, {name}?'), isNull);
       expect(check('Bảy giờ rồi, {name} làm gì nhỉ?'), isNotNull);
       expect(check('{name} ơi, {name}?'), isNotNull);
     });
 
-    test('parser rejects the name in a scene statement', () {
+    // Same file as `python3 tool/check_story.py --selftest`: keeps the Dart
+    // and Python rules in sync.
+    test('agrees with the shared cases in name_rule_cases.json', () {
+      final file = File('test/fixtures/name_rule_cases.json');
+      final cases =
+          (jsonDecode(file.readAsStringSync()) as Map)['cases'] as List;
+      for (final c in cases.cast<Map<String, dynamic>>()) {
+        final text = c['text'] as String;
+        final ok = c['ok'] as bool;
+        expect(
+          namePlacementError(text) == null,
+          ok,
+          reason: '"$text" should be ${ok ? 'ok' : 'an error'}',
+        );
+      }
+    });
+
+    test('parser accepts the name opening a scene statement', () {
       final json = _withS1({'text': _t('{name} ngáp một cái.')});
+      expect(() => _parse(json), returnsNormally);
+    });
+
+    test('parser rejects the name mid-sentence in a scene', () {
+      final json = _withS1({'text': _t('Rồi {name} ngáp một cái.')});
       expect(() => _parse(json), throwsFormatException);
     });
 
@@ -338,17 +354,16 @@ void main() {
   group('cues', () {
     Map<String, dynamic> withCues(
       String text,
-      List<Map<String, String>> cues,
+      List<Map<String, Object>> cues,
     ) => _withS1({
       'text': _t(text),
       'cues': {'vi': cues, 'en': cues},
     });
 
-    test('parses and times cues around the name', () {
-      const p0 = 'Tưng, tưng! Mình ngủ nhé, ';
-      const p1 = '? Tưng!';
+    test('parses and times cues after a leading name', () {
+      const p1 = ' ơi, tưng tưng! Mình ngủ nhé. Tưng!';
       final story = _parse(
-        withCues('$p0{name}$p1', [
+        withCues('{name}$p1', [
           {'word': 'tưng', 'part': 'lulu', 'action': 'hop'},
           {'word': 'Tưng', 'part': 'lulu', 'action': 'pulse'},
         ]),
@@ -356,13 +371,51 @@ void main() {
       final timings = story.cueTimings('s1');
 
       expect(timings, hasLength(2));
-      // "tưng" sits in the first clip, before the name.
-      expect(timings[0].clip, 'b/audio/vi/s1_p0.m4a');
-      expect(timings[0].clipFraction, closeTo(6 / p0.length, 1e-9));
-      // The second "Tưng" (searched after the first cue) is after the name.
+      // Both cues are in the one clip after the name.
+      expect(timings[0].clip, 'b/audio/vi/s1_p1.m4a');
+      expect(timings[0].clipFraction, closeTo(5 / p1.length, 1e-9));
+      // The second "Tưng" (searched after the first cue) is the last word.
       expect(timings[1].cue.action, PartAction.pulse);
       expect(timings[1].clip, 'b/audio/vi/s1_p1.m4a');
-      expect(timings[1].clipFraction, closeTo(2 / p1.length, 1e-9));
+      expect(timings[1].clipFraction, closeTo(30 / p1.length, 1e-9));
+    });
+
+    test('times cues before a trailing name', () {
+      const p0 = 'Tưng, tưng! Mình ngủ nhé, ';
+      final story = _parse(
+        withCues('$p0{name}?', [
+          {'word': 'tưng', 'part': 'lulu', 'action': 'hop'},
+        ]),
+      );
+      final timings = story.cueTimings('s1');
+
+      expect(timings, hasLength(1));
+      expect(timings[0].clip, 'b/audio/vi/s1_p0.m4a');
+      expect(timings[0].clipFraction, closeTo(6 / p0.length, 1e-9));
+    });
+
+    test('a measured "at" wins over the text guess', () {
+      const p0 = 'Tưng, tưng! Mình ngủ nhé, ';
+      final story = _parse(
+        withCues('$p0{name}?', [
+          {'word': 'tưng', 'part': 'lulu', 'action': 'hop', 'at': 0.42},
+        ]),
+      );
+      final timings = story.cueTimings('s1');
+
+      expect(timings.single.clip, 'b/audio/vi/s1_p0.m4a');
+      expect(timings.single.clipFraction, 0.42);
+    });
+
+    test('rejects "at" outside 0..1', () {
+      expect(
+        () => _parse(
+          withCues('Tưng!', [
+            {'word': 'Tưng', 'part': 'lulu', 'action': 'hop', 'at': 1.5},
+          ]),
+        ),
+        throwsFormatException,
+      );
     });
 
     test('rejects a cue word missing from the text', () {

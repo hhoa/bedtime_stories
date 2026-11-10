@@ -1,0 +1,14 @@
+{
+ "s1_ring.webp": [{"kind": "hero", "box": [0.35, 0.29, 0.29, 0.3], "burst": "hearts"}],
+ "s2_lulu_clock.webp": [{"kind": "hero", "box": [0.45, 0.26, 0.22, 0.3], "burst": "hearts"}, {"kind": "lulu", "box": [0.12, 0.3, 0.2, 0.31], "burst": "sparkles"}],
+ "b1_snooze.webp": [{"kind": "hero", "box": [0.38, 0.28, 0.45, 0.42], "burst": "hearts"}, {"kind": "lulu", "box": [0.67, 0.13, 0.17, 0.25], "burst": "sparkles"}],
+ "b2_rush.webp": [{"kind": "hero", "box": [0.38, 0.24, 0.25, 0.64], "burst": "hearts"}],
+ "b3_lulu_fix.webp": [{"kind": "hero", "box": [0.29, 0.18, 0.41, 0.7], "burst": "hearts"}, {"kind": "lulu", "box": [0.51, 0.29, 0.18, 0.28], "burst": "sparkles"}],
+ "a1_stretch.webp": [{"kind": "hero", "box": [0.28, 0.24, 0.24, 0.63], "burst": "hearts"}, {"kind": "lulu", "box": [0.57, 0.27, 0.19, 0.27], "burst": "sparkles"}],
+ "a2_ready.webp": [{"kind": "hero", "box": [0.14, 0.25, 0.25, 0.64], "burst": "hearts"}, {"kind": "lulu", "box": [0.49, 0.17, 0.13, 0.17], "burst": "sparkles"}],
+ "n1_nine.webp": [{"kind": "hero", "box": [0.36, 0.39, 0.23, 0.43], "burst": "hearts"}, {"kind": "lulu", "box": [0.27, 0.1, 0.14, 0.2], "burst": "sparkles"}],
+ "e1_turn.webp": [{"kind": "hero", "box": [0.29, 0.21, 0.26, 0.65], "burst": "hearts"}],
+ "e2_lulu_back.webp": [{"kind": "hero", "box": [0.27, 0.22, 0.24, 0.62], "burst": "hearts"}, {"kind": "lulu", "box": [0.5, 0.3, 0.18, 0.39], "burst": "sparkles"}],
+ "d1_goodnight.webp": [{"kind": "hero", "box": [0.53, 0.21, 0.22, 0.6], "burst": "hearts"}, {"kind": "lulu", "box": [0.36, 0.27, 0.17, 0.18], "burst": "sparkles"}],
+ "end_asleep.webp": [{"kind": "hero", "box": [0.47, 0.31, 0.22, 0.28], "burst": "hearts"}, {"kind": "lulu", "box": [0.67, 0.29, 0.24, 0.17], "burst": "sparkles"}]
+}

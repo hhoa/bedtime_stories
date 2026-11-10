@@ -587,7 +587,9 @@ mixin _$StoryCue {
  String get word;/// A layer `kind` in the node's picture, e.g. `lulu`, `hero`, `clock`.
  String get part; PartAction get action;/// With [PartAction.pose]: the pose to switch to.
  String? get pose;/// With [PartAction.move]: where the part's pivot goes.
- CanvasPoint? get to;
+ CanvasPoint? get to;/// When [word] is said, as a fraction of its clip (measured from the
+/// recording); null = guess from the word's place in the text.
+ double? get at;
 /// Create a copy of StoryCue
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -598,16 +600,16 @@ $StoryCueCopyWith<StoryCue> get copyWith => _$StoryCueCopyWithImpl<StoryCue>(thi
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is StoryCue&&(identical(other.word, word) || other.word == word)&&(identical(other.part, part) || other.part == part)&&(identical(other.action, action) || other.action == action)&&(identical(other.pose, pose) || other.pose == pose)&&(identical(other.to, to) || other.to == to));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is StoryCue&&(identical(other.word, word) || other.word == word)&&(identical(other.part, part) || other.part == part)&&(identical(other.action, action) || other.action == action)&&(identical(other.pose, pose) || other.pose == pose)&&(identical(other.to, to) || other.to == to)&&(identical(other.at, at) || other.at == at));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,word,part,action,pose,to);
+int get hashCode => Object.hash(runtimeType,word,part,action,pose,to,at);
 
 @override
 String toString() {
-  return 'StoryCue(word: $word, part: $part, action: $action, pose: $pose, to: $to)';
+  return 'StoryCue(word: $word, part: $part, action: $action, pose: $pose, to: $to, at: $at)';
 }
 
 
@@ -618,7 +620,7 @@ abstract mixin class $StoryCueCopyWith<$Res>  {
   factory $StoryCueCopyWith(StoryCue value, $Res Function(StoryCue) _then) = _$StoryCueCopyWithImpl;
 @useResult
 $Res call({
- String word, String part, PartAction action, String? pose, CanvasPoint? to
+ String word, String part, PartAction action, String? pose, CanvasPoint? to, double? at
 });
 
 
@@ -635,14 +637,15 @@ class _$StoryCueCopyWithImpl<$Res>
 
 /// Create a copy of StoryCue
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? word = null,Object? part = null,Object? action = null,Object? pose = freezed,Object? to = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? word = null,Object? part = null,Object? action = null,Object? pose = freezed,Object? to = freezed,Object? at = freezed,}) {
   return _then(_self.copyWith(
 word: null == word ? _self.word : word // ignore: cast_nullable_to_non_nullable
 as String,part: null == part ? _self.part : part // ignore: cast_nullable_to_non_nullable
 as String,action: null == action ? _self.action : action // ignore: cast_nullable_to_non_nullable
 as PartAction,pose: freezed == pose ? _self.pose : pose // ignore: cast_nullable_to_non_nullable
 as String?,to: freezed == to ? _self.to : to // ignore: cast_nullable_to_non_nullable
-as CanvasPoint?,
+as CanvasPoint?,at: freezed == at ? _self.at : at // ignore: cast_nullable_to_non_nullable
+as double?,
   ));
 }
 
@@ -727,10 +730,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String word,  String part,  PartAction action,  String? pose,  CanvasPoint? to)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String word,  String part,  PartAction action,  String? pose,  CanvasPoint? to,  double? at)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _StoryCue() when $default != null:
-return $default(_that.word,_that.part,_that.action,_that.pose,_that.to);case _:
+return $default(_that.word,_that.part,_that.action,_that.pose,_that.to,_that.at);case _:
   return orElse();
 
 }
@@ -748,10 +751,10 @@ return $default(_that.word,_that.part,_that.action,_that.pose,_that.to);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String word,  String part,  PartAction action,  String? pose,  CanvasPoint? to)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String word,  String part,  PartAction action,  String? pose,  CanvasPoint? to,  double? at)  $default,) {final _that = this;
 switch (_that) {
 case _StoryCue():
-return $default(_that.word,_that.part,_that.action,_that.pose,_that.to);case _:
+return $default(_that.word,_that.part,_that.action,_that.pose,_that.to,_that.at);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -768,10 +771,10 @@ return $default(_that.word,_that.part,_that.action,_that.pose,_that.to);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String word,  String part,  PartAction action,  String? pose,  CanvasPoint? to)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String word,  String part,  PartAction action,  String? pose,  CanvasPoint? to,  double? at)?  $default,) {final _that = this;
 switch (_that) {
 case _StoryCue() when $default != null:
-return $default(_that.word,_that.part,_that.action,_that.pose,_that.to);case _:
+return $default(_that.word,_that.part,_that.action,_that.pose,_that.to,_that.at);case _:
   return null;
 
 }
@@ -783,7 +786,7 @@ return $default(_that.word,_that.part,_that.action,_that.pose,_that.to);case _:
 
 
 class _StoryCue implements StoryCue {
-  const _StoryCue({required this.word, required this.part, required this.action, this.pose, this.to});
+  const _StoryCue({required this.word, required this.part, required this.action, this.pose, this.to, this.at});
   
 
 @override final  String word;
@@ -794,6 +797,9 @@ class _StoryCue implements StoryCue {
 @override final  String? pose;
 /// With [PartAction.move]: where the part's pivot goes.
 @override final  CanvasPoint? to;
+/// When [word] is said, as a fraction of its clip (measured from the
+/// recording); null = guess from the word's place in the text.
+@override final  double? at;
 
 /// Create a copy of StoryCue
 /// with the given fields replaced by the non-null parameter values.
@@ -805,16 +811,16 @@ _$StoryCueCopyWith<_StoryCue> get copyWith => __$StoryCueCopyWithImpl<_StoryCue>
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _StoryCue&&(identical(other.word, word) || other.word == word)&&(identical(other.part, part) || other.part == part)&&(identical(other.action, action) || other.action == action)&&(identical(other.pose, pose) || other.pose == pose)&&(identical(other.to, to) || other.to == to));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _StoryCue&&(identical(other.word, word) || other.word == word)&&(identical(other.part, part) || other.part == part)&&(identical(other.action, action) || other.action == action)&&(identical(other.pose, pose) || other.pose == pose)&&(identical(other.to, to) || other.to == to)&&(identical(other.at, at) || other.at == at));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,word,part,action,pose,to);
+int get hashCode => Object.hash(runtimeType,word,part,action,pose,to,at);
 
 @override
 String toString() {
-  return 'StoryCue(word: $word, part: $part, action: $action, pose: $pose, to: $to)';
+  return 'StoryCue(word: $word, part: $part, action: $action, pose: $pose, to: $to, at: $at)';
 }
 
 
@@ -825,7 +831,7 @@ abstract mixin class _$StoryCueCopyWith<$Res> implements $StoryCueCopyWith<$Res>
   factory _$StoryCueCopyWith(_StoryCue value, $Res Function(_StoryCue) _then) = __$StoryCueCopyWithImpl;
 @override @useResult
 $Res call({
- String word, String part, PartAction action, String? pose, CanvasPoint? to
+ String word, String part, PartAction action, String? pose, CanvasPoint? to, double? at
 });
 
 
@@ -842,14 +848,15 @@ class __$StoryCueCopyWithImpl<$Res>
 
 /// Create a copy of StoryCue
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? word = null,Object? part = null,Object? action = null,Object? pose = freezed,Object? to = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? word = null,Object? part = null,Object? action = null,Object? pose = freezed,Object? to = freezed,Object? at = freezed,}) {
   return _then(_StoryCue(
 word: null == word ? _self.word : word // ignore: cast_nullable_to_non_nullable
 as String,part: null == part ? _self.part : part // ignore: cast_nullable_to_non_nullable
 as String,action: null == action ? _self.action : action // ignore: cast_nullable_to_non_nullable
 as PartAction,pose: freezed == pose ? _self.pose : pose // ignore: cast_nullable_to_non_nullable
 as String?,to: freezed == to ? _self.to : to // ignore: cast_nullable_to_non_nullable
-as CanvasPoint?,
+as CanvasPoint?,at: freezed == at ? _self.at : at // ignore: cast_nullable_to_non_nullable
+as double?,
   ));
 }
 

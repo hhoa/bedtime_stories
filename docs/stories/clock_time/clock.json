@@ -1,0 +1,157 @@
+{
+ "scenes": {
+  "s1_ring": {
+   "at": [
+    0.19,
+    0.63,
+    0.2
+   ],
+   "default": {
+    "time": "7:00",
+    "mood": "smile",
+    "fx": "ring"
+   }
+  },
+  "s2_lulu_clock": {
+   "at": [
+    0.83,
+    0.33,
+    0.16
+   ],
+   "default": {
+    "time": "7:00",
+    "mood": "smile"
+   }
+  },
+  "b1_snooze": {
+   "at": [
+    0.18,
+    0.59,
+    0.19
+   ],
+   "default": {
+    "time": "7:30",
+    "mood": "smile"
+   }
+  },
+  "b2_rush": {
+   "at": [
+    0.17,
+    0.56,
+    0.19
+   ],
+   "default": {
+    "time": "7:30",
+    "mood": "smile"
+   }
+  },
+  "b3_lulu_fix": {
+   "at": [
+    0.15,
+    0.6,
+    0.19
+   ],
+   "default": {
+    "time": "7:30",
+    "mood": "smile"
+   }
+  },
+  "a1_stretch": {
+   "at": [
+    0.17,
+    0.645,
+    0.2
+   ],
+   "default": {
+    "time": "7:00",
+    "mood": "smile"
+   },
+   "poses": {
+    "big": {
+     "time": "7:00",
+     "mood": "big"
+    }
+   }
+  },
+  "a2_ready": {
+   "at": [
+    0.535,
+    0.6,
+    0.18
+   ],
+   "default": {
+    "time": "7:30",
+    "mood": "smile"
+   }
+  },
+  "n1_nine": {
+   "at": [
+    0.22,
+    0.52,
+    0.19
+   ],
+   "default": {
+    "time": "9:00",
+    "mood": "smile",
+    "fx": "chime"
+   }
+  },
+  "e1_turn": {
+   "at": [
+    0.2,
+    0.62,
+    0.2
+   ],
+   "default": {
+    "time": "9:00",
+    "mood": "smile"
+   },
+   "poses": {
+    "turned": {
+     "time": "8:00",
+     "mood": "swirly"
+    }
+   }
+  },
+  "e2_lulu_back": {
+   "at": [
+    0.2,
+    0.66,
+    0.2
+   ],
+   "default": {
+    "time": "8:00",
+    "mood": "swirly"
+   },
+   "poses": {
+    "back": {
+     "time": "9:00",
+     "mood": "smile"
+    }
+   }
+  },
+  "d1_goodnight": {
+   "at": [
+    0.2,
+    0.615,
+    0.2
+   ],
+   "default": {
+    "time": "9:00",
+    "mood": "sleepy",
+    "fx": "chime"
+   }
+  },
+  "end_asleep": {
+   "at": [
+    0.29,
+    0.61,
+    0.19
+   ],
+   "default": {
+    "time": "9:00",
+    "mood": "asleep"
+   }
+  }
+ }
+}

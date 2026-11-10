@@ -1,0 +1,119 @@
+{
+  "setting": "the same cozy kid bedroom at night in every picture: a low wooden bed with a lavender blanket and a soft white pillow against the left wall, soft warm peach walls, a window in the middle of the back wall showing a dark blue night sky with a crescent moon and a few stars, a small warm glowing lamp on a little wooden shelf on the back wall between the bed and the window, a soft round cream rug in the middle of the wooden floor, and a rounded light-wood door on the right wall with a big upright teal grown-up suitcase (handle, little wheels, small red heart tag) standing on the floor just left of the door. Props look the same in every picture: the little backpack is a small rounded soft-orange kid backpack with a yellow star on its front pocket and two straps; the sun hat is a round straw hat with a wide brim and a pink ribbon; the water bottle is light blue with a white cap; the sand bucket is a small red pail with a handle and a little yellow spade; the clothes are a light-blue t-shirt and yellow shorts; the toys are a few colorful wooden blocks and a small red-and-white ball. Few props, soft warm light, gentle shadows. The bottom-right corner of the picture is plain wooden floor with nothing important in it",
+  "reference": {
+    "room": "the same kid bedroom at night in every picture, warm lamp light, soft warm peach walls, wooden floor",
+    "bed": "low wooden bed against the LEFT wall, lavender blanket, white pillow (shown only in end_asleep: \"bed on the left\", head at left-middle)",
+    "window": "in the middle of the back wall, dark blue sky, crescent moon, a few stars",
+    "lamp": "small warm glowing lamp on a little wooden shelf on the back wall, between the bed and the window",
+    "rug": "soft round cream rug in the middle of the floor (most of the action happens here)",
+    "door": "rounded light-wood door on the RIGHT wall",
+    "big suitcase (parents')": "upright, teal, handle, little wheels, small red heart tag, on the floor just left of the door (s1, s2, d2, end, cover)",
+    "little backpack": "small rounded soft-orange kid backpack, yellow star on the front pocket, two straps. State: s1/s2 empty and open → b1/b2/b3 bulging with toys (learn) → a1/c2 open and slim, bucket peeking out → e1 lumpy clothes bulging out (learn) → e2/d1 open → d2/end/cover zipped and slim, hat on top",
+    "sun hat": "round straw, wide brim, pink ribbon. State: round on the rug (s1, s2, b1, a1) → squashed flat on top (e1) → round in Lulu's paws (e2) → round beside the backpack (d1) → round on top of the zipped backpack (d2, end, cover)",
+    "water bottle": "light blue, white cap. On the rug (s1, s2, b1) → in the hero's hands (a1) → inside the backpack afterwards",
+    "sand bucket": "small red pail, handle, little yellow spade. On the rug → peeking out of the backpack (a1)",
+    "clothes": "light-blue t-shirt and yellow shorts. Flat on the rug (a1) → crumpled in the backpack (e1) → wrinkled on the rug (e2) → folded (d1)",
+    "toys": "a few colorful wooden blocks and a small red-and-white ball. On the rug (s1, s2) → in the backpack (b1, b2) → taken out (b3) → small heap far to the side (a1)",
+    "hero": "girl sheet, mint-green long-sleeve pajamas with white stars, barefoot; no `outfits` (right: clothes never change). Lulu: sheet + \"about the size of a cat\", in s2, b3, a1, e2, d1, d2, end, cover; absent pictures say \"Nobody else in the picture\" (s1, b1, b2, e1) without naming her. No grown-ups drawn."
+  },
+  "pictures": {
+    "cover": "Night, crescent moon in the window. {hero} and Lulu sit on the soft rug, one on each side of the little orange backpack, which is zipped with the round straw sun hat on top; both smile at it. The big teal suitcase stands by the door behind. {hero} and Lulu do not touch",
+    "s1_backpack": "Night, crescent moon in the window, warm lamp light. {hero} sits cross-legged in the middle of the soft rug, happy, holding the empty little orange backpack (open, flap back) in both hands on the lap. The big teal suitcase stands upright beside the door on the right. On the rug a little apart from {hero}, with a clear gap, nothing touching {hero}: a few wooden blocks and the red-and-white ball on one side; the straw sun hat, the light-blue water bottle and the red sand bucket on the other side. Nobody else in the picture",
+    "s2_lulu": "Night, crescent moon in the window. Lulu floats in the air near the window, softly glowing, happy, a few tiny sparkles trailing behind her. {hero} sits on the soft rug, looking up at Lulu with a surprised, happy face, hands resting on the knees; the empty open little backpack stands on the rug in front of {hero}, not touched. The sun hat, water bottle, sand bucket, blocks and ball still lie on the rug. The big suitcase by the door",
+    "b1_stuffed": "Night, warm lamp light. {hero} kneels on the soft rug beside the little orange backpack, which is bulging round and fat, wooden blocks and the red-and-white ball poking out of its open top. {hero} holds one last wooden block up in one hand, determined and cheerful, not touching the backpack. The rug is now empty of toys. The sun hat, bottle and bucket lie a little further away. Nobody else in the picture",
+    "b2_heavy": "Night, warm lamp light. The fat bulging little backpack (blocks and ball poking out) sits on the rug. {hero} sits on the rug right beside it, plopped down with legs out, hands resting on the rug behind, a tired face with puffed-out cheeks (sleepy-tired, not crying), three tiny soft white puff clouds near the mouth; {hero} does not touch the backpack. The straw sun hat, the light-blue water bottle and the red sand bucket lie on the rug a little further away. Nobody else in the picture",
+    "b3_lulu_help": "Night, soft glow. Lulu sits on the rug, softly glowing, beside the bulging little backpack, holding up in both paws one wooden block she has just lifted out of it, the block a little above the backpack's top, a gentle smile. {hero} sits on the other side of the backpack, holding the red-and-white ball in both hands, a calm small smile. Neither {hero} nor Lulu touches the backpack or each other. A few wooden blocks already lie back on the rug in front of the backpack. The straw sun hat, the light-blue water bottle and the red sand bucket lie on the rug a little further away",
+    "a1_pack": "Night, warm lamp light. The little orange backpack stands open and slim on the rug; the red sand bucket peeks out of its top. {hero} kneels beside it holding the light-blue water bottle in both hands at the chest, smiling, not touching the backpack. The straw sun hat lies on the rug on the other side of the backpack. The light-blue t-shirt and yellow shorts lie flat, unfolded, on the rug in front. Lulu sits on the rug a little apart, smiling. The toys are in a small heap far to the side",
+    "e1_squash": "Night, warm lamp light. The little orange backpack on the rug, a lumpy ball of crumpled light-blue and yellow clothes bulging out of its top, the straw sun hat squashed flat like a pancake on top of the lump. {hero} kneels beside it, hands in the lap, looking at the flat hat with a small sad pout (a little sad, no tears), not touching the backpack. Nobody else in the picture",
+    "e2_hat": "Night, soft glow. Lulu sits on the rug, softly glowing, holding the straw sun hat round and good as new in both paws, smiling. {hero} sits on the rug a little apart from Lulu, a clear gap between them, a small relieved smile. The light-blue t-shirt and yellow shorts lie unrolled, a bit wrinkled, on the rug in front of them, not touching anyone; the little orange backpack stands open behind them",
+    "d1_fold": "Night, warm lamp light. {hero} sits on the rug folding the light-blue t-shirt in half on the lap with both hands, concentrating with a little smile. Lulu sits on the rug a little apart from {hero}, a clear gap between them, paws resting in her lap, smiling; on the rug just in front of Lulu, not touching her, lie the yellow shorts, folded into a neat flat square. The little orange backpack stands open on the rug next to them, the round straw sun hat beside it",
+    "d2_ready": "Night, crescent moon in the window. The little orange backpack, zipped and slim, with the round straw sun hat on top, stands on the floor right next to the big teal suitcase beside the door, both fully visible. {hero} stands in the middle of the rug, to the left of them with a clear gap, not in front of them, happy, arms down. Lulu floats in the air between {hero} and the window, softly glowing, a few small pink hearts around her. Nobody touches anyone or the backpack",
+    "end_asleep": "Night, crescent moon and stars in the window, very soft dim warm light. {hero} sleeps peacefully in the bed on the left under the lavender blanket, a small smile, head on the pillow at the left-middle of the picture. Lulu is curled up and softly glowing on the far corner of the pillow, not touching {hero}. By the door on the right, the little backpack, zipped and slim, with the round straw sun hat on top, stands next to the big teal suitcase",
+    "icon_backpack": "a small slim soft-orange kid backpack, zipped, with a yellow star on its front pocket, a round straw sun hat with a pink ribbon sitting on top of it and a light-blue water bottle with a white cap tucked into its side pocket, all together as one object",
+    "icon_toys": "a small soft-orange kid backpack with a yellow star on its pocket, bulging round and fat, colorful wooden blocks and a red-and-white ball spilling out of its open top",
+    "icon_fold": "a neatly folded light-blue t-shirt, a small square, with a small pink heart above it",
+    "icon_scrunch": "a crumpled light-blue t-shirt rolled into a lumpy ball, little squiggle lines around it",
+    "sticker": "a little soft-orange kid backpack, zipped, with a round straw sun hat with a pink ribbon on top, a small happy smiling face on the front of the backpack and a yellow star on its front pocket"
+  },
+  "plates": {
+    "s1_backpack": "hero",
+    "s2_lulu": "lulu",
+    "b1_stuffed": "hero",
+    "b2_heavy": "hero",
+    "b3_lulu_help": "hero,lulu",
+    "a1_pack": "hero,lulu",
+    "e1_squash": "hero",
+    "e2_hat": "hero,lulu",
+    "d1_fold": "hero,lulu",
+    "d2_ready": "hero,lulu",
+    "end_asleep": "lulu"
+  },
+  "poses": {
+    "s1_backpack": {
+      "hero": {
+        "lift": "the child holds the open backpack high above the head with both hands, beaming, mouth open in a happy laugh"
+      }
+    },
+    "s2_lulu": {
+      "lulu": {
+        "point": "Lulu points one paw down at the open backpack on the rug"
+      }
+    },
+    "b1_stuffed": {
+      "hero": {
+        "push": "the child leans forward and pushes the block into the top of the bulging backpack with both hands, cheeks puffed with effort"
+      }
+    },
+    "b2_heavy": {
+      "hero": {
+        "pull": "the child gets up onto the knees in the same spot right beside the backpack, leaning back and pulling hard on one of its straps with both hands, cheeks puffed, eyes squeezed; the backpack does not move",
+        "plop": "the child sits exactly as in the picture, tired and puffing, eyes half closed"
+      }
+    },
+    "b3_lulu_help": {
+      "lulu": {
+        "explain": "Lulu holds one paw up gently as if explaining, warm smile, the block in her other paw"
+      }
+    },
+    "a1_pack": {
+      "hero": {
+        "put_in": "the child leans forward and puts the water bottle into the open backpack"
+      },
+      "lulu": {
+        "point": "Lulu points one paw at the t-shirt and shorts on the rug, eyebrows up, mouth in a small round surprised O"
+      }
+    },
+    "e1_squash": {
+      "hero": {
+        "press": "the child leans over and presses down hard on top of the backpack with both hands, cheeks puffed",
+        "sad": "the child kneels as in the picture, looking at the flat hat with a small sad pout"
+      }
+    },
+    "e2_hat": {
+      "lulu": {
+        "pat": "Lulu holds the hat against her tummy with one paw and pats its top with the other paw, eyes happily closed"
+      }
+    },
+    "d1_fold": {
+      "hero": {
+        "done": "the child holds up the t-shirt folded into a neat small square with both hands, proud big smile"
+      },
+      "lulu": {
+        "clap": "Lulu claps her paws in front of her chest, laughing"
+      }
+    },
+    "d2_ready": {
+      "hero": {
+        "cheer": "the child throws both arms up high, big happy smile"
+      },
+      "lulu": {
+        "cheer": "Lulu throws both paws up high, laughing"
+      }
+    },
+    "end_asleep": {
+      "lulu": {
+        "whisper": "Lulu leans toward the sleeping child, one paw by her mouth as if whispering, eyes soft"
+      }
+    }
+  }
+}

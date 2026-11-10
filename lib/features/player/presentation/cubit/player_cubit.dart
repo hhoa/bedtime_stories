@@ -56,6 +56,16 @@ class PlayerCubit extends Cubit<PlayerState> {
   int _cueSeq = 0;
   String? _nameRecording;
 
+  /// Token of the node whose narration (or rewind question) is still being
+  /// read. Null once it ends, so taps only replay a line that has finished.
+  int? _speakingToken;
+
+  bool get _speaking => _speakingToken != null && _speakingToken == _token;
+
+  void _doneSpeaking(int token) {
+    if (_speakingToken == token) _speakingToken = null;
+  }
+
   Future<void> load() async {
     _nameRecording = await _nameVoice.recordingPath();
     final result = await _repository.getStory(_storyId, _language);
@@ -158,10 +168,18 @@ class PlayerCubit extends Cubit<PlayerState> {
     if (node is SceneNode) _enter(node.nextId);
   }
 
-  /// Re-read the current node from the start.
+  /// Re-read the current node from the start, once its narration has
+  /// finished. Taps while a line is still being read (or a pick is being
+  /// celebrated) are ignored, so the kid never cuts the sentence off.
   void replay() {
     final id = state.nodeId;
-    if (id != null && state.phase != PlayerPhase.finished) _enter(id);
+    if (id == null ||
+        state.phase == PlayerPhase.finished ||
+        state.selectedOptionId != null ||
+        _speaking) {
+      return;
+    }
+    _enter(id);
   }
 
   // ---------------------------------------------------------------------------
@@ -202,6 +220,7 @@ class PlayerCubit extends Cubit<PlayerState> {
   Future<void> _narrate(StoryNode node, int token) async {
     final story = state.story;
     if (story == null) return;
+    _speakingToken = token;
     final cues = story.cueTimings(node.id);
     Future<bool> readNode(String id) =>
         _playParts(story.nodeNarration(id), token, cues: cues);
@@ -214,6 +233,7 @@ class PlayerCubit extends Cubit<PlayerState> {
       case SceneNode(:final id, :final offerRewindTo, :final nextId):
         final played = await readNode(id);
         if (_stale(token)) return;
+        _doneSpeaking(token);
         if (!played) await silentPause();
         if (_stale(token)) return;
         if (offerRewindTo != null) {
@@ -235,11 +255,13 @@ class PlayerCubit extends Cubit<PlayerState> {
           await _playParts(story.optionNarration(id, options[i].id), token);
         }
         if (_stale(token)) return;
+        _doneSpeaking(token);
         emit(state.copyWith(highlightedOption: null));
 
       case EndingNode(:final id):
         final played = await readNode(id);
         if (_stale(token)) return;
+        _doneSpeaking(token);
         if (!played) await silentPause();
         if (_stale(token)) return;
         unawaited(
@@ -332,8 +354,14 @@ class PlayerCubit extends Cubit<PlayerState> {
   }
 
   void _offerRewind() {
+    final token = _token;
+    _speakingToken = token;
     emit(state.copyWith(phase: PlayerPhase.rewindOffer));
-    unawaited(_narrator.play(AppConstants.uiAudio('rewind', _language)));
+    unawaited(
+      _narrator
+          .play(AppConstants.uiAudio('rewind', _language))
+          .whenComplete(() => _doneSpeaking(token)),
+    );
   }
 
   @override

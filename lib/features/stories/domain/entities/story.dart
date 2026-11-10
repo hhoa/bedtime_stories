@@ -20,25 +20,20 @@ List<String> splitSentences(String text) => text
 
 /// Why [text] breaks the `{name}` rule, or null when it is fine.
 ///
-/// The name is only said where the kid is spoken to: a question
-/// ([questionOnly] = sentences ending in `?`; choice questions may use it in
-/// any sentence). It must open or close its sentence, so the line is
-/// recorded as name + one clip, not clip + name + clip.
-String? namePlacementError(String text, {required bool questionOnly}) {
-  for (final sentence in splitSentences(text)) {
-    if (!sentence.contains(namePlaceholder)) continue;
-    if (namePlaceholder.allMatches(sentence).length > 1) {
-      return '"$sentence": {name} more than once in a sentence';
-    }
-    final core = sentence
-        .replaceFirst(RegExp(r'^["“«\s]+'), '')
-        .replaceFirst(RegExp(r'[.!?…,"”»\s]+$'), '');
-    if (!core.startsWith(namePlaceholder) && !core.endsWith(namePlaceholder)) {
-      return '"$sentence": {name} must start or end the sentence';
-    }
-    if (questionOnly && !RegExp(r'\?["”»]?$').hasMatch(sentence)) {
-      return '"$sentence": {name} only in questions to the kid; say "bé"';
-    }
+/// `{name}` may appear at most once in a scene, choice or ending line, and
+/// only as the first or last word of the whole line (quotes and punctuation
+/// ignored), so the line is recorded as name + one clip, never
+/// clip + name + clip.
+String? namePlacementError(String text) {
+  final count = namePlaceholder.allMatches(text).length;
+  if (count == 0) return null;
+  if (count > 1) return '{name} more than once in the line';
+  final core = text
+      .trim()
+      .replaceFirst(RegExp(r'^["“«\s]+'), '')
+      .replaceFirst(RegExp(r'[.!?…,"”»\s]+$'), '');
+  if (!core.startsWith(namePlaceholder) && !core.endsWith(namePlaceholder)) {
+    return '"$text": {name} must be the first or last word of the line';
   }
   return null;
 }
@@ -158,6 +153,10 @@ abstract class StoryCue with _$StoryCue {
 
     /// With [PartAction.move]: where the part's pivot goes.
     CanvasPoint? to,
+
+    /// When [word] is said, as a fraction of its clip (measured from the
+    /// recording); null = guess from the word's place in the text.
+    double? at,
   }) = _StoryCue;
 }
 
@@ -358,7 +357,7 @@ abstract class Story with _$Story {
           out.add((
             cue: cue,
             clip: pieces.length == 1 ? '$base.$ext' : '${base}_p$i.$ext',
-            clipFraction: (at - start) / pieces[i].length,
+            clipFraction: cue.at ?? (at - start) / pieces[i].length,
             textFraction: at / text.length,
           ));
           break;

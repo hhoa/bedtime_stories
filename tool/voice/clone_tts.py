@@ -116,6 +116,32 @@ def trim(wav, sr: int, margin: float = 0.04):
     return wav[start:end]
 
 
+def load_newer_model(f5tts_cls, spec: dict, device: str):
+    """F5TTS for a model the Vietnamese fork's api.py doesn't name (F5TTS_v1_Base).
+
+    The fork ships the v1 config and its DiT supports it; only F5TTS.__init__
+    refuses names it has no default checkpoint for. We pass our own
+    checkpoint, so build the same object without that check.
+    """
+    from importlib.resources import files
+
+    from f5_tts.infer.utils_infer import load_model, load_vocoder
+    from f5_tts.model import DiT
+    from omegaconf import OmegaConf
+
+    cfg = OmegaConf.load(str(files('f5_tts').joinpath(f'configs/{spec["model"]}.yaml')))
+    tts = f5tts_cls.__new__(f5tts_cls)
+    tts.mel_spec_type = cfg.model.mel_spec.mel_spec_type
+    tts.target_sample_rate = cfg.model.mel_spec.target_sample_rate
+    tts.ode_method = 'euler'
+    tts.use_ema = True
+    tts.device = device
+    tts.vocoder = load_vocoder(tts.mel_spec_type, False, None, device, None)
+    tts.ema_model = load_model(DiT, cfg.model.arch, str(spec['ckpt']), tts.mel_spec_type,
+                               str(spec['vocab']), tts.ode_method, tts.use_ema, device)
+    return tts
+
+
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument('--lang', choices=sorted(MODELS), default='vi')
@@ -143,12 +169,15 @@ def main() -> int:
     from f5_tts.api import F5TTS
 
     device = 'mps' if torch.backends.mps.is_available() else 'cpu'
-    tts = F5TTS(
-        model=spec['model'],
-        ckpt_file=str(spec['ckpt']),
-        vocab_file=str(spec['vocab']),
-        device=device,
-    )
+    if spec['model'] in ('F5TTS_Base', 'E2TTS_Base'):
+        tts = F5TTS(
+            model=spec['model'],
+            ckpt_file=str(spec['ckpt']),
+            vocab_file=str(spec['vocab']),
+            device=device,
+        )
+    else:
+        tts = load_newer_model(F5TTS, spec, device)
     # The fork only stores a seed it picks itself; set ours so infer(seed=...) uses it.
     tts.seed = args.seed
 

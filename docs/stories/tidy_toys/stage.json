@@ -1,0 +1,118 @@
+{
+  "_note": "Positions for the real kit/room.png (2752x1536, 16:9, cropped to 4:3 from the left: bed + window, door dropped). Bed: headboard x 0.04-0.18, pillow ~[0.18, 0.50], mattress top y ~0.49-0.56, blanket front face y 0.56-0.71, dark gap under the bed y 0.73-0.80 between the legs (x 0.10-0.66). Floor in front y 0.80-1.0; rug x 0.25-0.98. Toy box stands at [0.85, 0.89]. Draw order: teddy, blocks, [covers], hero, toy box, ball, Lulu. Tune with: tool/cutout/.venv/bin/python tool/stage.py tidy_toys --preview <dir> --dry --guides",
+  "room": "kit/room.png",
+  "crop": [0.05, 0.0, 0.7942, 1.0],
+  "erase_specks": [[0.0, 0.1, 0.2, 0.45]],
+  "tint": 0.0,
+  "sheets": {
+    "hero_a": {"scale": 0.68},
+    "hero_b": {"scale": 0.68},
+    "lulu_a": {"scale": 0.34, "anchor": "center"},
+    "props": {"scale": 0.72}
+  },
+  "sprites": {
+    "props/toybox_ball": {"from": "props/toybox_full", "add": [{"sprite": "props/ball", "at": [0.56, 0.17], "scale": 0.75}]}
+  },
+  "covers": {
+    "blanket": [[0.195, 0.555], [0.69, 0.555], [0.715, 0.70], [0.70, 0.76], [0.66, 0.715], [0.195, 0.715]]
+  },
+  "icons": {
+    "icon_toybox": [{"sprite": "props/toybox_full", "at": [0.45, 0.52], "size": 0.62}, {"sprite": "props/teddy_sitting", "at": [0.77, 0.68], "size": 0.3}],
+    "icon_mess": [{"sprite": "props/blocks", "at": [0.46, 0.44], "size": 0.36}, {"sprite": "props/teddy_lying", "at": [0.36, 0.72], "size": 0.24}, {"sprite": "props/ball", "at": [0.74, 0.72], "size": 0.22}],
+    "icon_gentle": [{"sprite": "props/toybox_full", "at": [0.5, 0.64], "size": 0.56}, {"sprite": "props/ball", "at": [0.5, 0.22], "size": 0.22}],
+    "icon_toss": [{"line": [0.14, 0.56, 0.36, 0.5]}, {"line": [0.12, 0.7, 0.32, 0.64]}, {"line": [0.2, 0.82, 0.36, 0.76]}, {"sprite": "props/ball", "at": [0.6, 0.48], "size": 0.46}]
+  },
+  "scenes": {
+    "s1_toys": {"parts": [
+      {"kind": "teddy", "sprite": "props/teddy_lying", "at": [0.55, 0.93], "scale": 0.6},
+      {"kind": "blocks", "sprite": "props/blocks", "at": [0.63, 0.97], "scale": 0.8},
+      {"kind": "hero", "sprite": "hero_a/sit_play", "at": [0.38, 0.96], "shadow": true},
+      {"kind": "toybox", "sprite": "props/toybox_empty", "at": [0.85, 0.89], "shadow": true},
+      {"kind": "ball", "sprite": "props/ball", "at": [0.14, 0.97], "scale": 0.75, "tap": "hop"}
+    ]},
+    "s2_lulu": {"parts": [
+      {"kind": "teddy", "sprite": "props/teddy_lying", "at": [0.55, 0.93], "scale": 0.6},
+      {"kind": "blocks", "sprite": "props/blocks", "at": [0.63, 0.97], "scale": 0.8},
+      {"kind": "hero", "sprite": "hero_a/sit_play", "at": [0.38, 0.96], "poses": {"sit_look_up": "hero_a/sit_look_up"}, "shadow": true},
+      {"kind": "toybox", "sprite": "props/toybox_empty", "at": [0.85, 0.89], "shadow": true},
+      {"kind": "ball", "sprite": "props/ball", "at": [0.14, 0.97], "scale": 0.75, "tap": "hop"},
+      {"kind": "lulu", "sprite": "lulu_a/float", "at": [0.61, 0.22], "poses": {"talk": "lulu_a/talk"}}
+    ]},
+    "c1_ask": {"parts": [
+      {"kind": "teddy", "sprite": "props/teddy_lying", "at": [0.55, 0.93], "scale": 0.6},
+      {"kind": "blocks", "sprite": "props/blocks", "at": [0.63, 0.97], "scale": 0.8},
+      {"kind": "hero", "sprite": "hero_a/sit_look_up", "at": [0.38, 0.96], "shadow": true},
+      {"kind": "toybox", "sprite": "props/toybox_empty", "at": [0.85, 0.89], "shadow": true},
+      {"kind": "ball", "sprite": "props/ball", "at": [0.14, 0.97], "scale": 0.75, "tap": "hop"},
+      {"kind": "lulu", "sprite": "lulu_a/talk", "at": [0.58, 0.42]}
+    ]},
+    "b1_where": {"parts": [
+      {"kind": "teddy", "sprite": "props/teddy_lying", "at": [0.62, 0.94], "scale": 0.6},
+      {"kind": "blocks", "sprite": "props/blocks", "at": [0.63, 0.97], "scale": 0.8},
+      {"kind": "hero", "sprite": "hero_a/bed_sit", "at": [0.31, 0.575]},
+      {"kind": "blanket", "sprite": "props/blanket_lump", "at": [0.47, 0.59], "scale": 1.05, "tap": null},
+      {"kind": "toybox", "sprite": "props/toybox_empty", "at": [0.85, 0.89], "shadow": true},
+      {"kind": "ball", "sprite": "props/ball", "at": [0.14, 0.97], "scale": 0.75, "tap": "hop"}
+    ]},
+    "b2_search": {"parts": [
+      {"kind": "teddy", "sprite": "props/teddy_lying", "at": [0.62, 0.94], "scale": 0.6},
+      {"kind": "blocks", "sprite": "props/blocks", "at": [0.63, 0.97], "scale": 0.8},
+      {"kind": "hero", "sprite": "hero_a/kneel_search", "at": [0.42, 0.97], "poses": {"kneel_yawn": "hero_a/kneel_yawn"}, "shadow": true},
+      {"kind": "toybox", "sprite": "props/toybox_empty", "at": [0.85, 0.89], "shadow": true},
+      {"kind": "ball", "sprite": "props/ball", "at": [0.14, 0.97], "scale": 0.75, "tap": "hop"}
+    ]},
+    "b3_found": {"parts": [
+      {"kind": "teddy", "sprite": "props/teddy_lying", "at": [0.62, 0.94], "scale": 0.6},
+      {"kind": "blocks", "sprite": "props/blocks", "at": [0.63, 0.97], "scale": 0.8},
+      {"kind": "hero", "sprite": "hero_a/kneel_yawn", "at": [0.42, 0.97], "poses": {"kneel_happy": "hero_a/kneel_happy"}, "shadow": true},
+      {"kind": "toybox", "sprite": "props/toybox_empty", "at": [0.85, 0.89], "shadow": true},
+      {"kind": "ball", "sprite": "props/ball", "at": [0.14, 0.97], "scale": 0.75, "tap": "hop"},
+      {"kind": "lulu", "sprite": "lulu_a/float", "at": [0.61, 0.22], "poses": {"glow": "lulu_a/glow", "talk": "lulu_a/talk"}}
+    ]},
+    "a1_toybox": {"parts": [
+      {"kind": "teddy", "sprite": "props/teddy_sitting", "at": [0.30, 0.565], "scale": 0.6},
+      {"kind": "blocks", "sprite": "props/blocks", "at": [0.63, 0.97], "scale": 0.8},
+      {"kind": "hero", "sprite": "hero_b/bend_place", "at": [0.40, 0.96], "poses": {"kneel_search": "hero_a/kneel_search"}, "shadow": true},
+      {"kind": "toybox", "sprite": "props/toybox_empty", "at": [0.85, 0.89], "poses": {"open_full": "props/toybox_full"}, "shadow": true},
+      {"kind": "ball", "sprite": "props/ball", "at": [0.14, 0.97], "scale": 0.75, "tap": "hop"},
+      {"kind": "lulu", "sprite": "lulu_a/float", "at": [0.58, 0.42], "poses": {"point": "lulu_a/point"}}
+    ]},
+    "c2_ball": {"parts": [
+      {"kind": "teddy", "sprite": "props/teddy_sitting", "at": [0.30, 0.565], "scale": 0.6},
+      {"kind": "hero", "sprite": "hero_b/stand_ball", "at": [0.62, 0.96], "shadow": true},
+      {"kind": "toybox", "sprite": "props/toybox_full", "at": [0.85, 0.89], "shadow": true},
+      {"kind": "lulu", "sprite": "lulu_a/float", "at": [0.42, 0.36]}
+    ]},
+    "e1_roll": {"parts": [
+      {"kind": "teddy", "sprite": "props/teddy_sitting", "at": [0.30, 0.565], "scale": 0.6},
+      {"kind": "hero", "sprite": "hero_b/throw", "at": [0.60, 0.96], "poses": {"tummy_reach": "hero_b/tummy_reach"}, "shadow": true},
+      {"kind": "toybox", "sprite": "props/toybox_full", "at": [0.85, 0.89], "shadow": true},
+      {"kind": "ball", "sprite": "props/ball", "at": [0.70, 0.55], "scale": 0.75, "tap": "hop"}
+    ]},
+    "e2_glow": {"parts": [
+      {"kind": "teddy", "sprite": "props/teddy_sitting", "at": [0.30, 0.565], "scale": 0.6},
+      {"kind": "hero", "sprite": "hero_b/tummy_reach", "at": [0.50, 0.90], "poses": {"kneel_happy": "hero_a/kneel_happy"}, "shadow": true},
+      {"kind": "toybox", "sprite": "props/toybox_full", "at": [0.85, 0.89], "shadow": true},
+      {"kind": "ball", "sprite": "props/ball", "at": [0.30, 0.80], "scale": 0.75, "tap": "hop"},
+      {"kind": "lulu", "sprite": "lulu_a/float", "at": [0.61, 0.22], "poses": {"glow": "lulu_a/glow", "talk": "lulu_a/talk"}}
+    ]},
+    "d1_gentle": {"parts": [
+      {"kind": "teddy", "sprite": "props/teddy_sitting", "at": [0.30, 0.565], "scale": 0.6},
+      {"kind": "hero", "sprite": "hero_b/stand_ball", "at": [0.64, 0.96], "poses": {"bend_place": "hero_b/bend_place"}, "shadow": true},
+      {"kind": "toybox", "sprite": "props/toybox_full", "at": [0.85, 0.89], "poses": {"ball_in": "props/toybox_ball", "closed": "props/toybox_closed"}, "shadow": true},
+      {"kind": "lulu", "sprite": "lulu_a/float", "at": [0.42, 0.36], "poses": {"clap": "lulu_a/clap"}}
+    ]},
+    "d2_tidy": {"parts": [
+      {"kind": "hero", "sprite": "hero_b/hug_teddy", "at": [0.48, 0.96], "shadow": true},
+      {"kind": "toybox", "sprite": "props/toybox_closed", "at": [0.85, 0.89], "shadow": true},
+      {"kind": "lulu", "sprite": "lulu_a/float", "at": [0.68, 0.38], "poses": {"clap": "lulu_a/clap"}}
+    ]},
+    "end_asleep": {"parts": [
+      {"kind": "hero", "sprite": "hero_b/asleep", "at": [0.29, 0.575], "idle": "breathe", "tap": null},
+      {"kind": "teddy", "sprite": "props/teddy_sitting", "at": [0.255, 0.61], "scale": 0.55},
+      {"kind": "blanket", "sprite": "props/blanket_lump", "at": [0.425, 0.61], "scale": 1.3, "tap": null},
+      {"kind": "toybox", "sprite": "props/toybox_closed", "at": [0.85, 0.89], "shadow": true},
+      {"kind": "lulu", "sprite": "lulu_a/float", "at": [0.47, 0.30], "poses": {"whisper": "lulu_a/whisper"}}
+    ]}
+  }
+}

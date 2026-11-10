@@ -45,23 +45,35 @@ from PIL import Image, ImageFilter, ImageOps
 from rembg import new_session, remove
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from layer_crop import crop_group, expand  # noqa: E402
+from layer_crop import MOTION, crop_group, expand  # noqa: E402
+from check_assets import LAYER_MAX  # noqa: E402
+from webp_save import save_webp  # noqa: E402
 
 ROOT = Path(__file__).resolve().parent.parent
 MODEL = 'birefnet-general-lite'
 CROP_PAD = 0.04      # extra room around the hotspot box, fraction of the picture
 POSE_PAD = 0.1       # more room for poses (raised arms, waving paw)
 FEATHER = 1.2        # px blur on the part's edge
+CHANGED = 28         # colour change (0-255) that counts as "the pose edit drew something new here"
 PLATE_GROW = 40      # px the removed area grows into a clean plate (takes Lulu's glow too)
 FILL_GROW = 14       # same without a plate (local fill smears, keep it small)
-MOTION = {           # kind -> (idle, tap)
-    'lulu': ('float', 'hop'),
-    'hero': ('breathe', 'hop'),
-}
-QUALITY = 86
+QUALITY = 78         # best quality tried (78: invisible on soft 3D art, keeps two languages under 4 MB); tool/webp_save.py lowers it to fit LAYER_MAX
 
 
-def part_mask(img: Image.Image, box: list[float], session, pad: float = CROP_PAD) -> Image.Image:
+def save_layer(img: Image.Image, path: Path) -> None:
+    """Best WebP quality (from QUALITY down) that fits the cut-layer budget."""
+    _, q, size, over = save_webp(img, path, LAYER_MAX, q_hi=QUALITY)
+    if over or q < QUALITY:
+        print(f'  {path.name}: q{q}, {size // 1024} KB' + ('  OVER budget' if over else ''))
+
+
+def part_mask(img: Image.Image, box: list[float], session, pad: float = CROP_PAD,
+              near: Image.Image | None = None, exclude: Image.Image | None = None,
+              fill_holes: bool = False) -> Image.Image:
+    """Mask of the part in [box]. For a pose, [near] is the part's default mask
+    (keep the piece that overlaps it, not the biggest: the wide pose crop can
+    hold more of the other character than of this part) and [exclude] the other
+    cut parts (removed first, so a touching neighbour can't join the piece)."""
     w, h = img.size
     x, y, bw, bh = box
     crop = (max(0, int((x - pad) * w)), max(0, int((y - pad) * h)),
@@ -69,25 +81,59 @@ def part_mask(img: Image.Image, box: list[float], session, pad: float = CROP_PAD
     m = remove(img.crop(crop), session=session, only_mask=True).convert('L')
     full = Image.new('L', (w, h), 0)
     full.paste(m, crop[:2])
-    # Drop the faint haze the model leaves; keep only the biggest piece (a
-    # crop can catch a hand or foot of the other character); soft edge.
+    # Drop the faint haze the model leaves; keep only one piece (a crop can
+    # catch a hand or foot of the other character); soft edge.
     arr = np.array(full.point(lambda v: 0 if v < 40 else v))
+    if exclude is not None:
+        k = cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (13, 13))
+        arr[cv2.dilate((np.array(exclude) > 40).astype(np.uint8), k) > 0] = 0
     n, labels, stats, _ = cv2.connectedComponentsWithStats((arr > 0).astype(np.uint8), connectivity=8)
     if n > 2:
-        biggest = 1 + int(np.argmax(stats[1:, cv2.CC_STAT_AREA]))
-        arr[labels != biggest] = 0
+        keep = 1 + int(np.argmax(stats[1:, cv2.CC_STAT_AREA]))
+        if near is not None:
+            hits = np.bincount(labels[np.array(near) > 40], minlength=n)[1:]
+            if hits.max() > 0:
+                keep = 1 + int(np.argmax(hits))
+        arr[labels != keep] = 0
+    if fill_holes:
+        # The model drops Lulu's pink inner ears (and once an eye). Lulu only:
+        # the child's arms or a strap can enclose real background.
+        outside = (arr > 0).astype(np.uint8)
+        cv2.floodFill(outside, np.zeros((h + 2, w + 2), np.uint8), (0, 0), 1)
+        arr[outside == 0] = 255
     return Image.fromarray(arr).filter(ImageFilter.GaussianBlur(FEATHER))
 
 
-def base_layer(img: Image.Image, cut: Image.Image, plate: Path | None,
-               boxes: list[list[float]]) -> Image.Image:
-    """The picture with the cut parts removed."""
-    grow = PLATE_GROW if plate else FILL_GROW
+def only_changed(pmask: Image.Image, pimg: Image.Image, img: Image.Image,
+                 default: Image.Image) -> Image.Image:
+    """A pose edit changes only the part: drop masked pixels that are the same
+    as in the scene and weren't the part before (a backpack or bed post the
+    part touches in the pose). Keeps the piece that overlaps the default."""
+    diff = np.abs(np.asarray(pimg, np.int16) - np.asarray(img, np.int16)).max(axis=2).astype(np.uint8)
+    changed = (cv2.GaussianBlur(diff, (0, 0), 3) > CHANGED).astype(np.uint8)
+    changed = cv2.morphologyEx(changed, cv2.MORPH_OPEN, np.ones((9, 9), np.uint8))  # misalignment slivers
+    changed = cv2.morphologyEx(changed, cv2.MORPH_CLOSE, cv2.getStructuringElement(
+        cv2.MORPH_ELLIPSE, (41, 41)))  # pale bits of the part over a pale wall
+    was = cv2.dilate((np.array(default) > 40).astype(np.uint8),
+                     cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (25, 25)))
+    allowed = cv2.dilate(changed | was, np.ones((5, 5), np.uint8))
+    arr = np.array(pmask)
+    arr[allowed == 0] = 0
+    n, labels, stats, _ = cv2.connectedComponentsWithStats((arr > 40).astype(np.uint8), connectivity=8)
+    if n > 2:
+        hits = np.bincount(labels[np.array(default) > 40], minlength=n)[1:]
+        keep = 1 + int(np.argmax(hits if hits.max() > 0 else stats[1:, cv2.CC_STAT_AREA]))
+        small = (labels != keep) & (labels > 0)
+        arr[small] = 0
+    return Image.fromarray(arr)
+
+
+def base_layer(img: Image.Image, cut: Image.Image, clean: Image.Image | None) -> Image.Image:
+    """The picture with the cut parts removed ([clean] = the aligned plate)."""
+    grow = PLATE_GROW if clean is not None else FILL_GROW
     kernel = cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (2 * grow + 1, 2 * grow + 1))
     grown = Image.fromarray(cv2.dilate((np.array(cut) > 10).astype(np.uint8) * 255, kernel))
-    if plate:
-        clean = align(load_fit(plate, img.size), img, boxes, 'plate')
-    else:
+    if clean is None:
         arr = cv2.cvtColor(np.array(img), cv2.COLOR_RGB2BGR)
         filled = cv2.inpaint(arr, np.array(grown), 9, cv2.INPAINT_TELEA)
         clean = Image.fromarray(cv2.cvtColor(filled, cv2.COLOR_BGR2RGB))
@@ -195,7 +241,9 @@ def main():
     session = new_session(MODEL)
     # Keep hotspots.json order: later = on top (Lulu last).
     kinds = [h['kind'] for h in spots if h['kind'] in wanted]
-    masks = {k: part_mask(img, boxes[k], session) for k in kinds}
+    masks = {k: part_mask(img, boxes[k], session, fill_holes=k == 'lulu') for k in kinds}
+    clean = (align(load_fit(args.plate, img.size), img, list(boxes.values()), 'plate')
+             if args.plate else None)
     cut = Image.new('L', img.size, 0)
     for m in masks.values():
         cut = Image.fromarray(np.maximum(np.array(cut), np.array(m)))
@@ -204,8 +252,7 @@ def main():
     out_dir.mkdir(parents=True, exist_ok=True)
     entry = []
     base = out_dir / f'{args.scene}_0.webp'
-    base_layer(img, cut, args.plate.expanduser() if args.plate else None, list(boxes.values())).save(
-        base, 'WEBP', quality=QUALITY, method=6)
+    save_layer(base_layer(img, cut, clean), base)
     entry.append({'file': f'layers/{base.name}'})
     written = [base]
     for i, k in enumerate(kinds, start=1):
@@ -225,7 +272,12 @@ def main():
             if part != k:
                 continue
             pimg = align(load_fit(path, img.size), img, list(boxes.values()), f'{k}={pose}')
-            pmask = part_mask(pimg, boxes[k], session, pad=POSE_PAD)
+            others = [m for o, m in masks.items() if o != k]
+            pmask = part_mask(pimg, boxes[k], session, pad=POSE_PAD, near=masks[k],
+                              fill_holes=k == 'lulu',
+                              exclude=Image.fromarray(np.maximum.reduce([np.array(m) for m in others]))
+                              if others else None)
+            pmask = only_changed(pmask, pimg, img, masks[k])
             player = pimg.convert('RGBA')
             player.putalpha(pmask)
             pf = out_dir / f'{args.scene}_{i}_{pose}.webp'
@@ -238,7 +290,7 @@ def main():
         # One rect for the part and all its poses.
         rect, crops = crop_group([p for _, p in pics])
         for (pf, _), c in zip(pics, crops):
-            c.save(pf, 'WEBP', quality=QUALITY, method=6)
+            save_layer(c, pf)
             written.append(pf)
         layer_entry['rect'] = rect
         entry.append(layer_entry)

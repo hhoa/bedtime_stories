@@ -13,6 +13,10 @@ from __future__ import annotations
 from PIL import Image
 
 MARGIN = 4  # px of transparent room around the part (smooth edges when scaled)
+MOTION = {   # part kind -> (idle, tap) for layers.json (cutout.py, stage.py)
+    'lulu': ('float', 'hop'),
+    'hero': ('breathe', 'hop'),
+}
 
 
 def crop_group(imgs: list[Image.Image]) -> tuple[list[float], list[Image.Image]]:

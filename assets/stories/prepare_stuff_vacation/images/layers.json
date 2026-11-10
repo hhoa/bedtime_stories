@@ -1,0 +1,453 @@
+{
+ "s1_backpack.webp": [
+  {
+   "file": "layers/s1_backpack_0.webp"
+  },
+  {
+   "file": "layers/s1_backpack_1.webp",
+   "kind": "hero",
+   "box": [
+    0.3812,
+    0.1217,
+    0.2525,
+    0.7058
+   ],
+   "pivot": [
+    0.5069,
+    0.8275
+   ],
+   "idle": "breathe",
+   "tap": "hop",
+   "poses": {
+    "lift": "layers/s1_backpack_1_lift.webp"
+   },
+   "rect": [
+    0.376875,
+    0.116667,
+    0.26125,
+    0.716667
+   ]
+  }
+ ],
+ "b1_stuffed.webp": [
+  {
+   "file": "layers/b1_stuffed_0.webp"
+  },
+  {
+   "file": "layers/b1_stuffed_1.webp",
+   "kind": "hero",
+   "box": [
+    0.3606,
+    0.3642,
+    0.2844,
+    0.4825
+   ],
+   "pivot": [
+    0.5072,
+    0.8467
+   ],
+   "idle": "breathe",
+   "tap": "hop",
+   "poses": {
+    "push": "layers/b1_stuffed_1_push.webp"
+   },
+   "rect": [
+    0.358125,
+    0.358333,
+    0.29125,
+    0.494167
+   ]
+  }
+ ],
+ "b2_heavy.webp": [
+  {
+   "file": "layers/b2_heavy_0.webp"
+  },
+  {
+   "file": "layers/b2_heavy_1.webp",
+   "kind": "hero",
+   "box": [
+    0.4256,
+    0.3567,
+    0.3176,
+    0.5092
+   ],
+   "pivot": [
+    0.5888,
+    0.8659
+   ],
+   "idle": "breathe",
+   "tap": "hop",
+   "poses": {
+    "pull": "layers/b2_heavy_1_pull.webp",
+    "plop": "layers/b2_heavy_1_plop.webp"
+   },
+   "rect": [
+    0.423125,
+    0.350833,
+    0.324375,
+    0.52
+   ]
+  }
+ ],
+ "b3_lulu_help.webp": [
+  {
+   "file": "layers/b3_lulu_help_0.webp"
+  },
+  {
+   "file": "layers/b3_lulu_help_1.webp",
+   "kind": "hero",
+   "box": [
+    0.5575,
+    0.3642,
+    0.2137,
+    0.45
+   ],
+   "pivot": [
+    0.6643,
+    0.8142
+   ],
+   "idle": "breathe",
+   "tap": "hop",
+   "rect": [
+    0.553125,
+    0.358333,
+    0.221875,
+    0.460833
+   ]
+  },
+  {
+   "file": "layers/b3_lulu_help_2.webp",
+   "kind": "lulu",
+   "box": [
+    0.19,
+    0.4908,
+    0.2344,
+    0.3258
+   ],
+   "pivot": [
+    0.3075,
+    0.6537
+   ],
+   "idle": "float",
+   "tap": "hop",
+   "poses": {
+    "explain": "layers/b3_lulu_help_2_explain.webp"
+   },
+   "rect": [
+    0.18625,
+    0.485,
+    0.2425,
+    0.336667
+   ]
+  }
+ ],
+ "a1_pack.webp": [
+  {
+   "file": "layers/a1_pack_0.webp"
+  },
+  {
+   "file": "layers/a1_pack_1.webp",
+   "kind": "hero",
+   "box": [
+    0.5019,
+    0.28,
+    0.2394,
+    0.4808
+   ],
+   "pivot": [
+    0.6403,
+    0.7608
+   ],
+   "idle": "breathe",
+   "tap": "hop",
+   "poses": {
+    "put_in": "layers/a1_pack_1_put_in.webp"
+   },
+   "rect": [
+    0.499375,
+    0.274167,
+    0.24625,
+    0.4925
+   ]
+  },
+  {
+   "file": "layers/a1_pack_2.webp",
+   "kind": "lulu",
+   "box": [
+    0.2162,
+    0.5725,
+    0.1512,
+    0.2158
+   ],
+   "pivot": [
+    0.2913,
+    0.6804
+   ],
+   "idle": "float",
+   "tap": "hop",
+   "poses": {
+    "point": "layers/a1_pack_2_point.webp"
+   },
+   "rect": [
+    0.211875,
+    0.566667,
+    0.16,
+    0.2275
+   ]
+  }
+ ],
+ "e1_squash.webp": [
+  {
+   "file": "layers/e1_squash_0.webp"
+  },
+  {
+   "file": "layers/e1_squash_1.webp",
+   "kind": "hero",
+   "box": [
+    0.4131,
+    0.2733,
+    0.3382,
+    0.5842
+   ],
+   "pivot": [
+    0.6351,
+    0.8575
+   ],
+   "idle": "breathe",
+   "tap": "hop",
+   "poses": {
+    "press": "layers/e1_squash_1_press.webp",
+    "sad": "layers/e1_squash_1_sad.webp"
+   },
+   "rect": [
+    0.410625,
+    0.268333,
+    0.345,
+    0.594167
+   ]
+  }
+ ],
+ "e2_hat.webp": [
+  {
+   "file": "layers/e2_hat_0.webp"
+  },
+  {
+   "file": "layers/e2_hat_1.webp",
+   "kind": "hero",
+   "box": [
+    0.5456,
+    0.3408,
+    0.2319,
+    0.4725
+   ],
+   "pivot": [
+    0.6615,
+    0.8133
+   ],
+   "idle": "breathe",
+   "tap": "hop",
+   "rect": [
+    0.54125,
+    0.335833,
+    0.240625,
+    0.4825
+   ]
+  },
+  {
+   "file": "layers/e2_hat_2.webp",
+   "kind": "lulu",
+   "box": [
+    0.2156,
+    0.4692,
+    0.27,
+    0.3333
+   ],
+   "pivot": [
+    0.3506,
+    0.6359
+   ],
+   "idle": "float",
+   "tap": "hop",
+   "poses": {
+    "pat": "layers/e2_hat_2_pat.webp"
+   },
+   "rect": [
+    0.21125,
+    0.464167,
+    0.278125,
+    0.343333
+   ]
+  }
+ ],
+ "d1_fold.webp": [
+  {
+   "file": "layers/d1_fold_0.webp"
+  },
+  {
+   "file": "layers/d1_fold_1.webp",
+   "kind": "hero",
+   "box": [
+    0.5081,
+    0.2567,
+    0.2619,
+    0.5333
+   ],
+   "pivot": [
+    0.6391,
+    0.79
+   ],
+   "idle": "breathe",
+   "tap": "hop",
+   "poses": {
+    "done": "layers/d1_fold_1_done.webp"
+   },
+   "rect": [
+    0.50375,
+    0.251667,
+    0.27125,
+    0.544167
+   ]
+  },
+  {
+   "file": "layers/d1_fold_2.webp",
+   "kind": "lulu",
+   "box": [
+    0.2013,
+    0.5017,
+    0.2075,
+    0.2892
+   ],
+   "pivot": [
+    0.305,
+    0.6463
+   ],
+   "idle": "float",
+   "tap": "hop",
+   "poses": {
+    "clap": "layers/d1_fold_2_clap.webp"
+   },
+   "rect": [
+    0.196875,
+    0.495833,
+    0.215625,
+    0.3
+   ]
+  }
+ ],
+ "d2_ready.webp": [
+  {
+   "file": "layers/d2_ready_0.webp"
+  },
+  {
+   "file": "layers/d2_ready_1.webp",
+   "kind": "hero",
+   "box": [
+    0.4619,
+    0.2933,
+    0.2562,
+    0.5576
+   ],
+   "pivot": [
+    0.5997,
+    0.8509
+   ],
+   "idle": "breathe",
+   "tap": "hop",
+   "poses": {
+    "cheer": "layers/d2_ready_1_cheer.webp"
+   },
+   "rect": [
+    0.459375,
+    0.2875,
+    0.26125,
+    0.568333
+   ]
+  },
+  {
+   "file": "layers/d2_ready_2.webp",
+   "kind": "lulu",
+   "box": [
+    0.3069,
+    0.4425,
+    0.1544,
+    0.2225
+   ],
+   "pivot": [
+    0.3831,
+    0.5504
+   ],
+   "idle": "float",
+   "tap": "hop",
+   "poses": {
+    "cheer": "layers/d2_ready_2_cheer.webp"
+   },
+   "rect": [
+    0.3025,
+    0.436667,
+    0.163125,
+    0.234167
+   ]
+  }
+ ],
+ "end_asleep.webp": [
+  {
+   "file": "layers/end_asleep_0.webp"
+  },
+  {
+   "file": "layers/end_asleep_1.webp",
+   "kind": "lulu",
+   "box": [
+    0.0688,
+    0.3175,
+    0.1356,
+    0.1858
+   ],
+   "pivot": [
+    0.1238,
+    0.4021
+   ],
+   "idle": "float",
+   "tap": "hop",
+   "poses": {
+    "whisper": "layers/end_asleep_1_whisper.webp"
+   },
+   "rect": [
+    0.064375,
+    0.3125,
+    0.145,
+    0.194167
+   ]
+  }
+ ],
+ "s2_lulu.webp": [
+  {
+   "file": "layers/s2_lulu_0.webp"
+  },
+  {
+   "file": "layers/s2_lulu_1.webp",
+   "kind": "lulu",
+   "box": [
+    0.1963,
+    0.1667,
+    0.195,
+    0.2683
+   ],
+   "pivot": [
+    0.2938,
+    0.2967
+   ],
+   "idle": "float",
+   "tap": "hop",
+   "poses": {
+    "point": "layers/s2_lulu_1_point.webp"
+   },
+   "rect": [
+    0.191875,
+    0.160833,
+    0.203125,
+    0.28
+   ]
+  }
+ ]
+}

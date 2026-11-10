@@ -51,6 +51,21 @@ flutter:
     - assets/audio/ui/vi/
     - assets/audio/ui/en/
     - assets/stories/
+    - assets/stories/prepare_stuff_vacation/
+    - assets/stories/prepare_stuff_vacation/images/
+    - assets/stories/prepare_stuff_vacation/images/layers/
+    - assets/stories/prepare_stuff_vacation/audio/vi/
+    - assets/stories/prepare_stuff_vacation/audio/en/
+    - assets/stories/clock_time/
+    - assets/stories/clock_time/images/
+    - assets/stories/clock_time/images/layers/
+    - assets/stories/clock_time/audio/vi/
+    - assets/stories/clock_time/audio/en/
+    - assets/stories/tidy_toys/
+    - assets/stories/tidy_toys/images/
+    - assets/stories/tidy_toys/images/layers/
+    - assets/stories/tidy_toys/audio/vi/
+    - assets/stories/tidy_toys/audio/en/
     # Each story adds: assets/stories/<id>/, images/, images/layers/ (if cut),
     # audio/vi/, audio/en/
 

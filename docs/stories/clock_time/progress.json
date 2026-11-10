@@ -1,0 +1,26 @@
+{
+  "gates": {
+    "outline": "2026-11-10",
+    "script": "2026-11-10",
+    "wired": "2026-11-10"
+  },
+  "redo": {
+    "s2_lulu_clock": "clock pushed to the windowsill, point pose doesn't point, table piece under the Lulu cut → new prompt: Lulu on the RIGHT half of the table, LEFT half empty; then redo its plate + sit_up and point poses",
+    "icon_turn": "two clockwise arrows (refresh) → add: ONE single arrow going backwards (anticlockwise), no second arrow"
+  },
+  "listened": {
+    "vi": [],
+    "en": []
+  },
+  "notes": [
+    "2026-11-10: v2 port of v1 clock_time (plot approved in v1). Outline gate = v1 approval; script needs the parent's OK.",
+    "2026-11-10: pictures, cut layers, poses, clock SVGs copied from v1 images/girl (boy folder was identical). Gemini mark inpainted (scratchpad script; originals gone, exact undo can't run on 1600x1200). Small rug-edge smear left in the e1_turn / a2_ready bottom-right corner.",
+    "2026-11-10: all audio to be re-recorded by the parent (v1 clips not reused).",
+    "2026-11-10: after the new s2 is cut, move its clock onto the LEFT half of the table: set clock.json scenes.s2_lulu_clock.at (now [0.83, 0.33, 0.16] = windowsill) and rerun tool/clock_layer.py clock_time --preview <dir>. Redo prompts are in ~/Downloads/art_prompts/clock_time/.",
+    "2026-11-10: vi = parent's recordings (~/Downloads/audio_vi_clock), cleaned. Before cleaning: c2_turn had a click at 0.47-0.62 s (removed) and its tail trimmed at 2.45 s; a1_p1 (breath pop at 1.17 s) and b1_p1 (click at 0.23 s) had a 24 ms spike turned down to -22 dB; b3 started 0.28 s in (trimmer missed it). Untouched originals stay in ~/Downloads/audio_vi_clock.",
+    "2026-11-10: en = F5-TTS v1 base cloned from F5's own sample voice (tool/voice/ref/en/ = placeholder, see SOURCE.txt), not the parent's. Parent must listen; replace ref/en with the parent's English reference and redo with --force if wanted.",
+    "2026-11-10: sticker.webp = v1's SVG clock sticker rendered (matches the scene clocks). Parent may keep it instead of an AI sticker.",
+    "2026-11-10: en clips came out hot (peaks to +3.8 dB); clean_audio.boost now levels up or down with the limiter; all 36 clips pass --check. Story 5.1 MB > 4 MB budget (audio 2.7 MB); en n1_p1 160 KB > 150 KB.",
+    "2026-11-10: re-takes of the 4 choice labels (c1_snooze, c1_up, c2_bed, c2_turn) from ~/Downloads/clock_time_audio_answer replaced the first takes. Pre-trimmed: a tap thump at the start of c1_up / c2_bed / c2_turn and a stop click at the end of c1_up. c1_up original is clipped (peaks +5 dB on 'thôi'): parent to listen (~/Downloads/c1_up_old_vs_new.m4a); old cleaned takes in the session scratchpad, first-take originals in ~/Downloads/audio_vi_clock."
+  ]
+}

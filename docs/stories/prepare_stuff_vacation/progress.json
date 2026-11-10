@@ -1,0 +1,22 @@
+{
+  "gates": {
+    "outline": "2026-11-09",
+    "script": "2026-11-09",
+    "art_prompts": "2026-11-09",
+    "wired": "2026-11-10"
+  },
+  "prompts_page": "https://claude.ai/artifact/Ss9Q6kogK23kLdUiR7ncY4",
+  "redo": {},
+  "listened": {
+    "vi": [],
+    "en": []
+  },
+  "notes": [
+    "2026-11-10: s2_lulu cuts Lulu only (backpack strap over the girl's knee); plates.s2_lulu = lulu",
+    "2026-11-10: b1_stuffed + e1_squash redone (Gemini edits) and imported; b2_heavy kept: Gemini can't move the girl off the strap, so the strap moves with her",
+    "2026-11-10: e1 hat is dented, not pancake-flat; parent accepted the picture",
+    "2026-11-10: new s2/e1 plates + e1 press/sad poses imported; all 11 scenes cut and checked",
+    "2026-11-10: en audio = macOS say (Samantha) placeholders for all 17 clips; replace with parent recordings or cloned voice. Story wired (home screen); 4.6 MB, over 4 MB budget.",
+    "2026-11-10: vi recordings had steady room noise ~17 dB under the voice (old cleaner missed it); re-cleaned with tool/denoise.py -> 31-42 dB. Parent listened 2026-11-10: approved."
+  ]
+}

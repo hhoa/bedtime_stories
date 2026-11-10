@@ -9,6 +9,14 @@ import 'package:bedtime_stories/features/stories/domain/entities/story.dart';
 
 import '../../../helpers/fakes.dart';
 
+/// The burst painter while it is playing [burst].
+Finder showingBurst(Burst burst) => find.byWidgetPredicate(
+  (w) =>
+      w is CustomPaint &&
+      w.painter is BurstPainter &&
+      (w.painter! as BurstPainter).showing.contains(burst),
+);
+
 /// Fixture pictures live on disk, not in pubspec assets.
 Widget app(Widget home) => DefaultAssetBundle(
   bundle: DiskAssetBundle(),
@@ -193,7 +201,7 @@ void main() {
       final replays = await pumpAndTap(
         tester,
         center('hero'),
-        expectShown: find.byIcon(Icons.favorite),
+        expectShown: showingBurst(Burst.hearts),
       );
       expect(replays, 0);
     });
@@ -204,7 +212,7 @@ void main() {
       final replays = await pumpAndTap(
         tester,
         center('lulu'),
-        expectShown: find.byType(SceneBurst),
+        expectShown: showingBurst(Burst.sparkles),
       );
       expect(replays, 0);
     });
@@ -252,7 +260,7 @@ void main() {
     );
     await tapCenter(spots.firstWhere((h) => h.kind == 'hero').box);
     await tester.pump(const Duration(milliseconds: 100));
-    expect(find.byIcon(Icons.favorite), findsWidgets);
+    expect(showingBurst(Burst.hearts), findsWidgets);
     await tapCenter(layers.firstWhere((l) => l.kind == 'lulu').box!);
     for (var i = 0; i < 15; i++) {
       await tester.pump(const Duration(milliseconds: 100));

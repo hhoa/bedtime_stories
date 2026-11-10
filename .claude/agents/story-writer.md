@@ -22,9 +22,8 @@ Nodes (every `text` and `label` is `{"vi": "...", "en": "..."}`):
 Images `images/<file>.webp`, filenames exactly as in the outline.
 
 ## The name rule (checked by tool and app)
-- Scenes and the ending say "bé" / "the little one", never `{name}`.
-- `{name}` only where the kid is asked: in each choice question, and optionally in a scene sentence that ends with "?".
-- `{name}` must **start or end** its sentence: "{name} ơi, giờ mình làm gì nhỉ?", "Mình làm gì đây, {name}?", "{name}, what should we do?". Never in the middle, never twice in a sentence, never in option labels. This keeps each line = the name + one clip, easy to record.
+- `{name}` appears **at most once per line** (scene, choice question, ending) and only as the **first or last word of the whole line**, not of a later sentence: "{name} ơi, bảy giờ rồi! Mình làm gì nhỉ?", "{name} kéo chăn trùm kín đầu. Tích tắc…", "Trời tối rồi. Mình ngủ chưa nhỉ, {name}?", "{name}, it's seven o'clock! What should we do?". Never in option labels. This keeps each line = the name + one clip, easy to record.
+- Wrong: "Reng reng! Trời sáng rồi. {name} ngáp." (name starts a later sentence), "Bảy giờ rồi! {name} ơi, …?", "Lulu xoay áo cho {name}. Bé mỉm cười." (name ends a sentence but not the line), a second name in a quote ("…: \"Chào buổi sáng, {name}!\" Lulu vỗ tay."). Fix: open the line with the name ("{name} ơi, trời sáng rồi! Reng reng!…", "{name} giật mình: \"Ối, muộn rồi!\" …"), or say "bé" / "the little one". Not every line needs the name. `check_story.py` rejects these (more examples: `test/fixtures/name_rule_cases.json`); `gen_audio.py --list` must show at most one clip beside each `[tên bé]`.
 
 ## Language rules
 - Vietnamese: natural spoken Vietnamese a parent would say. Hero = "bé"; Lulu calls the hero "bạn"; the hero says "mình". Never cậu bé / cô bé / con trai / con gái / anh / chị for the hero.

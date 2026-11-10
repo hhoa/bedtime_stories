@@ -1,0 +1,694 @@
+{
+  "id": "prepare_stuff_vacation",
+  "theme": "preparation",
+  "hero": "girl",
+  "title": {
+    "vi": "{name} và chiếc ba lô nhỏ",
+    "en": "{name} and the Little Backpack"
+  },
+  "cover": "images/cover.webp",
+  "start": "s1",
+  "nodes": [
+    {
+      "id": "s1",
+      "type": "scene",
+      "image": "images/s1_backpack.webp",
+      "next": "s2",
+      "ambient": "stars",
+      "text": {
+        "vi": "Mai cả nhà mình đi biển! Vali to của ba mẹ đã xếp xong rồi. Ba mẹ tin bé tự xếp được ba lô nhỏ. Bé giơ ba lô lên, vui quá!",
+        "en": "Tomorrow the whole family goes to the beach! Mom and Dad's big suitcase is all packed. They trust the little one to pack the small backpack. Up goes the backpack, hooray!"
+      },
+      "cues": {
+        "vi": [
+          {
+            "word": "Vali",
+            "part": "suitcase",
+            "action": "wiggle"
+          },
+          {
+            "word": "giơ",
+            "part": "hero",
+            "action": "pose",
+            "pose": "lift"
+          }
+        ],
+        "en": [
+          {
+            "word": "suitcase",
+            "part": "suitcase",
+            "action": "wiggle"
+          },
+          {
+            "word": "Up",
+            "part": "hero",
+            "action": "pose",
+            "pose": "lift"
+          }
+        ]
+      }
+    },
+    {
+      "id": "s2",
+      "type": "scene",
+      "image": "images/s2_lulu.webp",
+      "next": "c1",
+      "ambient": "sparkles",
+      "text": {
+        "vi": "Vèo! Lulu lấp lánh bay vào phòng. \"Ồ! Bé sắp đi biển à? Mình cùng xếp ba lô nhé!\"",
+        "en": "Whoosh! Lulu flies into the room, all sparkly. \"Oh! Are you off to the beach? Let's pack the backpack together!\""
+      },
+      "cues": {
+        "vi": [
+          {
+            "word": "Vèo",
+            "part": "lulu",
+            "action": "hop"
+          },
+          {
+            "word": "xếp",
+            "part": "lulu",
+            "action": "pose",
+            "pose": "point"
+          },
+          {
+            "word": "ba lô",
+            "part": "backpack",
+            "action": "wiggle"
+          }
+        ],
+        "en": [
+          {
+            "word": "Whoosh",
+            "part": "lulu",
+            "action": "hop"
+          },
+          {
+            "word": "pack",
+            "part": "lulu",
+            "action": "pose",
+            "pose": "point"
+          },
+          {
+            "word": "backpack",
+            "part": "backpack",
+            "action": "wiggle"
+          }
+        ]
+      }
+    },
+    {
+      "id": "c1",
+      "type": "choice",
+      "image": "images/s2_lulu.webp",
+      "ambient": "sparkles",
+      "text": {
+        "vi": "{name} cho gì vào ba lô?",
+        "en": "{name}, what goes in the backpack?"
+      },
+      "options": [
+        {
+          "id": "need",
+          "kind": "kind",
+          "icon": "images/icon_backpack.webp",
+          "label": {
+            "vi": "Chỉ lấy đồ mình cần thôi",
+            "en": "Just what we need"
+          },
+          "next": "a1"
+        },
+        {
+          "id": "all",
+          "kind": "learn",
+          "icon": "images/icon_toys.webp",
+          "label": {
+            "vi": "Mang hết đồ chơi",
+            "en": "All the toys"
+          },
+          "next": "b1"
+        }
+      ]
+    },
+    {
+      "id": "b1",
+      "type": "scene",
+      "image": "images/b1_stuffed.webp",
+      "next": "b2",
+      "ambient": "stars",
+      "text": {
+        "vi": "Nào khối gỗ, nào quả bóng, bé nhét hết vào ba lô. Nhét, nhét! Thêm một khối gỗ nữa. Ba lô phồng to, tròn vo!",
+        "en": "A block, a ball, the little one pushes everything in. Push, push! One more block. The backpack gets big and round!"
+      },
+      "cues": {
+        "vi": [
+          {
+            "word": "Nhét",
+            "part": "hero",
+            "action": "pose",
+            "pose": "push"
+          },
+          {
+            "word": "nhét",
+            "part": "backpack",
+            "action": "wiggle"
+          },
+          {
+            "word": "phồng",
+            "part": "backpack",
+            "action": "pulse"
+          }
+        ],
+        "en": [
+          {
+            "word": "Push",
+            "part": "hero",
+            "action": "pose",
+            "pose": "push"
+          },
+          {
+            "word": "push",
+            "part": "backpack",
+            "action": "wiggle"
+          },
+          {
+            "word": "big",
+            "part": "backpack",
+            "action": "pulse"
+          }
+        ]
+      }
+    },
+    {
+      "id": "b2",
+      "type": "scene",
+      "image": "images/b2_heavy.webp",
+      "next": "b3",
+      "ambient": "stars",
+      "poses": {
+        "hero": "pull"
+      },
+      "text": {
+        "vi": "{name} kéo quai ba lô. Hự, hự! Ba lô nặng quá, chẳng nhúc nhích gì cả. Bé ngồi phịch xuống, thở phì phò, mệt ơi là mệt.",
+        "en": "{name} tugs the strap. Huff, huff! It's so heavy, it won't move at all. Plop! The little one sits down, puffing, oh so tired."
+      },
+      "cues": {
+        "vi": [
+          {
+            "word": "kéo",
+            "part": "backpack",
+            "action": "wiggle"
+          },
+          {
+            "word": "Hự",
+            "part": "hero",
+            "action": "hop"
+          },
+          {
+            "word": "hự",
+            "part": "hero",
+            "action": "hop"
+          },
+          {
+            "word": "phịch",
+            "part": "hero",
+            "action": "pose",
+            "pose": "plop"
+          }
+        ],
+        "en": [
+          {
+            "word": "tugs",
+            "part": "backpack",
+            "action": "wiggle"
+          },
+          {
+            "word": "Huff",
+            "part": "hero",
+            "action": "hop"
+          },
+          {
+            "word": "huff",
+            "part": "hero",
+            "action": "hop"
+          },
+          {
+            "word": "Plop",
+            "part": "hero",
+            "action": "pose",
+            "pose": "plop"
+          }
+        ]
+      }
+    },
+    {
+      "id": "b3",
+      "type": "scene",
+      "image": "images/b3_lulu_help.webp",
+      "next": "a1",
+      "offer_rewind_to": "c1",
+      "ambient": "sparkles",
+      "text": {
+        "vi": "Lulu ngồi xuống cạnh bé. Hai bạn cùng lấy đồ chơi ra. \"Mình chỉ mang đồ cần thôi. Ba lô nhẹ thì mình mới tự đeo được. Đi chơi vui hơn nhiều!\"",
+        "en": "Lulu sits down beside the little one. Together they take the toys out. \"We only bring what we need. When the backpack is light, we can carry it ourselves. Then the trip is much more fun!\""
+      },
+      "cues": {
+        "vi": [
+          {
+            "word": "Lulu",
+            "part": "lulu",
+            "action": "hop"
+          },
+          {
+            "word": "lấy",
+            "part": "blocks",
+            "action": "wiggle"
+          },
+          {
+            "word": "Mình",
+            "part": "lulu",
+            "action": "pose",
+            "pose": "explain"
+          }
+        ],
+        "en": [
+          {
+            "word": "Lulu",
+            "part": "lulu",
+            "action": "hop"
+          },
+          {
+            "word": "take",
+            "part": "blocks",
+            "action": "wiggle"
+          },
+          {
+            "word": "We",
+            "part": "lulu",
+            "action": "pose",
+            "pose": "explain"
+          }
+        ]
+      }
+    },
+    {
+      "id": "a1",
+      "type": "scene",
+      "image": "images/a1_pack.webp",
+      "next": "c2",
+      "ambient": "stars",
+      "text": {
+        "vi": "{name} cho chai nước và xô cát vào ba lô. Chiếc mũ để bên cạnh, cho vào sau cùng. Ơ, còn áo với quần đùi nữa!",
+        "en": "{name} puts in the water bottle and the sand bucket. The sun hat waits beside it, to go in last. Oh, there's still the shirt and shorts!"
+      },
+      "cues": {
+        "vi": [
+          {
+            "word": "chai nước",
+            "part": "hero",
+            "action": "pose",
+            "pose": "put_in"
+          },
+          {
+            "word": "xô cát",
+            "part": "bucket",
+            "action": "wiggle"
+          },
+          {
+            "word": "mũ",
+            "part": "hat",
+            "action": "hop"
+          },
+          {
+            "word": "áo",
+            "part": "lulu",
+            "action": "pose",
+            "pose": "point"
+          },
+          {
+            "word": "quần đùi",
+            "part": "clothes",
+            "action": "wiggle"
+          }
+        ],
+        "en": [
+          {
+            "word": "bottle",
+            "part": "hero",
+            "action": "pose",
+            "pose": "put_in"
+          },
+          {
+            "word": "bucket",
+            "part": "bucket",
+            "action": "wiggle"
+          },
+          {
+            "word": "hat",
+            "part": "hat",
+            "action": "hop"
+          },
+          {
+            "word": "shirt",
+            "part": "lulu",
+            "action": "pose",
+            "pose": "point"
+          },
+          {
+            "word": "shorts",
+            "part": "clothes",
+            "action": "wiggle"
+          }
+        ]
+      }
+    },
+    {
+      "id": "c2",
+      "type": "choice",
+      "image": "images/a1_pack.webp",
+      "ambient": "stars",
+      "text": {
+        "vi": "{name} cho áo quần vào thế nào?",
+        "en": "{name}, how do the clothes go in?"
+      },
+      "options": [
+        {
+          "id": "fold",
+          "kind": "kind",
+          "icon": "images/icon_fold.webp",
+          "label": {
+            "vi": "Gấp gọn từng cái",
+            "en": "Fold each one"
+          },
+          "next": "d1"
+        },
+        {
+          "id": "stuff",
+          "kind": "learn",
+          "icon": "images/icon_scrunch.webp",
+          "label": {
+            "vi": "Nhét vội vào",
+            "en": "Stuff them in fast"
+          },
+          "next": "e1"
+        }
+      ]
+    },
+    {
+      "id": "e1",
+      "type": "scene",
+      "image": "images/e1_squash.webp",
+      "next": "e2",
+      "ambient": "stars",
+      "poses": {
+        "hero": "press"
+      },
+      "text": {
+        "vi": "Bé vo áo quần lại, ấn thật mạnh xuống. Bẹp! Áo nhăn nhúm, chiếc mũ cũng bẹp dí. Bé nhìn chiếc mũ, thấy hơi buồn.",
+        "en": "The little one scrunches up the clothes and pushes down hard. Squish! The clothes are all crumpled, and the hat is squashed flat. The little one looks at the hat and feels a bit sad."
+      },
+      "cues": {
+        "vi": [
+          {
+            "word": "vo",
+            "part": "clothes",
+            "action": "wiggle"
+          },
+          {
+            "word": "Bẹp",
+            "part": "hat",
+            "action": "pulse"
+          },
+          {
+            "word": "nhăn",
+            "part": "clothes",
+            "action": "wiggle"
+          },
+          {
+            "word": "nhìn",
+            "part": "hero",
+            "action": "pose",
+            "pose": "sad"
+          }
+        ],
+        "en": [
+          {
+            "word": "scrunches",
+            "part": "clothes",
+            "action": "wiggle"
+          },
+          {
+            "word": "Squish",
+            "part": "hat",
+            "action": "pulse"
+          },
+          {
+            "word": "crumpled",
+            "part": "clothes",
+            "action": "wiggle"
+          },
+          {
+            "word": "looks",
+            "part": "hero",
+            "action": "pose",
+            "pose": "sad"
+          }
+        ]
+      }
+    },
+    {
+      "id": "e2",
+      "type": "scene",
+      "image": "images/e2_hat.webp",
+      "next": "d1",
+      "offer_rewind_to": "c2",
+      "ambient": "sparkles",
+      "text": {
+        "vi": "Lulu vỗ nhẹ, bộp bộp, chiếc mũ tròn lại như cũ. \"Mình gấp gọn từng chiếc nhé. Áo quần phẳng phiu, ba lô còn chỗ cho mũ nữa.\"",
+        "en": "Lulu pats the hat gently. Pat, pat! It's nice and round again. \"Let's fold each one neatly. Smooth, flat clothes leave room for the hat too.\""
+      },
+      "cues": {
+        "vi": [
+          {
+            "word": "bộp",
+            "part": "lulu",
+            "action": "pose",
+            "pose": "pat"
+          },
+          {
+            "word": "bộp",
+            "part": "lulu",
+            "action": "hop"
+          },
+          {
+            "word": "gấp",
+            "part": "clothes",
+            "action": "wiggle"
+          }
+        ],
+        "en": [
+          {
+            "word": "Pat",
+            "part": "lulu",
+            "action": "pose",
+            "pose": "pat"
+          },
+          {
+            "word": "pat",
+            "part": "lulu",
+            "action": "hop"
+          },
+          {
+            "word": "fold",
+            "part": "clothes",
+            "action": "wiggle"
+          }
+        ]
+      }
+    },
+    {
+      "id": "d1",
+      "type": "scene",
+      "image": "images/d1_fold.webp",
+      "next": "d2",
+      "ambient": "stars",
+      "text": {
+        "vi": "{name} gấp áo thành một hình vuông nhỏ. Lulu giúp một tay. Gấp, gấp, xong rồi! Áo quần nằm phẳng phiu, còn chỗ cho mũ.",
+        "en": "{name} folds the shirt into a small square. Lulu lends a paw. Fold, fold, all done! The clothes lie nice and flat, with room for the hat."
+      },
+      "cues": {
+        "vi": [
+          {
+            "word": "gấp",
+            "part": "hero",
+            "action": "wiggle"
+          },
+          {
+            "word": "Lulu",
+            "part": "lulu",
+            "action": "hop"
+          },
+          {
+            "word": "Gấp",
+            "part": "clothes",
+            "action": "wiggle"
+          },
+          {
+            "word": "xong",
+            "part": "hero",
+            "action": "pose",
+            "pose": "done"
+          },
+          {
+            "word": "rồi",
+            "part": "lulu",
+            "action": "pose",
+            "pose": "clap"
+          }
+        ],
+        "en": [
+          {
+            "word": "folds",
+            "part": "hero",
+            "action": "wiggle"
+          },
+          {
+            "word": "Lulu",
+            "part": "lulu",
+            "action": "hop"
+          },
+          {
+            "word": "Fold",
+            "part": "clothes",
+            "action": "wiggle"
+          },
+          {
+            "word": "all",
+            "part": "lulu",
+            "action": "pose",
+            "pose": "clap"
+          },
+          {
+            "word": "done",
+            "part": "hero",
+            "action": "pose",
+            "pose": "done"
+          }
+        ]
+      }
+    },
+    {
+      "id": "d2",
+      "type": "scene",
+      "image": "images/d2_ready.webp",
+      "next": "end",
+      "ambient": "sparkles",
+      "text": {
+        "vi": "Rẹt! Bé kéo khóa ba lô, đặt chiếc mũ tròn lên trên. Ba lô nhỏ đứng cạnh vali to của ba mẹ. Lulu reo lên: \"Bé tự xếp giỏi quá!\"",
+        "en": "Zip! The little one zips up the backpack. The round hat goes on top. The small backpack stands next to Mom and Dad's big suitcase. Lulu cheers, \"You packed it all by yourself!\""
+      },
+      "cues": {
+        "vi": [
+          {
+            "word": "Rẹt",
+            "part": "backpack",
+            "action": "wiggle"
+          },
+          {
+            "word": "mũ",
+            "part": "hat",
+            "action": "hop"
+          },
+          {
+            "word": "vali",
+            "part": "suitcase",
+            "action": "wiggle"
+          },
+          {
+            "word": "reo",
+            "part": "lulu",
+            "action": "pose",
+            "pose": "cheer"
+          },
+          {
+            "word": "giỏi",
+            "part": "hero",
+            "action": "pose",
+            "pose": "cheer"
+          }
+        ],
+        "en": [
+          {
+            "word": "Zip",
+            "part": "backpack",
+            "action": "wiggle"
+          },
+          {
+            "word": "hat",
+            "part": "hat",
+            "action": "hop"
+          },
+          {
+            "word": "suitcase",
+            "part": "suitcase",
+            "action": "wiggle"
+          },
+          {
+            "word": "cheers",
+            "part": "lulu",
+            "action": "pose",
+            "pose": "cheer"
+          },
+          {
+            "word": "yourself",
+            "part": "hero",
+            "action": "pose",
+            "pose": "cheer"
+          }
+        ]
+      }
+    },
+    {
+      "id": "end",
+      "type": "ending",
+      "image": "images/end_asleep.webp",
+      "sticker": "images/sticker.webp",
+      "ambient": "zzz",
+      "ambient_origin": [
+        0.25,
+        0.5
+      ],
+      "text": {
+        "vi": "{name} chui vào chăn ấm, nhắm mắt lại. Ba lô nhỏ đã sẵn sàng bên cửa. Lulu thì thầm: \"Ngủ ngon nhé. Mai mình đi biển!\"",
+        "en": "{name} snuggles under the warm blanket and closes both eyes. The small backpack is ready by the door. Lulu whispers, \"Good night. Tomorrow we go to the beach!\""
+      },
+      "cues": {
+        "vi": [
+          {
+            "word": "Ba lô",
+            "part": "backpack",
+            "action": "pulse"
+          },
+          {
+            "word": "Lulu",
+            "part": "lulu",
+            "action": "pose",
+            "pose": "whisper"
+          }
+        ],
+        "en": [
+          {
+            "word": "backpack",
+            "part": "backpack",
+            "action": "pulse"
+          },
+          {
+            "word": "Lulu",
+            "part": "lulu",
+            "action": "pose",
+            "pose": "whisper"
+          }
+        ]
+      }
+    }
+  ]
+}

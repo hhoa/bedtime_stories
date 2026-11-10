@@ -45,6 +45,7 @@ final class CueModel {
     required this.action,
     this.pose,
     this.to,
+    this.at,
   });
 
   factory CueModel.fromJson(Map<String, dynamic> json) =>
@@ -59,6 +60,11 @@ final class CueModel {
 
   /// `[x, y]` fractions of the picture, for action `move`.
   final List<double>? to;
+
+  /// When the word is said, as a fraction (0–1) of its clip, measured from
+  /// the recording by `tool/cue_times.py`. Without it the word's place in
+  /// the text is used.
+  final double? at;
 
   Map<String, dynamic> toJson() => _$CueModelToJson(this);
 }
@@ -207,6 +213,12 @@ final class StoryModel {
             'Node "${n.id}" move cue "${c.word}" needs "to": [x, y] in 0..1',
           );
         }
+        final when = c.at;
+        if (when != null && (when < 0 || when > 1)) {
+          throw FormatException(
+            'Node "${n.id}" cue "${c.word}" needs "at" in 0..1',
+          );
+        }
         out.add(
           StoryCue(
             word: c.word,
@@ -214,6 +226,7 @@ final class StoryModel {
             action: action,
             pose: action == PartAction.pose ? pose : null,
             to: action == PartAction.move ? (x: to![0], y: to[1]) : null,
+            at: when,
           ),
         );
       }
@@ -324,16 +337,13 @@ final class StoryModel {
     );
   }
 
-  /// Every language has its text, and `{name}` only where the kid is asked.
+  /// Every language has its text, and `{name}` opens or closes its sentence.
   void _checkLanguages() {
     for (final lang in AppLanguage.values) {
       _pick(title, lang, 'Title');
       for (final n in nodes) {
         final where = 'Node "${n.id}" (${lang.name})';
-        final error = namePlacementError(
-          _pick(n.text, lang, 'Node "${n.id}"'),
-          questionOnly: n.type != 'choice',
-        );
+        final error = namePlacementError(_pick(n.text, lang, 'Node "${n.id}"'));
         if (error != null) throw FormatException('$where: $error');
         var from = 0;
         final nodeText = n.text[lang.name]!;

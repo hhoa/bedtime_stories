@@ -1,0 +1,592 @@
+{
+  "id": "clock_time",
+  "theme": "time",
+  "hero": "girl",
+  "title": {
+    "vi": "{name} và Bác Đồng Hồ tích tắc",
+    "en": "{name} and Mr. Tick-Tock"
+  },
+  "cover": "images/cover.webp",
+  "start": "s1",
+  "nodes": [
+    {
+      "id": "s1",
+      "type": "scene",
+      "image": "images/s1_ring.webp",
+      "next": "s2",
+      "ambient": "motes",
+      "text": {
+        "vi": "{name} ơi, trời sáng rồi! Reng reng! Reng reng! Bác Đồng Hồ trên bàn kêu vang. Bé ngáp một cái, rồi dụi mắt.",
+        "en": "{name}, it's morning! Ring-a-ling! Ring-a-ling! Mr. Tick-Tock on the little table rings and rings. The little one gives a big yawn, then rubs an eye."
+      },
+      "cues": {
+        "vi": [
+          {
+            "word": "Reng reng",
+            "part": "clock",
+            "action": "wiggle"
+          },
+          {
+            "word": "ngáp",
+            "part": "hero",
+            "action": "pose",
+            "pose": "yawn"
+          },
+          {
+            "word": "dụi mắt",
+            "part": "hero",
+            "action": "pose",
+            "pose": "rub_eye"
+          }
+        ],
+        "en": [
+          {
+            "word": "Ring-a-ling",
+            "part": "clock",
+            "action": "wiggle"
+          },
+          {
+            "word": "yawn",
+            "part": "hero",
+            "action": "pose",
+            "pose": "yawn"
+          },
+          {
+            "word": "rubs",
+            "part": "hero",
+            "action": "pose",
+            "pose": "rub_eye"
+          }
+        ]
+      }
+    },
+    {
+      "id": "s2",
+      "type": "scene",
+      "image": "images/s2_lulu_clock.webp",
+      "next": "c1",
+      "ambient": "sparkles",
+      "text": {
+        "vi": "Tưng, tưng! Lulu nhảy lên cạnh Bác Đồng Hồ. Bé ngồi dậy, nhìn theo. Lulu chỉ vào kim ngắn. \"Kim ngắn chỉ số bảy, kim dài chỉ số mười hai. Vậy là bảy giờ đúng!\"",
+        "en": "Boing, boing! Lulu hops up next to Mr. Tick-Tock. The little one sits up to look. Lulu points at the short hand. \"The short hand is on seven. The long hand is on twelve. That means seven o'clock!\""
+      },
+      "cues": {
+        "vi": [
+          {
+            "word": "Tưng",
+            "part": "lulu",
+            "action": "hop"
+          },
+          {
+            "word": "ngồi dậy",
+            "part": "hero",
+            "action": "pose",
+            "pose": "sit_up"
+          },
+          {
+            "word": "chỉ vào",
+            "part": "lulu",
+            "action": "pose",
+            "pose": "point"
+          }
+        ],
+        "en": [
+          {
+            "word": "Boing",
+            "part": "lulu",
+            "action": "hop"
+          },
+          {
+            "word": "sits up",
+            "part": "hero",
+            "action": "pose",
+            "pose": "sit_up"
+          },
+          {
+            "word": "points",
+            "part": "lulu",
+            "action": "pose",
+            "pose": "point"
+          }
+        ]
+      }
+    },
+    {
+      "id": "c1",
+      "type": "choice",
+      "image": "images/s2_lulu_clock.webp",
+      "ambient": "sparkles",
+      "poses": {
+        "hero": "sit_up",
+        "lulu": "point"
+      },
+      "text": {
+        "vi": "{name} ơi, bảy giờ rồi! Mình làm gì nhỉ?",
+        "en": "{name}, it's seven o'clock! What should we do?"
+      },
+      "options": [
+        {
+          "id": "up",
+          "kind": "kind",
+          "icon": "images/icon_stretch.webp",
+          "label": {
+            "vi": "Dậy thôi!",
+            "en": "Up we get!"
+          },
+          "next": "a1"
+        },
+        {
+          "id": "snooze",
+          "kind": "learn",
+          "icon": "images/icon_snooze.webp",
+          "label": {
+            "vi": "Ngủ thêm chút nữa",
+            "en": "Sleep a bit more"
+          },
+          "next": "b1"
+        }
+      ]
+    },
+    {
+      "id": "b1",
+      "type": "scene",
+      "image": "images/b1_snooze.webp",
+      "next": "b2",
+      "ambient": "motes",
+      "text": {
+        "vi": "{name} kéo chăn trùm kín đầu. Tích tắc, tích tắc... Kim dài chạy nửa vòng, từ số mười hai tới số sáu. Lulu ngồi chống cằm, chờ bé.",
+        "en": "{name} pulls the blanket over the head. Tick-tock, tick-tock... The long hand goes halfway round, from twelve to six. Lulu waits, chin on paw."
+      },
+      "cues": {
+        "vi": [
+          {
+            "word": "Tích tắc",
+            "part": "clock",
+            "action": "wiggle"
+          },
+          {
+            "word": "chống cằm",
+            "part": "lulu",
+            "action": "pose",
+            "pose": "chin"
+          }
+        ],
+        "en": [
+          {
+            "word": "Tick-tock",
+            "part": "clock",
+            "action": "wiggle"
+          },
+          {
+            "word": "chin",
+            "part": "lulu",
+            "action": "pose",
+            "pose": "chin"
+          }
+        ]
+      }
+    },
+    {
+      "id": "b2",
+      "type": "scene",
+      "image": "images/b2_rush.webp",
+      "next": "b3",
+      "ambient": "motes",
+      "text": {
+        "vi": "{name} giật mình: \"Ối, muộn rồi!\" Bé vội mặc áo, mặc ngược mất rồi. Chân mới đi một chiếc tất. Bánh mì còn nguyên, chưa kịp ăn. Bé giơ chiếc tất kia lên, thở hổn hển.",
+        "en": "{name} jumps up: \"Oh no, it's late!\" The shirt goes on fast, back to front. Only one sock is on. The bread is still there, not eaten. Up goes the other sock. Puff, puff!"
+      },
+      "cues": {
+        "vi": [
+          {
+            "word": "Ối",
+            "part": "hero",
+            "action": "pose",
+            "pose": "oops"
+          },
+          {
+            "word": "giơ chiếc tất",
+            "part": "hero",
+            "action": "pose",
+            "pose": "sock_up"
+          }
+        ],
+        "en": [
+          {
+            "word": "Oh no",
+            "part": "hero",
+            "action": "pose",
+            "pose": "oops"
+          },
+          {
+            "word": "Up goes",
+            "part": "hero",
+            "action": "pose",
+            "pose": "sock_up"
+          }
+        ]
+      }
+    },
+    {
+      "id": "b3",
+      "type": "scene",
+      "image": "images/b3_lulu_fix.webp",
+      "next": "a1",
+      "offer_rewind_to": "c1",
+      "ambient": "sparkles",
+      "text": {
+        "vi": "Lulu nhẹ nhàng xoay áo lại cho bé. Bé mỉm cười. Lulu nói: \"Kim ngắn chỉ số bảy là giờ mình dậy. Dậy đúng giờ thì mình thong thả, không phải vội.\"",
+        "en": "Lulu gently turns the shirt the right way round. A little smile comes back. Lulu says, \"When the short hand is on seven, we get up. Then we never have to rush.\""
+      },
+      "cues": {
+        "vi": [
+          {
+            "word": "mỉm cười",
+            "part": "hero",
+            "action": "pose",
+            "pose": "smile"
+          }
+        ],
+        "en": [
+          {
+            "word": "smile",
+            "part": "hero",
+            "action": "pose",
+            "pose": "smile"
+          }
+        ]
+      }
+    },
+    {
+      "id": "a1",
+      "type": "scene",
+      "image": "images/a1_stretch.webp",
+      "next": "a2",
+      "ambient": "motes",
+      "text": {
+        "vi": "{name} vươn vai thật cao. \"Chào Bác Đồng Hồ!\" Bác Đồng Hồ mỉm cười: \"Chào buổi sáng nhé!\" Lulu vỗ tay, nhảy tưng tưng trên gối.",
+        "en": "{name} stretches up high. \"Good morning, Mr. Tick-Tock!\" The clock smiles back: \"Good morning to you too!\" Lulu claps and hops on the pillow."
+      },
+      "cues": {
+        "vi": [
+          {
+            "word": "vươn vai",
+            "part": "hero",
+            "action": "pose",
+            "pose": "stretch"
+          },
+          {
+            "word": "mỉm cười",
+            "part": "clock",
+            "action": "pose",
+            "pose": "big"
+          },
+          {
+            "word": "vỗ tay",
+            "part": "lulu",
+            "action": "pose",
+            "pose": "clap"
+          },
+          {
+            "word": "nhảy",
+            "part": "lulu",
+            "action": "hop"
+          }
+        ],
+        "en": [
+          {
+            "word": "stretches",
+            "part": "hero",
+            "action": "pose",
+            "pose": "stretch"
+          },
+          {
+            "word": "smiles",
+            "part": "clock",
+            "action": "pose",
+            "pose": "big"
+          },
+          {
+            "word": "claps",
+            "part": "lulu",
+            "action": "pose",
+            "pose": "clap"
+          },
+          {
+            "word": "hops",
+            "part": "lulu",
+            "action": "hop"
+          }
+        ]
+      }
+    },
+    {
+      "id": "a2",
+      "type": "scene",
+      "image": "images/a2_ready.webp",
+      "next": "n1",
+      "ambient": "motes",
+      "text": {
+        "vi": "{name} ăn sáng thật thong thả. Rồi bé đeo ba lô, vẫy tay thật vui. \"Tạm biệt Lulu, tạm biệt Bác Đồng Hồ!\" Lulu vẫy tay chào lại.",
+        "en": "{name} eats breakfast nice and slow. Then on goes the backpack, with a happy wave. \"Bye-bye, Lulu! Bye-bye, Mr. Tick-Tock!\" Lulu waves back."
+      },
+      "cues": {
+        "vi": [
+          {
+            "word": "vẫy tay",
+            "part": "hero",
+            "action": "pose",
+            "pose": "wave"
+          },
+          {
+            "word": "vẫy tay",
+            "part": "lulu",
+            "action": "pose",
+            "pose": "wave"
+          }
+        ],
+        "en": [
+          {
+            "word": "wave",
+            "part": "hero",
+            "action": "pose",
+            "pose": "wave"
+          },
+          {
+            "word": "waves",
+            "part": "lulu",
+            "action": "pose",
+            "pose": "wave"
+          }
+        ]
+      }
+    },
+    {
+      "id": "n1",
+      "type": "scene",
+      "image": "images/n1_nine.webp",
+      "next": "c2",
+      "ambient": "stars",
+      "text": {
+        "vi": "{name} ngồi tô màu. Ngoài trời đã tối. Boong... Bác Đồng Hồ khẽ ngân. Lulu hỏi: \"Mấy giờ rồi nhỉ?\" Bé ngẩng lên. \"Kim ngắn chỉ số chín, kim dài chỉ số mười hai. Vậy là chín giờ đúng!\"",
+        "en": "{name} is coloring with crayons. Outside, it's dark. Bong... Mr. Tick-Tock chimes softly. Lulu asks, \"What time is it?\" The little one looks up. \"The short hand is on nine. The long hand is on twelve. That means nine o'clock!\""
+      },
+      "cues": {
+        "vi": [
+          {
+            "word": "Boong",
+            "part": "clock",
+            "action": "pulse"
+          },
+          {
+            "word": "ngẩng lên",
+            "part": "hero",
+            "action": "pose",
+            "pose": "look_up"
+          }
+        ],
+        "en": [
+          {
+            "word": "Bong",
+            "part": "clock",
+            "action": "pulse"
+          },
+          {
+            "word": "looks up",
+            "part": "hero",
+            "action": "pose",
+            "pose": "look_up"
+          }
+        ]
+      }
+    },
+    {
+      "id": "c2",
+      "type": "choice",
+      "image": "images/n1_nine.webp",
+      "ambient": "stars",
+      "poses": {
+        "hero": "look_up"
+      },
+      "text": {
+        "vi": "{name} ơi, chín giờ rồi! Mình làm gì đây?",
+        "en": "{name}, it's nine o'clock! What should we do now?"
+      },
+      "options": [
+        {
+          "id": "bed",
+          "kind": "kind",
+          "icon": "images/icon_bed.webp",
+          "label": {
+            "vi": "Chúc Bác Đồng Hồ ngủ ngon",
+            "en": "Say goodnight to Mr. Tick-Tock"
+          },
+          "next": "d1"
+        },
+        {
+          "id": "turn",
+          "kind": "learn",
+          "icon": "images/icon_turn.webp",
+          "label": {
+            "vi": "Vặn kim lùi để chơi thêm",
+            "en": "Turn the hands back to play"
+          },
+          "next": "e1"
+        }
+      ]
+    },
+    {
+      "id": "e1",
+      "type": "scene",
+      "image": "images/e1_turn.webp",
+      "next": "e2",
+      "ambient": "stars",
+      "text": {
+        "vi": "{name} vặn kim ngắn lùi về số tám. Cạch, cạch! Bác Đồng Hồ hoa cả mắt: \"Ơ, chóng mặt quá!\" Nhưng ngoài cửa sổ, trăng vẫn sáng. Bé ngáp một cái thật dài, mắt díp lại.",
+        "en": "{name} turns the short hand back to eight. Click, click! Mr. Tick-Tock's eyes spin: \"Oh, I feel dizzy!\" But outside the window, the moon still shines. The little one gives a long yawn, eyes heavy."
+      },
+      "cues": {
+        "vi": [
+          {
+            "word": "vặn kim",
+            "part": "hero",
+            "action": "pose",
+            "pose": "reach"
+          },
+          {
+            "word": "chóng mặt",
+            "part": "clock",
+            "action": "pose",
+            "pose": "turned"
+          },
+          {
+            "word": "ngáp",
+            "part": "hero",
+            "action": "pose",
+            "pose": "yawn"
+          }
+        ],
+        "en": [
+          {
+            "word": "turns",
+            "part": "hero",
+            "action": "pose",
+            "pose": "reach"
+          },
+          {
+            "word": "dizzy",
+            "part": "clock",
+            "action": "pose",
+            "pose": "turned"
+          },
+          {
+            "word": "yawn",
+            "part": "hero",
+            "action": "pose",
+            "pose": "yawn"
+          }
+        ]
+      }
+    },
+    {
+      "id": "e2",
+      "type": "scene",
+      "image": "images/e2_lulu_back.webp",
+      "next": "d1",
+      "offer_rewind_to": "c2",
+      "ambient": "sparkles",
+      "text": {
+        "vi": "Lulu nắm tay bé. \"Bạn vặn kim rồi, nhưng trời vẫn tối. Mắt bạn vẫn buồn ngủ. Đồng hồ chỉ cho mình biết giờ thôi. Mình trả kim về số chín nhé.\" Cạch! Bác Đồng Hồ lại mỉm cười.",
+        "en": "Lulu holds the little one's hand. \"You turned the hands, but it's still dark. Your eyes are still sleepy. A clock just tells us the time. Let's put it back on nine.\" Click! Mr. Tick-Tock smiles again."
+      },
+      "cues": {
+        "vi": [
+          {
+            "word": "Cạch",
+            "part": "clock",
+            "action": "pose",
+            "pose": "back"
+          }
+        ],
+        "en": [
+          {
+            "word": "Click",
+            "part": "clock",
+            "action": "pose",
+            "pose": "back"
+          }
+        ]
+      }
+    },
+    {
+      "id": "d1",
+      "type": "scene",
+      "image": "images/d1_goodnight.webp",
+      "next": "end",
+      "ambient": "stars",
+      "text": {
+        "vi": "{name} cất bút màu vào cốc. Bé vẫy tay: \"Chúc Bác Đồng Hồ ngủ ngon!\" Bác Đồng Hồ khẽ đáp: \"Boong... ngủ ngon nhé.\" Bé leo lên giường, nằm cạnh Lulu.",
+        "en": "{name} puts the crayons back in the cup. A little wave: \"Goodnight, Mr. Tick-Tock!\" The clock answers softly, \"Bong... sleep well.\" Then up into bed, next to Lulu."
+      },
+      "cues": {
+        "vi": [
+          {
+            "word": "vẫy tay",
+            "part": "hero",
+            "action": "pose",
+            "pose": "wave"
+          },
+          {
+            "word": "Boong",
+            "part": "clock",
+            "action": "pulse"
+          }
+        ],
+        "en": [
+          {
+            "word": "wave",
+            "part": "hero",
+            "action": "pose",
+            "pose": "wave"
+          },
+          {
+            "word": "Bong",
+            "part": "clock",
+            "action": "pulse"
+          }
+        ]
+      }
+    },
+    {
+      "id": "end",
+      "type": "ending",
+      "image": "images/end_asleep.webp",
+      "sticker": "images/sticker.webp",
+      "ambient": "zzz",
+      "ambient_origin": [
+        0.6,
+        0.36
+      ],
+      "text": {
+        "vi": "{name} ngủ say trong chăn ấm. Tích tắc, tích tắc... Bác Đồng Hồ cũng khẽ nhắm mắt. Lulu thì thầm: \"Ngủ ngon nhé. Mai bảy giờ, mình cùng dậy nhé.\"",
+        "en": "{name} is fast asleep, warm and cozy. Tick-tock, tick-tock... Mr. Tick-Tock softly closes both eyes too. Lulu whispers, \"Sleep well. Tomorrow at seven, we'll wake up together.\""
+      },
+      "cues": {
+        "vi": [
+          {
+            "word": "Tích tắc",
+            "part": "clock",
+            "action": "wiggle"
+          }
+        ],
+        "en": [
+          {
+            "word": "Tick-tock",
+            "part": "clock",
+            "action": "wiggle"
+          }
+        ]
+      }
+    }
+  ]
+}

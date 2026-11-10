@@ -1,0 +1,19 @@
+{
+  "gates": {
+    "outline": "2026-11-10",
+    "script": "2026-11-10",
+    "art_prompts": "2026-11-10"
+  },
+  "listened": {
+    "vi": [],
+    "en": []
+  },
+  "notes": [
+    "2026-11-10: v2 port of v1 tidy_toys (plot approved in v1). First KIT story: no picture per scene. Art = art_prompts.json \"kit\" (room + hero_a, hero_b, lulu_a, props sheets) + cover + sticker; tool/sprite_sheet.py cuts sheets, docs/stories/tidy_toys/stage.json + tool/stage.py compose the scenes. /story-art and the art agents don't know kit mode: the main session does the art step by hand (CLAUDE.md \"Kit\").",
+    "2026-11-10: lid beat moved from d2 to the end of d1 (teddy can't vanish from the bed mid-scene); parent approved with the outline.",
+    "2026-11-10: script review PASS; art review FIX (14 wording items) applied to art_prompts.json; hero_b sheet attaches kit/hero_a.png for same body size. Stage/cue numbers (move \"to\" = feet, node-to-node continuity, end_asleep head on pillow, teddy deeper in b1/b2) wait for the real room.",
+    "2026-11-10: parent made the 7 images (saved in ~/Downloads/tidy_toys, copied to ~/Downloads/story_art/tidy_toys). Room came back 16:9: stage.json \"crop\" keeps bed + window (door dropped), \"erase_specks\" paints out leftover sparkles. props sheet had 3 extra figures (cut as extra_*, unused). hero_b mark sat on a foot: cut with --force-mark. Script approved when the parent asked for the recording list.",
+    "2026-11-10: vi 17/17 recorded by the parent (from ~/Downloads/tidy_toys/audio), cleaned. en 17/17 cloned voice (parent asked for AI voice), not listened yet. Story wired; flutter tests pass; 3.1 MB."
+  ],
+  "prompts_page": "https://claude.ai/artifact/12xiLDB77HKn9oiTW3uUAk"
+}

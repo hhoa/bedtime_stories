@@ -9,8 +9,9 @@ Two engines:
          fork for `vi`, the official English base model for `en`
          (tool/voice/, set up once with tool/voice/setup.sh). Default when set up.
   say    macOS `say` (Linh / Samantha). Fallback placeholder.
-New clone clips get silence trimmed and the same loudness boost as
-recordings (tool/boost_audio.py). Listen to each one: the model can get a
+New clone clips get silence trimmed and a loudness boost, and are
+registered in audio_backup/cleaned.json so tool/clean_audio.py (which cleans
+hand recordings) leaves them alone. Listen to each one: the model can get a
 tone wrong; re-record a bad line by hand under the same filename.
 
 Files follow the naming the app expects
@@ -20,13 +21,14 @@ Files follow the naming the app expects
   assets/stories/<id>/audio/<lang>/<nodeId>_<optionId>[_p<i>].m4a   choice option label
   assets/audio/ui/<lang>/<key>.m4a                                  shared UI lines
 
-The child's name is never baked in. `{name}` only appears in questions, at
-the start or end of a sentence (check_story.py), so a line splits into the
-name plus one clip per side: `_p0`, `_p1`, ... Parts with no letters (e.g.
+The child's name is never baked in. `{name}` appears at most once
+per line, as its first or last word (check_story.py), so a line is the name
+plus one clip (`_p1` after a leading name, `_p0` before a trailing one). Parts with no letters (e.g.
 "?") are skipped. The app plays the parent's recording, or "bé" / "sweetie".
 
 Own voice: run with `--list` to get the recording script, record each line,
-save it under the listed filename. Without `--force` this tool only fills in
+save it under the listed filename, then run tool/clean_audio.py (trim,
+denoise, loudness). Without `--force` this tool only fills in
 missing clips, so recordings are never overwritten.
 
 Usage:
@@ -50,7 +52,7 @@ import tempfile
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from boost_audio import boost  # noqa: E402
+from clean_audio import CLEAN_TAG, boost, mark_cleaned  # noqa: E402
 
 ROOT = Path(__file__).resolve().parent.parent
 LANGS = ('vi', 'en')  # keep in sync with AppLanguage
@@ -106,9 +108,11 @@ def speak(text: str, out: Path, lang: str) -> None:
                        check=True)
         subprocess.run(
             ['ffmpeg', '-y', '-loglevel', 'error', '-i', str(aiff),
-             '-ac', '1', '-codec:a', 'aac', '-b:a', '96k', str(out)],
+             '-ac', '1', '-codec:a', 'aac', '-b:a', '64k',
+             '-metadata', f'comment={CLEAN_TAG}', str(out)],
             check=True,
         )
+    mark_cleaned(out)
     print(f'  {shown(out)}')
 
 
@@ -166,10 +170,11 @@ def clone_speak(jobs: list[tuple[str, Path]], ref: Path, lang: str,
             out.parent.mkdir(parents=True, exist_ok=True)
             subprocess.run(
                 ['ffmpeg', '-y', '-loglevel', 'error', '-i', str(wavs[out]), '-af', TRIM,
-                 '-ac', '1', '-codec:a', 'aac', '-b:a', '96k', str(out)],
+                 '-ac', '1', '-codec:a', 'aac', '-b:a', '64k', str(out)],
                 check=True,
             )
             boost(out, out)
+            mark_cleaned(out)
             print(f'  {shown(out)}')
 
 
