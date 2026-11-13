@@ -1,0 +1,74 @@
+{
+  "flutter": {
+    "platforms": {
+      "android": {
+        "default": {
+          "projectId": "bedtime-stories-3605d",
+          "appId": "1:493434637473:android:8e1ba70a40dcf5c722b4e0",
+          "fileOutput": "android/app/google-services.json"
+        }
+      },
+      "ios": {
+        "default": {
+          "projectId": "bedtime-stories-3605d",
+          "appId": "1:493434637473:ios:4b638a9fa90ca32722b4e0",
+          "uploadDebugSymbols": false,
+          "fileOutput": "ios/Runner/GoogleService-Info.plist"
+        }
+      },
+      "dart": {
+        "lib/firebase_options.dart": {
+          "projectId": "bedtime-stories-3605d",
+          "configurations": {
+            "android": "1:493434637473:android:8e1ba70a40dcf5c722b4e0",
+            "ios": "1:493434637473:ios:4b638a9fa90ca32722b4e0",
+            "web": "1:493434637473:web:00381548407bb26f22b4e0"
+          }
+        }
+      }
+    }
+  },
+  "hosting": {
+    "public": "build/web",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ],
+    "headers": [
+      {
+        "source": "/",
+        "headers": [
+          {
+            "key": "Cache-Control",
+            "value": "no-cache"
+          }
+        ]
+      },
+      {
+        "source": "**/*.@(js|wasm|json|png|svg|webp|m4a|ttf|otf|woff2)",
+        "headers": [
+          {
+            "key": "Cache-Control",
+            "value": "public, max-age=3600"
+          }
+        ]
+      },
+      {
+        "source": "/@(index.html|flutter_service_worker.js|flutter_bootstrap.js|version.json)",
+        "headers": [
+          {
+            "key": "Cache-Control",
+            "value": "no-cache"
+          }
+        ]
+      }
+    ]
+  }
+}

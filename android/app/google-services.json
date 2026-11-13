@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "493434637473",
+    "project_id": "bedtime-stories-3605d",
+    "storage_bucket": "bedtime-stories-3605d.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:493434637473:android:8e1ba70a40dcf5c722b4e0",
+        "android_client_info": {
+          "package_name": "com.bedtimestory.bedtime_stories"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAFTKGgq8eRtKRSbtciZD4HHaAjRWzldaU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
