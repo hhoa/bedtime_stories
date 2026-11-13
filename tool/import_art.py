@@ -29,8 +29,8 @@ names, typos) and lists them; bring one in with --as.
 
 Then point story.json at the new file (images/s1_toys.webp) and run
 python3 tool/check_story.py <id> --art and python3 tool/check_assets.py <id>.
-A flat picture has no movable parts: give it hotspots, or cut parts with
-tool/cutout.py.
+A flat picture has no movable parts: give it hotspots (images/hotspots.json)
+for tap bursts. Kit stories don't need this: tool/stage.py makes their scenes.
 """
 from __future__ import annotations
 

@@ -1,0 +1,778 @@
+{
+ "_note": "Bedroom = tidy_toys kit/room.png with tidy's crop (bed left, pillow ~[0.18, 0.50], mattress top y ~0.49-0.56, floor y 0.80-1.0, rug x 0.25-0.98). Spots (outline): rug_mid [0.58,0.96], by_pot [0.72,0.96], pot_spot [0.86,0.95], can_spot [0.32,0.97], can_by_pot [0.76,0.98], balloon bed_foot [0.66,0.30] / air_mid [0.60,0.27] / ceiling [0.68,0.10] / by_lulu [0.78,0.24] (balloon at = body centre), Lulu window [0.46,0.22] / air_pot [0.80,0.44] / by_ceiling [0.76,0.18] / air_pillow [0.42,0.30], in_bed [0.29,0.575]. Draw order: can, pot, hero, balloon, blanket, lulu. Girl sheets hero_a/b (tidy_toys), hero_d/e (clock_time), hero_f new; sprites of reused sheets copied from their stories' sprites/. Tune with: tool/cutout/.venv/bin/python tool/stage.py keep_promise --preview <dir> --dry --guides Balloon pivot (move \"to\") = string end = body centre + [0, 0.23]. a1: girl kneels at [0.73,0.88] and the pot is drawn after her so the stream pours into it. 2026-11-12: pinky pose = hero_g/pinky (parent's Gemini edit, one figure at ~2x size, scale 0.333 = same height as hero_f).",
+ "room": "kit/room.png",
+ "crop": [
+  0.05,
+  0.0,
+  0.7942,
+  1.0
+ ],
+ "erase_specks": [
+  [
+   0.0,
+   0.1,
+   0.2,
+   0.45
+  ]
+ ],
+ "tint": 0.0,
+ "sheets": {
+  "hero_a": {
+   "scale": 0.68
+  },
+  "hero_b": {
+   "scale": 0.68
+  },
+  "hero_d": {
+   "scale": 0.68
+  },
+  "hero_e": {
+   "scale": 0.68
+  },
+  "hero_f": {
+   "scale": 0.68
+  },
+  "lulu_a": {
+   "scale": 0.34,
+   "anchor": "center"
+  },
+  "lulu_c": {
+   "scale": 0.245,
+   "anchor": "center"
+  },
+  "props": {
+   "scale": 0.72
+  },
+  "props_promise": {
+   "scale": 0.45
+  },
+  "hero_g": {
+   "scale": 0.333
+  }
+ },
+ "sprites": {
+  "props_promise/sprout_droopy": {
+   "anchor": [
+    0.59,
+    1.0
+   ]
+  },
+  "props_promise/balloon": {
+   "anchor": [
+    0.5,
+    0.3
+   ]
+  }
+ },
+ "icons": {
+  "icon_water": [
+   {
+    "sprite": "hero_f/kneel_water",
+    "at": [
+     0.42,
+     0.52
+    ],
+    "size": 0.8
+   },
+   {
+    "sprite": "props_promise/sprout_thirsty",
+    "at": [
+     0.82,
+     0.66
+    ],
+    "size": 0.5
+   }
+  ],
+  "icon_balloon": [
+   {
+    "sprite": "props_promise/balloon",
+    "at": [
+     0.5,
+     0.5
+    ],
+    "size": 0.86
+   }
+  ],
+  "icon_turn": [
+   {
+    "sprite": "props_promise/balloon",
+    "at": [
+     0.5,
+     0.36
+    ],
+    "size": 0.5
+   },
+   {
+    "sprite": "lulu_a/clap",
+    "at": [
+     0.74,
+     0.66
+    ],
+    "size": 0.5
+   },
+   {
+    "sprite": "hero_f/tap_up",
+    "at": [
+     0.26,
+     0.6
+    ],
+    "size": 0.74
+   }
+  ],
+  "icon_alone": [
+   {
+    "sprite": "hero_f/tap_up",
+    "at": [
+     0.42,
+     0.58
+    ],
+    "size": 0.8
+   },
+   {
+    "sprite": "props_promise/balloon",
+    "at": [
+     0.74,
+     0.3
+    ],
+    "size": 0.5
+   }
+  ]
+ },
+ "scenes": {
+  "s1_promise": {
+   "parts": [
+    {
+     "kind": "can",
+     "sprite": "props_promise/watering_can",
+     "at": [
+      0.32,
+      0.97
+     ],
+     "shadow": true
+    },
+    {
+     "kind": "pot",
+     "sprite": "props_promise/sprout_thirsty",
+     "at": [
+      0.86,
+      0.95
+     ],
+     "shadow": true
+    },
+    {
+     "kind": "hero",
+     "sprite": "hero_a/sit_look_up",
+     "at": [
+      0.58,
+      0.96
+     ],
+     "poses": {
+      "pinky": "hero_g/pinky"
+     },
+     "shadow": true
+    },
+    {
+     "kind": "balloon",
+     "sprite": "props_promise/balloon",
+     "at": [
+      0.66,
+      0.3
+     ],
+     "scale": 1.4,
+     "tap": "hop"
+    },
+    {
+     "kind": "lulu",
+     "sprite": "lulu_a/float",
+     "at": [
+      0.8,
+      0.44
+     ],
+     "poses": {
+      "talk": "lulu_a/talk"
+     }
+    }
+   ]
+  },
+  "s2_balloon": {
+   "parts": [
+    {
+     "kind": "can",
+     "sprite": "props_promise/watering_can",
+     "at": [
+      0.32,
+      0.97
+     ],
+     "shadow": true
+    },
+    {
+     "kind": "pot",
+     "sprite": "props_promise/sprout_thirsty",
+     "at": [
+      0.86,
+      0.95
+     ],
+     "shadow": true
+    },
+    {
+     "kind": "hero",
+     "sprite": "hero_f/stand_proud",
+     "at": [
+      0.58,
+      0.96
+     ],
+     "poses": {
+      "stand_look_up": "hero_f/stand_look_up"
+     },
+     "shadow": true
+    },
+    {
+     "kind": "balloon",
+     "sprite": "props_promise/balloon",
+     "at": [
+      0.6,
+      0.27
+     ],
+     "scale": 1.4,
+     "tap": "hop"
+    }
+   ]
+  },
+  "b1_play": {
+   "parts": [
+    {
+     "kind": "can",
+     "sprite": "props_promise/watering_can",
+     "at": [
+      0.32,
+      0.97
+     ],
+     "shadow": true
+    },
+    {
+     "kind": "pot",
+     "sprite": "props_promise/sprout_thirsty",
+     "at": [
+      0.86,
+      0.95
+     ],
+     "poses": {
+      "sprout_droopy": "props_promise/sprout_droopy"
+     },
+     "shadow": true
+    },
+    {
+     "kind": "hero",
+     "sprite": "hero_f/tap_up",
+     "at": [
+      0.58,
+      0.96
+     ],
+     "shadow": true
+    },
+    {
+     "kind": "balloon",
+     "sprite": "props_promise/balloon",
+     "at": [
+      0.6,
+      0.27
+     ],
+     "scale": 1.4,
+     "tap": "hop"
+    }
+   ]
+  },
+  "b2_droopy": {
+   "parts": [
+    {
+     "kind": "can",
+     "sprite": "props_promise/watering_can",
+     "at": [
+      0.32,
+      0.97
+     ],
+     "shadow": true
+    },
+    {
+     "kind": "pot",
+     "sprite": "props_promise/sprout_droopy",
+     "at": [
+      0.86,
+      0.95
+     ],
+     "shadow": true
+    },
+    {
+     "kind": "hero",
+     "sprite": "hero_f/tap_up",
+     "at": [
+      0.58,
+      0.96
+     ],
+     "poses": {
+      "stand_oops": "hero_f/stand_oops",
+      "kneel_sad": "hero_d/kneel_sad"
+     },
+     "shadow": true
+    },
+    {
+     "kind": "balloon",
+     "sprite": "props_promise/balloon",
+     "at": [
+      0.6,
+      0.27
+     ],
+     "scale": 1.4,
+     "tap": "hop"
+    }
+   ]
+  },
+  "b3_lulu": {
+   "parts": [
+    {
+     "kind": "can",
+     "sprite": "props_promise/watering_can",
+     "at": [
+      0.32,
+      0.97
+     ],
+     "shadow": true
+    },
+    {
+     "kind": "pot",
+     "sprite": "props_promise/sprout_droopy",
+     "at": [
+      0.86,
+      0.95
+     ],
+     "poses": {
+      "sprout_thirsty": "props_promise/sprout_thirsty"
+     },
+     "shadow": true
+    },
+    {
+     "kind": "hero",
+     "sprite": "hero_d/kneel_sad",
+     "at": [
+      0.58,
+      0.96
+     ],
+     "poses": {
+      "sit_look_up": "hero_a/sit_look_up"
+     },
+     "shadow": true
+    },
+    {
+     "kind": "balloon",
+     "sprite": "props_promise/balloon",
+     "at": [
+      0.6,
+      0.27
+     ],
+     "scale": 1.4,
+     "tap": "hop"
+    },
+    {
+     "kind": "lulu",
+     "sprite": "lulu_a/float",
+     "at": [
+      0.46,
+      0.22
+     ],
+     "poses": {
+      "talk": "lulu_a/talk"
+     }
+    }
+   ]
+  },
+  "a1_water": {
+   "parts": [
+    {
+     "kind": "hero",
+     "sprite": "hero_f/kneel_water",
+     "at": [
+      0.73,
+      0.88
+     ],
+     "shadow": true
+    },
+    {
+     "kind": "pot",
+     "sprite": "props_promise/sprout_thirsty",
+     "at": [
+      0.86,
+      0.95
+     ],
+     "poses": {
+      "sprout_happy": "props_promise/sprout_happy"
+     },
+     "shadow": true
+    },
+    {
+     "kind": "balloon",
+     "sprite": "props_promise/balloon",
+     "at": [
+      0.6,
+      0.27
+     ],
+     "scale": 1.4,
+     "tap": "hop"
+    },
+    {
+     "kind": "lulu",
+     "sprite": "lulu_a/float",
+     "at": [
+      0.8,
+      0.44
+     ],
+     "poses": {
+      "clap": "lulu_a/clap"
+     }
+    }
+   ]
+  },
+  "n1_turn": {
+   "parts": [
+    {
+     "kind": "can",
+     "sprite": "props_promise/watering_can",
+     "at": [
+      0.76,
+      0.98
+     ],
+     "shadow": true
+    },
+    {
+     "kind": "pot",
+     "sprite": "props_promise/sprout_happy",
+     "at": [
+      0.86,
+      0.95
+     ],
+     "shadow": true
+    },
+    {
+     "kind": "hero",
+     "sprite": "hero_f/stand_proud",
+     "at": [
+      0.58,
+      0.96
+     ],
+     "poses": {
+      "pinky": "hero_g/pinky",
+      "tap_up": "hero_f/tap_up"
+     },
+     "shadow": true
+    },
+    {
+     "kind": "balloon",
+     "sprite": "props_promise/balloon",
+     "at": [
+      0.6,
+      0.27
+     ],
+     "scale": 1.4,
+     "tap": "hop"
+    },
+    {
+     "kind": "lulu",
+     "sprite": "lulu_a/float",
+     "at": [
+      0.8,
+      0.44
+     ],
+     "poses": {
+      "talk": "lulu_a/talk",
+      "float": "lulu_a/float"
+     }
+    }
+   ]
+  },
+  "e1_alone": {
+   "parts": [
+    {
+     "kind": "can",
+     "sprite": "props_promise/watering_can",
+     "at": [
+      0.76,
+      0.98
+     ],
+     "shadow": true
+    },
+    {
+     "kind": "pot",
+     "sprite": "props_promise/sprout_happy",
+     "at": [
+      0.86,
+      0.95
+     ],
+     "shadow": true
+    },
+    {
+     "kind": "hero",
+     "sprite": "hero_f/tap_up",
+     "at": [
+      0.58,
+      0.96
+     ],
+     "poses": {
+      "kneel_sad": "hero_d/kneel_sad"
+     },
+     "shadow": true
+    },
+    {
+     "kind": "balloon",
+     "sprite": "props_promise/balloon",
+     "at": [
+      0.6,
+      0.27
+     ],
+     "scale": 1.4,
+     "tap": "hop"
+    },
+    {
+     "kind": "lulu",
+     "sprite": "lulu_a/float",
+     "at": [
+      0.8,
+      0.44
+     ],
+     "poses": {
+      "sad": "lulu_c/sad"
+     }
+    }
+   ]
+  },
+  "e2_lulu": {
+   "parts": [
+    {
+     "kind": "can",
+     "sprite": "props_promise/watering_can",
+     "at": [
+      0.76,
+      0.98
+     ],
+     "shadow": true
+    },
+    {
+     "kind": "pot",
+     "sprite": "props_promise/sprout_happy",
+     "at": [
+      0.86,
+      0.95
+     ],
+     "shadow": true
+    },
+    {
+     "kind": "hero",
+     "sprite": "hero_d/kneel_sad",
+     "at": [
+      0.58,
+      0.96
+     ],
+     "poses": {
+      "sit_look_up": "hero_a/sit_look_up"
+     },
+     "shadow": true
+    },
+    {
+     "kind": "balloon",
+     "sprite": "props_promise/balloon",
+     "at": [
+      0.68,
+      0.1
+     ],
+     "scale": 1.4,
+     "tap": "hop"
+    },
+    {
+     "kind": "lulu",
+     "sprite": "lulu_c/sad",
+     "at": [
+      0.8,
+      0.44
+     ],
+     "poses": {
+      "talk": "lulu_a/talk"
+     }
+    }
+   ]
+  },
+  "d1_together": {
+   "parts": [
+    {
+     "kind": "can",
+     "sprite": "props_promise/watering_can",
+     "at": [
+      0.76,
+      0.98
+     ],
+     "shadow": true
+    },
+    {
+     "kind": "pot",
+     "sprite": "props_promise/sprout_happy",
+     "at": [
+      0.86,
+      0.95
+     ],
+     "shadow": true
+    },
+    {
+     "kind": "hero",
+     "sprite": "hero_f/tap_up",
+     "at": [
+      0.58,
+      0.96
+     ],
+     "poses": {
+      "stand_proud": "hero_f/stand_proud"
+     },
+     "shadow": true
+    },
+    {
+     "kind": "balloon",
+     "sprite": "props_promise/balloon",
+     "at": [
+      0.6,
+      0.27
+     ],
+     "scale": 1.4,
+     "tap": "hop"
+    },
+    {
+     "kind": "lulu",
+     "sprite": "lulu_a/float",
+     "at": [
+      0.8,
+      0.44
+     ],
+     "poses": {
+      "clap": "lulu_a/clap"
+     }
+    }
+   ]
+  },
+  "d2_flower": {
+   "parts": [
+    {
+     "kind": "can",
+     "sprite": "props_promise/watering_can",
+     "at": [
+      0.76,
+      0.98
+     ],
+     "shadow": true
+    },
+    {
+     "kind": "pot",
+     "sprite": "props_promise/sprout_happy",
+     "at": [
+      0.86,
+      0.95
+     ],
+     "poses": {
+      "sprout_flower": "props_promise/sprout_flower"
+     },
+     "shadow": true
+    },
+    {
+     "kind": "hero",
+     "sprite": "hero_f/stand_proud",
+     "at": [
+      0.58,
+      0.96
+     ],
+     "poses": {
+      "stand_yawn": "hero_e/stand_yawn"
+     },
+     "shadow": true
+    },
+    {
+     "kind": "balloon",
+     "sprite": "props_promise/balloon",
+     "at": [
+      0.6,
+      0.27
+     ],
+     "scale": 1.4,
+     "tap": "hop"
+    },
+    {
+     "kind": "lulu",
+     "sprite": "lulu_a/float",
+     "at": [
+      0.8,
+      0.44
+     ],
+     "poses": {
+      "glow": "lulu_a/glow"
+     }
+    }
+   ]
+  },
+  "end_asleep": {
+   "parts": [
+    {
+     "kind": "can",
+     "sprite": "props_promise/watering_can",
+     "at": [
+      0.76,
+      0.98
+     ],
+     "shadow": true
+    },
+    {
+     "kind": "pot",
+     "sprite": "props_promise/sprout_flower",
+     "at": [
+      0.86,
+      0.95
+     ],
+     "shadow": true
+    },
+    {
+     "kind": "hero",
+     "sprite": "hero_b/asleep",
+     "at": [
+      0.29,
+      0.575
+     ],
+     "idle": "breathe",
+     "tap": null
+    },
+    {
+     "kind": "balloon",
+     "sprite": "props_promise/balloon",
+     "at": [
+      0.66,
+      0.3
+     ],
+     "scale": 1.4,
+     "tap": "hop"
+    },
+    {
+     "kind": "blanket",
+     "sprite": "props/blanket_lump",
+     "at": [
+      0.425,
+      0.61
+     ],
+     "scale": 1.3,
+     "tap": null
+    },
+    {
+     "kind": "lulu",
+     "sprite": "lulu_a/float",
+     "at": [
+      0.42,
+      0.3
+     ],
+     "poses": {
+      "whisper": "lulu_a/whisper"
+     }
+    }
+   ]
+  }
+ }
+}

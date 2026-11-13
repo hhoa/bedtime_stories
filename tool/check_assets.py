@@ -79,7 +79,7 @@ def check_story(folder: Path) -> list[str]:
             if size > LAYER_MAX:
                 problems.append(f'{rel}: {size // KB} KB (> {LAYER_MAX // KB} KB)')
             if layer and layer.get('kind') and f.suffix != '.svg' and 'rect' not in layer:
-                problems.append(f'{rel}: full-canvas cut layer (run tool/crop_layers.py)')
+                problems.append(f'{rel}: full-canvas part layer (re-run tool/stage.py)')
             continue
         sizes['images'] += size
         max_w, max_b = budget(rel)

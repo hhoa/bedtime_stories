@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """Draw Bác Đồng Hồ (the talking alarm clock) as SVG layers over AI pictures.
 
-AI art gets clock numbers and hand positions wrong, so the AI pictures leave
-the bedside table empty and this tool draws the clock on top: exact time,
+AI art gets clock numbers and hand positions wrong, so the kit has no clock
+(the bedside table is a prop) and this tool draws the clock on top: exact time,
 numbers 1-12, a face with a mood, ring/chime lines. Each scene gets a
 full-canvas transparent SVG layer (1600x1200, same as the WebP scenes) as a
 `clock` part in images/layers.json (idle sway, tap wiggle); extra states are
@@ -17,13 +17,15 @@ Config: docs/stories/<id>/clock.json
         "poses": {"swirly": {"time": "8:00", "mood": "swirly"}}
       }
     },
+    "icons": {"icon_turn": {"time": "8:00", "mood": "swirly", "arrow": "back"}},   # 400x400 images/icon_turn.svg
     "sticker": {"file": "sticker_clock.svg", "time": "9:00", "mood": "asleep", "moon": true}
   }
   mood: smile | big | swirly | sleepy | asleep      fx: ring | chime | none
 
-Run after tool/import_art.py and tool/cutout.py (cutout keeps the clock on
-top when re-cutting). Measure "at" with tool/preview_hotspots.py. A scene with
-no layers yet gets its own picture as the base layer.
+Run after tool/stage.py (stage keeps the .svg layers when it rewrites a
+scene, so rerun this only when clock.json changes). Measure "at" with
+tool/stage.py --guides (the bedside table top). A scene with no layers yet
+gets its own picture as the base layer.
 
   python3 tool/clock_layer.py clock_time [--preview DIR]
 """
@@ -178,6 +180,46 @@ def svg(body: str, w: int = W, h: int = H) -> str:
             f'{DEFS}{body}</svg>\n')
 
 
+ICON = 400
+ICON_BG = '#3E4C78'     # the slate blue of the other choice icons (tool/stage.py ICON_BG)
+
+
+def back_arrow(cx: float, cy: float, r: float) -> str:
+    """One thick arrow going anticlockwise round the right side of the clock:
+    "turn the hands back"."""
+    R = r * 1.75
+    a0, a1 = math.radians(150), math.radians(35)      # from 5 o'clock up to 1 o'clock
+    pt = lambda a: (cx + math.sin(a) * R, cy - math.cos(a) * R)  # noqa: E731
+    (x0, y0), (x1, y1) = pt(a0), pt(a1)
+    w = r * 0.17
+    # Arrow head at the end, pointing on round the circle (angle getting smaller).
+    dx, dy = -math.cos(a1), -math.sin(a1)
+    nx, ny = -dy, dx
+    hl, hw = w * 2.6, w * 1.9
+    tip = (x1 + dx * hl * 0.8, y1 + dy * hl * 0.8)
+    b1 = (x1 - dx * hl * 0.2 + nx * hw, y1 - dy * hl * 0.2 + ny * hw)
+    b2 = (x1 - dx * hl * 0.2 - nx * hw, y1 - dy * hl * 0.2 - ny * hw)
+    return (f'<path d="M{x0:.1f},{y0:.1f} A{R:.1f},{R:.1f} 0 0 0 {x1:.1f},{y1:.1f}" stroke="#FFFFFF" '
+            f'stroke-width="{w:.1f}" stroke-linecap="round" fill="none"/>'
+            f'<path d="M{tip[0]:.1f},{tip[1]:.1f} L{b1[0]:.1f},{b1[1]:.1f} L{b2[0]:.1f},{b2[1]:.1f} z" '
+            f'fill="#FFFFFF" stroke="#FFFFFF" stroke-width="{w * 0.3:.1f}" stroke-linejoin="round"/>')
+
+
+def icon(cfg: dict) -> str:
+    """A 400x400 choice icon: the clock on the icon blue, optional back arrow."""
+    arrow = cfg.get('arrow') == 'back'
+    r = 82 if arrow else 98
+    cx = 170 if arrow else ICON / 2
+    cy = ICON / 2 + r * 0.16
+    state = {k: cfg[k] for k in ('time', 'mood', 'fx', 'moon') if k in cfg}
+    bg = (f'<radialGradient id="glow" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#fff" '
+          f'stop-opacity="0.16"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient>'
+          f'<rect width="{ICON}" height="{ICON}" fill="{ICON_BG}"/>'
+          f'<rect width="{ICON}" height="{ICON}" fill="url(#glow)"/>')
+    return svg(bg + f'<g filter="url(#soft)">{clock(cx, cy, r, **state)}</g>'
+               + (back_arrow(cx, cy, r) if arrow else ''), ICON, ICON)
+
+
 def placed(at, state) -> tuple[str, list[float]]:
     """Scene layer body + its tap box (fractions)."""
     x, feet, height = at
@@ -210,7 +252,7 @@ def main():
             print(f'skip {scene}: no picture yet in images/')
             continue
         if 'at' not in cfg:
-            sys.exit(f'{scene}: set "at" in clock.json (measure with tool/preview_hotspots.py)')
+            sys.exit(f'{scene}: set "at" in clock.json (measure with tool/stage.py --guides)')
         states = {'default': cfg['default'], **cfg.get('poses', {})}
         files = {}
         for pose, state in states.items():
@@ -228,6 +270,10 @@ def main():
         entry = [l for l in manifest.get(name, []) if l.get('kind') != 'clock'] or [{'file': name}]
         manifest[name] = entry + [layer]
         print(f'{scene}: clock {cfg["default"]["time"]} + {len(files)} poses')
+
+    for name, cfg in spec.get('icons', {}).items():
+        (images / f'{name}.svg').write_text(icon(cfg), encoding='utf-8')
+        print(f'icon: images/{name}.svg')
 
     if st := spec.get('sticker'):
         body = clock(300, 330, 170, st['time'], st.get('mood', 'smile'), st.get('fx', 'none'),

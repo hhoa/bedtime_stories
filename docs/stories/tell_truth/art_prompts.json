@@ -1,0 +1,139 @@
+{
+  "hero": "boy",
+  "setting": "a cozy kid bedroom at night, the same room as in the attached room picture if one is attached: soft warm peach walls, wooden floor, a low wooden bed with a rounded headboard along the back wall on the left, seen from its long side, with a white pillow at the headboard on the left and a smooth lavender blanket, raised on short legs with a dark gap under its front side; a small warm glowing lamp on a little wooden shelf on the back wall; a window in the middle of the back wall showing a dark blue night sky with a crescent moon and a few stars; a round cream rug on the floor in front of the bed; a rounded light-wood door on the right wall. Things look the same in every picture: the bedside table is a small round light-wood bedside table on three short straight legs, a little taller than it is wide; Lulu's vase is a round-bellied pale-pink ceramic vase with a small amber crescent moon painted on its front, always whole, holding three flowers on long green stems (one yellow, one pink and one white daisy). Few things, soft warm lamp light, gentle shadows. The bottom-right corner of the picture is plain wooden floor with nothing important in it",
+  "reference": {
+    "kit": "kit story (docs/kit.md): no picture per scene. Two rooms: kit/room.png (the bedroom, copied from tidy_toys, every scene but d1) and kit/room_bath.png (new, d1 only). Sheets: hero_a + hero_b (new, boy), lulu_a (copied from tidy_toys) + lulu_c (new, 2 poses), props (tidy_toys' sheet, copied: only ball and blanket_lump are used) + props_truth (new, 10 figures incl. bedside_table, vase_spilled last so the wide piece has a row's room, because clock_time's props_clock isn't made yet) + props_broken (new 2026-11-11 when the parent made the vase break: 1 figure, vase_shards, attaches kit/props_truth.png for the vase's look and size). Cut by tool/sprite_sheet.py, placed per scene by docs/stories/tell_truth/stage.json (tool/stage.py). Only cover and sticker are normal pictures; icons are composed from sprites",
+    "room": "tidy_toys' kit/room.png with tidy_toys' crop (door cropped out): the vacation bedroom emptied, bed made, bed raised on short legs with a dark gap under its front side",
+    "bed": "along the back wall on the left, seen from its long side; headboard and white pillow at the LEFT end; lavender blanket smooth and flat; dark gap under the front side (Lulu peeks there in b1). The hero lies in it in e1, e2 and end",
+    "window": "middle of the back wall, dark blue sky, crescent moon, a few stars; Lulu comes in here in s2 and e2, and searches there in b2",
+    "lamp": "small warm glowing lamp on a little wooden shelf on the back wall, between the bed's headboard and the window",
+    "rug": "round cream rug on the floor in front of the bed; the hero stands, kneels or sits on it in every bedroom scene that isn't in bed",
+    "bedside table": "props_truth bedside_table: small round light-wood bedside table, top empty on the sheet. The prompt asked for three short straight legs, a little taller than wide; on kit/props_truth.png it came out with FOUR short straight legs and about as wide as it is tall (pictures review 2026-11-11: OK, it matches the cover's table). On the floor at the front right (tidy's toy-box spot); about the height of a standing child's waist. The ball bumps its leg in s1 (wiggle). Holds the vase in s1; from a2 on only the cup of flowers stands on it, alone and centred",
+    "vase": "Lulu's vase: round-bellied pale-pink ceramic vase with a small amber crescent moon painted on its front; no face in scenes. About half as tall as the table; the flowers' stems about as long as the vase is tall. vase_flowers (upright, whole, three flowers) on the table top s1 start → falls to the floor in front of the table and BREAKS (parent edit 2026-11-11): vase_shards (props_broken: the very same vase in 4–5 big soft rounded chunky pieces lying together in one small flat heap, one piece still showing the amber moon, like a toy that came apart, nothing sharp, jagged or scary; no water, no puddle) on the floor in front of the table s1 end, s2, c1, b1, b2, b3, a1, a2 start, the loose flowers lying beside the pieces → a2: Lulu's magic sweeps the pieces away (the child never touches them) → from a2 on the vase is gone: the cup of flowers stands alone on the table (n1, c2, e1, e2, end). props_truth's vase_spilled (puddle; its mouth came out pointing RIGHT) and vase_empty are no longer used",
+    "flowers": "three flowers on long green stems: one yellow, one pink and one white daisy. In the vase (vase_flowers, s1 start); loose and dry on the floor beside the broken pieces (props_truth flowers, composed next to vase_shards at staging, not drawn on props_broken) s1 end to a2; in a2 they slide to the cup's feet and swap into the cup (staging, see art_review notes); in the cup (cup_flowers, a2 end on)",
+    "cup": "small round amber ceramic cup with a small pink heart painted on its front; the prompt asked for a little handle on the right, but on kit/props_truth.png it came out with NO handle (pictures review 2026-11-11: OK). About half as tall as the vase, a little narrower. Alone in the middle of the table top (the vase is gone): cup (empty) a2 start → cup_flowers (the same three flowers standing in it) a2 end, n1, c2, e1, e2, end",
+    "ball": "tidy_toys' small ball with wide red and white stripes, like a little beach ball, about as big as the hero's head on screen. On the rug in front of the hero at s1 start, then on the floor in front of the table legs from s1 on (every bedroom scene)",
+    "blanket": "tidy_toys' blanket_lump (lavender mound, folded back at the LEFT end) over the hero in bed: e1, e2 (over the legs if the hero sits up), end",
+    "germ": "the tiny tooth germ: tiny round soft lime-green blob with tiny nubby arms and feet, rosy cheeks, a friendly face; never scary (no teeth, no horns, no spikes); about as big as the cup. Floats just above the pillow, not touching the hero: germ_sleepy e1 start, e2; germ_cheer e1 end (cue on the cheer word) and icon_germ. Not in d1 or end",
+    "heart": "soft puffy pink heart, about as big as the cup: icon_truth (above the hero's head), cover and sticker only",
+    "bathroom": "kit/room_bath.png, d1 only: small cozy bathroom at night, warm cream wall tiles with a soft lavender stripe at sink height, light warm-beige floor tiles (no green, no mint and no light blue in the room, so the hero's pajamas stand out), low rounded white pedestal sink on the left half of the back wall (rim at a small child's chest height) with one small plain lavender cup on its rim, a small round warm wall lamp above the sink, NO mirror, small round window on the right (night sky, crescent moon, stars), peach towel on a hook between them, open tiled floor middle and right; same camera distance as the bedroom. Pictures review 2026-11-11: on kit/room_bath.png the stripe of tiles at sink height and the cup on the sink came out LIGHT BLUE, not lavender (optional Gemini edit offered: \"Edit this picture: repaint only the light-blue stripe of wall tiles and the small cup on the sink in soft lavender; keep everything else exactly the same.\")",
+    "hero": "boy sheet (tool/image_refs/boy.png): soft mint-green pajamas with little white stars (as drawn in boy.png), barefoot, in every figure. hero_a = 6 standing figures, hero_b = 6 kneeling / sitting / lying figures, same head size. Facing right (toward the table) unless the figure says otherwise; brush faces LEFT (toward the sink); lying figures head to the LEFT on nothing",
+    "toothbrush": "only in the hero's brush figure: a small bright-red toothbrush with white bristles (red, not yellow or blue, so it shows against the mint pajamas and on the icon's dark background); icon_toothbrush is that figure alone",
+    "lulu": "Lulu sheet, about the size of a cat; float, talk, clap, whisper from tidy_toys' lulu_a; sad and peek from lulu_c (attaches lulu_a for the size). No halo or sparkles drawn around her on the sheets (the app adds glow and sparkles). Not in s1 or e1; never touches the hero",
+    "light": "soft warm lamp light from the upper left on every sprite, to match the rooms"
+  },
+  "pictures": {
+    "cover": "Night, crescent moon in the window. {hero} kneels on the round cream rug, turned to the right, smiling. Lulu floats in the air above the rug between {hero} and the bedside table, lower than the flower heads and not in front of the vase, smiling too; {hero} and Lulu do not touch. Both look happily at Lulu's vase: a round-bellied pale-pink ceramic vase with a small amber crescent moon painted on its front, standing upright and whole on the small round light-wood bedside table on three short straight legs, holding three flowers on long green stems (one yellow, one pink and one white daisy). The bedside table stands on the floor to the right of the rug, right of the middle of the picture and well away from the bottom-right corner. One soft puffy pink heart floats just above the flowers. The floor is dry, clean and tidy. If a room picture or a props sheet is attached, the room, the bedside table, the vase and the flowers look exactly like in them",
+    "sticker": "a round-bellied pale-pink ceramic vase with a small amber crescent moon painted on its front, standing upright and whole, holding three flowers on long green stems (one yellow, one pink and one white daisy); on the vase's round belly, below the moon, a tiny happy face (closed curved eyes, a small smile, rosy cheeks); a small soft puffy pink heart tucked between the flower heads at the top, touching them, so the vase, the flowers and the heart make one sticker shape"
+  },
+  "attach": {
+    "cover": [
+      "kit/room.png",
+      "kit/props_truth.png"
+    ]
+  },
+  "kit": {
+    "room": {
+      "from": "tidy_toys/kit/room.png"
+    },
+    "rooms": {
+      "bath": {
+        "attach": "kit/room.png  (the bedroom, copied from tidy_toys: only for the style, the light and the camera distance)",
+        "prompt": "Make a new picture of a different room. Nothing from the attached bedroom appears in the new picture: no bed, no pillow, no blanket, no rug, no shelf, no door. Use the attached bedroom picture only for its soft 3D art style, its warm night lamp light and its camera height and distance: a small child standing on this floor must come out the same size as on the bedroom floor. Draw a small cozy bathroom at night, seen straight from the front. The back wall is warm cream tiles with one soft lavender stripe of tiles at the height of the sink's rim, and the floor is light warm-beige tiles: no green, no mint and no light blue anywhere in the room. A low rounded white pedestal sink stands against the back wall on the left half of the picture, its rim at about a small child's chest height; on the sink's rim there is only one small plain lavender cup, nothing else. The wall above the sink is plain tiles with one small round warm glowing wall lamp: no mirror, no cabinet, no shelf. A small round window on the right part of the back wall shows a dark blue night sky with a crescent moon and a few stars. A soft peach towel hangs on a hook on the back wall between the sink and the window. The tiled floor is open and empty from the middle to the right, with room for a child to stand just right of the sink and plenty of air above. The bottom-right corner is plain tiled floor. No bathtub, no toilet, no rug, no people, no animals, no toys, no text. Make the picture 4:3 and keep the sink, the window, the towel and the open floor in the middle part of the picture, away from the edges."
+      }
+    },
+    "sheets": {
+      "hero_a": {
+        "who": "hero",
+        "columns": 3,
+        "note": "The child's head is exactly the same size in every figure. The child is barefoot in every figure. Hands hold nothing unless the figure says so.",
+        "figures": {
+          "stand_oops": "the child stands facing a little to the right, both hands on the cheeks, mouth a small round 'O', eyebrows up, surprised but not scared",
+          "say_no": "the child stands with the body turned a little to the right, both hands up in front of the chest with the palms out, head turned away to the LEFT, eyes looking aside, a small sheepish fib face; nothing in the hands",
+          "stand_sorry": "the child stands facing a little to the right, both hands clasped in front of the tummy, head a little bowed, looking up shyly with a small sorry smile",
+          "stand_proud": "the child stands tall facing a little to the right, arms a little open at the sides, a big bright smile showing clean white teeth, happy shining eyes; nothing in the hands",
+          "stand_place": "the child stands turned to the right and leans forward, both arms reaching forward and down to the right with open empty hands at waist height, nothing in or under the hands, a soft careful smile, looking at the hands",
+          "brush": "the child stands turned a little to the LEFT, brushing the teeth with a small bright-red toothbrush with white bristles held in one hand at the mouth, the toothbrush clearly visible and not hidden by the hand, a little white foam at the lips, happy eyes, the other arm relaxed at the side"
+        }
+      },
+      "hero_b": {
+        "who": "hero",
+        "columns": 3,
+        "attach": "kit/hero_a.png (the sheet you made before this one)",
+        "note": "The child's head is exactly the same size in every figure; sitting, kneeling and lying figures are simply smaller in the cell, never enlarged to fill it. The child is exactly the same size as in the second attached sheet (kit/hero_a.png). The child is barefoot in every figure. The three lying and in-bed figures lie or sit on nothing: no pillow, no blanket, no bed.",
+        "figures": {
+          "kneel_roll": "the child kneels on the floor turned to the right, leaning forward, both arms pushed forward low to the right with open empty palms near the floor, as if having just given something a gentle push along the floor, a happy face; nothing in, under or in front of the hands",
+          "sit_tummy": "the child sits on the floor turned a little to the right, knees up, both hands on the tummy, shoulders drooping, a small sad frown, no tears",
+          "sit_look_up": "the child sits the same way, knees up, hands resting in the lap, head tilted up and looking up to the right with a small hopeful face",
+          "lie_sticky": "the child lies on one side, facing the viewer, head to the LEFT, body and legs stretched out to the right, awake, eyes open, a small frown with the lips pressed together, one hand near the mouth; lying on nothing: no pillow, no blanket, no bed",
+          "bed_sit_shy": "the child sits up straight on the floor, seen in three-quarter view facing right, both legs stretched straight out to the RIGHT and close together, head turned toward the viewer and a little bowed, a shy little smile, both hands held together in front of the chest",
+          "asleep": "the child lies asleep on one side, facing the viewer, head to the LEFT, eyes closed with a peaceful little smile, one hand resting in front of the face, body and legs stretched out to the right, lying on nothing: no pillow, no blanket, no bed"
+        }
+      },
+      "lulu_a": {
+        "from": "tidy_toys/kit/lulu_a.png",
+        "who": "lulu",
+        "columns": 3,
+        "figures": {
+          "float": "Lulu floats upright, facing the viewer, relaxed and happy, paws at her sides, ears up",
+          "talk": "Lulu floats turned a little to the left and looks down to the left, one paw raised as if explaining, mouth open in a friendly smile",
+          "glow": "Lulu floats with both arms spread wide and her head lifted, eyes closed in a happy smile, the amber crescent moon on her belly shining bright yellow",
+          "point": "Lulu floats and points one paw clearly down to the right, looking that way, smiling",
+          "clap": "Lulu floats and claps both paws together in front of her chest, laughing, eyes closed",
+          "whisper": "Lulu floats leaning forward to the left, one paw beside her mouth as if whispering, eyes soft and half closed"
+        }
+      },
+      "lulu_c": {
+        "who": "lulu",
+        "columns": 2,
+        "attach": "kit/lulu_a.png (copied from tidy_toys: the same bunny at the same size)",
+        "note": "Only the bunny in every figure. Her soft glow stays on her own fur only: no halo, no glow cloud, no light rays, no sparkles, no stars and no shadow anywhere around or under her, even though the reference picture shows some. Lulu is exactly the same size as in the second attached sheet (kit/lulu_a.png).",
+        "figures": {
+          "sad": "Lulu floats upright, her long ears drooping down, a small sad frown, both paws held together at her chest, looking down to the left",
+          "peek": "Lulu floats low, leaning forward to the LEFT, one paw held flat against her forehead just above her eyes to shade them, looking far to the left for something, ears a little down, nothing on her head"
+        }
+      },
+      "props": {
+        "from": "tidy_toys/kit/props.png",
+        "who": "props",
+        "columns": 4,
+        "figures": {
+          "toybox_empty": "a rounded wooden toy chest painted soft sky-blue with one yellow star on its front, lid open and tilted up behind it, completely empty inside",
+          "toybox_full": "the same sky-blue toy chest with the yellow star, lid open and tilted up behind it, colorful wooden blocks peeking over its rim",
+          "toybox_closed": "the same sky-blue toy chest with the yellow star, lid closed",
+          "blocks": "five colorful wooden blocks (red, yellow, blue, green, red) lying close together in one low loose cluster, all touching, one leaning on another",
+          "ball": "one small ball with wide red and white stripes, like a little beach ball",
+          "teddy_lying": "a small round light-brown teddy bear with round ears, a peach tummy and muzzle and a little smile, lying on its back with its arms out",
+          "teddy_sitting": "the same light-brown teddy bear sitting up, legs forward, arms at its sides",
+          "blanket_lump": "a long low mound of soft lavender blanket seen from the side, with a few soft folds: the top edge is folded back at the LEFT end, the mound is higher on the left and gets flatter toward the right end where it drapes down; nobody and nothing shows under or out of it"
+        }
+      },
+      "props_truth": {
+        "who": "props",
+        "columns": 4,
+        "note": "Every thing is seen from the same angle: from the front, slightly from above. No faces on the table, the vases, the flowers, the cups or the heart; only the two germs have their own little face. The three vases are the very same vase at the same size; the two cups are the very same cup at the same size; the two germs are the very same germ at the same size; the flowers are the very same three flowers every time. Every vase is whole: no cracks, no broken pieces. Sizes compared with the bedside table: the vase is about half as tall as the table, and its round belly is about two fifths as wide as the table's top; the flowers' stems are about as long as the vase is tall, so in the vase the blooms reach about half the vase's height above its rim; the cup is about half as tall as the vase and a little narrower, so the vase and the cup fit side by side on the table's top; the spilled vase with its puddle is about one and a half times as wide as the table; the loose flowers are about as long as the vase is tall; each germ and the heart are about as big as the cup.",
+        "figures": {
+          "bedside_table": "a small round light-wood bedside table on three short straight legs, a little taller than it is wide, its round top completely empty: nothing on it at all",
+          "vase_flowers": "a round-bellied pale-pink ceramic vase with a small amber crescent moon painted on its front, standing upright, holding three flowers on long green stems: one yellow, one pink and one white daisy",
+          "vase_empty": "the very same pale-pink vase with the amber moon standing upright, empty, nothing in it",
+          "flowers": "the same three flowers on long green stems (one yellow, one pink, one white daisy) lying together on their side, stems side by side and pointing to the RIGHT, dry, no water",
+          "cup": "a small round amber ceramic cup with a little handle on the right and a small pink heart painted on its front, standing upright, empty",
+          "cup_flowers": "the very same amber cup with the pink heart, the same three flowers (one yellow, one pink, one white daisy) standing up in it, the blooms reaching about as high again above its rim, the flowers the same size as in the vase",
+          "germ_sleepy": "a tiny round soft lime-green blob with tiny nubby arms and feet, rosy cheeks and a friendly face, floating, sleepy half-closed eyes and a small smile, arms down; cute and never scary: no teeth, no horns, no spikes",
+          "germ_cheer": "the very same lime-green germ, both tiny arms thrown up, eyes happily closed, a small open-mouth cheer; cute and never scary: no teeth, no horns, no spikes",
+          "heart": "one soft puffy pink heart",
+          "vase_spilled": "the very same pale-pink vase with the amber moon lying on its side, its mouth toward the LEFT; out of its mouth spreads one small flat puddle of water drawn as a solid, opaque, clearly sky-blue shape with a slightly darker blue edge and a clean rounded outline, not see-through, no white shine, no splash drops and no separate drops around it; the same three flowers (one yellow, one pink, one white daisy) lie on top of the puddle; vase, puddle and flowers all touch as one piece, and the puddle stays inside this figure's own space, well away from the other figures"
+        }
+      },
+      "props_broken": {
+        "who": "props",
+        "columns": 1,
+        "attach": "kit/props_truth.png (the props sheet you made before: copy the vase's look and size from it)",
+        "note": "Only this one thing on the sheet, drawn in the middle with wide empty background all around it, at exactly the same size as the vases on the attached props sheet (kit/props_truth.png): not enlarged to fill the picture. It is the very same pale-pink vase as on that sheet, with the same pale pink, the same soft shine and the same small amber crescent moon: put back together, the pieces would make that same vase. No face on the pieces. No water, no puddle, no drops, no flowers, no table, no crumbs and no tiny bits.",
+        "figures": {
+          "vase_shards": "the very same round-bellied pale-pink ceramic vase with the small amber crescent moon, broken into five big, soft, chunky pieces with smooth rounded edges, like a toy that came apart, nothing sharp, jagged or scary: the round bottom of the vase still upright like a little bowl, two big curved pieces of the belly, the neck ring with the rim, and one curved piece with the amber crescent moon on it, the moon facing the viewer; all five pieces lie close together in one small low flat heap, as if on the floor, touching each other so they make one connected piece; the heap is about as wide as the whole vase is tall and about a third as high"
+        }
+      }
+    }
+  }
+}

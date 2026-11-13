@@ -1,11 +1,11 @@
 {
   "gates": {
-    "outline": "2026-11-09",
+    "outline": "2026-11-11",
     "script": "2026-11-09",
-    "art_prompts": "2026-11-09",
+    "art_prompts": "2026-11-11",
     "wired": "2026-11-10"
   },
-  "prompts_page": "https://claude.ai/artifact/Ss9Q6kogK23kLdUiR7ncY4",
+  "prompts_page": "https://claude.ai/artifact/RDe6bjdPLUiHdonvM9qhUz",
   "redo": {},
   "listened": {
     "vi": [],
@@ -17,6 +17,12 @@
     "2026-11-10: e1 hat is dented, not pancake-flat; parent accepted the picture",
     "2026-11-10: new s2/e1 plates + e1 press/sad poses imported; all 11 scenes cut and checked",
     "2026-11-10: en audio = macOS say (Samantha) placeholders for all 17 clips; replace with parent recordings or cloned voice. Story wired (home screen); 4.6 MB, over 4 MB budget.",
-    "2026-11-10: vi recordings had steady room noise ~17 dB under the voice (old cleaner missed it); re-cleaned with tool/denoise.py -> 31-42 dB. Parent listened 2026-11-10: approved."
+    "2026-11-10: vi recordings had steady room noise ~17 dB under the voice (old cleaner missed it); re-cleaned with tool/denoise.py -> 31-42 dB. Parent listened 2026-11-10: approved.",
+    "2026-11-11: converting to a kit story (docs/kit.md). outline.md \"Kit\" section = tidy_toys room in two crops, layouts, cues, new c2_pack scene; one new Gemini image (props_trip), the rest copied from tidy_toys / clock_time. Waiting: parent approves the kit outline.",
+    "2026-11-11: kit outline approved by the parent. Kit prompts: only props_trip is new (attaches clock_time kit/hero_e.png, so make it after hero_e); art review FIX (7) applied. Shared sheets hero_c/hero_d/hero_e/lulu_b get copied from clock_time once made; tidy_toys room + sheets + sprites already copied.",
+    "2026-11-11: props_trip in, shared sheets copied from clock_time, staged (door + bed crops of one room), new c2_pack scene, cues remapped and timed. plop = hero_a/bed_sit stand-in until hero_c is redone. Stills gate pending: parent tests in the app.",
+    "2026-11-11: hero_c redone (parent), cut with --force-mark; stand-ins replaced by the real poses.",
+    "2026-11-11: hat_round sprite had a bite out of the brim (rembg ate pale straw on the beige wall). props_trip re-cut with sprite_sheet.py --solid, re-staged.",
+    "2026-11-12: stills approved by the parent. Old cut layers, hotspots.json deleted; old workflow tools removed (cutout.py, move_part.py, crop_layers.py, preview_hotspots.py, gen_image --plates/--poses)."
   ]
 }

@@ -1,0 +1,1905 @@
+{
+ "s1_spill.webp": [
+  {
+   "file": "layers/kit_room_night.webp"
+  },
+  {
+   "file": "layers/kit_shadow.webp",
+   "kind": "shadow",
+   "rect": [
+    0.757862,
+    0.856487,
+    0.184275,
+    0.054054
+   ],
+   "pivot": [
+    0.85,
+    0.8835
+   ]
+  },
+  {
+   "file": "layers/kit_props_truth_bedside_table.webp",
+   "kind": "table",
+   "box": [
+    0.7204,
+    0.6271,
+    0.2048,
+    0.2629
+   ],
+   "pivot": [
+    0.85,
+    0.89
+   ],
+   "idle": "none",
+   "rect": [
+    0.720422,
+    0.62714,
+    0.20475,
+    0.26286
+   ],
+   "tap": "wiggle"
+  },
+  {
+   "file": "layers/kit_props_truth_vase_flowers.webp",
+   "kind": "vase",
+   "box": [
+    0.7875,
+    0.4175,
+    0.1806,
+    0.2375
+   ],
+   "pivot": [
+    0.85,
+    0.655
+   ],
+   "idle": "none",
+   "rect": [
+    0.787506,
+    0.417533,
+    0.180562,
+    0.237467
+   ],
+   "tap": "wiggle",
+   "poses": {
+    "vase_broken": "layers/kit_props_broken_vase_broken.webp"
+   }
+  },
+  {
+   "file": "layers/kit_props_ball.webp",
+   "kind": "ball",
+   "box": [
+    0.5141,
+    0.8732,
+    0.0719,
+    0.0968
+   ],
+   "pivot": [
+    0.55,
+    0.97
+   ],
+   "idle": "none",
+   "rect": [
+    0.514056,
+    0.87325,
+    0.071888,
+    0.09675
+   ],
+   "tap": "hop"
+  },
+  {
+   "file": "layers/kit_shadow.webp",
+   "kind": "shadow",
+   "rect": [
+    0.296891,
+    0.922496,
+    0.206218,
+    0.060491
+   ],
+   "pivot": [
+    0.4,
+    0.9527
+   ]
+  },
+  {
+   "file": "layers/kit_hero_b_kneel_roll.webp",
+   "kind": "hero",
+   "box": [
+    0.3182,
+    0.5118,
+    0.2444,
+    0.4482
+   ],
+   "pivot": [
+    0.4,
+    0.96
+   ],
+   "idle": "breathe",
+   "rect": [
+    0.318188,
+    0.4976,
+    0.244416,
+    0.4624
+   ],
+   "tap": "hop",
+   "poses": {
+    "stand_oops": "layers/kit_hero_a_stand_oops.webp"
+   }
+  }
+ ],
+ "s2_lulu.webp": [
+  {
+   "file": "layers/kit_room_night.webp"
+  },
+  {
+   "file": "layers/kit_shadow.webp",
+   "kind": "shadow",
+   "rect": [
+    0.757862,
+    0.856487,
+    0.184275,
+    0.054054
+   ],
+   "pivot": [
+    0.85,
+    0.8835
+   ]
+  },
+  {
+   "file": "layers/kit_props_truth_bedside_table.webp",
+   "kind": "table",
+   "box": [
+    0.7204,
+    0.6271,
+    0.2048,
+    0.2629
+   ],
+   "pivot": [
+    0.85,
+    0.89
+   ],
+   "idle": "none",
+   "rect": [
+    0.720422,
+    0.62714,
+    0.20475,
+    0.26286
+   ],
+   "tap": "wiggle"
+  },
+  {
+   "file": "layers/kit_props_broken_vase_broken.webp",
+   "kind": "vase",
+   "box": [
+    0.6375,
+    0.782,
+    0.1806,
+    0.158
+   ],
+   "pivot": [
+    0.7,
+    0.94
+   ],
+   "idle": "none",
+   "rect": [
+    0.637506,
+    0.702533,
+    0.180562,
+    0.237467
+   ],
+   "tap": "wiggle"
+  },
+  {
+   "file": "layers/kit_props_ball.webp",
+   "kind": "ball",
+   "box": [
+    0.7841,
+    0.8732,
+    0.0719,
+    0.0968
+   ],
+   "pivot": [
+    0.82,
+    0.97
+   ],
+   "idle": "none",
+   "rect": [
+    0.784056,
+    0.87325,
+    0.071888,
+    0.09675
+   ],
+   "tap": "hop"
+  },
+  {
+   "file": "layers/kit_shadow.webp",
+   "kind": "shadow",
+   "rect": [
+    0.336888,
+    0.937044,
+    0.126225,
+    0.037026
+   ],
+   "pivot": [
+    0.4,
+    0.9556
+   ]
+  },
+  {
+   "file": "layers/kit_hero_a_stand_oops.webp",
+   "kind": "hero",
+   "box": [
+    0.3182,
+    0.5118,
+    0.1403,
+    0.4482
+   ],
+   "pivot": [
+    0.4,
+    0.96
+   ],
+   "idle": "breathe",
+   "rect": [
+    0.318188,
+    0.4976,
+    0.244416,
+    0.4624
+   ],
+   "tap": "hop"
+  },
+  {
+   "file": "layers/kit_lulu_a_float.webp",
+   "kind": "lulu",
+   "box": [
+    0.4315,
+    0.1644,
+    0.1373,
+    0.2096
+   ],
+   "pivot": [
+    0.5001,
+    0.2714
+   ],
+   "idle": "float",
+   "rect": [
+    0.421032,
+    0.164382,
+    0.156188,
+    0.213321
+   ],
+   "tap": "hop",
+   "poses": {
+    "sad": "layers/kit_lulu_c_sad.webp"
+   }
+  }
+ ],
+ "c1_ask.webp": [
+  {
+   "file": "layers/kit_room_night.webp"
+  },
+  {
+   "file": "layers/kit_shadow.webp",
+   "kind": "shadow",
+   "rect": [
+    0.757862,
+    0.856487,
+    0.184275,
+    0.054054
+   ],
+   "pivot": [
+    0.85,
+    0.8835
+   ]
+  },
+  {
+   "file": "layers/kit_props_truth_bedside_table.webp",
+   "kind": "table",
+   "box": [
+    0.7204,
+    0.6271,
+    0.2048,
+    0.2629
+   ],
+   "pivot": [
+    0.85,
+    0.89
+   ],
+   "idle": "none",
+   "rect": [
+    0.720422,
+    0.62714,
+    0.20475,
+    0.26286
+   ],
+   "tap": "wiggle"
+  },
+  {
+   "file": "layers/kit_props_broken_vase_broken.webp",
+   "kind": "vase",
+   "box": [
+    0.6375,
+    0.782,
+    0.1806,
+    0.158
+   ],
+   "pivot": [
+    0.7,
+    0.94
+   ],
+   "idle": "none",
+   "rect": [
+    0.637506,
+    0.702533,
+    0.180562,
+    0.237467
+   ],
+   "tap": "wiggle"
+  },
+  {
+   "file": "layers/kit_props_ball.webp",
+   "kind": "ball",
+   "box": [
+    0.7841,
+    0.8732,
+    0.0719,
+    0.0968
+   ],
+   "pivot": [
+    0.82,
+    0.97
+   ],
+   "idle": "none",
+   "rect": [
+    0.784056,
+    0.87325,
+    0.071888,
+    0.09675
+   ],
+   "tap": "hop"
+  },
+  {
+   "file": "layers/kit_shadow.webp",
+   "kind": "shadow",
+   "rect": [
+    0.336888,
+    0.937044,
+    0.126225,
+    0.037026
+   ],
+   "pivot": [
+    0.4,
+    0.9556
+   ]
+  },
+  {
+   "file": "layers/kit_hero_a_stand_oops.webp",
+   "kind": "hero",
+   "box": [
+    0.3182,
+    0.5118,
+    0.1403,
+    0.4482
+   ],
+   "pivot": [
+    0.4,
+    0.96
+   ],
+   "idle": "breathe",
+   "rect": [
+    0.318188,
+    0.4976,
+    0.244416,
+    0.4624
+   ],
+   "tap": "hop"
+  },
+  {
+   "file": "layers/kit_lulu_c_sad.webp",
+   "kind": "lulu",
+   "box": [
+    0.603,
+    0.4244,
+    0.1144,
+    0.2085
+   ],
+   "pivot": [
+    0.6602,
+    0.5286
+   ],
+   "idle": "float",
+   "rect": [
+    0.581032,
+    0.424382,
+    0.156188,
+    0.213321
+   ],
+   "tap": "hop"
+  }
+ ],
+ "b1_notme.webp": [
+  {
+   "file": "layers/kit_room_night.webp"
+  },
+  {
+   "file": "layers/kit_shadow.webp",
+   "kind": "shadow",
+   "rect": [
+    0.757862,
+    0.856487,
+    0.184275,
+    0.054054
+   ],
+   "pivot": [
+    0.85,
+    0.8835
+   ]
+  },
+  {
+   "file": "layers/kit_props_truth_bedside_table.webp",
+   "kind": "table",
+   "box": [
+    0.7204,
+    0.6271,
+    0.2048,
+    0.2629
+   ],
+   "pivot": [
+    0.85,
+    0.89
+   ],
+   "idle": "none",
+   "rect": [
+    0.720422,
+    0.62714,
+    0.20475,
+    0.26286
+   ],
+   "tap": "wiggle"
+  },
+  {
+   "file": "layers/kit_props_broken_vase_broken.webp",
+   "kind": "vase",
+   "box": [
+    0.6375,
+    0.782,
+    0.1806,
+    0.158
+   ],
+   "pivot": [
+    0.7,
+    0.94
+   ],
+   "idle": "none",
+   "rect": [
+    0.637506,
+    0.702533,
+    0.180562,
+    0.237467
+   ],
+   "tap": "wiggle"
+  },
+  {
+   "file": "layers/kit_props_ball.webp",
+   "kind": "ball",
+   "box": [
+    0.7841,
+    0.8732,
+    0.0719,
+    0.0968
+   ],
+   "pivot": [
+    0.82,
+    0.97
+   ],
+   "idle": "none",
+   "rect": [
+    0.784056,
+    0.87325,
+    0.071888,
+    0.09675
+   ],
+   "tap": "hop"
+  },
+  {
+   "file": "layers/kit_shadow.webp",
+   "kind": "shadow",
+   "rect": [
+    0.32962,
+    0.9344,
+    0.14076,
+    0.04129
+   ],
+   "pivot": [
+    0.4,
+    0.955
+   ]
+  },
+  {
+   "file": "layers/kit_hero_a_say_no.webp",
+   "kind": "hero",
+   "box": [
+    0.3186,
+    0.5135,
+    0.1564,
+    0.4465
+   ],
+   "pivot": [
+    0.4,
+    0.96
+   ],
+   "idle": "breathe",
+   "rect": [
+    0.318612,
+    0.513467,
+    0.1564,
+    0.446533
+   ],
+   "tap": "hop"
+  },
+  {
+   "file": "layers/kit_lulu_c_sad.webp",
+   "kind": "lulu",
+   "box": [
+    0.597,
+    0.4244,
+    0.1204,
+    0.2085
+   ],
+   "pivot": [
+    0.6602,
+    0.5286
+   ],
+   "idle": "float",
+   "rect": [
+    0.581032,
+    0.424382,
+    0.156188,
+    0.213321
+   ],
+   "tap": "hop",
+   "poses": {
+    "peek": "layers/kit_lulu_c_peek.webp"
+   }
+  }
+ ],
+ "b2_heavy.webp": [
+  {
+   "file": "layers/kit_room_night.webp"
+  },
+  {
+   "file": "layers/kit_shadow.webp",
+   "kind": "shadow",
+   "rect": [
+    0.757862,
+    0.856487,
+    0.184275,
+    0.054054
+   ],
+   "pivot": [
+    0.85,
+    0.8835
+   ]
+  },
+  {
+   "file": "layers/kit_props_truth_bedside_table.webp",
+   "kind": "table",
+   "box": [
+    0.7204,
+    0.6271,
+    0.2048,
+    0.2629
+   ],
+   "pivot": [
+    0.85,
+    0.89
+   ],
+   "idle": "none",
+   "rect": [
+    0.720422,
+    0.62714,
+    0.20475,
+    0.26286
+   ],
+   "tap": "wiggle"
+  },
+  {
+   "file": "layers/kit_props_broken_vase_broken.webp",
+   "kind": "vase",
+   "box": [
+    0.6375,
+    0.782,
+    0.1806,
+    0.158
+   ],
+   "pivot": [
+    0.7,
+    0.94
+   ],
+   "idle": "none",
+   "rect": [
+    0.637506,
+    0.702533,
+    0.180562,
+    0.237467
+   ],
+   "tap": "wiggle"
+  },
+  {
+   "file": "layers/kit_props_ball.webp",
+   "kind": "ball",
+   "box": [
+    0.7841,
+    0.8732,
+    0.0719,
+    0.0968
+   ],
+   "pivot": [
+    0.82,
+    0.97
+   ],
+   "idle": "none",
+   "rect": [
+    0.784056,
+    0.87325,
+    0.071888,
+    0.09675
+   ],
+   "tap": "hop"
+  },
+  {
+   "file": "layers/kit_shadow.webp",
+   "kind": "shadow",
+   "rect": [
+    0.328458,
+    0.933978,
+    0.143083,
+    0.041971
+   ],
+   "pivot": [
+    0.4,
+    0.955
+   ]
+  },
+  {
+   "file": "layers/kit_hero_b_sit_tummy.webp",
+   "kind": "hero",
+   "box": [
+    0.3016,
+    0.565,
+    0.159,
+    0.395
+   ],
+   "pivot": [
+    0.4,
+    0.96
+   ],
+   "idle": "breathe",
+   "rect": [
+    0.291153,
+    0.565025,
+    0.169466,
+    0.394975
+   ],
+   "tap": "hop"
+  },
+  {
+   "file": "layers/kit_lulu_c_peek.webp",
+   "kind": "lulu",
+   "box": [
+    0.437,
+    0.1789,
+    0.1176,
+    0.177
+   ],
+   "pivot": [
+    0.4958,
+    0.2674
+   ],
+   "idle": "float",
+   "rect": [
+    0.421032,
+    0.164382,
+    0.156188,
+    0.213321
+   ],
+   "tap": "hop"
+  }
+ ],
+ "b3_lulu.webp": [
+  {
+   "file": "layers/kit_room_night.webp"
+  },
+  {
+   "file": "layers/kit_shadow.webp",
+   "kind": "shadow",
+   "rect": [
+    0.757862,
+    0.856487,
+    0.184275,
+    0.054054
+   ],
+   "pivot": [
+    0.85,
+    0.8835
+   ]
+  },
+  {
+   "file": "layers/kit_props_truth_bedside_table.webp",
+   "kind": "table",
+   "box": [
+    0.7204,
+    0.6271,
+    0.2048,
+    0.2629
+   ],
+   "pivot": [
+    0.85,
+    0.89
+   ],
+   "idle": "none",
+   "rect": [
+    0.720422,
+    0.62714,
+    0.20475,
+    0.26286
+   ],
+   "tap": "wiggle"
+  },
+  {
+   "file": "layers/kit_props_broken_vase_broken.webp",
+   "kind": "vase",
+   "box": [
+    0.6375,
+    0.782,
+    0.1806,
+    0.158
+   ],
+   "pivot": [
+    0.7,
+    0.94
+   ],
+   "idle": "none",
+   "rect": [
+    0.637506,
+    0.702533,
+    0.180562,
+    0.237467
+   ],
+   "tap": "wiggle"
+  },
+  {
+   "file": "layers/kit_props_ball.webp",
+   "kind": "ball",
+   "box": [
+    0.7841,
+    0.8732,
+    0.0719,
+    0.0968
+   ],
+   "pivot": [
+    0.82,
+    0.97
+   ],
+   "idle": "none",
+   "rect": [
+    0.784056,
+    0.87325,
+    0.071888,
+    0.09675
+   ],
+   "tap": "hop"
+  },
+  {
+   "file": "layers/kit_shadow.webp",
+   "kind": "shadow",
+   "rect": [
+    0.328458,
+    0.933978,
+    0.143083,
+    0.041971
+   ],
+   "pivot": [
+    0.4,
+    0.955
+   ]
+  },
+  {
+   "file": "layers/kit_hero_b_sit_tummy.webp",
+   "kind": "hero",
+   "box": [
+    0.2912,
+    0.565,
+    0.1695,
+    0.395
+   ],
+   "pivot": [
+    0.4,
+    0.96
+   ],
+   "idle": "breathe",
+   "rect": [
+    0.291153,
+    0.565025,
+    0.169466,
+    0.394975
+   ],
+   "tap": "hop",
+   "poses": {
+    "sit_look_up": "layers/kit_hero_b_sit_look_up.webp"
+   }
+  },
+  {
+   "file": "layers/kit_lulu_a_float.webp",
+   "kind": "lulu",
+   "box": [
+    0.4315,
+    0.1658,
+    0.1373,
+    0.2094
+   ],
+   "pivot": [
+    0.5001,
+    0.2714
+   ],
+   "idle": "float",
+   "rect": [
+    0.421032,
+    0.164382,
+    0.156188,
+    0.213321
+   ],
+   "tap": "hop",
+   "poses": {
+    "talk": "layers/kit_lulu_a_talk.webp"
+   }
+  }
+ ],
+ "a1_sorry.webp": [
+  {
+   "file": "layers/kit_room_night.webp"
+  },
+  {
+   "file": "layers/kit_shadow.webp",
+   "kind": "shadow",
+   "rect": [
+    0.757862,
+    0.856487,
+    0.184275,
+    0.054054
+   ],
+   "pivot": [
+    0.85,
+    0.8835
+   ]
+  },
+  {
+   "file": "layers/kit_props_truth_bedside_table.webp",
+   "kind": "table",
+   "box": [
+    0.7204,
+    0.6271,
+    0.2048,
+    0.2629
+   ],
+   "pivot": [
+    0.85,
+    0.89
+   ],
+   "idle": "none",
+   "rect": [
+    0.720422,
+    0.62714,
+    0.20475,
+    0.26286
+   ],
+   "tap": "wiggle"
+  },
+  {
+   "file": "layers/kit_props_broken_vase_broken.webp",
+   "kind": "vase",
+   "box": [
+    0.6375,
+    0.782,
+    0.1806,
+    0.158
+   ],
+   "pivot": [
+    0.7,
+    0.94
+   ],
+   "idle": "none",
+   "rect": [
+    0.637506,
+    0.702533,
+    0.180562,
+    0.237467
+   ],
+   "tap": "wiggle"
+  },
+  {
+   "file": "layers/kit_props_ball.webp",
+   "kind": "ball",
+   "box": [
+    0.7841,
+    0.8732,
+    0.0719,
+    0.0968
+   ],
+   "pivot": [
+    0.82,
+    0.97
+   ],
+   "idle": "none",
+   "rect": [
+    0.784056,
+    0.87325,
+    0.071888,
+    0.09675
+   ],
+   "tap": "hop"
+  },
+  {
+   "file": "layers/kit_shadow.webp",
+   "kind": "shadow",
+   "rect": [
+    0.334784,
+    0.936279,
+    0.130433,
+    0.03826
+   ],
+   "pivot": [
+    0.4,
+    0.9554
+   ]
+  },
+  {
+   "file": "layers/kit_hero_a_stand_sorry.webp",
+   "kind": "hero",
+   "box": [
+    0.3197,
+    0.4976,
+    0.1598,
+    0.4624
+   ],
+   "pivot": [
+    0.4,
+    0.96
+   ],
+   "idle": "breathe",
+   "rect": [
+    0.318188,
+    0.4976,
+    0.244416,
+    0.4624
+   ],
+   "tap": "hop",
+   "poses": {
+    "stand_proud": "layers/kit_hero_a_stand_proud.webp"
+   }
+  },
+  {
+   "file": "layers/kit_lulu_c_sad.webp",
+   "kind": "lulu",
+   "box": [
+    0.5915,
+    0.4244,
+    0.1373,
+    0.2107
+   ],
+   "pivot": [
+    0.6602,
+    0.5286
+   ],
+   "idle": "float",
+   "rect": [
+    0.581032,
+    0.424382,
+    0.156188,
+    0.213321
+   ],
+   "tap": "hop",
+   "poses": {
+    "float": "layers/kit_lulu_a_float.webp",
+    "clap": "layers/kit_lulu_a_clap.webp"
+   }
+  }
+ ],
+ "a2_flowers.webp": [
+  {
+   "file": "layers/kit_room_night.webp"
+  },
+  {
+   "file": "layers/kit_props_truth_flowers.webp",
+   "kind": "flowers",
+   "box": [
+    0.5755,
+    0.8772,
+    0.0925,
+    0.0828
+   ],
+   "pivot": [
+    0.62,
+    0.96
+   ],
+   "idle": "none",
+   "rect": [
+    0.575511,
+    0.819392,
+    0.092528,
+    0.140608
+   ],
+   "tap": "wiggle",
+   "poses": {
+    "in_cup": "layers/kit_props_truth_cup.webp"
+   }
+  },
+  {
+   "file": "layers/kit_shadow.webp",
+   "kind": "shadow",
+   "rect": [
+    0.757862,
+    0.856487,
+    0.184275,
+    0.054054
+   ],
+   "pivot": [
+    0.85,
+    0.8835
+   ]
+  },
+  {
+   "file": "layers/kit_props_truth_bedside_table.webp",
+   "kind": "table",
+   "box": [
+    0.7204,
+    0.6271,
+    0.2048,
+    0.2629
+   ],
+   "pivot": [
+    0.85,
+    0.89
+   ],
+   "idle": "none",
+   "rect": [
+    0.720422,
+    0.62714,
+    0.20475,
+    0.26286
+   ],
+   "tap": "wiggle"
+  },
+  {
+   "file": "layers/kit_props_broken_vase_shards.webp",
+   "kind": "shards",
+   "box": [
+    0.6197,
+    0.815,
+    0.1681,
+    0.125
+   ],
+   "pivot": [
+    0.74,
+    0.94
+   ],
+   "idle": "none",
+   "rect": [
+    0.619681,
+    0.81505,
+    0.168075,
+    0.12495
+   ],
+   "poses": {
+    "gone": "layers/kit_fx_gone.webp"
+   }
+  },
+  {
+   "file": "layers/kit_props_truth_cup.webp",
+   "kind": "cup",
+   "box": [
+    0.8078,
+    0.5144,
+    0.0849,
+    0.1406
+   ],
+   "pivot": [
+    0.85,
+    0.655
+   ],
+   "idle": "none",
+   "rect": [
+    0.805511,
+    0.514392,
+    0.092528,
+    0.140608
+   ],
+   "tap": "wiggle",
+   "poses": {
+    "cup_flowers": "layers/kit_props_truth_cup_flowers.webp"
+   }
+  },
+  {
+   "file": "layers/kit_props_ball.webp",
+   "kind": "ball",
+   "box": [
+    0.7841,
+    0.8732,
+    0.0719,
+    0.0968
+   ],
+   "pivot": [
+    0.82,
+    0.97
+   ],
+   "idle": "none",
+   "rect": [
+    0.784056,
+    0.87325,
+    0.071888,
+    0.09675
+   ],
+   "tap": "hop"
+  },
+  {
+   "file": "layers/kit_shadow.webp",
+   "kind": "shadow",
+   "rect": [
+    0.44809,
+    0.933844,
+    0.14382,
+    0.042187
+   ],
+   "pivot": [
+    0.52,
+    0.9549
+   ]
+  },
+  {
+   "file": "layers/kit_hero_a_stand_proud.webp",
+   "kind": "hero",
+   "box": [
+    0.4397,
+    0.4976,
+    0.2123,
+    0.4624
+   ],
+   "pivot": [
+    0.52,
+    0.96
+   ],
+   "idle": "breathe",
+   "rect": [
+    0.438188,
+    0.4976,
+    0.244416,
+    0.4624
+   ],
+   "tap": "hop",
+   "poses": {
+    "stand_place": "layers/kit_hero_a_stand_place.webp",
+    "stand_proud": "layers/kit_hero_a_stand_proud.webp"
+   }
+  },
+  {
+   "file": "layers/kit_lulu_a_float.webp",
+   "kind": "lulu",
+   "box": [
+    0.621,
+    0.2874,
+    0.1562,
+    0.2103
+   ],
+   "pivot": [
+    0.7001,
+    0.3914
+   ],
+   "idle": "float",
+   "rect": [
+    0.621032,
+    0.284382,
+    0.156188,
+    0.213321
+   ],
+   "tap": "hop",
+   "poses": {
+    "clap": "layers/kit_lulu_a_clap.webp",
+    "glow": "layers/kit_lulu_a_glow.webp"
+   }
+  }
+ ],
+ "n1_teeth.webp": [
+  {
+   "file": "layers/kit_room_night.webp"
+  },
+  {
+   "file": "layers/kit_shadow.webp",
+   "kind": "shadow",
+   "rect": [
+    0.757862,
+    0.856487,
+    0.184275,
+    0.054054
+   ],
+   "pivot": [
+    0.85,
+    0.8835
+   ]
+  },
+  {
+   "file": "layers/kit_props_truth_bedside_table.webp",
+   "kind": "table",
+   "box": [
+    0.7204,
+    0.6271,
+    0.2048,
+    0.2629
+   ],
+   "pivot": [
+    0.85,
+    0.89
+   ],
+   "idle": "none",
+   "rect": [
+    0.720422,
+    0.62714,
+    0.20475,
+    0.26286
+   ],
+   "tap": "wiggle"
+  },
+  {
+   "file": "layers/kit_props_truth_cup_flowers.webp",
+   "kind": "cup",
+   "box": [
+    0.8078,
+    0.5144,
+    0.0849,
+    0.1406
+   ],
+   "pivot": [
+    0.85,
+    0.655
+   ],
+   "idle": "none",
+   "rect": [
+    0.805511,
+    0.514392,
+    0.092528,
+    0.140608
+   ],
+   "tap": "wiggle"
+  },
+  {
+   "file": "layers/kit_props_ball.webp",
+   "kind": "ball",
+   "box": [
+    0.7841,
+    0.8732,
+    0.0719,
+    0.0968
+   ],
+   "pivot": [
+    0.82,
+    0.97
+   ],
+   "idle": "none",
+   "rect": [
+    0.784056,
+    0.87325,
+    0.071888,
+    0.09675
+   ],
+   "tap": "hop"
+  },
+  {
+   "file": "layers/kit_shadow.webp",
+   "kind": "shadow",
+   "rect": [
+    0.44809,
+    0.933844,
+    0.14382,
+    0.042187
+   ],
+   "pivot": [
+    0.52,
+    0.9549
+   ]
+  },
+  {
+   "file": "layers/kit_hero_a_stand_proud.webp",
+   "kind": "hero",
+   "box": [
+    0.4382,
+    0.4976,
+    0.1613,
+    0.4624
+   ],
+   "pivot": [
+    0.52,
+    0.96
+   ],
+   "idle": "breathe",
+   "rect": [
+    0.438188,
+    0.4976,
+    0.244416,
+    0.4624
+   ],
+   "tap": "hop",
+   "poses": {
+    "stand_oops": "layers/kit_hero_a_stand_oops.webp"
+   }
+  },
+  {
+   "file": "layers/kit_lulu_a_float.webp",
+   "kind": "lulu",
+   "box": [
+    0.6315,
+    0.2858,
+    0.1373,
+    0.2094
+   ],
+   "pivot": [
+    0.7001,
+    0.3914
+   ],
+   "idle": "float",
+   "rect": [
+    0.621032,
+    0.284382,
+    0.156188,
+    0.213321
+   ],
+   "tap": "hop",
+   "poses": {
+    "talk": "layers/kit_lulu_a_talk.webp"
+   }
+  }
+ ],
+ "e1_germ.webp": [
+  {
+   "file": "layers/kit_room_night.webp"
+  },
+  {
+   "file": "layers/kit_shadow.webp",
+   "kind": "shadow",
+   "rect": [
+    0.757862,
+    0.856487,
+    0.184275,
+    0.054054
+   ],
+   "pivot": [
+    0.85,
+    0.8835
+   ]
+  },
+  {
+   "file": "layers/kit_props_truth_bedside_table.webp",
+   "kind": "table",
+   "box": [
+    0.7204,
+    0.6271,
+    0.2048,
+    0.2629
+   ],
+   "pivot": [
+    0.85,
+    0.89
+   ],
+   "idle": "none",
+   "rect": [
+    0.720422,
+    0.62714,
+    0.20475,
+    0.26286
+   ],
+   "tap": "wiggle"
+  },
+  {
+   "file": "layers/kit_props_truth_cup_flowers.webp",
+   "kind": "cup",
+   "box": [
+    0.8078,
+    0.5144,
+    0.0849,
+    0.1406
+   ],
+   "pivot": [
+    0.85,
+    0.655
+   ],
+   "idle": "none",
+   "rect": [
+    0.805511,
+    0.514392,
+    0.092528,
+    0.140608
+   ],
+   "tap": "wiggle"
+  },
+  {
+   "file": "layers/kit_props_ball.webp",
+   "kind": "ball",
+   "box": [
+    0.7841,
+    0.8732,
+    0.0719,
+    0.0968
+   ],
+   "pivot": [
+    0.82,
+    0.97
+   ],
+   "idle": "none",
+   "rect": [
+    0.784056,
+    0.87325,
+    0.071888,
+    0.09675
+   ],
+   "tap": "hop"
+  },
+  {
+   "file": "layers/kit_hero_b_lie_sticky.webp",
+   "kind": "hero",
+   "box": [
+    0.075,
+    0.3691,
+    0.3176,
+    0.2059
+   ],
+   "pivot": [
+    0.29,
+    0.575
+   ],
+   "idle": "breathe",
+   "rect": [
+    0.074975,
+    0.1907,
+    0.317581,
+    0.3843
+   ]
+  },
+  {
+   "file": "layers/kit_props_blanket_lump.webp",
+   "kind": "blanket",
+   "box": [
+    0.2553,
+    0.4049,
+    0.3329,
+    0.2051
+   ],
+   "pivot": [
+    0.425,
+    0.61
+   ],
+   "idle": "none",
+   "rect": [
+    0.25535,
+    0.40486,
+    0.332865,
+    0.20514
+   ]
+  },
+  {
+   "file": "layers/kit_props_truth_germ_sleepy.webp",
+   "kind": "germ",
+   "box": [
+    0.0431,
+    0.1656,
+    0.0939,
+    0.1089
+   ],
+   "pivot": [
+    0.09,
+    0.2744
+   ],
+   "idle": "none",
+   "rect": [
+    0.04307,
+    0.165573,
+    0.09386,
+    0.108853
+   ],
+   "tap": "wiggle",
+   "poses": {
+    "germ_cheer": "layers/kit_props_truth_germ_cheer.webp"
+   }
+  }
+ ],
+ "e2_truth.webp": [
+  {
+   "file": "layers/kit_room_night.webp"
+  },
+  {
+   "file": "layers/kit_shadow.webp",
+   "kind": "shadow",
+   "rect": [
+    0.757862,
+    0.856487,
+    0.184275,
+    0.054054
+   ],
+   "pivot": [
+    0.85,
+    0.8835
+   ]
+  },
+  {
+   "file": "layers/kit_props_truth_bedside_table.webp",
+   "kind": "table",
+   "box": [
+    0.7204,
+    0.6271,
+    0.2048,
+    0.2629
+   ],
+   "pivot": [
+    0.85,
+    0.89
+   ],
+   "idle": "none",
+   "rect": [
+    0.720422,
+    0.62714,
+    0.20475,
+    0.26286
+   ],
+   "tap": "wiggle"
+  },
+  {
+   "file": "layers/kit_props_truth_cup_flowers.webp",
+   "kind": "cup",
+   "box": [
+    0.8078,
+    0.5144,
+    0.0849,
+    0.1406
+   ],
+   "pivot": [
+    0.85,
+    0.655
+   ],
+   "idle": "none",
+   "rect": [
+    0.805511,
+    0.514392,
+    0.092528,
+    0.140608
+   ],
+   "tap": "wiggle"
+  },
+  {
+   "file": "layers/kit_props_ball.webp",
+   "kind": "ball",
+   "box": [
+    0.7841,
+    0.8732,
+    0.0719,
+    0.0968
+   ],
+   "pivot": [
+    0.82,
+    0.97
+   ],
+   "idle": "none",
+   "rect": [
+    0.784056,
+    0.87325,
+    0.071888,
+    0.09675
+   ],
+   "tap": "hop"
+  },
+  {
+   "file": "layers/kit_hero_b_lie_sticky.webp",
+   "kind": "hero",
+   "box": [
+    0.075,
+    0.1907,
+    0.3176,
+    0.3843
+   ],
+   "pivot": [
+    0.29,
+    0.575
+   ],
+   "idle": "breathe",
+   "rect": [
+    0.074975,
+    0.1907,
+    0.317581,
+    0.3843
+   ],
+   "poses": {
+    "bed_sit_shy": "layers/kit_hero_b_bed_sit_shy.webp"
+   }
+  },
+  {
+   "file": "layers/kit_props_blanket_lump.webp",
+   "kind": "blanket",
+   "box": [
+    0.2553,
+    0.4049,
+    0.3329,
+    0.2051
+   ],
+   "pivot": [
+    0.425,
+    0.61
+   ],
+   "idle": "none",
+   "rect": [
+    0.25535,
+    0.40486,
+    0.332865,
+    0.20514
+   ]
+  },
+  {
+   "file": "layers/kit_props_truth_germ_sleepy.webp",
+   "kind": "germ",
+   "box": [
+    0.0513,
+    0.1656,
+    0.0775,
+    0.1089
+   ],
+   "pivot": [
+    0.09,
+    0.2744
+   ],
+   "idle": "none",
+   "rect": [
+    0.04307,
+    0.165573,
+    0.09386,
+    0.108853
+   ],
+   "tap": "wiggle"
+  },
+  {
+   "file": "layers/kit_lulu_a_float.webp",
+   "kind": "lulu",
+   "box": [
+    0.4315,
+    0.1658,
+    0.1373,
+    0.2094
+   ],
+   "pivot": [
+    0.5001,
+    0.2714
+   ],
+   "idle": "float",
+   "rect": [
+    0.421032,
+    0.164382,
+    0.156188,
+    0.213321
+   ],
+   "tap": "hop",
+   "poses": {
+    "talk": "layers/kit_lulu_a_talk.webp"
+   }
+  }
+ ],
+ "d1_brush.webp": [
+  {
+   "file": "layers/kit_room_bath.webp"
+  },
+  {
+   "file": "layers/kit_shadow.webp",
+   "kind": "shadow",
+   "rect": [
+    0.380724,
+    0.937528,
+    0.178551,
+    0.052375
+   ],
+   "pivot": [
+    0.47,
+    0.9637
+   ]
+  },
+  {
+   "file": "layers/kit_hero_a_brush.webp",
+   "kind": "hero",
+   "box": [
+    0.368,
+    0.4138,
+    0.1984,
+    0.5562
+   ],
+   "pivot": [
+    0.47,
+    0.97
+   ],
+   "idle": "breathe",
+   "rect": [
+    0.368,
+    0.41376,
+    0.19839,
+    0.55624
+   ],
+   "tap": "hop"
+  },
+  {
+   "file": "layers/kit_lulu_a_float.webp",
+   "kind": "lulu",
+   "box": [
+    0.6812,
+    0.3135,
+    0.1579,
+    0.2388
+   ],
+   "pivot": [
+    0.7601,
+    0.4331
+   ],
+   "idle": "float",
+   "rect": [
+    0.669187,
+    0.310039,
+    0.179616,
+    0.245319
+   ],
+   "tap": "hop",
+   "poses": {
+    "clap": "layers/kit_lulu_a_clap.webp"
+   }
+  }
+ ],
+ "end_asleep.webp": [
+  {
+   "file": "layers/kit_room_night.webp"
+  },
+  {
+   "file": "layers/kit_shadow.webp",
+   "kind": "shadow",
+   "rect": [
+    0.757862,
+    0.856487,
+    0.184275,
+    0.054054
+   ],
+   "pivot": [
+    0.85,
+    0.8835
+   ]
+  },
+  {
+   "file": "layers/kit_props_truth_bedside_table.webp",
+   "kind": "table",
+   "box": [
+    0.7204,
+    0.6271,
+    0.2048,
+    0.2629
+   ],
+   "pivot": [
+    0.85,
+    0.89
+   ],
+   "idle": "none",
+   "rect": [
+    0.720422,
+    0.62714,
+    0.20475,
+    0.26286
+   ],
+   "tap": "wiggle"
+  },
+  {
+   "file": "layers/kit_props_truth_cup_flowers.webp",
+   "kind": "cup",
+   "box": [
+    0.8078,
+    0.5144,
+    0.0849,
+    0.1406
+   ],
+   "pivot": [
+    0.85,
+    0.655
+   ],
+   "idle": "none",
+   "rect": [
+    0.805511,
+    0.514392,
+    0.092528,
+    0.140608
+   ],
+   "tap": "wiggle"
+  },
+  {
+   "file": "layers/kit_props_ball.webp",
+   "kind": "ball",
+   "box": [
+    0.7841,
+    0.8732,
+    0.0719,
+    0.0968
+   ],
+   "pivot": [
+    0.82,
+    0.97
+   ],
+   "idle": "none",
+   "rect": [
+    0.784056,
+    0.87325,
+    0.071888,
+    0.09675
+   ],
+   "tap": "hop"
+  },
+  {
+   "file": "layers/kit_hero_b_asleep.webp",
+   "kind": "hero",
+   "box": [
+    0.1194,
+    0.3808,
+    0.2993,
+    0.1942
+   ],
+   "pivot": [
+    0.29,
+    0.575
+   ],
+   "idle": "breathe",
+   "rect": [
+    0.119391,
+    0.380817,
+    0.299281,
+    0.194183
+   ]
+  },
+  {
+   "file": "layers/kit_props_blanket_lump.webp",
+   "kind": "blanket",
+   "box": [
+    0.2553,
+    0.4049,
+    0.3329,
+    0.2051
+   ],
+   "pivot": [
+    0.425,
+    0.61
+   ],
+   "idle": "none",
+   "rect": [
+    0.25535,
+    0.40486,
+    0.332865,
+    0.20514
+   ]
+  },
+  {
+   "file": "layers/kit_lulu_a_float.webp",
+   "kind": "lulu",
+   "box": [
+    0.4315,
+    0.2675,
+    0.1373,
+    0.2083
+   ],
+   "pivot": [
+    0.5001,
+    0.3714
+   ],
+   "idle": "float",
+   "rect": [
+    0.421032,
+    0.264382,
+    0.156188,
+    0.213321
+   ],
+   "tap": "hop",
+   "poses": {
+    "whisper": "layers/kit_lulu_a_whisper.webp"
+   }
+  }
+ ]
+}

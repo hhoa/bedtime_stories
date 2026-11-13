@@ -1,0 +1,216 @@
+{
+  "id": "tell_truth",
+  "theme": "honesty",
+  "hero": "boy",
+  "title": {"vi": "{name} và bình hoa của Lulu", "en": "{name} and Lulu's Flower Vase"},
+  "cover": "images/cover.webp",
+  "start": "s1",
+  "nodes": [
+    {
+      "id": "s1", "type": "scene", "image": "images/s1_spill.webp", "next": "s2", "ambient": "stars",
+      "text": {"vi": "{name} đang lăn bóng trong phòng. Trên bàn là bình hoa Lulu yêu nhất. Bộp! Bóng lăn trúng chân bàn. Bình hoa rơi xuống đất. Choang! Ối, vỡ mất rồi! Hoa rơi khắp sàn.",
+               "en": "{name} is rolling a ball in the bedroom. On the table is Lulu's favourite flower vase. Bump! The ball rolls into the table leg. The vase falls down. Crash! Oops, it broke! Flowers all over the floor."},
+      "cues": {
+        "vi": [{"word": "Bộp", "part": "ball", "action": "move", "to": [0.82, 0.97], "at": 0.393},
+               {"word": "chân bàn", "part": "table", "action": "wiggle", "at": 0.527},
+               {"word": "rơi xuống", "part": "vase", "action": "move", "to": [0.7, 0.94], "at": 0.61},
+               {"word": "Choang", "part": "vase", "action": "pose", "pose": "vase_broken", "at": 0.69},
+               {"word": "Ối", "part": "hero", "action": "pose", "pose": "stand_oops", "at": 0.759},
+               {"word": "Hoa rơi", "part": "vase", "action": "wiggle", "at": 0.893}],
+        "en": [{"word": "Bump", "part": "ball", "action": "move", "to": [0.82, 0.97], "at": 0.389},
+               {"word": "table leg", "part": "table", "action": "wiggle", "at": 0.623},
+               {"word": "falls", "part": "vase", "action": "move", "to": [0.7, 0.94], "at": 0.697},
+               {"word": "Crash", "part": "vase", "action": "pose", "pose": "vase_broken", "at": 0.747},
+               {"word": "Oops", "part": "hero", "action": "pose", "pose": "stand_oops", "at": 0.795},
+               {"word": "Flowers", "part": "vase", "action": "wiggle", "at": 0.895}]
+      }
+    },
+    {
+      "id": "s2", "type": "scene", "image": "images/s2_lulu.webp", "next": "c1", "ambient": "sparkles",
+      "text": {"vi": "Tưng, tưng! Thỏ Lulu nhảy vào phòng. \"Ôi, bình hoa của mình! Ai làm vỡ thế nhỉ?\"",
+               "en": "Boing, boing! Lulu the bunny hops into the room. \"Oh, my flower vase! Who broke it?\""},
+      "cues": {
+        "vi": [{"word": "Tưng", "part": "lulu", "action": "move", "to": [0.66, 0.52], "at": 0.028},
+               {"word": "tưng", "part": "lulu", "action": "hop", "at": 0.062},
+               {"word": "bình hoa của mình", "part": "lulu", "action": "pose", "pose": "sad", "at": 0.579},
+               {"word": "Ai", "part": "vase", "action": "wiggle", "at": 0.818}],
+        "en": [{"word": "Boing", "part": "lulu", "action": "move", "to": [0.66, 0.52], "at": 0.0},
+               {"word": "boing", "part": "lulu", "action": "hop", "at": 0.088},
+               {"word": "my flower vase", "part": "lulu", "action": "pose", "pose": "sad", "at": 0.655},
+               {"word": "Who", "part": "vase", "action": "wiggle", "at": 0.889}]
+      }
+    },
+    {
+      "id": "c1", "type": "choice", "image": "images/c1_ask.webp", "ambient": "sparkles",
+      "text": {"vi": "{name} nên nói gì với Lulu?",
+               "en": "{name}, what should you tell Lulu?"},
+      "options": [
+        {"id": "truth", "kind": "kind", "icon": "images/icon_truth.webp", "label": {"vi": "Nói thật: mình làm vỡ", "en": "Tell the truth: I broke it"}, "next": "a1"},
+        {"id": "notme", "kind": "learn", "icon": "images/icon_notme.webp", "label": {"vi": "Nói: không phải mình", "en": "Say: it wasn't me"}, "next": "b1"}
+      ]
+    },
+    {
+      "id": "b1", "type": "scene", "image": "images/b1_notme.webp", "next": "b2", "ambient": "stars",
+      "text": {"vi": "{name} nói: \"Không phải mình đâu!\" Lulu buồn hiu, đi tìm khắp phòng. \"Vậy ai làm vỡ nhỉ? Chắc tại cơn gió...\"",
+               "en": "{name} says, \"It wasn't me!\" Lulu feels sad and looks all around the room. \"Then who broke it? Maybe it was the wind...\""},
+      "cues": {
+        "vi": [{"word": "Không phải", "part": "hero", "action": "wiggle", "at": 0.097},
+               {"word": "đi tìm", "part": "lulu", "action": "pose", "pose": "peek", "at": 0.44},
+               {"word": "khắp phòng", "part": "lulu", "action": "move", "to": [0.32, 0.76], "at": 0.481},
+               {"word": "cơn gió", "part": "lulu", "action": "move", "to": [0.5, 0.26], "at": 0.899}],
+        "en": [{"word": "wasn't", "part": "hero", "action": "wiggle", "at": 0.107},
+               {"word": "looks", "part": "lulu", "action": "pose", "pose": "peek", "at": 0.389},
+               {"word": "around", "part": "lulu", "action": "move", "to": [0.32, 0.76], "at": 0.474},
+               {"word": "wind", "part": "lulu", "action": "move", "to": [0.5, 0.26], "at": 0.948}]
+      }
+    },
+    {
+      "id": "b2", "type": "scene", "image": "images/b2_heavy.webp", "next": "b3", "ambient": "stars",
+      "text": {"vi": "{name} thấy trong bụng nặng trĩu, như có một hòn đá nhỏ. Bé chẳng muốn chơi bóng nữa. Bé không vui chút nào.",
+               "en": "{name} feels heavy in the tummy, like a little stone inside. The little one doesn't want to play ball anymore. It's no fun at all."},
+      "cues": {
+        "vi": [{"word": "hòn đá nhỏ", "part": "hero", "action": "pulse", "at": 0.39},
+               {"word": "chơi bóng", "part": "ball", "action": "hop", "at": 0.645}],
+        "en": [{"word": "little stone", "part": "hero", "action": "pulse", "at": 0.215},
+               {"word": "play ball", "part": "ball", "action": "hop", "at": 0.654}]
+      }
+    },
+    {
+      "id": "b3", "type": "scene", "image": "images/b3_lulu.webp", "next": "a1", "offer_rewind_to": "c1", "ambient": "sparkles",
+      "text": {"vi": "Lulu ngồi xuống ngay cạnh bé. \"Khi mình làm sai, cứ nói thật nhé. Nói thật thì hòn đá trong bụng sẽ bay đi mất.\"",
+               "en": "Lulu sits down right beside the little one. \"When we make a mistake, let's tell the truth. Then the little stone in the tummy floats away.\""},
+      "cues": {
+        "vi": [{"word": "Lulu", "part": "lulu", "action": "move", "to": [0.56, 0.62], "at": 0.0},
+               {"word": "cạnh bé", "part": "hero", "action": "pose", "pose": "sit_look_up", "at": 0.158},
+               {"word": "Khi mình", "part": "lulu", "action": "pose", "pose": "talk", "at": 0.248},
+               {"word": "bay đi mất", "part": "hero", "action": "pulse", "at": 0.878}],
+        "en": [{"word": "Lulu", "part": "lulu", "action": "move", "to": [0.56, 0.62], "at": 0.0},
+               {"word": "beside", "part": "hero", "action": "pose", "pose": "sit_look_up", "at": 0.141},
+               {"word": "When", "part": "lulu", "action": "pose", "pose": "talk", "at": 0.344},
+               {"word": "floats away", "part": "hero", "action": "pulse", "at": 0.901}]
+      }
+    },
+    {
+      "id": "a1", "type": "scene", "image": "images/a1_sorry.webp", "next": "a2", "ambient": "sparkles",
+      "text": {"vi": "{name} nói nhỏ: \"Lulu ơi, mình làm vỡ bình hoa. Mình xin lỗi.\" Lulu sà tới, cười thật tươi. \"Cảm ơn bạn đã nói thật. Bạn dũng cảm lắm!\"",
+               "en": "{name} says softly, \"Lulu, I broke your vase. I'm sorry.\" Lulu swoops close with a big smile. \"Thank you for telling the truth. You're so brave!\""},
+      "cues": {
+        "vi": [{"word": "xin lỗi", "part": "vase", "action": "pulse", "at": 0.373},
+               {"word": "sà tới", "part": "lulu", "action": "move", "to": [0.56, 0.55], "at": 0.506},
+               {"word": "cười", "part": "lulu", "action": "pose", "pose": "float", "at": 0.595},
+               {"word": "Bạn", "part": "lulu", "action": "pose", "pose": "clap", "at": 0.887},
+               {"word": "dũng cảm", "part": "hero", "action": "pose", "pose": "stand_proud", "at": 0.907},
+               {"word": "lắm", "part": "hero", "action": "hop", "at": 0.952}],
+        "en": [{"word": "sorry", "part": "vase", "action": "pulse", "at": 0.355},
+               {"word": "swoops", "part": "lulu", "action": "move", "to": [0.56, 0.55], "at": 0.465},
+               {"word": "smile", "part": "lulu", "action": "pose", "pose": "float", "at": 0.616},
+               {"word": "You're", "part": "lulu", "action": "pose", "pose": "clap", "at": 0.878},
+               {"word": "so", "part": "hero", "action": "pose", "pose": "stand_proud", "at": 0.924},
+               {"word": "brave", "part": "hero", "action": "hop", "at": 0.943}]
+      }
+    },
+    {
+      "id": "a2", "type": "scene", "image": "images/a2_flowers.webp", "next": "n1", "ambient": "stars",
+      "text": {"vi": "Lulu vẫy phép, thế là mảnh vỡ bay đi mất. Rồi hai bạn cùng nhặt hoa lên, cắm vào một chiếc cốc. Ồ, đẹp quá! Bụng bé nhẹ tênh, vui ơi là vui.",
+               "en": "Lulu waves her magic, and the broken pieces float away. Then they pick up the flowers and put them in a cup. Oh, so pretty! The little one's tummy feels light and happy."},
+      "cues": {
+        "vi": [{"word": "vẫy phép", "part": "lulu", "action": "pose", "pose": "glow", "at": 0.035},
+               {"word": "bay đi mất", "part": "shards", "action": "pose", "pose": "gone", "at": 0.205},
+               {"word": "nhặt hoa", "part": "hero", "action": "pose", "pose": "stand_place", "at": 0.422},
+               {"word": "cắm vào", "part": "flowers", "action": "move", "to": [0.85, 0.655], "at": 0.502},
+               {"word": "một", "part": "flowers", "action": "pose", "pose": "in_cup", "at": 0.534},
+               {"word": "chiếc cốc", "part": "cup", "action": "pose", "pose": "cup_flowers", "at": 0.551},
+               {"word": "đẹp quá", "part": "lulu", "action": "pose", "pose": "clap", "at": 0.662},
+               {"word": "nhẹ tênh", "part": "hero", "action": "pose", "pose": "stand_proud", "at": 0.804},
+               {"word": "vui ơi là vui", "part": "hero", "action": "hop", "at": 0.876}],
+        "en": [{"word": "magic", "part": "lulu", "action": "pose", "pose": "glow", "at": 0.066},
+               {"word": "float away", "part": "shards", "action": "pose", "pose": "gone", "at": 0.214},
+               {"word": "pick up", "part": "hero", "action": "pose", "pose": "stand_place", "at": 0.358},
+               {"word": "put them", "part": "flowers", "action": "move", "to": [0.85, 0.655], "at": 0.496},
+               {"word": "in", "part": "flowers", "action": "pose", "pose": "in_cup", "at": 0.547},
+               {"word": "cup", "part": "cup", "action": "pose", "pose": "cup_flowers", "at": 0.575},
+               {"word": "pretty", "part": "lulu", "action": "pose", "pose": "clap", "at": 0.689},
+               {"word": "light", "part": "hero", "action": "pose", "pose": "stand_proud", "at": 0.911},
+               {"word": "happy", "part": "hero", "action": "hop", "at": 0.961}]
+      }
+    },
+    {
+      "id": "n1", "type": "scene", "image": "images/n1_teeth.webp", "next": "c2", "ambient": "stars",
+      "text": {"vi": "Đến giờ đi ngủ rồi. Lulu hỏi: \"Bạn đã đánh răng chưa?\" Ôi, bé mải chơi nên quên mất!",
+               "en": "It's time for bed. Lulu asks, \"Have you brushed your teeth?\" Oh! The little one was busy playing and forgot!"},
+      "cues": {
+        "vi": [{"word": "hỏi", "part": "lulu", "action": "pose", "pose": "talk", "at": 0.332},
+               {"word": "quên mất", "part": "hero", "action": "pose", "pose": "stand_oops", "at": 0.899}],
+        "en": [{"word": "asks", "part": "lulu", "action": "pose", "pose": "talk", "at": 0.266},
+               {"word": "forgot", "part": "hero", "action": "pose", "pose": "stand_oops", "at": 0.936}]
+      }
+    },
+    {
+      "id": "c2", "type": "choice", "image": "images/n1_teeth.webp", "ambient": "stars", "poses": {"hero": "stand_oops", "lulu": "talk"},
+      "text": {"vi": "{name} trả lời Lulu thế nào?",
+               "en": "{name}, what do you tell Lulu?"},
+      "options": [
+        {"id": "forgot", "kind": "kind", "icon": "images/icon_toothbrush.webp", "label": {"vi": "Nói thật: mình quên rồi", "en": "Tell the truth: I forgot"}, "next": "d1"},
+        {"id": "fib", "kind": "learn", "icon": "images/icon_germ.webp", "label": {"vi": "Nói: mình đánh rồi", "en": "Say: I already did"}, "next": "e1"}
+      ]
+    },
+    {
+      "id": "e1", "type": "scene", "image": "images/e1_germ.webp", "next": "e2", "ambient": "stars",
+      "text": {"vi": "{name} nằm xuống giường. Ơ, răng nhớp nháp quá. Một bạn sâu răng tí hon hò reo. \"Hoan hô, tối nay mình được ở lại rồi!\"",
+               "en": "{name} lies down in bed. Hmm, the teeth feel all sticky. A tiny tooth germ cheers. \"Hooray, I get to stay tonight!\""},
+      "cues": {
+        "vi": [{"word": "nhớp nháp", "part": "hero", "action": "wiggle", "at": 0.245},
+               {"word": "hò reo", "part": "germ", "action": "pose", "pose": "germ_cheer", "at": 0.556},
+               {"word": "Hoan hô", "part": "germ", "action": "hop", "at": 0.653},
+               {"word": "ở lại", "part": "germ", "action": "pulse", "at": 0.895}],
+        "en": [{"word": "sticky", "part": "hero", "action": "wiggle", "at": 0.403},
+               {"word": "cheers", "part": "germ", "action": "pose", "pose": "germ_cheer", "at": 0.664},
+               {"word": "Hooray", "part": "germ", "action": "hop", "at": 0.768},
+               {"word": "stay", "part": "germ", "action": "pulse", "at": 0.899}]
+      }
+    },
+    {
+      "id": "e2", "type": "scene", "image": "images/e2_truth.webp", "next": "d1", "offer_rewind_to": "c2", "ambient": "sparkles",
+      "text": {"vi": "Lulu bay tới bên gối, cười hiền. Bé nói nhỏ: \"Lulu ơi, thật ra mình chưa đánh răng.\" Lulu nói: \"Quên cũng không sao đâu. Bạn nói thật, mình giúp ngay. Mình cùng đi đánh răng nhé!\"",
+               "en": "Lulu floats to the pillow with a kind smile. The little one whispers, \"Lulu, I didn't really brush my teeth.\" Lulu says, \"It's okay to forget. When you tell the truth, I can help right away. Let's go brush together!\""},
+      "cues": {
+        "vi": [{"word": "Lulu", "part": "lulu", "action": "move", "to": [0.47, 0.3], "at": 0.027},
+               {"word": "nói nhỏ", "part": "hero", "action": "pose", "pose": "bed_sit_shy", "at": 0.165},
+               {"word": "Lulu nói", "part": "lulu", "action": "pose", "pose": "talk", "at": 0.42},
+               {"word": "đi đánh răng", "part": "germ", "action": "wiggle", "at": 0.867}],
+        "en": [{"word": "Lulu", "part": "lulu", "action": "move", "to": [0.47, 0.3], "at": 0.0},
+               {"word": "whispers", "part": "hero", "action": "pose", "pose": "bed_sit_shy", "at": 0.258},
+               {"word": "says", "part": "lulu", "action": "pose", "pose": "talk", "at": 0.522},
+               {"word": "brush together", "part": "germ", "action": "wiggle", "at": 0.931}]
+      }
+    },
+    {
+      "id": "d1", "type": "scene", "image": "images/d1_brush.webp", "next": "end", "ambient": "sparkles",
+      "text": {"vi": "{name} đánh răng thật sạch. Xoạt, xoạt! Răng trắng tinh, thơm mát. Lulu khen: \"Nói thật và làm thật, giỏi quá!\"",
+               "en": "{name} brushes really well. Swish, swish! Teeth all white and minty fresh. Lulu cheers, \"You told the truth, and you did it too. Well done!\""},
+      "cues": {
+        "vi": [{"word": "Xoạt", "part": "hero", "action": "wiggle", "at": 0.171},
+               {"word": "xoạt", "part": "hero", "action": "wiggle", "at": 0.222},
+               {"word": "trắng tinh", "part": "hero", "action": "pulse", "at": 0.365},
+               {"word": "khen", "part": "lulu", "action": "pose", "pose": "clap", "at": 0.628}],
+        "en": [{"word": "Swish", "part": "hero", "action": "wiggle", "at": 0.166},
+               {"word": "swish", "part": "hero", "action": "wiggle", "at": 0.239},
+               {"word": "white", "part": "hero", "action": "pulse", "at": 0.39},
+               {"word": "cheers", "part": "lulu", "action": "pose", "pose": "clap", "at": 0.525}]
+      }
+    },
+    {
+      "id": "end", "type": "ending", "image": "images/end_asleep.webp", "sticker": "images/sticker.webp", "ambient": "zzz", "ambient_origin": [0.18, 0.44],
+      "text": {"vi": "Bé chui vào chăn ấm, nhắm mắt lại. Nói thật xong, lòng bé thấy nhẹ tênh. Lulu thì thầm: \"Ngủ ngon nhé, {name}.\"",
+               "en": "The little one snuggles under the warm blanket and closes both eyes. After telling the truth, the little heart feels light. Lulu whispers, \"Good night, {name}.\""},
+      "cues": {
+        "vi": [{"word": "chui vào chăn", "part": "blanket", "action": "pulse", "at": 0.026},
+               {"word": "nhẹ tênh", "part": "cup", "action": "pulse", "at": 0.59},
+               {"word": "thì thầm", "part": "lulu", "action": "pose", "pose": "whisper", "at": 0.742}],
+        "en": [{"word": "snuggles", "part": "blanket", "action": "pulse", "at": 0.102},
+               {"word": "light", "part": "cup", "action": "pulse", "at": 0.759},
+               {"word": "whispers", "part": "lulu", "action": "pose", "pose": "whisper", "at": 0.864}]
+      }
+    }
+  ]
+}

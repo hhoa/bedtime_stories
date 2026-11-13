@@ -21,42 +21,14 @@
       },
       "cues": {
         "vi": [
-          {
-            "word": "Reng reng",
-            "part": "clock",
-            "action": "wiggle"
-          },
-          {
-            "word": "ngáp",
-            "part": "hero",
-            "action": "pose",
-            "pose": "yawn"
-          },
-          {
-            "word": "dụi mắt",
-            "part": "hero",
-            "action": "pose",
-            "pose": "rub_eye"
-          }
+          {"word": "Reng reng", "part": "clock", "action": "wiggle", "at": 0.095},
+          {"word": "ngáp", "part": "hero", "action": "pose", "pose": "yawn", "at": 0.761},
+          {"word": "dụi mắt", "part": "hero", "action": "pose", "pose": "rub_eye", "at": 0.918}
         ],
         "en": [
-          {
-            "word": "Ring-a-ling",
-            "part": "clock",
-            "action": "wiggle"
-          },
-          {
-            "word": "yawn",
-            "part": "hero",
-            "action": "pose",
-            "pose": "yawn"
-          },
-          {
-            "word": "rubs",
-            "part": "hero",
-            "action": "pose",
-            "pose": "rub_eye"
-          }
+          {"word": "Ring-a-ling", "part": "clock", "action": "wiggle", "at": 0.091},
+          {"word": "yawn", "part": "hero", "action": "pose", "pose": "yawn", "at": 0.834},
+          {"word": "rubs", "part": "hero", "action": "pose", "pose": "rub_eye", "at": 0.906}
         ]
       }
     },
@@ -67,47 +39,19 @@
       "next": "c1",
       "ambient": "sparkles",
       "text": {
-        "vi": "Tưng, tưng! Lulu nhảy lên cạnh Bác Đồng Hồ. Bé ngồi dậy, nhìn theo. Lulu chỉ vào kim ngắn. \"Kim ngắn chỉ số bảy, kim dài chỉ số mười hai. Vậy là bảy giờ đúng!\"",
-        "en": "Boing, boing! Lulu hops up next to Mr. Tick-Tock. The little one sits up to look. Lulu points at the short hand. \"The short hand is on seven. The long hand is on twelve. That means seven o'clock!\""
+        "vi": "Tưng, tưng! Lulu nhảy vào phòng. Bé ngồi dậy, nhìn theo. Lulu chỉ vào kim ngắn. \"Kim ngắn chỉ số bảy, kim dài chỉ số mười hai. Vậy là bảy giờ đúng!\"",
+        "en": "Boing, boing! Lulu hops into the room. The little one sits up to look. Lulu points at the short hand. \"The short hand is on seven. The long hand is on twelve. That means seven o'clock!\""
       },
       "cues": {
         "vi": [
-          {
-            "word": "Tưng",
-            "part": "lulu",
-            "action": "hop"
-          },
-          {
-            "word": "ngồi dậy",
-            "part": "hero",
-            "action": "pose",
-            "pose": "sit_up"
-          },
-          {
-            "word": "chỉ vào",
-            "part": "lulu",
-            "action": "pose",
-            "pose": "point"
-          }
+          {"word": "Tưng", "part": "lulu", "action": "hop", "at": 0.0},
+          {"word": "ngồi dậy", "part": "hero", "action": "pose", "pose": "sit_up", "at": 0.2},
+          {"word": "chỉ vào", "part": "lulu", "action": "pose", "pose": "point", "at": 0.44}
         ],
         "en": [
-          {
-            "word": "Boing",
-            "part": "lulu",
-            "action": "hop"
-          },
-          {
-            "word": "sits up",
-            "part": "hero",
-            "action": "pose",
-            "pose": "sit_up"
-          },
-          {
-            "word": "points",
-            "part": "lulu",
-            "action": "pose",
-            "pose": "point"
-          }
+          {"word": "Boing", "part": "lulu", "action": "hop", "at": 0.0},
+          {"word": "sits up", "part": "hero", "action": "pose", "pose": "sit_up", "at": 0.325},
+          {"word": "points", "part": "lulu", "action": "pose", "pose": "point", "at": 0.446}
         ]
       }
     },
@@ -159,30 +103,14 @@
       },
       "cues": {
         "vi": [
-          {
-            "word": "Tích tắc",
-            "part": "clock",
-            "action": "wiggle"
-          },
-          {
-            "word": "chống cằm",
-            "part": "lulu",
-            "action": "pose",
-            "pose": "chin"
-          }
+          {"word": "Tích tắc", "part": "clock", "action": "wiggle", "at": 0.185},
+          {"word": "số sáu", "part": "clock", "action": "pose", "pose": "half", "at": 0.698},
+          {"word": "chống cằm", "part": "lulu", "action": "pose", "pose": "chin", "at": 0.84}
         ],
         "en": [
-          {
-            "word": "Tick-tock",
-            "part": "clock",
-            "action": "wiggle"
-          },
-          {
-            "word": "chin",
-            "part": "lulu",
-            "action": "pose",
-            "pose": "chin"
-          }
+          {"word": "Tick-tock", "part": "clock", "action": "wiggle", "at": 0.207},
+          {"word": "six", "part": "clock", "action": "pose", "pose": "half", "at": 0.743},
+          {"word": "chin", "part": "lulu", "action": "pose", "pose": "chin", "at": 0.903}
         ]
       }
     },
@@ -198,32 +126,12 @@
       },
       "cues": {
         "vi": [
-          {
-            "word": "Ối",
-            "part": "hero",
-            "action": "pose",
-            "pose": "oops"
-          },
-          {
-            "word": "giơ chiếc tất",
-            "part": "hero",
-            "action": "pose",
-            "pose": "sock_up"
-          }
+          {"word": "Ối", "part": "hero", "action": "hop", "at": 0.097},
+          {"word": "giơ chiếc tất", "part": "hero", "action": "pose", "pose": "sock_up", "at": 0.795}
         ],
         "en": [
-          {
-            "word": "Oh no",
-            "part": "hero",
-            "action": "pose",
-            "pose": "oops"
-          },
-          {
-            "word": "Up goes",
-            "part": "hero",
-            "action": "pose",
-            "pose": "sock_up"
-          }
+          {"word": "Oh no", "part": "hero", "action": "hop", "at": 0.071},
+          {"word": "Up goes", "part": "hero", "action": "pose", "pose": "sock_up", "at": 0.773}
         ]
       }
     },
@@ -240,20 +148,14 @@
       },
       "cues": {
         "vi": [
-          {
-            "word": "mỉm cười",
-            "part": "hero",
-            "action": "pose",
-            "pose": "smile"
-          }
+          {"word": "nhẹ nhàng", "part": "lulu", "action": "pose", "pose": "glow", "at": 0.03},
+          {"word": "xoay áo", "part": "hero", "action": "pose", "pose": "smile", "at": 0.091},
+          {"word": "mỉm cười", "part": "hero", "action": "hop", "at": 0.228}
         ],
         "en": [
-          {
-            "word": "smile",
-            "part": "hero",
-            "action": "pose",
-            "pose": "smile"
-          }
+          {"word": "gently", "part": "lulu", "action": "pose", "pose": "glow", "at": 0.025},
+          {"word": "turns", "part": "hero", "action": "pose", "pose": "smile", "at": 0.068},
+          {"word": "smile", "part": "hero", "action": "hop", "at": 0.374}
         ]
       }
     },
@@ -269,54 +171,16 @@
       },
       "cues": {
         "vi": [
-          {
-            "word": "vươn vai",
-            "part": "hero",
-            "action": "pose",
-            "pose": "stretch"
-          },
-          {
-            "word": "mỉm cười",
-            "part": "clock",
-            "action": "pose",
-            "pose": "big"
-          },
-          {
-            "word": "vỗ tay",
-            "part": "lulu",
-            "action": "pose",
-            "pose": "clap"
-          },
-          {
-            "word": "nhảy",
-            "part": "lulu",
-            "action": "hop"
-          }
+          {"word": "vươn vai", "part": "hero", "action": "pose", "pose": "stretch", "at": 0.061},
+          {"word": "mỉm cười", "part": "clock", "action": "pose", "pose": "big", "at": 0.453},
+          {"word": "vỗ tay", "part": "lulu", "action": "pose", "pose": "clap", "at": 0.754},
+          {"word": "nhảy", "part": "lulu", "action": "hop", "at": 0.843}
         ],
         "en": [
-          {
-            "word": "stretches",
-            "part": "hero",
-            "action": "pose",
-            "pose": "stretch"
-          },
-          {
-            "word": "smiles",
-            "part": "clock",
-            "action": "pose",
-            "pose": "big"
-          },
-          {
-            "word": "claps",
-            "part": "lulu",
-            "action": "pose",
-            "pose": "clap"
-          },
-          {
-            "word": "hops",
-            "part": "lulu",
-            "action": "hop"
-          }
+          {"word": "stretches", "part": "hero", "action": "pose", "pose": "stretch", "at": 0.0},
+          {"word": "smiles", "part": "clock", "action": "pose", "pose": "big", "at": 0.515},
+          {"word": "claps", "part": "lulu", "action": "pose", "pose": "clap", "at": 0.808},
+          {"word": "hops", "part": "lulu", "action": "hop", "at": 0.87}
         ]
       }
     },
@@ -332,32 +196,14 @@
       },
       "cues": {
         "vi": [
-          {
-            "word": "vẫy tay",
-            "part": "hero",
-            "action": "pose",
-            "pose": "wave"
-          },
-          {
-            "word": "vẫy tay",
-            "part": "lulu",
-            "action": "pose",
-            "pose": "wave"
-          }
+          {"word": "đeo ba lô", "part": "hero", "action": "pose", "pose": "wave", "at": 0.261},
+          {"word": "vẫy tay", "part": "hero", "action": "hop", "at": 0.387},
+          {"word": "vẫy tay", "part": "lulu", "action": "pose", "pose": "wave", "at": 0.868}
         ],
         "en": [
-          {
-            "word": "wave",
-            "part": "hero",
-            "action": "pose",
-            "pose": "wave"
-          },
-          {
-            "word": "waves",
-            "part": "lulu",
-            "action": "pose",
-            "pose": "wave"
-          }
+          {"word": "backpack", "part": "hero", "action": "pose", "pose": "wave", "at": 0.352},
+          {"word": "wave", "part": "hero", "action": "hop", "at": 0.528},
+          {"word": "waves", "part": "lulu", "action": "pose", "pose": "wave", "at": 0.929}
         ]
       }
     },
@@ -373,30 +219,14 @@
       },
       "cues": {
         "vi": [
-          {
-            "word": "Boong",
-            "part": "clock",
-            "action": "pulse"
-          },
-          {
-            "word": "ngẩng lên",
-            "part": "hero",
-            "action": "pose",
-            "pose": "look_up"
-          }
+          {"word": "Boong", "part": "clock", "action": "pulse", "at": 0.195},
+          {"word": "hỏi", "part": "lulu", "action": "pose", "pose": "talk", "at": 0.341},
+          {"word": "ngẩng lên", "part": "hero", "action": "pose", "pose": "look_up", "at": 0.486}
         ],
         "en": [
-          {
-            "word": "Bong",
-            "part": "clock",
-            "action": "pulse"
-          },
-          {
-            "word": "looks up",
-            "part": "hero",
-            "action": "pose",
-            "pose": "look_up"
-          }
+          {"word": "Bong", "part": "clock", "action": "pulse", "at": 0.221},
+          {"word": "asks", "part": "lulu", "action": "pose", "pose": "talk", "at": 0.396},
+          {"word": "looks up", "part": "hero", "action": "pose", "pose": "look_up", "at": 0.558}
         ]
       }
     },
@@ -416,7 +246,7 @@
         {
           "id": "bed",
           "kind": "kind",
-          "icon": "images/icon_bed.webp",
+          "icon": "images/icon_bed.svg",
           "label": {
             "vi": "Chúc Bác Đồng Hồ ngủ ngon",
             "en": "Say goodnight to Mr. Tick-Tock"
@@ -426,7 +256,7 @@
         {
           "id": "turn",
           "kind": "learn",
-          "icon": "images/icon_turn.webp",
+          "icon": "images/icon_turn.svg",
           "label": {
             "vi": "Vặn kim lùi để chơi thêm",
             "en": "Turn the hands back to play"
@@ -447,44 +277,12 @@
       },
       "cues": {
         "vi": [
-          {
-            "word": "vặn kim",
-            "part": "hero",
-            "action": "pose",
-            "pose": "reach"
-          },
-          {
-            "word": "chóng mặt",
-            "part": "clock",
-            "action": "pose",
-            "pose": "turned"
-          },
-          {
-            "word": "ngáp",
-            "part": "hero",
-            "action": "pose",
-            "pose": "yawn"
-          }
+          {"word": "Cạch", "part": "clock", "action": "pose", "pose": "turned", "at": 0.192},
+          {"word": "ngáp", "part": "hero", "action": "pose", "pose": "yawn", "at": 0.787}
         ],
         "en": [
-          {
-            "word": "turns",
-            "part": "hero",
-            "action": "pose",
-            "pose": "reach"
-          },
-          {
-            "word": "dizzy",
-            "part": "clock",
-            "action": "pose",
-            "pose": "turned"
-          },
-          {
-            "word": "yawn",
-            "part": "hero",
-            "action": "pose",
-            "pose": "yawn"
-          }
+          {"word": "Click", "part": "clock", "action": "pose", "pose": "turned", "at": 0.153},
+          {"word": "yawn", "part": "hero", "action": "pose", "pose": "yawn", "at": 0.909}
         ]
       }
     },
@@ -501,20 +299,10 @@
       },
       "cues": {
         "vi": [
-          {
-            "word": "Cạch",
-            "part": "clock",
-            "action": "pose",
-            "pose": "back"
-          }
+          {"word": "Cạch", "part": "clock", "action": "pose", "pose": "back", "at": 0.81}
         ],
         "en": [
-          {
-            "word": "Click",
-            "part": "clock",
-            "action": "pose",
-            "pose": "back"
-          }
+          {"word": "Click", "part": "clock", "action": "pose", "pose": "back", "at": 0.808}
         ]
       }
     },
@@ -530,30 +318,16 @@
       },
       "cues": {
         "vi": [
-          {
-            "word": "vẫy tay",
-            "part": "hero",
-            "action": "pose",
-            "pose": "wave"
-          },
-          {
-            "word": "Boong",
-            "part": "clock",
-            "action": "pulse"
-          }
+          {"word": "cất", "part": "paper", "action": "pose", "pose": "tidy", "at": 0.005},
+          {"word": "vào cốc", "part": "cup", "action": "pose", "pose": "full", "at": 0.092},
+          {"word": "vẫy tay", "part": "hero", "action": "pose", "pose": "wave", "at": 0.2},
+          {"word": "Boong", "part": "clock", "action": "pulse", "at": 0.581}
         ],
         "en": [
-          {
-            "word": "wave",
-            "part": "hero",
-            "action": "pose",
-            "pose": "wave"
-          },
-          {
-            "word": "Bong",
-            "part": "clock",
-            "action": "pulse"
-          }
+          {"word": "puts", "part": "paper", "action": "pose", "pose": "tidy", "at": 0.0},
+          {"word": "cup", "part": "cup", "action": "pose", "pose": "full", "at": 0.133},
+          {"word": "wave", "part": "hero", "action": "pose", "pose": "wave", "at": 0.232},
+          {"word": "Bong", "part": "clock", "action": "pulse", "at": 0.617}
         ]
       }
     },
@@ -564,8 +338,8 @@
       "sticker": "images/sticker.webp",
       "ambient": "zzz",
       "ambient_origin": [
-        0.6,
-        0.36
+        0.18,
+        0.44
       ],
       "text": {
         "vi": "{name} ngủ say trong chăn ấm. Tích tắc, tích tắc... Bác Đồng Hồ cũng khẽ nhắm mắt. Lulu thì thầm: \"Ngủ ngon nhé. Mai bảy giờ, mình cùng dậy nhé.\"",
@@ -573,18 +347,12 @@
       },
       "cues": {
         "vi": [
-          {
-            "word": "Tích tắc",
-            "part": "clock",
-            "action": "wiggle"
-          }
+          {"word": "Tích tắc", "part": "clock", "action": "wiggle", "at": 0.163},
+          {"word": "thì thầm", "part": "lulu", "action": "pose", "pose": "whisper", "at": 0.608}
         ],
         "en": [
-          {
-            "word": "Tick-tock",
-            "part": "clock",
-            "action": "wiggle"
-          }
+          {"word": "Tick-tock", "part": "clock", "action": "wiggle", "at": 0.18},
+          {"word": "whispers", "part": "lulu", "action": "pose", "pose": "whisper", "at": 0.595}
         ]
       }
     }

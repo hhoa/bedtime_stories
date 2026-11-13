@@ -21,30 +21,12 @@
       },
       "cues": {
         "vi": [
-          {
-            "word": "Vali",
-            "part": "suitcase",
-            "action": "wiggle"
-          },
-          {
-            "word": "giơ",
-            "part": "hero",
-            "action": "pose",
-            "pose": "lift"
-          }
+          {"word": "Vali", "part": "suitcase", "action": "wiggle", "at": 0.177},
+          {"word": "giơ", "part": "hero", "action": "pose", "pose": "lift", "at": 0.776}
         ],
         "en": [
-          {
-            "word": "suitcase",
-            "part": "suitcase",
-            "action": "wiggle"
-          },
-          {
-            "word": "Up",
-            "part": "hero",
-            "action": "pose",
-            "pose": "lift"
-          }
+          {"word": "suitcase", "part": "suitcase", "action": "wiggle", "at": 0.348},
+          {"word": "Up", "part": "hero", "action": "pose", "pose": "lift", "at": 0.791}
         ]
       }
     },
@@ -60,40 +42,14 @@
       },
       "cues": {
         "vi": [
-          {
-            "word": "Vèo",
-            "part": "lulu",
-            "action": "hop"
-          },
-          {
-            "word": "xếp",
-            "part": "lulu",
-            "action": "pose",
-            "pose": "point"
-          },
-          {
-            "word": "ba lô",
-            "part": "backpack",
-            "action": "wiggle"
-          }
+          {"word": "Vèo", "part": "lulu", "action": "hop", "at": 0.025},
+          {"word": "xếp", "part": "lulu", "action": "pose", "pose": "point", "at": 0.857},
+          {"word": "ba lô", "part": "backpack", "action": "wiggle", "at": 0.886}
         ],
         "en": [
-          {
-            "word": "Whoosh",
-            "part": "lulu",
-            "action": "hop"
-          },
-          {
-            "word": "pack",
-            "part": "lulu",
-            "action": "pose",
-            "pose": "point"
-          },
-          {
-            "word": "backpack",
-            "part": "backpack",
-            "action": "wiggle"
-          }
+          {"word": "Whoosh", "part": "lulu", "action": "hop", "at": 0.0},
+          {"word": "pack", "part": "lulu", "action": "pose", "pose": "point", "at": 0.783},
+          {"word": "backpack", "part": "backpack", "action": "wiggle", "at": 0.846}
         ]
       }
     },
@@ -127,7 +83,10 @@
           },
           "next": "b1"
         }
-      ]
+      ],
+      "poses": {
+        "lulu": "point"
+      }
     },
     {
       "id": "b1",
@@ -141,40 +100,14 @@
       },
       "cues": {
         "vi": [
-          {
-            "word": "Nhét",
-            "part": "hero",
-            "action": "pose",
-            "pose": "push"
-          },
-          {
-            "word": "nhét",
-            "part": "backpack",
-            "action": "wiggle"
-          },
-          {
-            "word": "phồng",
-            "part": "backpack",
-            "action": "pulse"
-          }
+          {"word": "Nhét", "part": "hero", "action": "hop", "at": 0.408},
+          {"word": "nhét", "part": "backpack", "action": "wiggle", "at": 0.467},
+          {"word": "phồng", "part": "backpack", "action": "pulse", "at": 0.77}
         ],
         "en": [
-          {
-            "word": "Push",
-            "part": "hero",
-            "action": "pose",
-            "pose": "push"
-          },
-          {
-            "word": "push",
-            "part": "backpack",
-            "action": "wiggle"
-          },
-          {
-            "word": "big",
-            "part": "backpack",
-            "action": "pulse"
-          }
+          {"word": "Push", "part": "hero", "action": "hop", "at": 0.449},
+          {"word": "push", "part": "backpack", "action": "wiggle", "at": 0.529},
+          {"word": "big", "part": "backpack", "action": "pulse", "at": 0.887}
         ]
       }
     },
@@ -184,59 +117,22 @@
       "image": "images/b2_heavy.webp",
       "next": "b3",
       "ambient": "stars",
-      "poses": {
-        "hero": "pull"
-      },
       "text": {
         "vi": "{name} kéo quai ba lô. Hự, hự! Ba lô nặng quá, chẳng nhúc nhích gì cả. Bé ngồi phịch xuống, thở phì phò, mệt ơi là mệt.",
         "en": "{name} tugs the strap. Huff, huff! It's so heavy, it won't move at all. Plop! The little one sits down, puffing, oh so tired."
       },
       "cues": {
         "vi": [
-          {
-            "word": "kéo",
-            "part": "backpack",
-            "action": "wiggle"
-          },
-          {
-            "word": "Hự",
-            "part": "hero",
-            "action": "hop"
-          },
-          {
-            "word": "hự",
-            "part": "hero",
-            "action": "hop"
-          },
-          {
-            "word": "phịch",
-            "part": "hero",
-            "action": "pose",
-            "pose": "plop"
-          }
+          {"word": "kéo", "part": "backpack", "action": "wiggle", "at": 0.004},
+          {"word": "Hự", "part": "hero", "action": "hop", "at": 0.136},
+          {"word": "hự", "part": "hero", "action": "hop", "at": 0.183},
+          {"word": "phịch", "part": "hero", "action": "pose", "pose": "plop", "at": 0.631}
         ],
         "en": [
-          {
-            "word": "tugs",
-            "part": "backpack",
-            "action": "wiggle"
-          },
-          {
-            "word": "Huff",
-            "part": "hero",
-            "action": "hop"
-          },
-          {
-            "word": "huff",
-            "part": "hero",
-            "action": "hop"
-          },
-          {
-            "word": "Plop",
-            "part": "hero",
-            "action": "pose",
-            "pose": "plop"
-          }
+          {"word": "tugs", "part": "backpack", "action": "wiggle", "at": 0.0},
+          {"word": "Huff", "part": "hero", "action": "hop", "at": 0.121},
+          {"word": "huff", "part": "hero", "action": "hop", "at": 0.193},
+          {"word": "Plop", "part": "hero", "action": "pose", "pose": "plop", "at": 0.533}
         ]
       }
     },
@@ -253,40 +149,14 @@
       },
       "cues": {
         "vi": [
-          {
-            "word": "Lulu",
-            "part": "lulu",
-            "action": "hop"
-          },
-          {
-            "word": "lấy",
-            "part": "blocks",
-            "action": "wiggle"
-          },
-          {
-            "word": "Mình",
-            "part": "lulu",
-            "action": "pose",
-            "pose": "explain"
-          }
+          {"word": "Lulu", "part": "lulu", "action": "hop", "at": 0.0},
+          {"word": "lấy", "part": "blocks", "action": "wiggle", "at": 0.305},
+          {"word": "Mình", "part": "lulu", "action": "pose", "pose": "explain", "at": 0.444}
         ],
         "en": [
-          {
-            "word": "Lulu",
-            "part": "lulu",
-            "action": "hop"
-          },
-          {
-            "word": "take",
-            "part": "blocks",
-            "action": "wiggle"
-          },
-          {
-            "word": "We",
-            "part": "lulu",
-            "action": "pose",
-            "pose": "explain"
-          }
+          {"word": "Lulu", "part": "lulu", "action": "hop", "at": 0.0},
+          {"word": "take", "part": "blocks", "action": "wiggle", "at": 0.282},
+          {"word": "We", "part": "lulu", "action": "pose", "pose": "explain", "at": 0.386}
         ]
       }
     },
@@ -302,69 +172,27 @@
       },
       "cues": {
         "vi": [
-          {
-            "word": "chai nước",
-            "part": "hero",
-            "action": "pose",
-            "pose": "put_in"
-          },
-          {
-            "word": "xô cát",
-            "part": "bucket",
-            "action": "wiggle"
-          },
-          {
-            "word": "mũ",
-            "part": "hat",
-            "action": "hop"
-          },
-          {
-            "word": "áo",
-            "part": "lulu",
-            "action": "pose",
-            "pose": "point"
-          },
-          {
-            "word": "quần đùi",
-            "part": "clothes",
-            "action": "wiggle"
-          }
+          {"word": "cho", "part": "hero", "action": "pose", "pose": "put_in", "at": 0.006},
+          {"word": "chai nước", "part": "bottle", "action": "move", "to": [0.54, 0.8], "at": 0.036},
+          {"word": "xô cát", "part": "bucket", "action": "move", "to": [0.56, 0.8], "at": 0.134},
+          {"word": "mũ", "part": "hat", "action": "hop", "at": 0.376},
+          {"word": "áo", "part": "lulu", "action": "pose", "pose": "point", "at": 0.827},
+          {"word": "quần đùi", "part": "clothes", "action": "wiggle", "at": 0.875}
         ],
         "en": [
-          {
-            "word": "bottle",
-            "part": "hero",
-            "action": "pose",
-            "pose": "put_in"
-          },
-          {
-            "word": "bucket",
-            "part": "bucket",
-            "action": "wiggle"
-          },
-          {
-            "word": "hat",
-            "part": "hat",
-            "action": "hop"
-          },
-          {
-            "word": "shirt",
-            "part": "lulu",
-            "action": "pose",
-            "pose": "point"
-          },
-          {
-            "word": "shorts",
-            "part": "clothes",
-            "action": "wiggle"
-          }
+          {"word": "puts", "part": "hero", "action": "pose", "pose": "put_in", "at": 0.0},
+          {"word": "bottle", "part": "bottle", "action": "move", "to": [0.54, 0.8], "at": 0.107},
+          {"word": "bucket", "part": "bucket", "action": "move", "to": [0.56, 0.8], "at": 0.23},
+          {"word": "hat", "part": "hat", "action": "hop", "at": 0.359},
+          {"word": "shirt", "part": "lulu", "action": "pose", "pose": "point", "at": 0.874},
+          {"word": "shorts", "part": "clothes", "action": "wiggle", "at": 0.937}
         ]
       }
     },
     {
       "id": "c2",
       "type": "choice",
-      "image": "images/a1_pack.webp",
+      "image": "images/c2_pack.webp",
       "ambient": "stars",
       "text": {
         "vi": "{name} cho áo quần vào thế nào?",
@@ -399,59 +227,22 @@
       "image": "images/e1_squash.webp",
       "next": "e2",
       "ambient": "stars",
-      "poses": {
-        "hero": "press"
-      },
       "text": {
         "vi": "Bé vo áo quần lại, ấn thật mạnh xuống. Bẹp! Áo nhăn nhúm, chiếc mũ cũng bẹp dí. Bé nhìn chiếc mũ, thấy hơi buồn.",
         "en": "The little one scrunches up the clothes and pushes down hard. Squish! The clothes are all crumpled, and the hat is squashed flat. The little one looks at the hat and feels a bit sad."
       },
       "cues": {
         "vi": [
-          {
-            "word": "vo",
-            "part": "clothes",
-            "action": "wiggle"
-          },
-          {
-            "word": "Bẹp",
-            "part": "hat",
-            "action": "pulse"
-          },
-          {
-            "word": "nhăn",
-            "part": "clothes",
-            "action": "wiggle"
-          },
-          {
-            "word": "nhìn",
-            "part": "hero",
-            "action": "pose",
-            "pose": "sad"
-          }
+          {"word": "vo", "part": "clothes", "action": "wiggle", "at": 0.023},
+          {"word": "Bẹp", "part": "hat", "action": "pose", "pose": "squashed", "at": 0.33},
+          {"word": "nhăn", "part": "clothes", "action": "wiggle", "at": 0.459},
+          {"word": "nhìn", "part": "hero", "action": "pose", "pose": "sad", "at": 0.761}
         ],
         "en": [
-          {
-            "word": "scrunches",
-            "part": "clothes",
-            "action": "wiggle"
-          },
-          {
-            "word": "Squish",
-            "part": "hat",
-            "action": "pulse"
-          },
-          {
-            "word": "crumpled",
-            "part": "clothes",
-            "action": "wiggle"
-          },
-          {
-            "word": "looks",
-            "part": "hero",
-            "action": "pose",
-            "pose": "sad"
-          }
+          {"word": "scrunches", "part": "clothes", "action": "wiggle", "at": 0.068},
+          {"word": "Squish", "part": "hat", "action": "pose", "pose": "squashed", "at": 0.319},
+          {"word": "crumpled", "part": "clothes", "action": "wiggle", "at": 0.494},
+          {"word": "looks", "part": "hero", "action": "pose", "pose": "sad", "at": 0.799}
         ]
       }
     },
@@ -468,40 +259,16 @@
       },
       "cues": {
         "vi": [
-          {
-            "word": "bộp",
-            "part": "lulu",
-            "action": "pose",
-            "pose": "pat"
-          },
-          {
-            "word": "bộp",
-            "part": "lulu",
-            "action": "hop"
-          },
-          {
-            "word": "gấp",
-            "part": "clothes",
-            "action": "wiggle"
-          }
+          {"word": "bộp", "part": "lulu", "action": "pose", "pose": "pat", "at": 0.168},
+          {"word": "bộp", "part": "lulu", "action": "hop", "at": 0.204},
+          {"word": "tròn", "part": "hat", "action": "pose", "pose": "round", "at": 0.337},
+          {"word": "gấp", "part": "clothes", "action": "wiggle", "at": 0.505}
         ],
         "en": [
-          {
-            "word": "Pat",
-            "part": "lulu",
-            "action": "pose",
-            "pose": "pat"
-          },
-          {
-            "word": "pat",
-            "part": "lulu",
-            "action": "hop"
-          },
-          {
-            "word": "fold",
-            "part": "clothes",
-            "action": "wiggle"
-          }
+          {"word": "Pat", "part": "lulu", "action": "pose", "pose": "pat", "at": 0.193},
+          {"word": "pat", "part": "lulu", "action": "hop", "at": 0.219},
+          {"word": "round", "part": "hat", "action": "pose", "pose": "round", "at": 0.378},
+          {"word": "fold", "part": "clothes", "action": "wiggle", "at": 0.535}
         ]
       }
     },
@@ -512,67 +279,23 @@
       "next": "d2",
       "ambient": "stars",
       "text": {
-        "vi": "{name} gấp áo thành một hình vuông nhỏ. Lulu giúp một tay. Gấp, gấp, xong rồi! Áo quần nằm phẳng phiu, còn chỗ cho mũ.",
+        "vi": "{name} gấp áo quần thành một hình vuông nhỏ. Lulu giúp một tay. Gấp, gấp, xong rồi! Áo quần nằm phẳng phiu, còn chỗ cho mũ.",
         "en": "{name} folds the shirt into a small square. Lulu lends a paw. Fold, fold, all done! The clothes lie nice and flat, with room for the hat."
       },
       "cues": {
         "vi": [
-          {
-            "word": "gấp",
-            "part": "hero",
-            "action": "wiggle"
-          },
-          {
-            "word": "Lulu",
-            "part": "lulu",
-            "action": "hop"
-          },
-          {
-            "word": "Gấp",
-            "part": "clothes",
-            "action": "wiggle"
-          },
-          {
-            "word": "xong",
-            "part": "hero",
-            "action": "pose",
-            "pose": "done"
-          },
-          {
-            "word": "rồi",
-            "part": "lulu",
-            "action": "pose",
-            "pose": "clap"
-          }
+          {"word": "gấp", "part": "hero", "action": "wiggle", "at": 0.004},
+          {"word": "Lulu", "part": "lulu", "action": "hop", "at": 0.278},
+          {"word": "Gấp", "part": "clothes", "action": "pose", "pose": "folded", "at": 0.448},
+          {"word": "xong", "part": "hero", "action": "pose", "pose": "done", "at": 0.546},
+          {"word": "rồi", "part": "lulu", "action": "pose", "pose": "clap", "at": 0.596}
         ],
         "en": [
-          {
-            "word": "folds",
-            "part": "hero",
-            "action": "wiggle"
-          },
-          {
-            "word": "Lulu",
-            "part": "lulu",
-            "action": "hop"
-          },
-          {
-            "word": "Fold",
-            "part": "clothes",
-            "action": "wiggle"
-          },
-          {
-            "word": "all",
-            "part": "lulu",
-            "action": "pose",
-            "pose": "clap"
-          },
-          {
-            "word": "done",
-            "part": "hero",
-            "action": "pose",
-            "pose": "done"
-          }
+          {"word": "folds", "part": "hero", "action": "wiggle", "at": 0.002},
+          {"word": "Lulu", "part": "lulu", "action": "hop", "at": 0.246},
+          {"word": "Fold", "part": "clothes", "action": "pose", "pose": "folded", "at": 0.404},
+          {"word": "all", "part": "lulu", "action": "pose", "pose": "clap", "at": 0.552},
+          {"word": "done", "part": "hero", "action": "pose", "pose": "done", "at": 0.588}
         ]
       }
     },
@@ -588,62 +311,18 @@
       },
       "cues": {
         "vi": [
-          {
-            "word": "Rẹt",
-            "part": "backpack",
-            "action": "wiggle"
-          },
-          {
-            "word": "mũ",
-            "part": "hat",
-            "action": "hop"
-          },
-          {
-            "word": "vali",
-            "part": "suitcase",
-            "action": "wiggle"
-          },
-          {
-            "word": "reo",
-            "part": "lulu",
-            "action": "pose",
-            "pose": "cheer"
-          },
-          {
-            "word": "giỏi",
-            "part": "hero",
-            "action": "pose",
-            "pose": "cheer"
-          }
+          {"word": "Rẹt", "part": "backpack", "action": "wiggle", "at": 0.0},
+          {"word": "mũ", "part": "hat", "action": "move", "to": [0.62, 0.74], "at": 0.263},
+          {"word": "vali", "part": "suitcase", "action": "wiggle", "at": 0.534},
+          {"word": "reo", "part": "lulu", "action": "pose", "pose": "cheer", "at": 0.721},
+          {"word": "giỏi", "part": "hero", "action": "pose", "pose": "cheer", "at": 0.868}
         ],
         "en": [
-          {
-            "word": "Zip",
-            "part": "backpack",
-            "action": "wiggle"
-          },
-          {
-            "word": "hat",
-            "part": "hat",
-            "action": "hop"
-          },
-          {
-            "word": "suitcase",
-            "part": "suitcase",
-            "action": "wiggle"
-          },
-          {
-            "word": "cheers",
-            "part": "lulu",
-            "action": "pose",
-            "pose": "cheer"
-          },
-          {
-            "word": "yourself",
-            "part": "hero",
-            "action": "pose",
-            "pose": "cheer"
-          }
+          {"word": "Zip", "part": "backpack", "action": "wiggle", "at": 0.0},
+          {"word": "hat", "part": "hat", "action": "move", "to": [0.62, 0.74], "at": 0.294},
+          {"word": "suitcase", "part": "suitcase", "action": "wiggle", "at": 0.681},
+          {"word": "cheers", "part": "lulu", "action": "pose", "pose": "cheer", "at": 0.781},
+          {"word": "yourself", "part": "hero", "action": "pose", "pose": "cheer", "at": 0.94}
         ]
       }
     },
@@ -654,8 +333,8 @@
       "sticker": "images/sticker.webp",
       "ambient": "zzz",
       "ambient_origin": [
-        0.25,
-        0.5
+        0.18,
+        0.44
       ],
       "text": {
         "vi": "{name} chui vào chăn ấm, nhắm mắt lại. Ba lô nhỏ đã sẵn sàng bên cửa. Lulu thì thầm: \"Ngủ ngon nhé. Mai mình đi biển!\"",
@@ -663,30 +342,12 @@
       },
       "cues": {
         "vi": [
-          {
-            "word": "Ba lô",
-            "part": "backpack",
-            "action": "pulse"
-          },
-          {
-            "word": "Lulu",
-            "part": "lulu",
-            "action": "pose",
-            "pose": "whisper"
-          }
+          {"word": "Ba lô", "part": "backpack", "action": "pulse", "at": 0.298},
+          {"word": "Lulu", "part": "lulu", "action": "pose", "pose": "whisper", "at": 0.567}
         ],
         "en": [
-          {
-            "word": "backpack",
-            "part": "backpack",
-            "action": "pulse"
-          },
-          {
-            "word": "Lulu",
-            "part": "lulu",
-            "action": "pose",
-            "pose": "whisper"
-          }
+          {"word": "backpack", "part": "backpack", "action": "pulse", "at": 0.408},
+          {"word": "Lulu", "part": "lulu", "action": "pose", "pose": "whisper", "at": 0.605}
         ]
       }
     }

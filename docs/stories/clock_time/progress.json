@@ -1,13 +1,11 @@
 {
   "gates": {
-    "outline": "2026-11-10",
+    "outline": "2026-11-11",
     "script": "2026-11-10",
-    "wired": "2026-11-10"
+    "wired": "2026-11-10",
+    "art_prompts": "2026-11-11"
   },
-  "redo": {
-    "s2_lulu_clock": "clock pushed to the windowsill, point pose doesn't point, table piece under the Lulu cut → new prompt: Lulu on the RIGHT half of the table, LEFT half empty; then redo its plate + sit_up and point poses",
-    "icon_turn": "two clockwise arrows (refresh) → add: ONE single arrow going backwards (anticlockwise), no second arrow"
-  },
+  "redo": {},
   "listened": {
     "vi": [],
     "en": []
@@ -21,6 +19,16 @@
     "2026-11-10: en = F5-TTS v1 base cloned from F5's own sample voice (tool/voice/ref/en/ = placeholder, see SOURCE.txt), not the parent's. Parent must listen; replace ref/en with the parent's English reference and redo with --force if wanted.",
     "2026-11-10: sticker.webp = v1's SVG clock sticker rendered (matches the scene clocks). Parent may keep it instead of an AI sticker.",
     "2026-11-10: en clips came out hot (peaks to +3.8 dB); clean_audio.boost now levels up or down with the limiter; all 36 clips pass --check. Story 5.1 MB > 4 MB budget (audio 2.7 MB); en n1_p1 160 KB > 150 KB.",
-    "2026-11-10: re-takes of the 4 choice labels (c1_snooze, c1_up, c2_bed, c2_turn) from ~/Downloads/clock_time_audio_answer replaced the first takes. Pre-trimmed: a tap thump at the start of c1_up / c2_bed / c2_turn and a stop click at the end of c1_up. c1_up original is clipped (peaks +5 dB on 'thôi'): parent to listen (~/Downloads/c1_up_old_vs_new.m4a); old cleaned takes in the session scratchpad, first-take originals in ~/Downloads/audio_vi_clock."
-  ]
+    "2026-11-10: re-takes of the 4 choice labels (c1_snooze, c1_up, c2_bed, c2_turn) from ~/Downloads/clock_time_audio_answer replaced the first takes. Pre-trimmed: a tap thump at the start of c1_up / c2_bed / c2_turn and a stop click at the end of c1_up. c1_up original is clipped (peaks +5 dB on 'thôi'): parent to listen (~/Downloads/c1_up_old_vs_new.m4a); old cleaned takes in the session scratchpad, first-take originals in ~/Downloads/audio_vi_clock.",
+    "2026-11-11: converting to a kit story (docs/kit.md). outline.md \"Kit\" section = rooms (day edit + tidy_toys night room), layouts, cues, shared sheets hero_c/hero_d/hero_e/lulu_b (prompts live here, copied to prepare_stuff_vacation). redo s2_lulu_clock / icon_turn dropped: s2 is staged, icon_turn is an SVG clock (clock_layer.py \"icons\"). Waiting: parent approves the kit outline.",
+    "2026-11-11: kit outline approved by the parent. Kit prompts written (main session), art review FIX (7) applied + 2 items from the vacation review (hero_e pull, hero_d kneel_fold). One prompts page for both stories (prompts_page.py clock_time,prepare_stuff_vacation). Waiting: parent makes room_day, hero_c, hero_d, hero_e, lulu_b, hero_day, props_clock (tidy_toys room + sheets + sprites already copied into kit/).",
+    "2026-11-11: kit images in (from ~/Downloads/props_kits), cut, staged (stage.json: day + night rooms), clocks moved onto the bedside table, cues remapped and timed, c2 icons are SVG. hero_c came back with other poses: stand-ins (hero_c/x_stretch_yawn, hero_a/kneel_yawn, hero_a/bed_sit, hero_d/kneel_place) until redone. Stills gate pending: parent tests in the app.",
+    "2026-11-11: hero_c redone (parent), cut with --force-mark; stand-ins replaced by the real poses.",
+    "2026-11-11: s2 line changed by the parent: \"Lulu nhảy vào phòng.\" / \"Lulu hops into the room.\" en s2 re-cloned + cues retimed. vi s2.m4a still says the old line: parent re-records it, then clean_audio + cue_times --lang vi.",
+    "2026-11-11: parent re-recorded vi s2 with the new line; cleaned, vi cues retimed.",
+    "2026-11-11: hero_day/backpack_wave had 3 hands; replaced from a new sheet (kit/hero_day_fix.png, already transparent, put on the wall colour and cut, edge shaved 2 px). Re-staged.",
+    "2026-11-11: props_clock/blanket_hidden showed a boy; replaced with the girl from a new sheet (kit/props_clock_fix.png, cut from a crop, away from its two marks). Re-staged (b1_snooze, icon_snooze).",
+    "2026-11-12: stills approved by the parent. Old cut layers, hotspots.json, icon_bed/icon_turn .webp deleted; old workflow tools removed (cutout.py, move_part.py, crop_layers.py, preview_hotspots.py, gen_image --plates/--poses)."
+  ],
+  "prompts_page": "https://claude.ai/artifact/RDe6bjdPLUiHdonvM9qhUz"
 }

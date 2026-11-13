@@ -1,0 +1,136 @@
+{
+  "_note": "Draft. One room file (tidy_toys' room) in two crops: door (right three quarters: foot of the bed, window, rug, door) for s1-d2, bed (tidy's crop) for the ending.",
+  "rooms": {
+    "door": {"file": "kit/room_night.png", "crop": [0.2558, 0.0, 1.0, 1.0]},
+    "bed": {"file": "kit/room_night.png", "crop": [0.05, 0.0, 0.7942, 1.0], "erase_specks": [[0.0, 0.1, 0.2, 0.45]]}
+  },
+  "tint": 0.0,
+  "sheets": {
+    "hero_a": {"scale": 0.68},
+    "hero_b": {"scale": 0.68},
+    "hero_c": {"scale": 0.68},
+    "hero_d": {"scale": 0.68},
+    "hero_e": {"scale": 0.68},
+    "lulu_a": {"scale": 0.34, "anchor": "center"},
+    "lulu_b": {"scale": 0.34, "anchor": "center"},
+    "props": {"scale": 0.72},
+    "props_trip": {"scale": 0.55}
+  },
+  "sprites": {
+    "props_trip/backpack_ready": {"from": "props_trip/backpack_zipped", "add": [{"sprite": "props_trip/hat_round", "at": [0.5, 0.08], "scale": 0.8}]}
+  },
+  "icons": {
+    "icon_backpack": [{"sprite": "props_trip/backpack_zipped", "at": [0.42, 0.9], "size": 0.62}, {"sprite": "props_trip/bottle", "at": [0.8, 0.92], "size": 0.36}, {"sprite": "props_trip/hat_round", "at": [0.42, 0.34], "size": 0.22}],
+    "icon_toys": [{"sprite": "props_trip/backpack_toys", "at": [0.46, 0.88], "size": 0.66}, {"sprite": "props/blocks", "at": [0.8, 0.92], "size": 0.22}],
+    "icon_fold": [{"sprite": "props_trip/clothes_folded", "at": [0.5, 0.78], "size": 0.5}],
+    "icon_scrunch": [{"line": [0.12, 0.36, 0.26, 0.42]}, {"line": [0.1, 0.56, 0.24, 0.56]}, {"line": [0.12, 0.76, 0.26, 0.7]}, {"sprite": "props_trip/clothes_crumpled", "at": [0.58, 0.84], "size": 0.6}]
+  },
+  "scenes": {
+    "s1_backpack": {"room": "door", "parts": [
+      {"kind": "suitcase", "sprite": "props_trip/suitcase", "at": [0.80, 0.86], "size": 0.36, "shadow": true},
+      {"kind": "blocks", "sprite": "props/blocks", "at": [0.12, 0.94], "scale": 0.8},
+      {"kind": "ball", "sprite": "props/ball", "at": [0.22, 0.98], "scale": 0.75, "tap": "hop"},
+      {"kind": "hero", "sprite": "hero_e/sit_backpack", "at": [0.40, 0.95], "poses": {"lift": "hero_e/lift_backpack"}, "shadow": true},
+      {"kind": "bottle", "sprite": "props_trip/bottle", "at": [0.56, 0.97], "scale": 0.75},
+      {"kind": "bucket", "sprite": "props_trip/bucket", "at": [0.64, 0.99], "scale": 0.8},
+      {"kind": "hat", "sprite": "props_trip/hat_round", "at": [0.62, 0.86], "scale": 0.8}
+    ]},
+    "s2_lulu": {"room": "door", "parts": [
+      {"kind": "suitcase", "sprite": "props_trip/suitcase", "at": [0.80, 0.86], "size": 0.36, "shadow": true},
+      {"kind": "blocks", "sprite": "props/blocks", "at": [0.12, 0.94], "scale": 0.8},
+      {"kind": "ball", "sprite": "props/ball", "at": [0.22, 0.98], "scale": 0.75, "tap": "hop"},
+      {"kind": "hat", "sprite": "props_trip/hat_round", "at": [0.62, 0.86], "scale": 0.8},
+      {"kind": "hero", "sprite": "hero_a/sit_look_up", "at": [0.36, 0.95], "shadow": true},
+      {"kind": "backpack", "sprite": "props_trip/backpack_empty", "at": [0.52, 0.93], "shadow": true},
+      {"kind": "bottle", "sprite": "props_trip/bottle", "at": [0.56, 0.99], "scale": 0.75},
+      {"kind": "bucket", "sprite": "props_trip/bucket", "at": [0.66, 0.99], "scale": 0.8},
+      {"kind": "lulu", "sprite": "lulu_a/float", "at": [0.42, 0.40], "poses": {"point": "lulu_a/point"}}
+    ]},
+    "b1_stuffed": {"room": "door", "parts": [
+      {"kind": "suitcase", "sprite": "props_trip/suitcase", "at": [0.80, 0.86], "size": 0.36, "shadow": true},
+      {"kind": "hat", "sprite": "props_trip/hat_round", "at": [0.62, 0.86], "scale": 0.8},
+      {"kind": "hero", "sprite": "hero_d/kneel_push", "at": [0.34, 0.95], "shadow": true},
+      {"kind": "backpack", "sprite": "props_trip/backpack_toys", "at": [0.52, 0.93], "shadow": true},
+      {"kind": "bottle", "sprite": "props_trip/bottle", "at": [0.60, 0.99], "scale": 0.75},
+      {"kind": "bucket", "sprite": "props_trip/bucket", "at": [0.68, 0.99], "scale": 0.8}
+    ]},
+    "b2_heavy": {"room": "door", "parts": [
+      {"kind": "suitcase", "sprite": "props_trip/suitcase", "at": [0.80, 0.86], "size": 0.36, "shadow": true},
+      {"kind": "hat", "sprite": "props_trip/hat_round", "at": [0.62, 0.86], "scale": 0.8},
+      {"kind": "hero", "sprite": "hero_e/pull", "at": [0.36, 0.95], "poses": {"plop": "hero_c/plop"}, "shadow": true},
+      {"kind": "backpack", "sprite": "props_trip/backpack_toys", "at": [0.52, 0.93], "shadow": true},
+      {"kind": "bottle", "sprite": "props_trip/bottle", "at": [0.60, 0.99], "scale": 0.75},
+      {"kind": "bucket", "sprite": "props_trip/bucket", "at": [0.68, 0.99], "scale": 0.8}
+    ]},
+    "b3_lulu_help": {"room": "door", "parts": [
+      {"kind": "suitcase", "sprite": "props_trip/suitcase", "at": [0.80, 0.86], "size": 0.36, "shadow": true},
+      {"kind": "hat", "sprite": "props_trip/hat_round", "at": [0.62, 0.86], "scale": 0.8},
+      {"kind": "lulu", "sprite": "lulu_b/sit", "at": [0.16, 0.83], "poses": {"explain": "lulu_a/talk"}},
+      {"kind": "hero", "sprite": "hero_c/plop", "at": [0.34, 0.95], "shadow": true},
+      {"kind": "backpack", "sprite": "props_trip/backpack_empty", "at": [0.54, 0.93], "shadow": true},
+      {"kind": "blocks", "sprite": "props/blocks", "at": [0.50, 0.995], "scale": 0.8},
+      {"kind": "ball", "sprite": "props/ball", "at": [0.63, 0.99], "scale": 0.75, "tap": "hop"},
+      {"kind": "bottle", "sprite": "props_trip/bottle", "at": [0.70, 0.97], "scale": 0.75},
+      {"kind": "bucket", "sprite": "props_trip/bucket", "at": [0.77, 0.99], "scale": 0.8}
+    ]},
+    "a1_pack": {"room": "door", "parts": [
+      {"kind": "suitcase", "sprite": "props_trip/suitcase", "at": [0.80, 0.86], "size": 0.36, "shadow": true},
+      {"kind": "blocks", "sprite": "props/blocks", "at": [0.06, 0.92], "scale": 0.7},
+      {"kind": "ball", "sprite": "props/ball", "at": [0.13, 0.95], "scale": 0.65, "tap": "hop"},
+      {"kind": "clothes", "sprite": "props_trip/clothes_flat", "at": [0.42, 0.995], "scale": 0.85},
+      {"kind": "hero", "sprite": "hero_a/sit_play", "at": [0.30, 0.95], "poses": {"put_in": "hero_d/kneel_place"}, "shadow": true},
+      {"kind": "backpack", "sprite": "props_trip/backpack_empty", "at": [0.54, 0.91], "shadow": true},
+      {"kind": "hat", "sprite": "props_trip/hat_round", "at": [0.70, 0.86], "scale": 0.8},
+      {"kind": "bottle", "sprite": "props_trip/bottle", "at": [0.47, 0.97], "scale": 0.75},
+      {"kind": "bucket", "sprite": "props_trip/bucket", "at": [0.64, 0.95], "scale": 0.8},
+      {"kind": "lulu", "sprite": "lulu_a/float", "at": [0.22, 0.42], "poses": {"point": "lulu_a/point"}}
+    ]},
+    "c2_pack": {"room": "door", "parts": [
+      {"kind": "suitcase", "sprite": "props_trip/suitcase", "at": [0.80, 0.86], "size": 0.36, "shadow": true},
+      {"kind": "blocks", "sprite": "props/blocks", "at": [0.06, 0.92], "scale": 0.7},
+      {"kind": "ball", "sprite": "props/ball", "at": [0.13, 0.95], "scale": 0.65, "tap": "hop"},
+      {"kind": "clothes", "sprite": "props_trip/clothes_flat", "at": [0.42, 0.995], "scale": 0.85},
+      {"kind": "hero", "sprite": "hero_d/kneel_place", "at": [0.30, 0.95], "shadow": true},
+      {"kind": "backpack", "sprite": "props_trip/backpack_empty", "at": [0.54, 0.91], "shadow": true},
+      {"kind": "hat", "sprite": "props_trip/hat_round", "at": [0.70, 0.86], "scale": 0.8},
+      {"kind": "lulu", "sprite": "lulu_a/point", "at": [0.22, 0.42]}
+    ]},
+    "e1_squash": {"room": "door", "parts": [
+      {"kind": "suitcase", "sprite": "props_trip/suitcase", "at": [0.80, 0.86], "size": 0.36, "shadow": true},
+      {"kind": "hero", "sprite": "hero_d/kneel_press", "at": [0.32, 0.95], "poses": {"sad": "hero_d/kneel_sad"}, "shadow": true},
+      {"kind": "backpack", "sprite": "props_trip/backpack_lumpy", "at": [0.54, 0.93], "shadow": true},
+      {"kind": "clothes", "sprite": "props_trip/clothes_crumpled", "at": [0.54, 0.80], "scale": 0.5},
+      {"kind": "hat", "sprite": "props_trip/hat_round", "at": [0.55, 0.73], "scale": 0.7, "poses": {"squashed": "props_trip/hat_squashed"}}
+    ]},
+    "e2_hat": {"room": "door", "parts": [
+      {"kind": "suitcase", "sprite": "props_trip/suitcase", "at": [0.80, 0.86], "size": 0.36, "shadow": true},
+      {"kind": "backpack", "sprite": "props_trip/backpack_empty", "at": [0.62, 0.90], "shadow": true},
+      {"kind": "hero", "sprite": "hero_d/kneel_sad", "at": [0.30, 0.95], "shadow": true},
+      {"kind": "clothes", "sprite": "props_trip/clothes_crumpled", "at": [0.12, 0.98], "scale": 0.75},
+      {"kind": "hat", "sprite": "props_trip/hat_squashed", "at": [0.47, 0.99], "scale": 0.8, "poses": {"round": "props_trip/hat_round"}},
+      {"kind": "lulu", "sprite": "lulu_a/float", "at": [0.55, 0.66], "poses": {"pat": "lulu_b/pat"}, "flip": true}
+    ]},
+    "d1_fold": {"room": "door", "parts": [
+      {"kind": "suitcase", "sprite": "props_trip/suitcase", "at": [0.80, 0.86], "size": 0.36, "shadow": true},
+      {"kind": "backpack", "sprite": "props_trip/backpack_empty", "at": [0.62, 0.90], "shadow": true},
+      {"kind": "hat", "sprite": "props_trip/hat_round", "at": [0.70, 0.95], "scale": 0.7},
+      {"kind": "hero", "sprite": "hero_d/kneel_fold", "at": [0.30, 0.95], "poses": {"done": "hero_a/kneel_happy"}, "shadow": true},
+      {"kind": "clothes", "sprite": "props_trip/clothes_flat", "at": [0.46, 0.995], "scale": 0.85, "poses": {"folded": "props_trip/clothes_folded"}},
+      {"kind": "lulu", "sprite": "lulu_a/float", "at": [0.50, 0.50], "poses": {"clap": "lulu_a/clap"}}
+    ]},
+    "d2_ready": {"room": "door", "parts": [
+      {"kind": "suitcase", "sprite": "props_trip/suitcase", "at": [0.80, 0.86], "size": 0.36, "shadow": true},
+      {"kind": "backpack", "sprite": "props_trip/backpack_zipped", "at": [0.62, 0.90], "shadow": true},
+      {"kind": "hat", "sprite": "props_trip/hat_round", "at": [0.48, 0.99], "scale": 0.7},
+      {"kind": "hero", "sprite": "hero_d/kneel_place", "at": [0.30, 0.95], "poses": {"cheer": "hero_a/kneel_happy"}, "shadow": true},
+      {"kind": "lulu", "sprite": "lulu_a/float", "at": [0.46, 0.42], "poses": {"cheer": "lulu_b/cheer"}}
+    ]},
+    "end_asleep": {"room": "bed", "parts": [
+      {"kind": "suitcase", "sprite": "props_trip/suitcase", "at": [0.93, 0.86], "size": 0.36, "shadow": true},
+      {"kind": "backpack", "sprite": "props_trip/backpack_ready", "at": [0.80, 0.92], "shadow": true},
+      {"kind": "hero", "sprite": "hero_b/asleep", "at": [0.29, 0.575], "idle": "breathe", "tap": null},
+      {"kind": "blanket", "sprite": "props/blanket_lump", "at": [0.425, 0.61], "scale": 1.3, "tap": null},
+      {"kind": "lulu", "sprite": "lulu_a/float", "at": [0.47, 0.30], "poses": {"whisper": "lulu_a/whisper"}}
+    ]}
+  }
+}

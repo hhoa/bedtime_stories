@@ -181,8 +181,8 @@ def cue_fractions(story: dict, lang: str, audio: Path, lead: float) -> dict[tupl
 CUE_RE = re.compile(r'\{"word":\s*"((?:[^"\\]|\\.)*)"[^{}]*\}')
 
 
-def write_back(path: Path, story: dict, found: dict[tuple[str, str, int], float]) -> int:
-    """Set "at" in each cue object of the file text, keeping its formatting."""
+def write_back(path: Path, story: dict, found: dict[tuple[str, str, int], float], langs: list[str]) -> int:
+    """Set "at" in each cue object of the given languages, keeping the file's formatting (other languages untouched)."""
     order = [(n['id'], lang, i, c['word'])
              for n in story['nodes'] for lang, cues in (n.get('cues') or {}).items()
              for i, c in enumerate(cues)]
@@ -194,6 +194,10 @@ def write_back(path: Path, story: dict, found: dict[tuple[str, str, int], float]
     for m, (nid, lang, i, word) in zip(matches, order):
         if json.loads(f'"{m.group(1)}"') != word:
             sys.exit(f'{path}: cue order mismatch at {nid} ({lang}) "{word}"; not writing')
+        if lang not in langs:
+            out += [src[last:m.end()]]
+            last = m.end()
+            continue
         obj = re.sub(r',\s*"at":\s*[0-9.]+', '', m.group())
         if (nid, lang, i) in found:
             obj = obj[:-1] + f', "at": {found[nid, lang, i]}' + '}'
@@ -215,7 +219,8 @@ def main():
     path = ROOT / 'assets/stories' / args.story / 'story.json'
     story = json.loads(path.read_text(encoding='utf-8'))
     found = {}
-    for lang in [args.lang] if args.lang else ['vi', 'en']:
+    langs = [args.lang] if args.lang else ['vi', 'en']
+    for lang in langs:
         fr = cue_fractions(story, lang, path.parent / 'audio' / lang, args.lead)
         for n in story['nodes']:
             cues = (n.get('cues') or {}).get(lang) or []
@@ -227,7 +232,7 @@ def main():
                     f'{c["word"]}@{fr.get((n["id"], i), "-")}' for i, c in enumerate(cues)))
     if args.dry:
         return
-    changed = write_back(path, story, found)
+    changed = write_back(path, story, found, langs)
     print(f'{path.relative_to(ROOT)}: {len(found)} cue(s) timed, {changed} changed')
 
 

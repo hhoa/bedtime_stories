@@ -86,8 +86,13 @@ def kit_status(sid: str, prompts: dict, layers: dict, art_dir: Path) -> dict | N
     if not kit:
         return None
     sheets = kit.get('sheets', {})
-    names = (['room'] if kit.get('room') else []) + list(sheets)
+    rooms = {f'room_{k}': v for k, v in kit.get('rooms', {}).items()}
+    if kit.get('room'):
+        rooms['room'] = kit['room']
+    names = list(rooms) + list(sheets)
     saved = {n: find_pic(art_dir / 'kit', n) for n in names}
+    # Rooms and sheets made for another story: copied, not made in Gemini.
+    shared = {n: e['from'] for n, e in [*rooms.items(), *sheets.items()] if e.get('from')}
     to_cut = []
     for name, sheet in sheets.items():
         src = saved[name]
@@ -104,7 +109,13 @@ def kit_status(sid: str, prompts: dict, layers: dict, art_dir: Path) -> dict | N
     all_cut = all(saved.values()) and not to_cut
     return {
         'total': len(names), 'saved': sum(1 for v in saved.values() if v),
-        'missing': [n for n, v in saved.items() if not v],
+        'missing': [n for n, v in saved.items() if not v and n not in shared],
+        # Copy once the other story's image exists; until then it waits for that story.
+        'to_copy': {n: shared[n] for n, v in saved.items()
+                    if not v and n in shared and (art_dir.parent / shared[n]).exists()},
+        'waits_for': sorted({shared[n].split('/')[0] for n, v in saved.items()
+                             if not v and n in shared and not (art_dir.parent / shared[n]).exists()}),
+        'rooms': len(rooms), 'sheets_unsaved': sum(1 for n in sheets if not saved[n]),
         'sheets': len(sheets), 'to_cut': to_cut,
         'stage_json': stage_path.exists(), 'scenes': len(scenes), 'staged': len(staged),
         # Everything is cut, and the scenes were never composed or stage.json changed since.
@@ -118,9 +129,6 @@ def art_status(sid: str, prompts: dict, progress: dict, art_dir: Path) -> dict:
     layers = read_json(images / 'layers.json', {})
     redo = progress.get('redo', {})
     pics = list(prompts.get('pictures', {}))
-    plates = prompts.get('plates', {})
-    poses = {(scene, part, pose) for scene, parts in prompts.get('poses', {}).items()
-             for part, names in parts.items() for pose in names}
 
     known = set(pics)
     done, waiting, missing = [], [], []
@@ -136,34 +144,16 @@ def art_status(sid: str, prompts: dict, progress: dict, art_dir: Path) -> dict:
         elif name not in redo:
             missing.append(name)
 
-    plate_saved = [s for s in plates if find_pic(art_dir / 'plates', s)]
-    pose_saved = [p for p in poses if find_pic(art_dir / 'poses', '__'.join(p))]
-
-    # Cut = the scene's layers.json lists every part its plate names, with every pose.
-    cut, ready_to_cut = [], []
-    for scene, parts in plates.items():
-        want = [p.strip() for p in parts.split(',') if p.strip()]
-        have = {l.get('kind'): l for l in layers.get(f'{scene}.webp', layers.get(scene, []))}
-        scene_poses = [p for p in poses if p[0] == scene]
-        if all(k in have for k in want) and all(
-                pose in have.get(part, {}).get('poses', {}) for _, part, pose in scene_poses):
-            cut.append(scene)
-        elif (scene in done and scene not in redo and scene in plate_saved
-              and all(p in pose_saved for p in scene_poses)):
-            ready_to_cut.append(scene)
-
     unknown = []
+    if prompts.get('kit') and images.is_dir():
+        # Old per-scene pictures of a story turned kit: the app's scenes and icons are staged now.
+        known |= {f.stem for f in images.glob('*.webp')}
     if art_dir.is_dir():
         unknown = sorted(f.name for f in art_dir.iterdir()
                          if f.is_file() and f.suffix.lower() in PIC_EXTS and f.stem not in known)
     return {
         'pictures': {'total': len(pics), 'done': len(done), 'waiting': waiting,
                      'missing': missing, 'redo': {k: v for k, v in redo.items() if k in known}},
-        'plates': {'total': len(plates), 'saved': len(plate_saved),
-                   'missing': [s for s in plates if s not in plate_saved]},
-        'poses': {'total': len(poses), 'saved': len(pose_saved),
-                  'missing': sorted('__'.join(p) for p in poses if p not in pose_saved)},
-        'cut': {'total': len(plates), 'done': cut, 'ready': ready_to_cut},
         'kit': kit_status(sid, prompts, layers, art_dir),
         'unknown_files': unknown,
         'art_dir': str(art_dir),
@@ -300,13 +290,15 @@ def next_steps(s: dict) -> list[str]:
     if art and art['unknown_files']:
         steps.append(f'name {len(art["unknown_files"])} unknown file(s) in {art["art_dir"]}: '
                      f'/story-art {sid} (step 1)')
-    if art and art['cut']['ready']:
-        steps.append(f'cut moving parts for {", ".join(art["cut"]["ready"])}: /story-art {sid} (step 4)')
     kit = art and art['kit']
+    if kit and kit['to_copy']:
+        steps.append('copy shared kit image(s) made for another story into '
+                     f'{art["art_dir"]}/kit/: '
+                     + ', '.join(f'{src} -> {n}.png' for n, src in kit['to_copy'].items()))
     if kit and kit['to_cut']:
         steps.append(f'cut {len(kit["to_cut"])} kit sheet(s) into sprites ({", ".join(kit["to_cut"])}): '
                      'tool/sprite_sheet.py (names: gen_image.py --kit --prompts-out prints the command)')
-    if kit and not kit['stage_json']:
+    if kit and not kit['stage_json'] and not kit['missing'] and not kit['to_copy']:
         steps.append(f'write docs/stories/{sid}/stage.json (where every part stands, per scene): tool/stage.py --help')
     elif kit and kit['compose']:
         steps.append(f'compose the scenes: tool/cutout/.venv/bin/python tool/stage.py {sid} --preview <dir>, '
@@ -331,23 +323,15 @@ def next_steps(s: dict) -> list[str]:
         p = art['pictures']
         if p['redo']:
             steps.append(f'parent redoes {len(p["redo"])} picture(s): {", ".join(p["redo"])}')
+        if art['kit'] and art['kit']['waits_for']:
+            steps.append(f'shared kit sheets wait for {", ".join(art["kit"]["waits_for"])} '
+                         '(made there, then copied here)')
         if art['kit'] and art['kit']['missing']:
             steps.append(f'parent makes {len(art["kit"]["missing"])} kit image(s) in Gemini '
                          f'(save in {art["art_dir"]}/kit/): {", ".join(art["kit"]["missing"])}')
         if p['missing']:
             steps.append(f'parent makes {len(p["missing"])} picture(s) in Gemini, next: '
                          f'{", ".join(p["missing"][:3])}' + (' ...' if len(p['missing']) > 3 else ''))
-        # Plates and poses only for scenes whose picture is in (they edit it).
-        if art['plates']['missing'] and p['done']:
-            todo = [x for x in art['plates']['missing'] if x not in p['missing']]
-            if todo:
-                steps.append(f'parent makes {len(todo)} plate(s): {", ".join(todo[:3])}'
-                             + (' ...' if len(todo) > 3 else ''))
-        if art['poses']['missing'] and p['done']:
-            todo = [x for x in art['poses']['missing'] if x.split('__')[0] not in p['missing']]
-            if todo:
-                steps.append(f'parent makes {len(todo)} pose edit(s): {", ".join(todo[:3])}'
-                             + (' ...' if len(todo) > 3 else ''))
     unheard = {l: a['cloned_not_heard'] for l, a in audio.items() if a['cloned_not_heard']}
     if unheard:
         steps.append('parent listens to cloned clips ('
@@ -371,7 +355,7 @@ def next_steps(s: dict) -> list[str]:
 
 def kit_line(kit: dict) -> str:
     return (f'kit {kit["saved"]}/{kit["total"]} saved'
-            f', sheets cut {kit["sheets"] - len(kit["to_cut"]) - sum(1 for m in kit["missing"] if m != "room")}'
+            f', sheets cut {kit["sheets"] - len(kit["to_cut"]) - kit["sheets_unsaved"]}'
             f'/{kit["sheets"]}, scenes staged {kit["staged"]}/{kit["scenes"]}')
 
 
@@ -382,10 +366,6 @@ def brief(s: dict) -> str:
         parts.append(f'pictures {art["pictures"]["done"]}/{art["pictures"]["total"]}')
         if art['kit']:
             parts.append(kit_line(art['kit']))
-        if art['plates']['total'] or art['poses']['total'] or not art['kit']:
-            parts.append(f'plates {art["plates"]["saved"]}/{art["plates"]["total"]}'
-                         f', poses {art["poses"]["saved"]}/{art["poses"]["total"]}'
-                         f', cut {len(art["cut"]["done"])}/{art["cut"]["total"]}')
     for lang, a in s.get('audio', {}).items():
         parts.append(f'audio {lang} {a["ok"]}/{a["total"]}')
     if 'wired' in s:
@@ -416,11 +396,6 @@ def report(s: dict) -> str:
         if art['kit']:
             lines.append(kit_line(art['kit'])
                          + (f', missing: {", ".join(art["kit"]["missing"])}' if art['kit']['missing'] else ''))
-        if art['plates']['total'] or art['poses']['total'] or not art['kit']:
-            lines.append(f'plates {art["plates"]["saved"]}/{art["plates"]["total"]} saved'
-                         f' | poses {art["poses"]["saved"]}/{art["poses"]["total"]} saved'
-                         f' | cut {len(art["cut"]["done"])}/{art["cut"]["total"]}'
-                         + (f', ready to cut: {", ".join(art["cut"]["ready"])}' if art['cut']['ready'] else ''))
         if art['unknown_files']:
             lines.append(f'  unknown files: {", ".join(art["unknown_files"])}')
     for lang, a in s.get('audio', {}).items():

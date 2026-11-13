@@ -1,0 +1,20 @@
+{
+  "gates": {
+    "outline": "2026-11-12",
+    "script": "2026-11-12",
+    "art_prompts": "2026-11-12"
+  },
+  "listened": {
+    "vi": [],
+    "en": []
+  },
+  "notes": [
+    "2026-11-12: new idea (candy -> tummyache -> veggie soup). Idea checker SIMILAR to v1 eat_veggies: choices are about candy only, veg soup is the fix beat (n1), never a choice. Parent approved the outline with sit_ouch = arms around tummy + a few small tears (parent asked her to cry a bit; b1 'Bé rơm rớm nước mắt', Lulu soothes from the air in b2).",
+    "2026-11-12: script approved. Parent asked: veg soup is not an instant cure -> pumpkin soup + peas, b2 'nghỉ chút ... đỡ dần', n1 neutral (both paths), tummy fully calm only at end. e2 'cạch'/'click' removed.",
+    "2026-11-12: art review PASS (round 2: smaller jar, eat_candy wrapper as bow, + hero_h eat_candy_green used by b1 green cue). Reused sheets copied (not moved) into ~/Downloads/story_art/candy_tummy/kit/: room, hero_a, hero_b, lulu_a, props (tidy_toys); hero_d, hero_e, props_clock (clock_time, original, not _fix). New Gemini: props_candy, hero_h, cover, sticker.",
+    "2026-11-12: batch 1 in (parent saved in ~/Downloads/candy, copied to story_art/candy_tummy). props_candy + hero_h cut OK; cover + sticker imported (58/21 KB). Art review: cover room/Lulu differ from the kit (offer redo). stage.json written (jar size 0.13, jar flipped in e1/e2, d1 hero behind table), stage.py run, wired, check --art 0 errors, 0.9 MB. Stills gate pending.",
+    "2026-11-12: cover redone by parent (Gemini_Generated_Image_qp8z0yqp8z0yqp8z.png, copied as story_art/candy_tummy/cover.png). Watermark removed, wall sparkles inpainted (left wall), cropped 4:3 x 0.075-0.819 (door dropped), imported 47 KB. Room now matches; Lulu still short upright ears + strong glow.",
+    "2026-11-12: vi 16/16 recorded by parent (~/Downloads/candy/audio_vi), cleaned (-38..-42 -> ~-16 LUFS, noise ~23 -> ~43 dB under voice, no flags). en 16/16 cloned (parent asked for AI voice), not listened yet. cue_times run (102 cues). story.json reformatted with one cue per line (cue_times needs it). analyze clean, 135 tests pass. 3.3 MB; en/b2.m4a 154 KB (> 150) offered downsize."
+  ],
+  "prompts_page": "https://claude.ai/artifact/RoGwco49bi4HH5EH4qRP7W"
+}

@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# One-time setup for tool/cutout.py (rembg birefnet-general-lite + OpenCV).
+# One-time setup for tool/sprite_sheet.py, stage.py, import_art.py (rembg birefnet-general-lite + OpenCV).
 # Models download to ~/.rembg on first use.
 set -euo pipefail
 cd "$(dirname "$0")"

@@ -1,0 +1,896 @@
+{
+  "_note": "Bedroom = tidy_toys kit/room.png with tidy's crop (bed left, pillow ~[0.18, 0.50], mattress top y ~0.49-0.56, floor y 0.80-1.0, rug x 0.25-0.98). Table stands at tidy's toy-box spot [0.85, 0.89]. Bathroom = kit/room_bath.png (square, cropped to 4:3). Draw order (bedroom): flowers, table, vase, cup, ball, hero, blanket, germ, lulu. props_truth sheet scale 0.52 = vase size; table x1.8, cup x0.78; flowers x0.78 so its in_cup pose hides exactly under the cup. Tune with: tool/cutout/.venv/bin/python tool/stage.py tell_truth --preview <dir> --dry --guides hero_b heads ~11% bigger than hero_a on the sheets: hero_b scale 0.61. lulu_c cut without --fill-holes (grey patch by sad's chin). From a2 on the vase is put away (parent edit 2026-11-11): only the cup of flowers stands on the table, centred. 2026-11-11: vase BREAKS (parent): props_broken/vase_shards (+ props_truth/flowers = vase_broken composite) from s1 to a1; a2 starts with shards + loose flowers, Lulu glows and the shards pose to fx/gone (8px transparent sprite) on 'bay đi mất'/'float away'.",
+  "rooms": {
+    "night": {
+      "file": "kit/room.png",
+      "crop": [
+        0.05,
+        0.0,
+        0.7942,
+        1.0
+      ],
+      "erase_specks": [
+        [
+          0.0,
+          0.1,
+          0.2,
+          0.45
+        ]
+      ]
+    },
+    "bath": {
+      "file": "kit/room_bath.png",
+      "crop": [
+        0.0,
+        0.125,
+        1.0,
+        0.875
+      ]
+    }
+  },
+  "tint": 0.0,
+  "sheets": {
+    "hero_a": {
+      "scale": 0.68
+    },
+    "hero_b": {
+      "scale": 0.61
+    },
+    "lulu_a": {
+      "scale": 0.34,
+      "anchor": "center"
+    },
+    "lulu_c": {
+      "scale": 0.245,
+      "anchor": "center"
+    },
+    "props": {
+      "scale": 0.72
+    },
+    "props_truth": {
+      "scale": 0.52
+    },
+    "props_broken": {
+      "scale": 0.18
+    },
+    "fx": {
+      "scale": 1.0
+    }
+  },
+  "sprites": {
+    "props_truth/germ_sleepy": {
+      "anchor": [
+        0.5,
+        0.5
+      ]
+    },
+    "props_truth/germ_cheer": {
+      "anchor": [
+        0.5,
+        0.5
+      ]
+    },
+    "fx/gone": {
+      "anchor": [
+        0.5,
+        1.0
+      ]
+    },
+    "props_broken/vase_broken": {
+      "from": "props_broken/vase_shards",
+      "add": [
+        {
+          "sprite": "props_truth/flowers",
+          "at": [
+            0.28,
+            0.88
+          ],
+          "scale": 2.89
+        }
+      ]
+    }
+  },
+  "icons": {
+    "icon_truth": [
+      {
+        "sprite": "hero_a/stand_sorry",
+        "at": [
+          0.5,
+          0.58
+        ],
+        "size": 0.78
+      },
+      {
+        "sprite": "props_truth/heart",
+        "at": [
+          0.78,
+          0.2
+        ],
+        "size": 0.26
+      }
+    ],
+    "icon_notme": [
+      {
+        "sprite": "hero_a/say_no",
+        "at": [
+          0.36,
+          0.52
+        ],
+        "size": 0.86
+      },
+      {
+        "sprite": "props_broken/vase_broken",
+        "at": [
+          0.74,
+          0.8
+        ],
+        "size": 0.3
+      }
+    ],
+    "icon_toothbrush": [
+      {
+        "sprite": "hero_a/brush",
+        "at": [
+          0.5,
+          0.86
+        ],
+        "size": 1.6
+      }
+    ],
+    "icon_germ": [
+      {
+        "sprite": "props_truth/germ_cheer",
+        "at": [
+          0.5,
+          0.5
+        ],
+        "size": 0.7
+      }
+    ]
+  },
+  "scenes": {
+    "s1_spill": {
+      "room": "night",
+      "parts": [
+        {
+          "kind": "table",
+          "sprite": "props_truth/bedside_table",
+          "at": [
+            0.85,
+            0.89
+          ],
+          "scale": 1.8,
+          "shadow": true
+        },
+        {
+          "kind": "vase",
+          "sprite": "props_truth/vase_flowers",
+          "at": [
+            0.85,
+            0.655
+          ],
+          "poses": {
+            "vase_broken": "props_broken/vase_broken"
+          }
+        },
+        {
+          "kind": "ball",
+          "sprite": "props/ball",
+          "at": [
+            0.55,
+            0.97
+          ],
+          "scale": 0.75,
+          "tap": "hop"
+        },
+        {
+          "kind": "hero",
+          "sprite": "hero_b/kneel_roll",
+          "at": [
+            0.4,
+            0.96
+          ],
+          "poses": {
+            "stand_oops": "hero_a/stand_oops"
+          },
+          "shadow": true
+        }
+      ]
+    },
+    "s2_lulu": {
+      "room": "night",
+      "parts": [
+        {
+          "kind": "table",
+          "sprite": "props_truth/bedside_table",
+          "at": [
+            0.85,
+            0.89
+          ],
+          "scale": 1.8,
+          "shadow": true
+        },
+        {
+          "kind": "vase",
+          "sprite": "props_broken/vase_broken",
+          "at": [
+            0.7,
+            0.94
+          ]
+        },
+        {
+          "kind": "ball",
+          "sprite": "props/ball",
+          "at": [
+            0.82,
+            0.97
+          ],
+          "scale": 0.75,
+          "tap": "hop"
+        },
+        {
+          "kind": "hero",
+          "sprite": "hero_a/stand_oops",
+          "at": [
+            0.4,
+            0.96
+          ],
+          "shadow": true
+        },
+        {
+          "kind": "lulu",
+          "sprite": "lulu_a/float",
+          "at": [
+            0.5,
+            0.26
+          ],
+          "poses": {
+            "sad": "lulu_c/sad"
+          }
+        }
+      ]
+    },
+    "c1_ask": {
+      "room": "night",
+      "parts": [
+        {
+          "kind": "table",
+          "sprite": "props_truth/bedside_table",
+          "at": [
+            0.85,
+            0.89
+          ],
+          "scale": 1.8,
+          "shadow": true
+        },
+        {
+          "kind": "vase",
+          "sprite": "props_broken/vase_broken",
+          "at": [
+            0.7,
+            0.94
+          ]
+        },
+        {
+          "kind": "ball",
+          "sprite": "props/ball",
+          "at": [
+            0.82,
+            0.97
+          ],
+          "scale": 0.75,
+          "tap": "hop"
+        },
+        {
+          "kind": "hero",
+          "sprite": "hero_a/stand_oops",
+          "at": [
+            0.4,
+            0.96
+          ],
+          "shadow": true
+        },
+        {
+          "kind": "lulu",
+          "sprite": "lulu_c/sad",
+          "at": [
+            0.66,
+            0.52
+          ]
+        }
+      ]
+    },
+    "b1_notme": {
+      "room": "night",
+      "parts": [
+        {
+          "kind": "table",
+          "sprite": "props_truth/bedside_table",
+          "at": [
+            0.85,
+            0.89
+          ],
+          "scale": 1.8,
+          "shadow": true
+        },
+        {
+          "kind": "vase",
+          "sprite": "props_broken/vase_broken",
+          "at": [
+            0.7,
+            0.94
+          ]
+        },
+        {
+          "kind": "ball",
+          "sprite": "props/ball",
+          "at": [
+            0.82,
+            0.97
+          ],
+          "scale": 0.75,
+          "tap": "hop"
+        },
+        {
+          "kind": "hero",
+          "sprite": "hero_a/say_no",
+          "at": [
+            0.4,
+            0.96
+          ],
+          "shadow": true
+        },
+        {
+          "kind": "lulu",
+          "sprite": "lulu_c/sad",
+          "at": [
+            0.66,
+            0.52
+          ],
+          "poses": {
+            "peek": "lulu_c/peek"
+          }
+        }
+      ]
+    },
+    "b2_heavy": {
+      "room": "night",
+      "parts": [
+        {
+          "kind": "table",
+          "sprite": "props_truth/bedside_table",
+          "at": [
+            0.85,
+            0.89
+          ],
+          "scale": 1.8,
+          "shadow": true
+        },
+        {
+          "kind": "vase",
+          "sprite": "props_broken/vase_broken",
+          "at": [
+            0.7,
+            0.94
+          ]
+        },
+        {
+          "kind": "ball",
+          "sprite": "props/ball",
+          "at": [
+            0.82,
+            0.97
+          ],
+          "scale": 0.75,
+          "tap": "hop"
+        },
+        {
+          "kind": "hero",
+          "sprite": "hero_b/sit_tummy",
+          "at": [
+            0.4,
+            0.96
+          ],
+          "shadow": true
+        },
+        {
+          "kind": "lulu",
+          "sprite": "lulu_c/peek",
+          "at": [
+            0.5,
+            0.26
+          ]
+        }
+      ]
+    },
+    "b3_lulu": {
+      "room": "night",
+      "parts": [
+        {
+          "kind": "table",
+          "sprite": "props_truth/bedside_table",
+          "at": [
+            0.85,
+            0.89
+          ],
+          "scale": 1.8,
+          "shadow": true
+        },
+        {
+          "kind": "vase",
+          "sprite": "props_broken/vase_broken",
+          "at": [
+            0.7,
+            0.94
+          ]
+        },
+        {
+          "kind": "ball",
+          "sprite": "props/ball",
+          "at": [
+            0.82,
+            0.97
+          ],
+          "scale": 0.75,
+          "tap": "hop"
+        },
+        {
+          "kind": "hero",
+          "sprite": "hero_b/sit_tummy",
+          "at": [
+            0.4,
+            0.96
+          ],
+          "poses": {
+            "sit_look_up": "hero_b/sit_look_up"
+          },
+          "shadow": true
+        },
+        {
+          "kind": "lulu",
+          "sprite": "lulu_a/float",
+          "at": [
+            0.5,
+            0.26
+          ],
+          "poses": {
+            "talk": "lulu_a/talk"
+          }
+        }
+      ]
+    },
+    "a1_sorry": {
+      "room": "night",
+      "parts": [
+        {
+          "kind": "table",
+          "sprite": "props_truth/bedside_table",
+          "at": [
+            0.85,
+            0.89
+          ],
+          "scale": 1.8,
+          "shadow": true
+        },
+        {
+          "kind": "vase",
+          "sprite": "props_broken/vase_broken",
+          "at": [
+            0.7,
+            0.94
+          ]
+        },
+        {
+          "kind": "ball",
+          "sprite": "props/ball",
+          "at": [
+            0.82,
+            0.97
+          ],
+          "scale": 0.75,
+          "tap": "hop"
+        },
+        {
+          "kind": "hero",
+          "sprite": "hero_a/stand_sorry",
+          "at": [
+            0.4,
+            0.96
+          ],
+          "poses": {
+            "stand_proud": "hero_a/stand_proud"
+          },
+          "shadow": true
+        },
+        {
+          "kind": "lulu",
+          "sprite": "lulu_c/sad",
+          "at": [
+            0.66,
+            0.52
+          ],
+          "poses": {
+            "float": "lulu_a/float",
+            "clap": "lulu_a/clap"
+          }
+        }
+      ]
+    },
+    "a2_flowers": {
+      "room": "night",
+      "parts": [
+        {
+          "kind": "flowers",
+          "sprite": "props_truth/flowers",
+          "at": [
+            0.62,
+            0.96
+          ],
+          "scale": 0.78,
+          "poses": {
+            "in_cup": "props_truth/cup"
+          }
+        },
+        {
+          "kind": "table",
+          "sprite": "props_truth/bedside_table",
+          "at": [
+            0.85,
+            0.89
+          ],
+          "scale": 1.8,
+          "shadow": true
+        },
+        {
+          "kind": "shards",
+          "sprite": "props_broken/vase_shards",
+          "at": [
+            0.74,
+            0.94
+          ],
+          "poses": {
+            "gone": "fx/gone"
+          },
+          "tap": null
+        },
+        {
+          "kind": "cup",
+          "sprite": "props_truth/cup",
+          "at": [
+            0.85,
+            0.655
+          ],
+          "scale": 0.78,
+          "poses": {
+            "cup_flowers": "props_truth/cup_flowers"
+          }
+        },
+        {
+          "kind": "ball",
+          "sprite": "props/ball",
+          "at": [
+            0.82,
+            0.97
+          ],
+          "scale": 0.75,
+          "tap": "hop"
+        },
+        {
+          "kind": "hero",
+          "sprite": "hero_a/stand_proud",
+          "at": [
+            0.52,
+            0.96
+          ],
+          "poses": {
+            "stand_place": "hero_a/stand_place",
+            "stand_proud": "hero_a/stand_proud"
+          },
+          "shadow": true
+        },
+        {
+          "kind": "lulu",
+          "sprite": "lulu_a/float",
+          "at": [
+            0.7,
+            0.38
+          ],
+          "poses": {
+            "clap": "lulu_a/clap",
+            "glow": "lulu_a/glow"
+          }
+        }
+      ]
+    },
+    "n1_teeth": {
+      "room": "night",
+      "parts": [
+        {
+          "kind": "table",
+          "sprite": "props_truth/bedside_table",
+          "at": [
+            0.85,
+            0.89
+          ],
+          "scale": 1.8,
+          "shadow": true
+        },
+        {
+          "kind": "cup",
+          "sprite": "props_truth/cup_flowers",
+          "at": [
+            0.85,
+            0.655
+          ],
+          "scale": 0.78
+        },
+        {
+          "kind": "ball",
+          "sprite": "props/ball",
+          "at": [
+            0.82,
+            0.97
+          ],
+          "scale": 0.75,
+          "tap": "hop"
+        },
+        {
+          "kind": "hero",
+          "sprite": "hero_a/stand_proud",
+          "at": [
+            0.52,
+            0.96
+          ],
+          "poses": {
+            "stand_oops": "hero_a/stand_oops"
+          },
+          "shadow": true
+        },
+        {
+          "kind": "lulu",
+          "sprite": "lulu_a/float",
+          "at": [
+            0.7,
+            0.38
+          ],
+          "poses": {
+            "talk": "lulu_a/talk"
+          }
+        }
+      ]
+    },
+    "e1_germ": {
+      "room": "night",
+      "parts": [
+        {
+          "kind": "table",
+          "sprite": "props_truth/bedside_table",
+          "at": [
+            0.85,
+            0.89
+          ],
+          "scale": 1.8,
+          "shadow": true
+        },
+        {
+          "kind": "cup",
+          "sprite": "props_truth/cup_flowers",
+          "at": [
+            0.85,
+            0.655
+          ],
+          "scale": 0.78
+        },
+        {
+          "kind": "ball",
+          "sprite": "props/ball",
+          "at": [
+            0.82,
+            0.97
+          ],
+          "scale": 0.75,
+          "tap": "hop"
+        },
+        {
+          "kind": "hero",
+          "sprite": "hero_b/lie_sticky",
+          "at": [
+            0.29,
+            0.575
+          ],
+          "tap": null
+        },
+        {
+          "kind": "blanket",
+          "sprite": "props/blanket_lump",
+          "at": [
+            0.425,
+            0.61
+          ],
+          "scale": 1.3,
+          "tap": null
+        },
+        {
+          "kind": "germ",
+          "sprite": "props_truth/germ_sleepy",
+          "at": [
+            0.09,
+            0.22
+          ],
+          "poses": {
+            "germ_cheer": "props_truth/germ_cheer"
+          },
+          "scale": 0.8
+        }
+      ]
+    },
+    "e2_truth": {
+      "room": "night",
+      "parts": [
+        {
+          "kind": "table",
+          "sprite": "props_truth/bedside_table",
+          "at": [
+            0.85,
+            0.89
+          ],
+          "scale": 1.8,
+          "shadow": true
+        },
+        {
+          "kind": "cup",
+          "sprite": "props_truth/cup_flowers",
+          "at": [
+            0.85,
+            0.655
+          ],
+          "scale": 0.78
+        },
+        {
+          "kind": "ball",
+          "sprite": "props/ball",
+          "at": [
+            0.82,
+            0.97
+          ],
+          "scale": 0.75,
+          "tap": "hop"
+        },
+        {
+          "kind": "hero",
+          "sprite": "hero_b/lie_sticky",
+          "at": [
+            0.29,
+            0.575
+          ],
+          "poses": {
+            "bed_sit_shy": "hero_b/bed_sit_shy"
+          },
+          "tap": null
+        },
+        {
+          "kind": "blanket",
+          "sprite": "props/blanket_lump",
+          "at": [
+            0.425,
+            0.61
+          ],
+          "scale": 1.3,
+          "tap": null
+        },
+        {
+          "kind": "germ",
+          "sprite": "props_truth/germ_sleepy",
+          "at": [
+            0.09,
+            0.22
+          ],
+          "scale": 0.8
+        },
+        {
+          "kind": "lulu",
+          "sprite": "lulu_a/float",
+          "at": [
+            0.5,
+            0.26
+          ],
+          "poses": {
+            "talk": "lulu_a/talk"
+          }
+        }
+      ]
+    },
+    "d1_brush": {
+      "room": "bath",
+      "parts": [
+        {
+          "kind": "hero",
+          "sprite": "hero_a/brush",
+          "at": [
+            0.47,
+            0.97
+          ],
+          "shadow": true,
+          "scale": 1.2
+        },
+        {
+          "kind": "lulu",
+          "sprite": "lulu_a/float",
+          "at": [
+            0.76,
+            0.42
+          ],
+          "poses": {
+            "clap": "lulu_a/clap"
+          },
+          "scale": 1.15
+        }
+      ]
+    },
+    "end_asleep": {
+      "room": "night",
+      "parts": [
+        {
+          "kind": "table",
+          "sprite": "props_truth/bedside_table",
+          "at": [
+            0.85,
+            0.89
+          ],
+          "scale": 1.8,
+          "shadow": true
+        },
+        {
+          "kind": "cup",
+          "sprite": "props_truth/cup_flowers",
+          "at": [
+            0.85,
+            0.655
+          ],
+          "scale": 0.78
+        },
+        {
+          "kind": "ball",
+          "sprite": "props/ball",
+          "at": [
+            0.82,
+            0.97
+          ],
+          "scale": 0.75,
+          "tap": "hop"
+        },
+        {
+          "kind": "hero",
+          "sprite": "hero_b/asleep",
+          "at": [
+            0.29,
+            0.575
+          ],
+          "idle": "breathe",
+          "tap": null
+        },
+        {
+          "kind": "blanket",
+          "sprite": "props/blanket_lump",
+          "at": [
+            0.425,
+            0.61
+          ],
+          "scale": 1.3,
+          "tap": null
+        },
+        {
+          "kind": "lulu",
+          "sprite": "lulu_a/float",
+          "at": [
+            0.5,
+            0.36
+          ],
+          "poses": {
+            "whisper": "lulu_a/whisper"
+          }
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "gates": {
+    "outline": "2026-11-11",
+    "script": "2026-11-11"
+  },
+  "listened": {
+    "vi": [],
+    "en": []
+  },
+  "notes": [
+    "2026-11-11: v2 port of v1 tell_truth (duplicate check found it; parent chose the port). Hero kid: tool/image_refs/kid.png not made yet, needed before the kit sheets.",
+    "2026-11-11: outline approved. v1 s1+s2 merged (14 nodes). Cup kept from v1 (flowers in a cup, empty vase beside it). No toothbrush sprite: icon_toothbrush from the hero's brush figure (12 prop sprites).",
+    "2026-11-11: script review PASS; parent edits: b1 \"buồn hiu\", e1 vi+en (germ cheers, no yawn; cues moved). Script approved; parent recording.",
+    "2026-11-11: staging TODO from art_review: (a) germ at ~[0.12,0.36] in e1+e2 (germ_spot [0.24,0.40] hits the sitting head); (b) a2 flowers: add flowers pose in_cup = props/cup, move ends at cup feet, add a flowers pose cue on \"chiếc cốc\"/\"cup\" next to cup→cup_flowers; (c) lulu_c scale = 0.34 × lulu_a/lulu_c head width; (d) d1 hero scale from sink rim at chest height; (e) icon_toothbrush framed on head + upper body of hero brush (red brush).",
+    "2026-11-11: art review PASS (round 2). Copied tidy_toys kit room, lulu_a, props into ~/Downloads/story_art/tell_truth/kit/. Cut props_truth with default gap grouping (no --grid). Make cover after room + props_truth exist.",
+    "2026-11-11: bedside_table drawn on props_truth (clock_time props_clock not made yet).",
+    "2026-11-11: hero changed kid → boy (parent: Gemini can't make a unisex kid sheet). Uses tool/image_refs/boy.png (light blue pajamas, yellow stars); no boy pose sheets existed, hero_a/hero_b new. Story text was already gender-neutral (\"bé\" / \"the little one\").",
+    "2026-11-11: boy.png is drawn with mint pajamas + white stars; gen_image.py CHARACTERS[\"boy\"] text fixed to match (was \"light blue ... yellow stars\"). Bathroom: lavender stripe + cup, no mint/light blue; toothbrush red. Prompts page republished (v2, same URL).",
+    "2026-11-11: pictures review: all OK; room_bath stripe + cup came out light blue, not lavender (optional Gemini edit offered). props_truth: table 4 legs, cup no handle, spilled vase mouth points right (reference text not updated yet). Cover room differs from kit room (round window, arched door): parent decides. lulu_c re-cut without --fill-holes.",
+    "2026-11-11: parent edits after staging: b3 vi \"Lulu ngồi xuống ngay cạnh bé\"; a2 vi \"dọn bình hoa đi chỗ khác\" → vase removed from a2..end, cup of flowers alone, centred on the table (flowers move to [0.85, 0.655]). en lines not yet matched.",
+    "2026-11-11: en b3 \"sits down\", a2 \"put the vase away\" (parent ok). vi 18/18 recorded by the parent (~/Downloads/tell_truth/audio_vi), cleaned (c1_truth flagged: 0.72 s quiet at end). en: cloned voice (parent asked for AI voice). Story wired. Stills not formally approved: parent will judge them while testing in the app.",
+    "2026-11-11: en 18/18 cloned, not listened yet. cue_times run for vi + en. flutter analyze clean, all tests pass; story 3.4 MB. Ready for the parent to play-test.",
+    "2026-11-11: parent: vase BREAKS instead of spilling; Lulu's magic sweeps the pieces (parent chose this over \"ask a grown-up\"). Text changed in s1, s2, c1 truth label, b1, a1, a2 (vi + en). New kit sheet props_broken (vase_shards) on the prompts page (v3). vi clips s1_p1, s2, c1_truth, b1_p1, a1_p1, a2 must be re-recorded; en re-cloned.",
+    "2026-11-11: props_broken.png cut (vase_shards, sheet scale 0.18, composite flowers x2.89 at [0.28,0.88]); scenes restaged. 6 vi clips re-recorded (s1_p1, s2, c1_truth, b1_p1, a1_p1, a2), cleaned, vi cues retimed. Analyze clean, 131 tests pass, 3.4 MB. Next: parent tests both languages, listens to en cloned clips, approves stills."
+  ],
+  "prompts_page": "https://claude.ai/artifact/9urmFpcTCi9eKYnHdY5tpZ"
+}

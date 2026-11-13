@@ -1,0 +1,103 @@
+{
+  "_note": "Draft. Rooms: tidy_toys' room (night) and its morning edit (day), both 2752x1536 with tidy's bed crop.",
+  "rooms": {
+    "day": {"file": "kit/room_day.png", "crop": [0.05, 0.0, 0.7942, 1.0], "erase_specks": [[0.0, 0.1, 0.2, 0.45]]},
+    "night": {"file": "kit/room_night.png", "crop": [0.05, 0.0, 0.7942, 1.0], "erase_specks": [[0.0, 0.1, 0.2, 0.45]]}
+  },
+  "tint": 0.0,
+  "sheets": {
+    "hero_a": {"scale": 0.68},
+    "hero_b": {"scale": 0.68},
+    "hero_c": {"scale": 0.68},
+    "hero_d": {"scale": 0.68},
+    "hero_e": {"scale": 0.68},
+    "hero_day": {"scale": 0.7},
+    "lulu_a": {"scale": 0.34, "anchor": "center"},
+    "lulu_b": {"scale": 0.34, "anchor": "center"},
+    "props": {"scale": 0.72},
+    "props_clock": {"scale": 0.6}
+  },
+  "sprites": {
+    "props_clock/paper_set": {"from": "props_clock/paper_only", "add": [{"sprite": "props_clock/paper_crayons", "at": [0.55, 0.45], "scale": 0.95}]}
+  },
+  "icons": {
+    "icon_stretch": [{"sprite": "hero_c/bed_stretch", "at": [0.5, 0.95], "size": 0.86}],
+    "icon_snooze": [{"sprite": "props_clock/blanket_hidden", "at": [0.5, 0.75], "size": 0.42}]
+  },
+  "scenes": {
+    "s1_ring": {"room": "day", "parts": [
+      {"kind": "table", "sprite": "props_clock/bedside_table", "at": [0.85, 0.93], "size": 0.21, "shadow": true, "tap": null},
+      {"kind": "hero", "sprite": "hero_b/asleep", "at": [0.30, 0.575], "poses": {"yawn": "hero_c/lie_yawn", "rub_eye": "hero_c/lie_rub_eye"}},
+      {"kind": "blanket", "sprite": "props/blanket_lump", "at": [0.44, 0.61], "scale": 1.3, "tap": null}
+    ]},
+    "s2_lulu_clock": {"room": "day", "parts": [
+      {"kind": "table", "sprite": "props_clock/bedside_table", "at": [0.85, 0.93], "size": 0.21, "shadow": true, "tap": null},
+      {"kind": "hero", "sprite": "hero_c/lie_rub_eye", "at": [0.30, 0.575], "poses": {"sit_up": "hero_c/bed_sit_up"}},
+      {"kind": "blanket", "sprite": "props/blanket_lump", "at": [0.44, 0.61], "scale": 1.3, "tap": null},
+      {"kind": "lulu", "sprite": "lulu_a/float", "at": [0.70, 0.42], "poses": {"point": "lulu_a/point"}}
+    ]},
+    "b1_snooze": {"room": "day", "parts": [
+      {"kind": "table", "sprite": "props_clock/bedside_table", "at": [0.85, 0.93], "size": 0.21, "shadow": true, "tap": null},
+      {"kind": "hero", "sprite": "props_clock/blanket_hidden", "at": [0.40, 0.62], "idle": "breathe"},
+      {"kind": "lulu", "sprite": "lulu_a/float", "at": [0.62, 0.36], "poses": {"chin": "lulu_b/chin"}}
+    ]},
+    "b2_rush": {"room": "day", "parts": [
+      {"kind": "table", "sprite": "props_clock/bedside_table", "at": [0.85, 0.93], "size": 0.21, "shadow": true, "tap": null},
+      {"kind": "breakfast", "sprite": "props_clock/breakfast", "at": [0.22, 0.97], "shadow": true},
+      {"kind": "hero", "sprite": "hero_day/oops", "at": [0.52, 0.97], "poses": {"sock_up": "hero_day/sock_up"}, "shadow": true}
+    ]},
+    "b3_lulu_fix": {"room": "day", "parts": [
+      {"kind": "table", "sprite": "props_clock/bedside_table", "at": [0.85, 0.93], "size": 0.21, "shadow": true, "tap": null},
+      {"kind": "breakfast", "sprite": "props_clock/breakfast", "at": [0.22, 0.97], "shadow": true},
+      {"kind": "hero", "sprite": "hero_day/backwards_calm", "at": [0.50, 0.97], "poses": {"smile": "hero_day/front_smile"}, "shadow": true},
+      {"kind": "lulu", "sprite": "lulu_a/float", "at": [0.66, 0.44], "poses": {"glow": "lulu_a/glow"}}
+    ]},
+    "a1_stretch": {"room": "day", "parts": [
+      {"kind": "table", "sprite": "props_clock/bedside_table", "at": [0.85, 0.93], "size": 0.21, "shadow": true, "tap": null},
+      {"kind": "hero", "sprite": "hero_c/bed_sit_up", "at": [0.30, 0.575], "poses": {"stretch": "hero_c/bed_stretch"}},
+      {"kind": "blanket", "sprite": "props/blanket_lump", "at": [0.44, 0.61], "scale": 1.3, "tap": null},
+      {"kind": "lulu", "sprite": "lulu_a/float", "at": [0.14, 0.38], "poses": {"clap": "lulu_a/clap"}}
+    ]},
+    "a2_ready": {"room": "day", "parts": [
+      {"kind": "table", "sprite": "props_clock/bedside_table", "at": [0.85, 0.93], "size": 0.21, "shadow": true, "tap": null},
+      {"kind": "breakfast", "sprite": "props_clock/breakfast", "at": [0.22, 0.97], "shadow": true},
+      {"kind": "hero", "sprite": "hero_day/eat", "at": [0.42, 0.97], "poses": {"wave": "hero_day/backpack_wave"}, "shadow": true},
+      {"kind": "lulu", "sprite": "lulu_a/float", "at": [0.64, 0.36], "poses": {"wave": "lulu_b/wave"}}
+    ]},
+    "n1_nine": {"room": "night", "parts": [
+      {"kind": "table", "sprite": "props_clock/bedside_table", "at": [0.85, 0.93], "size": 0.21, "shadow": true, "tap": null},
+      {"kind": "hero", "sprite": "hero_c/sit_color", "at": [0.36, 0.95], "poses": {"look_up": "hero_a/sit_look_up"}, "shadow": true},
+      {"kind": "paper", "sprite": "props_clock/paper_set", "at": [0.55, 0.98]},
+      {"kind": "cup", "sprite": "props_clock/cup_empty", "at": [0.66, 0.93], "scale": 0.8, "shadow": true},
+      {"kind": "lulu", "sprite": "lulu_a/float", "at": [0.70, 0.40], "poses": {"talk": "lulu_a/talk"}}
+    ]},
+    "e1_turn": {"room": "night", "parts": [
+      {"kind": "paper", "sprite": "props_clock/paper_set", "at": [0.40, 0.98]},
+      {"kind": "cup", "sprite": "props_clock/cup_empty", "at": [0.24, 0.93], "scale": 0.8, "shadow": true},
+      {"kind": "table", "sprite": "props_clock/bedside_table", "at": [0.85, 0.93], "size": 0.21, "shadow": true, "tap": null},
+      {"kind": "hero", "sprite": "hero_e/reach", "at": [0.68, 0.97], "poses": {"yawn": "hero_e/stand_yawn"}, "shadow": true}
+    ]},
+    "e2_lulu_back": {"room": "night", "parts": [
+      {"kind": "paper", "sprite": "props_clock/paper_set", "at": [0.40, 0.98]},
+      {"kind": "cup", "sprite": "props_clock/cup_empty", "at": [0.24, 0.93], "scale": 0.8, "shadow": true},
+      {"kind": "table", "sprite": "props_clock/bedside_table", "at": [0.85, 0.93], "size": 0.21, "shadow": true, "tap": null},
+      {"kind": "hero", "sprite": "hero_e/stand_sleepy", "at": [0.66, 0.97], "flip": true, "shadow": true},
+      {"kind": "lulu", "sprite": "lulu_b/hold_hand", "at": [0.46, 0.73]}
+    ]},
+    "d1_goodnight": {"room": "night", "parts": [
+      {"kind": "table", "sprite": "props_clock/bedside_table", "at": [0.85, 0.93], "size": 0.21, "shadow": true, "tap": null},
+      {"kind": "hero", "sprite": "hero_d/kneel_place", "at": [0.36, 0.95], "poses": {"wave": "hero_d/kneel_wave"}, "shadow": true},
+      {"kind": "paper", "sprite": "props_clock/paper_set", "at": [0.55, 0.98], "poses": {"tidy": "props_clock/paper_only"}},
+      {"kind": "cup", "sprite": "props_clock/cup_empty", "at": [0.66, 0.93], "scale": 0.8, "poses": {"full": "props_clock/cup_full"}, "shadow": true},
+      {"kind": "lulu", "sprite": "lulu_a/float", "at": [0.56, 0.38]}
+    ]},
+    "end_asleep": {"room": "night", "parts": [
+      {"kind": "table", "sprite": "props_clock/bedside_table", "at": [0.85, 0.93], "size": 0.21, "shadow": true, "tap": null},
+      {"kind": "paper", "sprite": "props_clock/paper_only", "at": [0.50, 0.98]},
+      {"kind": "cup", "sprite": "props_clock/cup_full", "at": [0.66, 0.93], "scale": 0.8, "shadow": true},
+      {"kind": "hero", "sprite": "hero_b/asleep", "at": [0.29, 0.575], "idle": "breathe", "tap": null},
+      {"kind": "blanket", "sprite": "props/blanket_lump", "at": [0.425, 0.61], "scale": 1.3, "tap": null},
+      {"kind": "lulu", "sprite": "lulu_a/float", "at": [0.47, 0.30], "poses": {"whisper": "lulu_a/whisper"}}
+    ]}
+  }
+}

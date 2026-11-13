@@ -1,6 +1,6 @@
 ---
 name: story-continue
-description: Pick up a bedtime story where it stopped. Pictures and recordings arrive over days, in batches; this checks what's new (pictures saved in Downloads, recordings in audio/), does the waiting work (import, clean, cut out, wire, test) and says exactly what the parent should make or record next. Use for "/story-continue", "continue the story", "where did we stop", "what's left", "I added the images / pictures", "I recorded / saved the audio", "I'm back".
+description: Pick up a bedtime story where it stopped. Pictures and recordings arrive over days, in batches; this checks what's new (pictures saved in Downloads, recordings in audio/), does the waiting work (import, clean, cut sheets, stage, wire, test) and says exactly what the parent should make or record next. Use for "/story-continue", "continue the story", "where did we stop", "what's left", "I added the images / pictures", "I recorded / saved the audio", "I'm back".
 argument-hint: [story_id]
 ---
 
@@ -15,7 +15,7 @@ Resume a story that is mid-way. The parent works in batches over days; this sess
 ## 2. Do the waiting work, in this order
 Loop: do the tracker's NEXT, then `python3 tool/story_status.py <id>` again, until NEXT needs the parent.
 1. **New recordings** (`not_cleaned`): `/story-audio <id>` steps 2–3 (clean, then the missing list). Cleaning never needs asking.
-2. **New pictures / unknown files / scenes ready to cut**: `/story-art <id>` (it asks before importing a file under a guessed name).
+2. **New pictures / kit sheets / unknown files / sheets to cut / scenes to stage**: `/story-art <id>` (it asks before using a file under a guessed name). Stills not yet approved → show them (⏸ stills gate, `/new-story` step 3.6), then cues on the stage (step 3.7).
 3. **Approval pending** (Gate 1, Gate 2, art prompts): show what's needed and ask. Record the answer in `docs/stories/<id>/progress.json` `gates` (date `YYYY-MM-DD`).
 4. **Art prompts not written / review FIX**: `/new-story <id>` step 3 (art-director ↔ art-reviewer). Prompts changed → rebuild the prompts page and republish to the link in `progress.json` `prompts_page`.
 5. **Everything made**: wire + test (`/new-story` step 4: `python3 tool/wire_story.py <id>`, `fvm flutter analyze`, `fvm flutter test`), then the `/new-story` step 5 report.
@@ -24,8 +24,9 @@ Stop and hand over when the only steps left are the parent's. Never generate clo
 
 ## 3. Hand over
 End with what the parent should do next, concrete and in order, at most ~5 lines:
-- Pictures to make, by name, pictures before their plates and poses, plus the prompts page link from `progress.json`; folder `~/Downloads/story_art/<id>/` (`plates/`, `poses/` inside).
+- Pictures to make, by name, plus the prompts page link from `progress.json`: room and sheets in page order into `~/Downloads/story_art/<id>/kit/`, cover and sticker at the top.
 - Redo items with the sentence to add to the Gemini prompt.
+- Stills or layout changes to look at, with the scenes changed.
 - Clips to record (count per language; the full script with `python3 tool/gen_audio.py --story <id> --list`), or cloned clips to listen to.
 - Blockers (e.g. English voice reference missing).
 - "Next time just say *I added the pictures* (or run /story-continue)."

@@ -1,0 +1,1859 @@
+{
+ "s1_promise.webp": [
+  {
+   "file": "layers/kit_room.webp"
+  },
+  {
+   "file": "layers/kit_shadow.webp",
+   "kind": "shadow",
+   "rect": [
+    0.251656,
+    0.945141,
+    0.136688,
+    0.040095
+   ],
+   "pivot": [
+    0.32,
+    0.9652
+   ]
+  },
+  {
+   "file": "layers/kit_props_promise_watering_can.webp",
+   "kind": "can",
+   "box": [
+    0.2569,
+    0.853,
+    0.1519,
+    0.117
+   ],
+   "pivot": [
+    0.32,
+    0.97
+   ],
+   "idle": "none",
+   "rect": [
+    0.256859,
+    0.853,
+    0.151875,
+    0.117
+   ],
+   "tap": "wiggle"
+  },
+  {
+   "file": "layers/kit_shadow.webp",
+   "kind": "shadow",
+   "rect": [
+    0.812666,
+    0.932783,
+    0.094669,
+    0.02777
+   ],
+   "pivot": [
+    0.86,
+    0.9467
+   ]
+  },
+  {
+   "file": "layers/kit_props_promise_sprout_thirsty.webp",
+   "kind": "pot",
+   "box": [
+    0.8064,
+    0.7209,
+    0.1052,
+    0.2291
+   ],
+   "pivot": [
+    0.86,
+    0.95
+   ],
+   "idle": "none",
+   "rect": [
+    0.785494,
+    0.7115,
+    0.126281,
+    0.2385
+   ],
+   "tap": "wiggle"
+  },
+  {
+   "file": "layers/kit_shadow.webp",
+   "kind": "shadow",
+   "rect": [
+    0.485714,
+    0.925705,
+    0.188573,
+    0.055315
+   ],
+   "pivot": [
+    0.58,
+    0.9534
+   ]
+  },
+  {
+   "file": "layers/kit_hero_a_sit_look_up.webp",
+   "kind": "hero",
+   "box": [
+    0.4595,
+    0.5016,
+    0.2177,
+    0.4584
+   ],
+   "pivot": [
+    0.58,
+    0.96
+   ],
+   "idle": "breathe",
+   "rect": [
+    0.459512,
+    0.50157,
+    0.238212,
+    0.45843
+   ],
+   "tap": "hop",
+   "poses": {
+    "pinky": "layers/kit_hero_g_pinky.webp"
+   }
+  },
+  {
+   "file": "layers/kit_props_promise_balloon.webp",
+   "kind": "balloon",
+   "box": [
+    0.5976,
+    0.2014,
+    0.1248,
+    0.3286
+   ],
+   "pivot": [
+    0.66,
+    0.5301
+   ],
+   "idle": "none",
+   "rect": [
+    0.597591,
+    0.201405,
+    0.124819,
+    0.32865
+   ],
+   "tap": "hop"
+  },
+  {
+   "file": "layers/kit_lulu_a_float.webp",
+   "kind": "lulu",
+   "box": [
+    0.7315,
+    0.3458,
+    0.1373,
+    0.2094
+   ],
+   "pivot": [
+    0.8001,
+    0.4514
+   ],
+   "idle": "float",
+   "rect": [
+    0.721032,
+    0.344382,
+    0.156188,
+    0.213321
+   ],
+   "tap": "hop",
+   "poses": {
+    "talk": "layers/kit_lulu_a_talk.webp"
+   }
+  }
+ ],
+ "s2_balloon.webp": [
+  {
+   "file": "layers/kit_room.webp"
+  },
+  {
+   "file": "layers/kit_shadow.webp",
+   "kind": "shadow",
+   "rect": [
+    0.251656,
+    0.945141,
+    0.136688,
+    0.040095
+   ],
+   "pivot": [
+    0.32,
+    0.9652
+   ]
+  },
+  {
+   "file": "layers/kit_props_promise_watering_can.webp",
+   "kind": "can",
+   "box": [
+    0.2569,
+    0.853,
+    0.1519,
+    0.117
+   ],
+   "pivot": [
+    0.32,
+    0.97
+   ],
+   "idle": "none",
+   "rect": [
+    0.256859,
+    0.853,
+    0.151875,
+    0.117
+   ],
+   "tap": "wiggle"
+  },
+  {
+   "file": "layers/kit_shadow.webp",
+   "kind": "shadow",
+   "rect": [
+    0.812666,
+    0.932783,
+    0.094669,
+    0.02777
+   ],
+   "pivot": [
+    0.86,
+    0.9467
+   ]
+  },
+  {
+   "file": "layers/kit_props_promise_sprout_thirsty.webp",
+   "kind": "pot",
+   "box": [
+    0.8064,
+    0.7209,
+    0.1052,
+    0.2291
+   ],
+   "pivot": [
+    0.86,
+    0.95
+   ],
+   "idle": "none",
+   "rect": [
+    0.785494,
+    0.7115,
+    0.126281,
+    0.2385
+   ],
+   "tap": "wiggle"
+  },
+  {
+   "file": "layers/kit_shadow.webp",
+   "kind": "shadow",
+   "rect": [
+    0.492025,
+    0.928001,
+    0.17595,
+    0.051612
+   ],
+   "pivot": [
+    0.58,
+    0.9538
+   ]
+  },
+  {
+   "file": "layers/kit_hero_f_stand_proud.webp",
+   "kind": "hero",
+   "box": [
+    0.4625,
+    0.5044,
+    0.2125,
+    0.4556
+   ],
+   "pivot": [
+    0.58,
+    0.96
+   ],
+   "idle": "breathe",
+   "rect": [
+    0.459512,
+    0.50157,
+    0.238212,
+    0.45843
+   ],
+   "tap": "hop",
+   "poses": {
+    "stand_look_up": "layers/kit_hero_f_stand_look_up.webp"
+   }
+  },
+  {
+   "file": "layers/kit_props_promise_balloon.webp",
+   "kind": "balloon",
+   "box": [
+    0.5376,
+    0.1714,
+    0.1248,
+    0.3286
+   ],
+   "pivot": [
+    0.6,
+    0.5001
+   ],
+   "idle": "none",
+   "rect": [
+    0.537591,
+    0.171405,
+    0.124819,
+    0.32865
+   ],
+   "tap": "hop"
+  }
+ ],
+ "b1_play.webp": [
+  {
+   "file": "layers/kit_room.webp"
+  },
+  {
+   "file": "layers/kit_shadow.webp",
+   "kind": "shadow",
+   "rect": [
+    0.251656,
+    0.945141,
+    0.136688,
+    0.040095
+   ],
+   "pivot": [
+    0.32,
+    0.9652
+   ]
+  },
+  {
+   "file": "layers/kit_props_promise_watering_can.webp",
+   "kind": "can",
+   "box": [
+    0.2569,
+    0.853,
+    0.1519,
+    0.117
+   ],
+   "pivot": [
+    0.32,
+    0.97
+   ],
+   "idle": "none",
+   "rect": [
+    0.256859,
+    0.853,
+    0.151875,
+    0.117
+   ],
+   "tap": "wiggle"
+  },
+  {
+   "file": "layers/kit_shadow.webp",
+   "kind": "shadow",
+   "rect": [
+    0.812666,
+    0.932783,
+    0.094669,
+    0.02777
+   ],
+   "pivot": [
+    0.86,
+    0.9467
+   ]
+  },
+  {
+   "file": "layers/kit_props_promise_sprout_thirsty.webp",
+   "kind": "pot",
+   "box": [
+    0.7855,
+    0.7209,
+    0.1263,
+    0.2291
+   ],
+   "pivot": [
+    0.86,
+    0.95
+   ],
+   "idle": "none",
+   "rect": [
+    0.785494,
+    0.7115,
+    0.126281,
+    0.2385
+   ],
+   "tap": "wiggle",
+   "poses": {
+    "sprout_droopy": "layers/kit_props_promise_sprout_droopy.webp"
+   }
+  },
+  {
+   "file": "layers/kit_shadow.webp",
+   "kind": "shadow",
+   "rect": [
+    0.480359,
+    0.923757,
+    0.199283,
+    0.058456
+   ],
+   "pivot": [
+    0.58,
+    0.953
+   ]
+  },
+  {
+   "file": "layers/kit_hero_f_tap_up.webp",
+   "kind": "hero",
+   "box": [
+    0.4763,
+    0.5033,
+    0.2214,
+    0.4567
+   ],
+   "pivot": [
+    0.58,
+    0.96
+   ],
+   "idle": "breathe",
+   "rect": [
+    0.459512,
+    0.50157,
+    0.238212,
+    0.45843
+   ],
+   "tap": "hop"
+  },
+  {
+   "file": "layers/kit_props_promise_balloon.webp",
+   "kind": "balloon",
+   "box": [
+    0.5376,
+    0.1714,
+    0.1248,
+    0.3286
+   ],
+   "pivot": [
+    0.6,
+    0.5001
+   ],
+   "idle": "none",
+   "rect": [
+    0.537591,
+    0.171405,
+    0.124819,
+    0.32865
+   ],
+   "tap": "hop"
+  }
+ ],
+ "b2_droopy.webp": [
+  {
+   "file": "layers/kit_room.webp"
+  },
+  {
+   "file": "layers/kit_shadow.webp",
+   "kind": "shadow",
+   "rect": [
+    0.251656,
+    0.945141,
+    0.136688,
+    0.040095
+   ],
+   "pivot": [
+    0.32,
+    0.9652
+   ]
+  },
+  {
+   "file": "layers/kit_props_promise_watering_can.webp",
+   "kind": "can",
+   "box": [
+    0.2569,
+    0.853,
+    0.1519,
+    0.117
+   ],
+   "pivot": [
+    0.32,
+    0.97
+   ],
+   "idle": "none",
+   "rect": [
+    0.256859,
+    0.853,
+    0.151875,
+    0.117
+   ],
+   "tap": "wiggle"
+  },
+  {
+   "file": "layers/kit_shadow.webp",
+   "kind": "shadow",
+   "rect": [
+    0.803173,
+    0.92933,
+    0.113653,
+    0.033338
+   ],
+   "pivot": [
+    0.86,
+    0.946
+   ]
+  },
+  {
+   "file": "layers/kit_props_promise_sprout_droopy.webp",
+   "kind": "pot",
+   "box": [
+    0.7855,
+    0.7891,
+    0.1263,
+    0.1609
+   ],
+   "pivot": [
+    0.86,
+    0.95
+   ],
+   "idle": "none",
+   "rect": [
+    0.785494,
+    0.7115,
+    0.126281,
+    0.2385
+   ],
+   "tap": "wiggle"
+  },
+  {
+   "file": "layers/kit_shadow.webp",
+   "kind": "shadow",
+   "rect": [
+    0.480359,
+    0.923757,
+    0.199283,
+    0.058456
+   ],
+   "pivot": [
+    0.58,
+    0.953
+   ]
+  },
+  {
+   "file": "layers/kit_hero_f_tap_up.webp",
+   "kind": "hero",
+   "box": [
+    0.4712,
+    0.5033,
+    0.2265,
+    0.4567
+   ],
+   "pivot": [
+    0.58,
+    0.96
+   ],
+   "idle": "breathe",
+   "rect": [
+    0.459512,
+    0.50157,
+    0.238212,
+    0.45843
+   ],
+   "tap": "hop",
+   "poses": {
+    "stand_oops": "layers/kit_hero_f_stand_oops.webp",
+    "kneel_sad": "layers/kit_hero_d_kneel_sad.webp"
+   }
+  },
+  {
+   "file": "layers/kit_props_promise_balloon.webp",
+   "kind": "balloon",
+   "box": [
+    0.5376,
+    0.1714,
+    0.1248,
+    0.3286
+   ],
+   "pivot": [
+    0.6,
+    0.5001
+   ],
+   "idle": "none",
+   "rect": [
+    0.537591,
+    0.171405,
+    0.124819,
+    0.32865
+   ],
+   "tap": "hop"
+  }
+ ],
+ "b3_lulu.webp": [
+  {
+   "file": "layers/kit_room.webp"
+  },
+  {
+   "file": "layers/kit_shadow.webp",
+   "kind": "shadow",
+   "rect": [
+    0.251656,
+    0.945141,
+    0.136688,
+    0.040095
+   ],
+   "pivot": [
+    0.32,
+    0.9652
+   ]
+  },
+  {
+   "file": "layers/kit_props_promise_watering_can.webp",
+   "kind": "can",
+   "box": [
+    0.2569,
+    0.853,
+    0.1519,
+    0.117
+   ],
+   "pivot": [
+    0.32,
+    0.97
+   ],
+   "idle": "none",
+   "rect": [
+    0.256859,
+    0.853,
+    0.151875,
+    0.117
+   ],
+   "tap": "wiggle"
+  },
+  {
+   "file": "layers/kit_shadow.webp",
+   "kind": "shadow",
+   "rect": [
+    0.803173,
+    0.92933,
+    0.113653,
+    0.033338
+   ],
+   "pivot": [
+    0.86,
+    0.946
+   ]
+  },
+  {
+   "file": "layers/kit_props_promise_sprout_droopy.webp",
+   "kind": "pot",
+   "box": [
+    0.7855,
+    0.7209,
+    0.1263,
+    0.2291
+   ],
+   "pivot": [
+    0.86,
+    0.95
+   ],
+   "idle": "none",
+   "rect": [
+    0.785494,
+    0.7115,
+    0.126281,
+    0.2385
+   ],
+   "tap": "wiggle",
+   "poses": {
+    "sprout_thirsty": "layers/kit_props_promise_sprout_thirsty.webp"
+   }
+  },
+  {
+   "file": "layers/kit_shadow.webp",
+   "kind": "shadow",
+   "rect": [
+    0.492407,
+    0.92814,
+    0.175185,
+    0.051388
+   ],
+   "pivot": [
+    0.58,
+    0.9538
+   ]
+  },
+  {
+   "file": "layers/kit_hero_d_kneel_sad.webp",
+   "kind": "hero",
+   "box": [
+    0.4595,
+    0.5248,
+    0.2095,
+    0.4352
+   ],
+   "pivot": [
+    0.58,
+    0.96
+   ],
+   "idle": "breathe",
+   "rect": [
+    0.459512,
+    0.50157,
+    0.238212,
+    0.45843
+   ],
+   "tap": "hop",
+   "poses": {
+    "sit_look_up": "layers/kit_hero_a_sit_look_up.webp"
+   }
+  },
+  {
+   "file": "layers/kit_props_promise_balloon.webp",
+   "kind": "balloon",
+   "box": [
+    0.5376,
+    0.1714,
+    0.1248,
+    0.3286
+   ],
+   "pivot": [
+    0.6,
+    0.5001
+   ],
+   "idle": "none",
+   "rect": [
+    0.537591,
+    0.171405,
+    0.124819,
+    0.32865
+   ],
+   "tap": "hop"
+  },
+  {
+   "file": "layers/kit_lulu_a_float.webp",
+   "kind": "lulu",
+   "box": [
+    0.3915,
+    0.1258,
+    0.1373,
+    0.2094
+   ],
+   "pivot": [
+    0.4601,
+    0.2314
+   ],
+   "idle": "float",
+   "rect": [
+    0.381032,
+    0.124382,
+    0.156188,
+    0.213321
+   ],
+   "tap": "hop",
+   "poses": {
+    "talk": "layers/kit_lulu_a_talk.webp"
+   }
+  }
+ ],
+ "a1_water.webp": [
+  {
+   "file": "layers/kit_room.webp"
+  },
+  {
+   "file": "layers/kit_shadow.webp",
+   "kind": "shadow",
+   "rect": [
+    0.608365,
+    0.835757,
+    0.24327,
+    0.071359
+   ],
+   "pivot": [
+    0.73,
+    0.8714
+   ]
+  },
+  {
+   "file": "layers/kit_hero_f_kneel_water.webp",
+   "kind": "hero",
+   "box": [
+    0.5919,
+    0.4743,
+    0.2703,
+    0.4057
+   ],
+   "pivot": [
+    0.73,
+    0.88
+   ],
+   "idle": "breathe",
+   "rect": [
+    0.591875,
+    0.474267,
+    0.2703,
+    0.405733
+   ],
+   "tap": "hop"
+  },
+  {
+   "file": "layers/kit_shadow.webp",
+   "kind": "shadow",
+   "rect": [
+    0.812666,
+    0.932783,
+    0.094669,
+    0.02777
+   ],
+   "pivot": [
+    0.86,
+    0.9467
+   ]
+  },
+  {
+   "file": "layers/kit_props_promise_sprout_thirsty.webp",
+   "kind": "pot",
+   "box": [
+    0.8064,
+    0.7115,
+    0.1052,
+    0.2385
+   ],
+   "pivot": [
+    0.86,
+    0.95
+   ],
+   "idle": "none",
+   "rect": [
+    0.785494,
+    0.7115,
+    0.126281,
+    0.2385
+   ],
+   "tap": "wiggle",
+   "poses": {
+    "sprout_happy": "layers/kit_props_promise_sprout_happy.webp"
+   }
+  },
+  {
+   "file": "layers/kit_props_promise_balloon.webp",
+   "kind": "balloon",
+   "box": [
+    0.5376,
+    0.1714,
+    0.1248,
+    0.3286
+   ],
+   "pivot": [
+    0.6,
+    0.5001
+   ],
+   "idle": "none",
+   "rect": [
+    0.537591,
+    0.171405,
+    0.124819,
+    0.32865
+   ],
+   "tap": "hop"
+  },
+  {
+   "file": "layers/kit_lulu_a_float.webp",
+   "kind": "lulu",
+   "box": [
+    0.7315,
+    0.3474,
+    0.1373,
+    0.2077
+   ],
+   "pivot": [
+    0.8001,
+    0.4514
+   ],
+   "idle": "float",
+   "rect": [
+    0.721032,
+    0.344382,
+    0.156188,
+    0.213321
+   ],
+   "tap": "hop",
+   "poses": {
+    "clap": "layers/kit_lulu_a_clap.webp"
+   }
+  }
+ ],
+ "n1_turn.webp": [
+  {
+   "file": "layers/kit_room.webp"
+  },
+  {
+   "file": "layers/kit_shadow.webp",
+   "kind": "shadow",
+   "rect": [
+    0.691656,
+    0.955141,
+    0.136688,
+    0.040095
+   ],
+   "pivot": [
+    0.76,
+    0.9752
+   ]
+  },
+  {
+   "file": "layers/kit_props_promise_watering_can.webp",
+   "kind": "can",
+   "box": [
+    0.6969,
+    0.863,
+    0.1519,
+    0.117
+   ],
+   "pivot": [
+    0.76,
+    0.98
+   ],
+   "idle": "none",
+   "rect": [
+    0.696859,
+    0.863,
+    0.151875,
+    0.117
+   ],
+   "tap": "wiggle"
+  },
+  {
+   "file": "layers/kit_shadow.webp",
+   "kind": "shadow",
+   "rect": [
+    0.813425,
+    0.933059,
+    0.09315,
+    0.027324
+   ],
+   "pivot": [
+    0.86,
+    0.9467
+   ]
+  },
+  {
+   "file": "layers/kit_props_promise_sprout_happy.webp",
+   "kind": "pot",
+   "box": [
+    0.8081,
+    0.7115,
+    0.1035,
+    0.2385
+   ],
+   "pivot": [
+    0.86,
+    0.95
+   ],
+   "idle": "none",
+   "rect": [
+    0.785494,
+    0.7115,
+    0.126281,
+    0.2385
+   ],
+   "tap": "wiggle"
+  },
+  {
+   "file": "layers/kit_shadow.webp",
+   "kind": "shadow",
+   "rect": [
+    0.492025,
+    0.928001,
+    0.17595,
+    0.051612
+   ],
+   "pivot": [
+    0.58,
+    0.9538
+   ]
+  },
+  {
+   "file": "layers/kit_hero_f_stand_proud.webp",
+   "kind": "hero",
+   "box": [
+    0.4678,
+    0.5016,
+    0.2299,
+    0.4584
+   ],
+   "pivot": [
+    0.58,
+    0.96
+   ],
+   "idle": "breathe",
+   "rect": [
+    0.459512,
+    0.50157,
+    0.238212,
+    0.45843
+   ],
+   "tap": "hop",
+   "poses": {
+    "pinky": "layers/kit_hero_g_pinky.webp",
+    "tap_up": "layers/kit_hero_f_tap_up.webp"
+   }
+  },
+  {
+   "file": "layers/kit_props_promise_balloon.webp",
+   "kind": "balloon",
+   "box": [
+    0.5376,
+    0.1714,
+    0.1248,
+    0.3286
+   ],
+   "pivot": [
+    0.6,
+    0.5001
+   ],
+   "idle": "none",
+   "rect": [
+    0.537591,
+    0.171405,
+    0.124819,
+    0.32865
+   ],
+   "tap": "hop"
+  },
+  {
+   "file": "layers/kit_lulu_a_float.webp",
+   "kind": "lulu",
+   "box": [
+    0.7315,
+    0.3458,
+    0.1373,
+    0.2094
+   ],
+   "pivot": [
+    0.8001,
+    0.4514
+   ],
+   "idle": "float",
+   "rect": [
+    0.721032,
+    0.344382,
+    0.156188,
+    0.213321
+   ],
+   "tap": "hop",
+   "poses": {
+    "talk": "layers/kit_lulu_a_talk.webp",
+    "float": "layers/kit_lulu_a_float.webp"
+   }
+  }
+ ],
+ "e1_alone.webp": [
+  {
+   "file": "layers/kit_room.webp"
+  },
+  {
+   "file": "layers/kit_shadow.webp",
+   "kind": "shadow",
+   "rect": [
+    0.691656,
+    0.955141,
+    0.136688,
+    0.040095
+   ],
+   "pivot": [
+    0.76,
+    0.9752
+   ]
+  },
+  {
+   "file": "layers/kit_props_promise_watering_can.webp",
+   "kind": "can",
+   "box": [
+    0.6969,
+    0.863,
+    0.1519,
+    0.117
+   ],
+   "pivot": [
+    0.76,
+    0.98
+   ],
+   "idle": "none",
+   "rect": [
+    0.696859,
+    0.863,
+    0.151875,
+    0.117
+   ],
+   "tap": "wiggle"
+  },
+  {
+   "file": "layers/kit_shadow.webp",
+   "kind": "shadow",
+   "rect": [
+    0.813425,
+    0.933059,
+    0.09315,
+    0.027324
+   ],
+   "pivot": [
+    0.86,
+    0.9467
+   ]
+  },
+  {
+   "file": "layers/kit_props_promise_sprout_happy.webp",
+   "kind": "pot",
+   "box": [
+    0.8081,
+    0.7115,
+    0.1035,
+    0.2385
+   ],
+   "pivot": [
+    0.86,
+    0.95
+   ],
+   "idle": "none",
+   "rect": [
+    0.785494,
+    0.7115,
+    0.126281,
+    0.2385
+   ],
+   "tap": "wiggle"
+  },
+  {
+   "file": "layers/kit_shadow.webp",
+   "kind": "shadow",
+   "rect": [
+    0.480359,
+    0.923757,
+    0.199283,
+    0.058456
+   ],
+   "pivot": [
+    0.58,
+    0.953
+   ]
+  },
+  {
+   "file": "layers/kit_hero_f_tap_up.webp",
+   "kind": "hero",
+   "box": [
+    0.4712,
+    0.5033,
+    0.2265,
+    0.4567
+   ],
+   "pivot": [
+    0.58,
+    0.96
+   ],
+   "idle": "breathe",
+   "rect": [
+    0.459512,
+    0.50157,
+    0.238212,
+    0.45843
+   ],
+   "tap": "hop",
+   "poses": {
+    "kneel_sad": "layers/kit_hero_d_kneel_sad.webp"
+   }
+  },
+  {
+   "file": "layers/kit_props_promise_balloon.webp",
+   "kind": "balloon",
+   "box": [
+    0.5376,
+    0.1714,
+    0.1248,
+    0.3286
+   ],
+   "pivot": [
+    0.6,
+    0.5001
+   ],
+   "idle": "none",
+   "rect": [
+    0.537591,
+    0.171405,
+    0.124819,
+    0.32865
+   ],
+   "tap": "hop"
+  },
+  {
+   "file": "layers/kit_lulu_a_float.webp",
+   "kind": "lulu",
+   "box": [
+    0.7315,
+    0.3444,
+    0.1373,
+    0.2096
+   ],
+   "pivot": [
+    0.8001,
+    0.4514
+   ],
+   "idle": "float",
+   "rect": [
+    0.721032,
+    0.344382,
+    0.156188,
+    0.213321
+   ],
+   "tap": "hop",
+   "poses": {
+    "sad": "layers/kit_lulu_c_sad.webp"
+   }
+  }
+ ],
+ "e2_lulu.webp": [
+  {
+   "file": "layers/kit_room.webp"
+  },
+  {
+   "file": "layers/kit_shadow.webp",
+   "kind": "shadow",
+   "rect": [
+    0.691656,
+    0.955141,
+    0.136688,
+    0.040095
+   ],
+   "pivot": [
+    0.76,
+    0.9752
+   ]
+  },
+  {
+   "file": "layers/kit_props_promise_watering_can.webp",
+   "kind": "can",
+   "box": [
+    0.6969,
+    0.863,
+    0.1519,
+    0.117
+   ],
+   "pivot": [
+    0.76,
+    0.98
+   ],
+   "idle": "none",
+   "rect": [
+    0.696859,
+    0.863,
+    0.151875,
+    0.117
+   ],
+   "tap": "wiggle"
+  },
+  {
+   "file": "layers/kit_shadow.webp",
+   "kind": "shadow",
+   "rect": [
+    0.813425,
+    0.933059,
+    0.09315,
+    0.027324
+   ],
+   "pivot": [
+    0.86,
+    0.9467
+   ]
+  },
+  {
+   "file": "layers/kit_props_promise_sprout_happy.webp",
+   "kind": "pot",
+   "box": [
+    0.8081,
+    0.7115,
+    0.1035,
+    0.2385
+   ],
+   "pivot": [
+    0.86,
+    0.95
+   ],
+   "idle": "none",
+   "rect": [
+    0.785494,
+    0.7115,
+    0.126281,
+    0.2385
+   ],
+   "tap": "wiggle"
+  },
+  {
+   "file": "layers/kit_shadow.webp",
+   "kind": "shadow",
+   "rect": [
+    0.492407,
+    0.92814,
+    0.175185,
+    0.051388
+   ],
+   "pivot": [
+    0.58,
+    0.9538
+   ]
+  },
+  {
+   "file": "layers/kit_hero_d_kneel_sad.webp",
+   "kind": "hero",
+   "box": [
+    0.4595,
+    0.5248,
+    0.2095,
+    0.4352
+   ],
+   "pivot": [
+    0.58,
+    0.96
+   ],
+   "idle": "breathe",
+   "rect": [
+    0.459512,
+    0.50157,
+    0.238212,
+    0.45843
+   ],
+   "tap": "hop",
+   "poses": {
+    "sit_look_up": "layers/kit_hero_a_sit_look_up.webp"
+   }
+  },
+  {
+   "file": "layers/kit_props_promise_balloon.webp",
+   "kind": "balloon",
+   "box": [
+    0.6176,
+    0.0014,
+    0.1248,
+    0.3286
+   ],
+   "pivot": [
+    0.68,
+    0.3301
+   ],
+   "idle": "none",
+   "rect": [
+    0.617591,
+    0.001405,
+    0.124819,
+    0.32865
+   ],
+   "tap": "hop"
+  },
+  {
+   "file": "layers/kit_lulu_c_sad.webp",
+   "kind": "lulu",
+   "box": [
+    0.7391,
+    0.3444,
+    0.1281,
+    0.2108
+   ],
+   "pivot": [
+    0.8002,
+    0.4486
+   ],
+   "idle": "float",
+   "rect": [
+    0.721032,
+    0.344382,
+    0.156188,
+    0.213321
+   ],
+   "tap": "hop",
+   "poses": {
+    "talk": "layers/kit_lulu_a_talk.webp"
+   }
+  }
+ ],
+ "d1_together.webp": [
+  {
+   "file": "layers/kit_room.webp"
+  },
+  {
+   "file": "layers/kit_shadow.webp",
+   "kind": "shadow",
+   "rect": [
+    0.691656,
+    0.955141,
+    0.136688,
+    0.040095
+   ],
+   "pivot": [
+    0.76,
+    0.9752
+   ]
+  },
+  {
+   "file": "layers/kit_props_promise_watering_can.webp",
+   "kind": "can",
+   "box": [
+    0.6969,
+    0.863,
+    0.1519,
+    0.117
+   ],
+   "pivot": [
+    0.76,
+    0.98
+   ],
+   "idle": "none",
+   "rect": [
+    0.696859,
+    0.863,
+    0.151875,
+    0.117
+   ],
+   "tap": "wiggle"
+  },
+  {
+   "file": "layers/kit_shadow.webp",
+   "kind": "shadow",
+   "rect": [
+    0.813425,
+    0.933059,
+    0.09315,
+    0.027324
+   ],
+   "pivot": [
+    0.86,
+    0.9467
+   ]
+  },
+  {
+   "file": "layers/kit_props_promise_sprout_happy.webp",
+   "kind": "pot",
+   "box": [
+    0.8081,
+    0.7115,
+    0.1035,
+    0.2385
+   ],
+   "pivot": [
+    0.86,
+    0.95
+   ],
+   "idle": "none",
+   "rect": [
+    0.785494,
+    0.7115,
+    0.126281,
+    0.2385
+   ],
+   "tap": "wiggle"
+  },
+  {
+   "file": "layers/kit_shadow.webp",
+   "kind": "shadow",
+   "rect": [
+    0.480359,
+    0.923757,
+    0.199283,
+    0.058456
+   ],
+   "pivot": [
+    0.58,
+    0.953
+   ]
+  },
+  {
+   "file": "layers/kit_hero_f_tap_up.webp",
+   "kind": "hero",
+   "box": [
+    0.4678,
+    0.5033,
+    0.2299,
+    0.4567
+   ],
+   "pivot": [
+    0.58,
+    0.96
+   ],
+   "idle": "breathe",
+   "rect": [
+    0.459512,
+    0.50157,
+    0.238212,
+    0.45843
+   ],
+   "tap": "hop",
+   "poses": {
+    "stand_proud": "layers/kit_hero_f_stand_proud.webp"
+   }
+  },
+  {
+   "file": "layers/kit_props_promise_balloon.webp",
+   "kind": "balloon",
+   "box": [
+    0.5376,
+    0.1714,
+    0.1248,
+    0.3286
+   ],
+   "pivot": [
+    0.6,
+    0.5001
+   ],
+   "idle": "none",
+   "rect": [
+    0.537591,
+    0.171405,
+    0.124819,
+    0.32865
+   ],
+   "tap": "hop"
+  },
+  {
+   "file": "layers/kit_lulu_a_float.webp",
+   "kind": "lulu",
+   "box": [
+    0.7315,
+    0.3474,
+    0.1373,
+    0.2077
+   ],
+   "pivot": [
+    0.8001,
+    0.4514
+   ],
+   "idle": "float",
+   "rect": [
+    0.721032,
+    0.344382,
+    0.156188,
+    0.213321
+   ],
+   "tap": "hop",
+   "poses": {
+    "clap": "layers/kit_lulu_a_clap.webp"
+   }
+  }
+ ],
+ "d2_flower.webp": [
+  {
+   "file": "layers/kit_room.webp"
+  },
+  {
+   "file": "layers/kit_shadow.webp",
+   "kind": "shadow",
+   "rect": [
+    0.691656,
+    0.955141,
+    0.136688,
+    0.040095
+   ],
+   "pivot": [
+    0.76,
+    0.9752
+   ]
+  },
+  {
+   "file": "layers/kit_props_promise_watering_can.webp",
+   "kind": "can",
+   "box": [
+    0.6969,
+    0.863,
+    0.1519,
+    0.117
+   ],
+   "pivot": [
+    0.76,
+    0.98
+   ],
+   "idle": "none",
+   "rect": [
+    0.696859,
+    0.863,
+    0.151875,
+    0.117
+   ],
+   "tap": "wiggle"
+  },
+  {
+   "file": "layers/kit_shadow.webp",
+   "kind": "shadow",
+   "rect": [
+    0.813425,
+    0.933059,
+    0.09315,
+    0.027324
+   ],
+   "pivot": [
+    0.86,
+    0.9467
+   ]
+  },
+  {
+   "file": "layers/kit_props_promise_sprout_happy.webp",
+   "kind": "pot",
+   "box": [
+    0.8077,
+    0.7115,
+    0.1041,
+    0.2385
+   ],
+   "pivot": [
+    0.86,
+    0.95
+   ],
+   "idle": "none",
+   "rect": [
+    0.785494,
+    0.7115,
+    0.126281,
+    0.2385
+   ],
+   "tap": "wiggle",
+   "poses": {
+    "sprout_flower": "layers/kit_props_promise_sprout_flower.webp"
+   }
+  },
+  {
+   "file": "layers/kit_shadow.webp",
+   "kind": "shadow",
+   "rect": [
+    0.492025,
+    0.928001,
+    0.17595,
+    0.051612
+   ],
+   "pivot": [
+    0.58,
+    0.9538
+   ]
+  },
+  {
+   "file": "layers/kit_hero_f_stand_proud.webp",
+   "kind": "hero",
+   "box": [
+    0.4616,
+    0.5055,
+    0.2017,
+    0.4545
+   ],
+   "pivot": [
+    0.58,
+    0.96
+   ],
+   "idle": "breathe",
+   "rect": [
+    0.459512,
+    0.50157,
+    0.238212,
+    0.45843
+   ],
+   "tap": "hop",
+   "poses": {
+    "stand_yawn": "layers/kit_hero_e_stand_yawn.webp"
+   }
+  },
+  {
+   "file": "layers/kit_props_promise_balloon.webp",
+   "kind": "balloon",
+   "box": [
+    0.5376,
+    0.1714,
+    0.1248,
+    0.3286
+   ],
+   "pivot": [
+    0.6,
+    0.5001
+   ],
+   "idle": "none",
+   "rect": [
+    0.537591,
+    0.171405,
+    0.124819,
+    0.32865
+   ],
+   "tap": "hop"
+  },
+  {
+   "file": "layers/kit_lulu_a_float.webp",
+   "kind": "lulu",
+   "box": [
+    0.721,
+    0.3489,
+    0.1562,
+    0.2088
+   ],
+   "pivot": [
+    0.8001,
+    0.4514
+   ],
+   "idle": "float",
+   "rect": [
+    0.721032,
+    0.344382,
+    0.156188,
+    0.213321
+   ],
+   "tap": "hop",
+   "poses": {
+    "glow": "layers/kit_lulu_a_glow.webp"
+   }
+  }
+ ],
+ "end_asleep.webp": [
+  {
+   "file": "layers/kit_room.webp"
+  },
+  {
+   "file": "layers/kit_shadow.webp",
+   "kind": "shadow",
+   "rect": [
+    0.691656,
+    0.955141,
+    0.136688,
+    0.040095
+   ],
+   "pivot": [
+    0.76,
+    0.9752
+   ]
+  },
+  {
+   "file": "layers/kit_props_promise_watering_can.webp",
+   "kind": "can",
+   "box": [
+    0.6969,
+    0.863,
+    0.1519,
+    0.117
+   ],
+   "pivot": [
+    0.76,
+    0.98
+   ],
+   "idle": "none",
+   "rect": [
+    0.696859,
+    0.863,
+    0.151875,
+    0.117
+   ],
+   "tap": "wiggle"
+  },
+  {
+   "file": "layers/kit_shadow.webp",
+   "kind": "shadow",
+   "rect": [
+    0.813172,
+    0.932967,
+    0.093656,
+    0.027473
+   ],
+   "pivot": [
+    0.86,
+    0.9467
+   ]
+  },
+  {
+   "file": "layers/kit_props_promise_sprout_flower.webp",
+   "kind": "pot",
+   "box": [
+    0.8077,
+    0.7254,
+    0.1041,
+    0.2246
+   ],
+   "pivot": [
+    0.86,
+    0.95
+   ],
+   "idle": "none",
+   "rect": [
+    0.785494,
+    0.7115,
+    0.126281,
+    0.2385
+   ],
+   "tap": "wiggle"
+  },
+  {
+   "file": "layers/kit_hero_b_asleep.webp",
+   "kind": "hero",
+   "box": [
+    0.1223,
+    0.3466,
+    0.3247,
+    0.2284
+   ],
+   "pivot": [
+    0.29,
+    0.575
+   ],
+   "idle": "breathe",
+   "rect": [
+    0.122337,
+    0.346633,
+    0.3247,
+    0.228367
+   ]
+  },
+  {
+   "file": "layers/kit_props_promise_balloon.webp",
+   "kind": "balloon",
+   "box": [
+    0.5976,
+    0.2014,
+    0.1248,
+    0.3286
+   ],
+   "pivot": [
+    0.66,
+    0.5301
+   ],
+   "idle": "none",
+   "rect": [
+    0.597591,
+    0.201405,
+    0.124819,
+    0.32865
+   ],
+   "tap": "hop"
+  },
+  {
+   "file": "layers/kit_props_blanket_lump.webp",
+   "kind": "blanket",
+   "box": [
+    0.2553,
+    0.4049,
+    0.3329,
+    0.2051
+   ],
+   "pivot": [
+    0.425,
+    0.61
+   ],
+   "idle": "none",
+   "rect": [
+    0.25535,
+    0.40486,
+    0.332865,
+    0.20514
+   ]
+  },
+  {
+   "file": "layers/kit_lulu_a_float.webp",
+   "kind": "lulu",
+   "box": [
+    0.3515,
+    0.2075,
+    0.1373,
+    0.2082
+   ],
+   "pivot": [
+    0.4201,
+    0.3114
+   ],
+   "idle": "float",
+   "rect": [
+    0.341032,
+    0.204382,
+    0.156188,
+    0.213321
+   ],
+   "tap": "hop",
+   "poses": {
+    "whisper": "layers/kit_lulu_a_whisper.webp"
+   }
+  }
+ ]
+}

@@ -1,0 +1,20 @@
+{
+  "gates": {
+    "outline": "2026-11-11",
+    "script": "2026-11-11",
+    "art_prompts": "2026-11-11"
+  },
+  "listened": {
+    "vi": [],
+    "en": []
+  },
+  "notes": [
+    "2026-11-11: new v2 kit story (idea checker: NEW, nearest tell_truth). Parent changed hero boy -> girl at the outline gate; reuses girl sheets hero_a/hero_b (tidy_toys), hero_d/hero_e (clock_time); new sheet hero_f + props_promise + cover + sticker = 4 Gemini images. Kit note 2: Lulu already back at air_pot in a1 (parent's choice). e1 reuses kneel_sad (Kit note 12).",
+    "2026-11-11: script review PASS (round 2); b3 Lulu talk cue moved to \"Không sao\"/\"okay\"; parent approved script with the shorter 42-word en s1.",
+    "2026-11-11: art review PASS (round 2): props_promise made first, hero_f attaches it for the can. Copied room, hero_a, hero_b (tidy_toys), hero_d, hero_e (clock_time), lulu_a, props (tidy_toys), lulu_c (tell_truth) into ~/Downloads/story_art/keep_promise/kit/. New: props_promise, hero_f, cover, sticker. Staging checks: a1 water stream tip over the soil; kneel_water head vs kneel_sad; balloon string whole on _contact.jpg.",
+    "2026-11-12: parent saved props_promise, hero_f, cover, sticker in ~/Downloads/keep_promise (copied to story_art/keep_promise). Reused sheets: sprites copied from their stories (same cuts). Cover + sticker imported; art-reviewer: sheets + sticker OK, cover redo suggested (hand reads as rock sign, room flipped/door) - waiting for parent. stage.json written, 12 scenes staged (1.0 MB). Next: stills gate, then cue to values (balloon pivot = string end = body + 0.23).",
+    "2026-11-12: vi 18/18 recorded by the parent (~/Downloads/keep_promise/audio_vi), cleaned (s1_p1 soft -21.7 LUFS, flagged). en 18/18 cloned voice (parent asked for AI voice), not listened yet. Cue move targets set to the stage spots; cue_times both languages. Story wired; analyze clean, 133 tests pass, 2.2 MB. Stills gate skipped: parent went straight to testing. Cover redo still open. Fixed tool/cue_times.py: --lang X used to wipe the other language's \"at\" (re-timed clock_time + tell_truth en).",
+    "2026-11-12: cover redone by the parent (Gemini_Generated_Image_uf8kw..., pinky reads right; room is Gemini's own, parent OK). New pinky pose: kit/hero_g.png (parent's edit, one figure), replaces hero_f/pinky in s1 + n1 (scale 0.333). en/b3 re-encoded 56k, -1 dB (was 154 KB > 150). Story 3.7 MB, nothing over. Note: clean_audio.py MAX_BYTES is defined but unused; long clips are not kept under budget automatically."
+  ],
+  "prompts_page": "https://claude.ai/artifact/Gdm7hbFg673cwoZ6QVNaeu"
+}

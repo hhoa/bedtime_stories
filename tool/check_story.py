@@ -22,7 +22,7 @@ Errors (exit 1) are things the app or the house rules reject:
 Warnings are for the reviewer to judge:
   - sentence longer than MAX_WORDS words, node text over MAX_NODE_WORDS
   - English he/she/his/her (fine for Lulu, not for the hero)
-  - cut layers still full-canvas (run tool/crop_layers.py)
+  - part layers still full-canvas (re-run tool/stage.py)
 
 Usage:
   python3 tool/check_story.py <id>
@@ -298,10 +298,10 @@ def check_art(story_id, story, r):
             for f in files:
                 if not (images / f).exists():
                     r.err(f'art: layers.json {scene}: images/{f} missing')
-            # Cut AI parts must be cropped: a full-canvas layer decodes like
+            # Part layers must be cropped: a full-canvas layer decodes like
             # a whole scene (~7.7 MB each), and choices preload both next scenes.
             if l.get('kind') and not l['file'].endswith('.svg') and 'rect' not in l:
-                r.warn(f'art: {scene} {l["kind"]} layer is full-canvas (run tool/crop_layers.py {story_id})')
+                r.warn(f'art: {scene} {l["kind"]} layer is full-canvas (re-run tool/stage.py {story_id})')
 
     for f in sorted(set(spots) - used):
         r.warn(f'hotspots.json: {f} is not a picture of this story')

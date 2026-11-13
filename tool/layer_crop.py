@@ -1,46 +1,18 @@
-"""Crop cut part layers to the part's own size (shared by cutout.py, move_part.py,
-crop_layers.py, clock_layer.py).
+"""Helpers for cropped part layers (shared by stage.py and clock_layer.py).
 
-A cut layer used to be a full 1600x1200 picture that is mostly transparent:
-same decode memory as the whole scene. Now each part keeps only the rectangle
-its pixels cover (plus a small margin), and images/layers.json gets
-"rect": [x, y, w, h] as fractions of the picture, where SceneLayers draws it.
-All poses of one part share one rect, so switching poses needs no lining up.
-A layer without "rect" is full-canvas (SVG art, older cuts).
+A part layer keeps only the rectangle its pixels cover, and images/layers.json
+gives "rect": [x, y, w, h] as fractions of the picture, where SceneLayers
+draws it (a full 1600x1200 layer would decode like a whole scene). All poses
+of one part share one rect. A layer without "rect" is full-canvas (SVG art).
 """
 from __future__ import annotations
 
 from PIL import Image
 
-MARGIN = 4  # px of transparent room around the part (smooth edges when scaled)
-MOTION = {   # part kind -> (idle, tap) for layers.json (cutout.py, stage.py)
+MOTION = {   # part kind -> (idle, tap) for layers.json (stage.py)
     'lulu': ('float', 'hop'),
     'hero': ('breathe', 'hop'),
 }
-
-
-def crop_group(imgs: list[Image.Image]) -> tuple[list[float], list[Image.Image]]:
-    """Crop full-canvas RGBA layers to the union of their visible pixels.
-    Returns (rect as picture fractions, cropped images)."""
-    w, h = imgs[0].size
-    union = None
-    for im in imgs:
-        b = im.getchannel('A').getbbox()
-        if b is None:
-            continue
-        union = b if union is None else (min(union[0], b[0]), min(union[1], b[1]),
-                                         max(union[2], b[2]), max(union[3], b[3]))
-    if union is None:
-        union = (0, 0, w, h)
-    box = (max(0, union[0] - MARGIN), max(0, union[1] - MARGIN),
-           min(w, union[2] + MARGIN), min(h, union[3] + MARGIN))
-    return frac(box, (w, h)), [im.crop(box) for im in imgs]
-
-
-def frac(box: tuple[int, int, int, int], size: tuple[int, int]) -> list[float]:
-    w, h = size
-    return [round(box[0] / w, 6), round(box[1] / h, 6),
-            round((box[2] - box[0]) / w, 6), round((box[3] - box[1]) / h, 6)]
 
 
 def pixels(rect: list[float], size: tuple[int, int]) -> tuple[int, int, int, int]:

@@ -4,7 +4,7 @@
 
 Interactive bedtime stories for a 3-5 year old who can't read yet. Every scene is narrated; at choice points the kid taps one of two big picture cards. "Kind" and "learn" choices both end happily; a learn path shows a gentle natural consequence, then offers to rewind and try the other option. **One sticker per good answer** (kind option picked first time at a choice); the profile page shows the sticker book. Languages: **Vietnamese (default) and English**, switched on the welcome and profile pages. Platforms: Web, iOS, Android (phone + tablet).
 
-v2 of `../bedtime_story` (v1). Differences from v1: welcome page never scrolls + mic-permission guide; `{name}` at most once per line, as its first or last word; stickers per good answer + profile page; one hero per story (no girl/boy art folders); AI art only (clock_time workflow, no SVG-code art); bilingual stories and audio; lazy home grid + small covers + asset budgets. Plan: `~/.claude/plans/review-bedtime-story-and-create-mutable-prism.md`.
+v2 of `../bedtime_story` (v1). Differences from v1: welcome page never scrolls + mic-permission guide; `{name}` at most once per line, as its first or last word; stickers per good answer + profile page; one hero per story (no girl/boy art folders); AI art only (kit workflow for every story since 2026-11-11; SVG only for clocks); bilingual stories and audio; lazy home grid + small covers + asset budgets. Plan: `~/.claude/plans/review-bedtime-story-and-create-mutable-prism.md`.
 
 **Making a story takes days**: pictures and recordings arrive in batches. Resume with `/story-continue [<id>]`; each session starts with a one-line status per unfinished story (`tool/story_status.py --brief`, a SessionStart hook in `.claude/settings.json`). `docs/stories/<id>/progress.json` keeps what files can't show: approvals (`gates`), the prompts page link, pictures marked `redo`, cloned clips the parent `listened` to. v1's agents and skills (`art-coder`, `bedtime_story:*`) may show up because `../bedtime_story` is sometimes an extra folder: never use them here.
 
@@ -22,25 +22,20 @@ fvm flutter analyze
 fvm flutter test
 fvm flutter run -d chrome            # or an iPad / iPhone simulator
 
-python3 tool/story_status.py [<id>] [--brief|--json]   # where each story is (pictures, plates, poses, cut, audio per language, wired, blockers) + next step; read-only
+python3 tool/story_status.py [<id>] [--brief|--json]   # where each story is (pictures, kit saved / cut / staged, audio per language, wired, blockers) + next step; read-only
 python3 tool/wire_story.py <id> [--check]     # add the story to index.json + pubspec.yaml (idempotent)
 python3 tool/check_story.py <id> [--art]      # lint story.json (both languages, {name} rule, graph, rewind); --art: images, layers, cue parts, poses
 python3 tool/check_story.py --selftest        # shared {name} cases (test/fixtures/name_rule_cases.json, also run by the Dart test)
 python3 tool/check_assets.py [<id>]           # size budgets (covers, scenes, layers, audio, story total); exit 1 when over
 python3 tool/gen_image.py --refs [--only kid] [--prompts-out <dir>]   # character sheets in tool/image_refs/
-python3 tool/gen_image.py --story <id> [--dry] [--only s1] [--force] [--prompts-out <dir>]   # from docs/stories/<id>/art_prompts.json
-python3 tool/gen_image.py --story <id> --plates|--poses --prompts-out <dir>   # Gemini edit prompts for clean plates / poses
-python3 tool/gen_image.py --story <id> --kit --prompts-out <dir>   # kit stories: room + sheet prompts (art_prompts.json "kit")
-tool/cutout/.venv/bin/python tool/sprite_sheet.py <sheet.png> --names a,b,c [--grid 3x2] [--gap 0.02] [--fill-holes]   # kit: one sheet → one sprite per figure (+ _contact.jpg)
-tool/cutout/.venv/bin/python tool/stage.py <id> --preview <dir> [--dry] [--only scene] [--guides] [--tint 0.2]   # kit: stage.json → layers.json, shared sprite layers, flat fallbacks, icons, stills
+python3 tool/gen_image.py --story <id> [--dry] [--only cover] [--force] [--prompts-out <dir>]   # cover, sticker (fallback scenes) from docs/stories/<id>/art_prompts.json
+python3 tool/gen_image.py --story <id> --kit --prompts-out <dir>   # room + sheet prompts (art_prompts.json "kit")
+tool/cutout/.venv/bin/python tool/sprite_sheet.py <sheet.png> --names a,b,c [--out DIR] [--grid 3x2] [--gap 0.02] [--fill-holes|--solid] [--force-mark|--keep-corner]   # one sheet → one sprite per figure (+ _contact.jpg)
+tool/cutout/.venv/bin/python tool/stage.py <id> --preview <dir> [--dry] [--only scene] [--guides] [--tint 0.2]   # stage.json → layers.json, shared sprite layers, flat fallbacks, icons, stills
 python3 tool/prompts_page.py <id> <out.html> [--title T]   # phone page of all Gemini prompts (copy + tick), publish as Artifact
 tool/cutout/.venv/bin/python tool/import_art.py <id> <file|dir> [--as s1_toys] [--new] [--keep-corner]   # AI picture → watermark removed → WebP (a folder takes only names in art_prompts.json) (scene 1600×1200, cover 800×600, icon 400², sticker 600²), best quality under budget
 tool/cutout/.venv/bin/python tool/remove_watermark.py <file|dir> [--out DIR] [--check]   # Gemini sparkle off (copies, never in place)
-python3 tool/preview_hotspots.py <id> <dir>   # hotspot boxes + 10% grid on each picture
-tool/cutout/.venv/bin/python tool/cutout.py <id> <scene> --parts lulu[,hero] [--plate <png>] [--pose hero=yawn:<png>] [--preview <dir>]
-tool/cutout/.venv/bin/python tool/move_part.py <id> <scene> lulu --to x,y [--scale 0.7]
-python3 tool/crop_layers.py <id> [--dry]      # crop old full-canvas cut layers
-python3 tool/clock_layer.py <id> [--preview <dir>]   # SVG clock part over AI pictures (docs/stories/<id>/clock.json)
+python3 tool/clock_layer.py <id> [--preview <dir>]   # SVG clock part per scene + clock choice icons (docs/stories/<id>/clock.json); after stage.py
 python3 tool/gen_audio.py --list [--lang vi|en] [--story <id>]   # recording script: filename → line
 python3 tool/gen_audio.py --missing [--story <id>]               # clips not recorded yet
 python3 tool/gen_audio.py [--lang vi|en] [--story <id>]          # fill missing clips (cloned voice if set up, else macOS say)
@@ -78,18 +73,18 @@ lib/
 assets/
   stories/index.json                     list of bundled story ids
   stories/<id>/story.json                node graph, both languages
-  stories/<id>/images/*.webp             scenes, cover, icons, sticker (one folder, no hero split)
-  stories/<id>/images/layers/            cut parts + poses + SVG overlays; images/layers.json, images/hotspots.json
+  stories/<id>/images/*.webp             flat scene fallbacks, cover, icons, sticker (one folder, no hero split)
+  stories/<id>/images/layers/            kit_* room + sprite layers, SVG overlays; images/layers.json[, images/hotspots.json for flat scenes]
   stories/<id>/audio/<vi|en>/<clip>.m4a
   audio/ui/<vi|en>/<key>.m4a             rewind, be (name fallback), sticker_0|1|2
   images/hero_<girl|boy>.svg             kid avatar (home, profile)
 tool/       image, audio and check scripts (above)
-docs/stories/<id>/   outline.md, review.md, art_prompts.json (incl. reference), art_review.md, progress.json[, clock.json][, stage.json (kit stories)]
-docs/examples/       clock_time prompts from v1 (style reference)
+docs/stories/<id>/   outline.md, review.md, art_prompts.json (incl. reference), art_review.md, progress.json, stage.json[, clock.json]
+docs/kit.md          kit art guide: planning, prompt wording, cutting, staging, cues, lessons
 .claude/    settings.json (allow-list, session-start status line, v1 skills off)
             skills/ new-story (whole pipeline), story-continue (resume: what's new → import/clean/wire → what the parent does next),
-                    story-art (import + check each picture batch), story-audio (clean, missing, clone)
-            agents/ story-idea-checker (new idea vs. v1 + v2 stories; DUPLICATE stops /new-story), story-planner, story-writer, story-reviewer, art-director (art_prompts.json), art-reviewer (prompts or pictures), story-tracker (read-only status)
+                    story-art (each picture batch: cut sheets, stage scenes, stills, cover/sticker import), story-audio (clean, missing, clone)
+            agents/ story-idea-checker (new idea vs. v1 + v2 stories; DUPLICATE stops /new-story), story-planner, story-writer, story-reviewer, art-director (art_prompts.json, kit room + sheets), art-reviewer (prompts or pictures), story-tracker (read-only status)
 test/fixtures/stories/demo/   test-only bilingual story (tiny WebPs, a cut part with a pose, hotspots)
 ```
 
@@ -121,15 +116,15 @@ Shown only while no profile is saved (router redirect); name, gender (avatar onl
 
 ### Home performance
 
-`GridView.builder` (lazy: only visible cards build and decode covers); covers are 800×600 WebP drawn once at box size (`StoryImage(bitmap: true)`), behind `RepaintBoundary`; one `TwinkleField` painter for the stars. `tool/check_assets.py` budgets: cover ≤ 800 px / 60 KB, scene ≤ 1600 px / 150 KB, icon ≤ 400 px / 40 KB, sticker ≤ 600 px / 80 KB, cut layer cropped and ≤ 120 KB, clip ≤ 150 KB, story ≤ 4 MB. Image tools save WebP at the highest quality (92 down to 72; cut layers from 78, re-crops from 92) that fits these budgets (`tool/webp_save.py`). Tell the user about anything still over budget and offer to downsize.
+`GridView.builder` (lazy: only visible cards build and decode covers); covers are 800×600 WebP drawn once at box size (`StoryImage(bitmap: true)`), behind `RepaintBoundary`; one `TwinkleField` painter for the stars. `tool/check_assets.py` budgets: cover ≤ 800 px / 60 KB, scene ≤ 1600 px / 150 KB, icon ≤ 400 px / 40 KB, sticker ≤ 600 px / 80 KB, part layer cropped and ≤ 120 KB, clip ≤ 150 KB, story ≤ 4 MB. Image tools save WebP at the highest quality (92 down to 72; sprite layers from 78) that fits these budgets (`tool/webp_save.py`). Tell the user about anything still over budget and offer to downsize.
 
-### Art (clock_time workflow)
+### Art (kit)
 
-Pictures are AI-made (Gemini app or `gen_image.py`), soft 3D style, from `docs/stories/<id>/art_prompts.json` (`setting`, `reference`, `pictures`, `outfits`, `plates`, `poses`; see `docs/examples/clock_time_art_prompts.json`). `reference` (written by `art-director`) is the canonical room/furniture/prop look and per-scene state that reviews and picture checks compare against; tools ignore it. `{hero}` in a prompt = the story's hero sheet `tool/image_refs/<hero>.png` (`kid.png` not made yet). Only drawn sheets and text are sent: never photos of the child or the name. Never commit or print an API key (`.env` or `~/.zshrc`; Claude's Bash skips `~/.zshrc`, use `zsh -ic`).
+Pictures are AI-made (Gemini app or `gen_image.py`), soft 3D style, from `docs/stories/<id>/art_prompts.json` (`hero`, `setting`, `reference`, `pictures` = cover + sticker, `attach`, `kit`; see `docs/stories/tidy_toys/art_prompts.json`). `reference` (written by `art-director`) is the canonical room/furniture/prop look and per-scene state that reviews and picture checks compare against; tools ignore it. `{hero}` in a prompt = the story's hero sheet `tool/image_refs/<hero>.png` (`kid.png` not made yet). Only drawn sheets and text are sent: never photos of the child or the name. Never commit or print an API key (`.env` or `~/.zshrc`; Claude's Bash skips `~/.zshrc`, use `zsh -ic`).
 
-Moving parts: give flat pictures tap areas in `images/hotspots.json` (`[{"kind": "lulu"|"hero"|..., "box": [x, y, w, h], "burst": "sparkles"|"hearts"}]`, Lulu last). `cutout.py` cuts listed parts (rembg) from a crop around their hotspot into `images/layers/<scene>_<i>.webp`, cropped to the part (`"rect"`, ~7× less decode memory), over a base with the parts removed (use a Gemini clean plate; without one the hole smears). Poses: one Gemini edit per pose (`gen_image.py --poses`), cut with `--pose part=name:png`, auto-aligned; check `<scene>_poses.jpg`. Cut only parts nothing covers; touching characters stay one part or flat with hotspots. Things AI draws badly become SVG layers (`clock_layer.py`); no tool may overwrite `layers/` wholesale. `SceneLayers` animates parts (idle `breathe|float|sway|glow`, blink, tap reactions, cue poses/moves); reduced motion turns motion off. AI pictures carry Gemini's ✦ watermark (white at ≤50% opacity, 96 px, 64 px from the bottom-right corner, map in `tool/gemini_watermark_alpha.png`); `remove_watermark.py` undoes it exactly and `import_art.py` runs it on every picture. `/story-art <id>` imports and checks each batch the parent saves.
+Moving parts are kit sprites (below). Flat pictures (fallback scenes) get tap areas in `images/hotspots.json` (`[{"kind": "lulu"|"hero"|..., "box": [x, y, w, h], "burst": "sparkles"|"hearts"}]`, Lulu last). Things AI draws badly become SVG layers (`clock_layer.py`); no tool may overwrite `layers/` wholesale (`stage.py` keeps `.svg` layers). `SceneLayers` animates parts (idle `breathe|float|sway|glow`, blink, tap reactions, cue poses/moves); reduced motion turns motion off. AI pictures carry Gemini's ✦ watermark (white at ≤50% opacity, 96 px, 64 px from the bottom-right corner, map in `tool/gemini_watermark_alpha.png`); `remove_watermark.py` undoes it exactly and `import_art.py` / `sprite_sheet.py` run it on every picture. `/story-art <id>` handles each batch the parent saves.
 
-**Kit (trial, first story `tidy_toys`)**: about 7 Gemini images per story instead of ~44. The parent makes one empty room, sheets of hero / Lulu poses and one sheet of props (figures apart on a plain background), plus cover and sticker; prompts live under `"kit"` in `art_prompts.json` (`gen_image.py --kit`). `sprite_sheet.py` cuts a sheet into sprites in `~/Downloads/story_art/<id>/kit/sprites/<sheet>/` (not in the repo). `docs/stories/<id>/stage.json` says where every part stands per scene (`at` = anchor point, `size` or the sheet's `scale`, `poses`, `shadow`, `flip`, `covers` = room pieces redrawn on top so parts go behind the bed or blanket); `stage.py` compiles it into the normal `layers.json` (shared `layers/kit_*.webp`, one canvas per group of sprites that swap), small flat fallback pictures and icons. Also in `stage.json`: `crop` (Gemini may return the room 16:9), `erase_specks` (paint out leftover sparkles), `sprites` with `from` + `add` (a sprite made of sprites, e.g. the full toy box with the ball on top, for a `pose` cue). `sprite_sheet.py --force-mark` when the ✦ sits on a figure and isn't detected. No plates, no pose edits, no runtime change: layout fixes are number edits, a scene that looks wrong as a kit can still be a normal Gemini picture. Skills and art agents don't know kit mode yet: the main session does the art step by hand. `story_status.py` shows `kit n/m saved, sheets cut, scenes staged` for these stories.
+**Kit (every story since 2026-11-11; examples `tidy_toys`, `clock_time`, `prepare_stuff_vacation`; full guide `docs/kit.md`)**: a few Gemini images per story instead of one per scene (the old picture-per-scene workflow with plates, pose edits and `cutout.py` was removed 2026-11-12). The parent makes one empty room (or a day edit / second crop of it), sheets of hero / Lulu poses and props (figures apart on a plain background), plus cover and sticker; prompts live under `"kit"` in `art_prompts.json` (`gen_image.py --kit`); rooms and sheets made for another story are reused with `"from"` (same girl, pajamas, Lulu and room in every story). `sprite_sheet.py` cuts a sheet into sprites in `~/Downloads/story_art/<id>/kit/sprites/<sheet>/` (not in the repo). `docs/stories/<id>/stage.json` says where every part stands per scene (`at` = anchor point, `size` or the sheet's `scale`, `poses`, `shadow`, `flip`, `covers` = room pieces redrawn on top so parts go behind the bed or blanket); `stage.py` compiles it into the normal `layers.json` (shared `layers/kit_*.webp`, one canvas per group of sprites that swap), small flat fallback pictures and icons. Also in `stage.json`: `rooms` + per-scene `room` (several rooms or crops), `crop` (Gemini may return the room 16:9), `erase_specks` (paint out leftover sparkles), `sprites` with `from` + `add` (a sprite made of sprites, e.g. the full toy box with the ball on top, for a `pose` cue). Parts draw in list order (later = in front). `sprite_sheet.py --force-mark` when the ✦ sits on a figure and isn't detected; `--solid` when a pale edge gets bitten off. Layout fixes are number edits; a scene that looks wrong as a kit can still be a normal Gemini picture. `/new-story`, `/story-art`, `/story-continue` and the agents (planner, writer, art-director, art-reviewer, tracker) all follow the kit; the parent approves the composed stills (⏸ stills gate) before cues are tuned. `story_status.py` shows `kit n/m saved, sheets cut, scenes staged`.
 
 ### Player flow
 

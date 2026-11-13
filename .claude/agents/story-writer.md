@@ -17,7 +17,7 @@ Nodes (every `text` and `label` is `{"vi": "...", "en": "..."}`):
 - `scene`: `id`, `type`, `image`, `text`, `next`, optional `offer_rewind_to`, `ambient`, `cues`.
 - `choice`: `id`, `type`, `image`, `text` (the question), `options` (exactly 2: `id`, `kind` = `kind`|`learn`, `icon`, `label`, `next`), `ambient`.
 - `ending`: `id`, `type`, `image`, `text`, `sticker` (`images/sticker.webp`), `ambient: "zzz"`, `ambient_origin: [0.5, 0.5]` (placeholder; the art stage sets the head position).
-- `cues`: `{"vi": [...], "en": [...]}`; each `{"word", "part", "action"}` on a sound word or action verb, word exactly as in that language's text.
+- `cues`: `{"vi": [...], "en": [...]}`; each `{"word", "part", "action"}` on a sound word or action verb, word exactly as in that language's text. Use the outline's **Moves**: parts and pose names from its Layout and Pose and prop lists; `pose` cues carry `"pose": "<name>"`, `move` cues `"to": [x, y]` (a rough guess from the named spot is fine: the main session sets the real numbers after staging). Node `"poses"` for a part's start pose. Never write `"at"` (`tool/cue_times.py` measures it from the recordings).
 
 Images `images/<file>.webp`, filenames exactly as in the outline.
 

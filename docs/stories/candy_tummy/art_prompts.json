@@ -1,0 +1,157 @@
+{
+  "hero": "girl",
+  "setting": "a cozy kid bedroom at night, the same room as in the attached room picture if one is attached: soft warm peach walls, wooden floor, a low wooden bed with a rounded headboard along the back wall on the left, seen from its long side, with a white pillow at the headboard on the left and a smooth lavender blanket, raised on short legs with a dark gap under its front side; a small warm glowing lamp on a little wooden shelf on the back wall between the bed's headboard and the window; a window in the middle of the back wall showing a dark blue night sky with a crescent moon and a few stars; a round cream rug on the floor in front of the bed. Things look the same in every picture: the candy jar is a round, chubby pastel-pink ceramic candy jar, about as wide as it is tall, opaque so nothing inside shows through, with a little rainbow arc (red, yellow, green, purple) painted on its front and a round pink lid with a small round knob, the whole jar a little smaller than the child's head; the candies are small round candies in shiny wrappers twisted at both ends: red, yellow, green and purple; the soup bowl is a round cream ceramic bowl with a thin sky-blue rim, about as wide as the candy jar, filled with smooth orange pumpkin soup with a few small round green peas on top, no spoon in it, no steam. No faces on the jar, the candies or the bowl. Few things, soft warm lamp light, gentle shadows. The bottom-right corner of the picture is plain wooden floor with nothing important in it",
+  "reference": {
+    "kit": "kit story (docs/kit.md): no picture per scene. kit/room.png (copied from tidy_toys, tidy_toys' crop, door cropped out) is the one room of every scene. Sheets COPIED, never redrawn: hero_a + hero_b + props (only blanket_lump used) + lulu_a from tidy_toys; hero_d + hero_e + props_clock (only bedside_table used) from clock_time. New sheets: props_candy (6 figures: candy jar x3, soup bowl x2, one candy; made first) and hero_h (5 girl poses; attaches kit/hero_a.png for size and kit/props_candy.png for the candy's look). Cut by tool/sprite_sheet.py, placed per scene by docs/stories/candy_tummy/stage.json (tool/stage.py). Only cover and sticker are normal pictures; icons (icon_one, icon_lots, icon_table, icon_bed) are composed from sprites. No SVG overlays. New Gemini images: props_candy, hero_h, cover, sticker (4)",
+    "room": "tidy_toys' kit/room.png with tidy_toys' crop: the vacation bedroom emptied, night, bed made, raised on short legs with a dark gap under its front side; door cropped out; nothing on the floor",
+    "bed": "along the back wall on the left, seen from its long side; headboard and white pillow at the LEFT end; lavender blanket smooth and flat; the hero sits up in it in e1 / e2 (legs under the blanket lump, the jar on the blanket right of her legs at bed_jar) and sleeps in it in end",
+    "window": "middle of the back wall, dark blue night sky, crescent moon, a few stars; Lulu flies in here with the floating jar in s1 and comes back from here in e2",
+    "lamp": "small warm glowing lamp on a little wooden shelf on the back wall, between the bed's headboard and the window",
+    "rug": "round cream rug in front of the bed; the hero sits / kneels on it at rug_left from s1 to c2, the jar to her right (jar_spot), the soup bowl in front of her lap in n1 / c2 (bowl_spot)",
+    "bedside table": "props_clock bedside_table (copied from clock_time): small round light-wood table on three short straight legs, a little taller than it is wide, its top about at a standing child's belly to chest height; on the floor at the front right (tidy's toy-box spot) in every scene; top empty until d1, then the closed candy jar stands in the middle of its top (d1, end), filling about two thirds of its width",
+    "candy jar": "props_candy: a round, chubby pastel-pink ceramic candy jar, about as wide as it is tall, opaque so nothing inside shows through, with a little rainbow arc (red, yellow, green, purple) painted on its front and a round pink lid with a small round knob; no face; about three quarters as tall as the hero's head and as wide as it is tall: on the rug its lid knob is a little below the sitting hero's shoulders, so her sit_reach hand reaches over its rim; on the bedside table it fills about two thirds of the round top. The very same jar in every state. jar_closed (upright, lid on) floats in beside Lulu at window_low and lands on the rug at jar_spot (s1) -> jar_open (upright, lid off and not shown, a heap of red, yellow, green and purple wrapped candies peeking over the rim) s2 end, c1, a1, b1, b2 start -> jar_closed a1 end / b2 end, n1, c2 (jar_spot) -> c2 learn: jar_open on the blanket at bed_jar e1 start -> jar_tipped (lying on its side, mouth to the RIGHT, lid off, a small cluster of the same candies spilled out in front of the mouth, one piece; about twice as wide as the upright jar) e1 end, e2 start -> jar_closed (upright again) e2 end -> jar_closed on the bedside table top d1, end. Nobody holds it (the hero's hand reaches behind its rim in a1 / b1; her hands are behind it on the table in d1). Opaque: how many candies are left is never shown",
+    "candies": "small round candies in shiny wrappers twisted at both ends: red, yellow, green and purple; only inside jar_open / jar_tipped, in the hero's eat_candy fingers (one red candy, wrapper opened out behind it like a little bow) and eat_candy_green fingers (one green candy, same), candy_one (one red candy, icon_one) and on the cover / sticker (one red candy)",
+    "soup bowl": "props_candy: a round cream ceramic bowl with a thin sky-blue rim, about as wide as the candy jar and about half as tall as the jar; no face in scenes (only on the sticker), no spoon in it, no steam. soup_full (smooth orange pumpkin soup with a few small round green peas on top; no tomato, no corn, no carrot, no broccoli, not a rainbow) at bowl_spot at the start of n1 -> soup_empty (the very same bowl, clean and empty) from 'Hết veo' / 'All gone' on, c2. Not in any other scene. The spoon only exists in the hero's sit_spoon hand",
+    "blanket": "tidy_toys' props blanket_lump (lavender mound, folded back at the LEFT end) over the sitting hero's legs in e1 / e2 and over the sleeping hero in end",
+    "hero": "girl (tool/image_refs/girl.png): mint-green long-sleeve pajamas with little white stars, barefoot, in every figure. Copied: sit_look_up, bed_sit, kneel_happy (hero_a), bend_place, asleep (hero_b), kneel_place (hero_d), stand_yawn (hero_e). New hero_h: sit_reach, eat_candy (one small red candy held just in front of the lips, its wrapper opened out behind it like a little bow, mouth open in a happy smile), eat_candy_green (the same pose with one green candy and green wrapper: b1 on 'Viên xanh' / 'A green one', if the cue is switched to it), sit_ouch (arms softly around the tummy, teary eyes, one or two small clear tears on the cheeks, small wobbly frown, mouth closed, no sobbing; b1 from 'đau đau' / 'ache', b2 until 'đỡ dần' / 'better'; no other pose has tears), sit_spoon (small cream spoon at the lips, no bowl in the figure); all five sit cross-legged turned a little to the right, head the same size as on hero_a (stage scale like the other girl sheets). Faces right unless noted; asleep head to the LEFT on nothing. Spots: rug_left s1-c2, on_bed e1 / e2, by_table d1, in_bed end",
+    "lulu": "about the size of a cat; float, talk, point, glow, clap, whisper from tidy_toys' lulu_a; no halo or sparkles drawn around her on the sheet (the app adds them). At window then air_mid in s1, air_mid s2 to c2 and d1, absent in e1, window -> air_bed in e2, air_bed in end. Stays in the air: never touches the hero, the jar or the bowl (she 'brings out' the soup in words only)",
+    "light": "soft warm lamp light from the upper left on every sprite, to match the room"
+  },
+  "pictures": {
+    "cover": "Night, crescent moon in the window. {hero} sits cross-legged on the round cream rug a little left of the middle of the picture, turned a little to the right, holding up one small round red candy in a shiny red wrapper twisted at both ends in one hand at shoulder height, with a big happy smile. On the rug right in front of {hero} stands the soup bowl: a round cream ceramic bowl with a thin sky-blue rim, full of smooth orange pumpkin soup with a few small round green peas on top, no spoon. On the rug just to the right of {hero} stands the candy jar: a round, chubby pastel-pink ceramic candy jar, about as wide as it is tall, opaque so nothing inside shows through, with a little rainbow arc (red, yellow, green, purple) painted on its front and a round pink lid with a small round knob, the lid on. Lulu floats in the air above and to the right of the jar, smiling, one paw raised in a little wave; {hero} and Lulu do not touch, and Lulu does not touch the jar. No faces on the jar, the candy or the bowl. The candy jar is a little smaller than the head of {hero}: its lid knob is a little below the shoulders of {hero} as she sits; the soup bowl is about as wide as the jar. The jar and the bowl stay well away from the bottom-right corner, which is plain floor. The floor is otherwise clean and tidy. If a room picture or a props sheet is attached, the room, the candy jar, the candy and the soup bowl look exactly like in them",
+    "sticker": "a round cream ceramic bowl with a thin sky-blue rim, full of smooth orange pumpkin soup with a few small round green peas on top, no spoon, no steam; on the front of the bowl a sleepy happy face: eyes closed in two soft curves, rosy cheeks and a small peaceful smile; one small round red candy in a shiny red wrapper twisted at both ends leans against the side of the bowl, touching it, so the bowl and the candy make one sticker shape; no face on the candy"
+  },
+  "attach": {
+    "cover": [
+      "kit/room.png",
+      "kit/props_candy.png"
+    ]
+  },
+  "kit": {
+    "room": {
+      "from": "tidy_toys/kit/room.png"
+    },
+    "sheets": {
+      "hero_a": {
+        "from": "tidy_toys/kit/hero_a.png",
+        "who": "hero",
+        "columns": 3,
+        "figures": {
+          "sit_play": "the child sits cross-legged on the floor, turned a little to the right, happy and relaxed, looking down to the right, both hands open in front of the tummy, palms up, empty",
+          "sit_look_up": "the child sits cross-legged in the same way, head tilted up and looking up to the right, surprised and delighted, eyes wide, mouth a little open, hands on the knees",
+          "bed_sit": "the child sits up straight on the floor, seen in three-quarter view facing right, both legs stretched straight out to the RIGHT and close together, head turned toward the viewer and tilted, both hands open and lifted at the sides, a puzzled 'where is it?' face",
+          "kneel_search": "the child kneels on the floor leaning forward to the right, lifting one red wooden block in one hand and peeking under it, curious face, the other hand on the floor",
+          "kneel_yawn": "the child kneels sitting back on the heels, in a huge sleepy yawn: mouth wide open, eyes squeezed shut, one fist rubbing an eye, shoulders drooping",
+          "kneel_happy": "the child kneels up tall with both arms thrown up and open wide, a big open-mouth smile, eyes shining"
+        }
+      },
+      "hero_b": {
+        "from": "tidy_toys/kit/hero_b.png",
+        "who": "hero",
+        "columns": 3,
+        "figures": {
+          "bend_place": "the child stands turned to the right and bends forward a little, both arms reaching forward and down to the right with open empty hands at waist height, nothing in or under the hands, soft careful smile, looking at the hands",
+          "stand_ball": "the child stands turned a little to the right, holding a small ball with wide red and white stripes (like a little beach ball) in both hands in front of the chest, smiling",
+          "throw": "the child stands turned to the right in a big throwing follow-through: one arm stretched forward and up toward the right, the other arm back, one foot forward, excited open-mouth face, both hands open and empty, nothing in the air",
+          "tummy_reach": "the child lies flat on the tummy on the floor, head to the LEFT, one arm stretched far out to the left reaching for something, cheek low, tongue tip out with effort, legs straight behind to the right",
+          "hug_teddy": "the child kneels and hugs a small round light-brown teddy bear with round ears, a peach tummy and muzzle and a little smile, tight against the chest with both arms, eyes closed, cheek on the teddy's head, a big happy smile",
+          "asleep": "the child lies asleep on one side, facing the viewer, head to the LEFT, eyes closed with a peaceful little smile, one hand resting in front of the face, body and legs stretched out to the right, lying on nothing: no pillow, no blanket, no bed"
+        }
+      },
+      "hero_d": {
+        "from": "clock_time/kit/hero_d.png",
+        "who": "hero",
+        "columns": 3,
+        "figures": {
+          "kneel_place": "the child kneels leaning forward to the right, both arms reaching down to the right with open empty hands at knee height, as if putting something down; nothing in or under the hands; soft careful smile",
+          "kneel_wave": "the child kneels up tall, turned to the right, waving one hand high toward the right, a sleepy happy smile, the other hand on the knee",
+          "kneel_push": "the child kneels leaning forward to the right, both hands pushing forward and down at waist height, palms open and flat, a determined face with the tongue tip out; nothing in or under the hands",
+          "kneel_press": "the child kneels up tall and leans forward to the right, both arms straight, both hands flat pressing down hard at waist height, cheeks puffed out, eyes squeezed shut; nothing under the hands",
+          "kneel_sad": "the child kneels sitting back on the heels, turned to the right, looking down to the right at something on the floor, a little sad: eyebrows up, small frown, hands in the lap",
+          "kneel_fold": "the child kneels sitting back on the heels, turned to the right, leaning forward a little, both hands open and flat low in front at knee height, as if smoothing and folding clothes on the floor; nothing in or under the hands; careful happy smile"
+        }
+      },
+      "hero_e": {
+        "from": "clock_time/kit/hero_e.png",
+        "who": "hero",
+        "columns": 3,
+        "figures": {
+          "reach": "the child stands turned to the right, both arms reaching forward to the right at chest height, fingertips pinching something tiny, a curious, slightly naughty smile; nothing in the hands",
+          "stand_yawn": "the child stands facing a little to the right in a huge sleepy yawn: mouth wide open, eyes squeezed shut, one fist rubbing an eye, the other arm hanging down, shoulders drooping",
+          "stand_sleepy": "the child stands facing a little to the right, sleepy eyes half closed, a small smile, the arm nearer the LEFT edge of the picture held straight out toward the LEFT edge at waist height, the hand open, palm up; the other arm hanging down",
+          "sit_backpack": "the child sits cross-legged, turned a little to the right, holding a small rounded soft-orange kid backpack with a yellow star on its front pocket and two straps on the lap with both hands; the backpack is open and empty; happy face",
+          "lift_backpack": "the child sits cross-legged, lifting the same small orange backpack high above the head with both hands, a delighted open-mouth smile",
+          "pull": "the child stands leaning far back, turned to the right, feet planted apart, knees a little bent, both arms stretched straight forward and down, both hands closed in loose fists close together low in front, just above knee height, as if pulling a heavy bag on the floor by its top handle, a straining face with puffed cheeks; nothing in the hands"
+        }
+      },
+      "lulu_a": {
+        "from": "tidy_toys/kit/lulu_a.png",
+        "who": "lulu",
+        "columns": 3,
+        "figures": {
+          "float": "Lulu floats upright, facing the viewer, relaxed and happy, paws at her sides, ears up",
+          "talk": "Lulu floats turned a little to the left and looks down to the left, one paw raised as if explaining, mouth open in a friendly smile",
+          "glow": "Lulu floats with both arms spread wide and her head lifted, eyes closed in a happy smile, the amber crescent moon on her belly shining bright yellow",
+          "point": "Lulu floats and points one paw clearly down to the right, looking that way, smiling",
+          "clap": "Lulu floats and claps both paws together in front of her chest, laughing, eyes closed",
+          "whisper": "Lulu floats leaning forward to the left, one paw beside her mouth as if whispering, eyes soft and half closed"
+        }
+      },
+      "props": {
+        "from": "tidy_toys/kit/props.png",
+        "who": "props",
+        "columns": 4,
+        "figures": {
+          "toybox_empty": "a rounded wooden toy chest painted soft sky-blue with one yellow star on its front, lid open and tilted up behind it, completely empty inside",
+          "toybox_full": "the same sky-blue toy chest with the yellow star, lid open and tilted up behind it, colorful wooden blocks peeking over its rim",
+          "toybox_closed": "the same sky-blue toy chest with the yellow star, lid closed",
+          "blocks": "five colorful wooden blocks (red, yellow, blue, green, red) lying close together in one low loose cluster, all touching, one leaning on another",
+          "ball": "one small ball with wide red and white stripes, like a little beach ball",
+          "teddy_lying": "a small round light-brown teddy bear with round ears, a peach tummy and muzzle and a little smile, lying on its back with its arms out",
+          "teddy_sitting": "the same light-brown teddy bear sitting up, legs forward, arms at its sides",
+          "blanket_lump": "a long low mound of soft lavender blanket seen from the side, with a few soft folds: the top edge is folded back at the LEFT end, the mound is higher on the left and gets flatter toward the right end where it drapes down; nobody and nothing shows under or out of it"
+        }
+      },
+      "props_clock": {
+        "from": "clock_time/kit/props_clock.png",
+        "who": "props",
+        "columns": 3,
+        "figures": {
+          "bedside_table": "a small round light-wood bedside table on three short straight legs, a little taller than it is wide, its round top completely empty: nothing on it at all",
+          "breakfast": "a small low round wooden table with a white plate of two slices of bread and a glass of milk on it",
+          "paper_crayons": "a big sheet of white paper lying flat, with a simple colorful child's drawing of a sun and a flower on it, and four crayons (red, blue, yellow, green) lying on the paper, all well inside its edges",
+          "paper_only": "the very same paper with the same drawing, lying flat, no crayons",
+          "cup_empty": "a small light-blue cup standing upright, empty",
+          "cup_full": "the very same light-blue cup with four crayons (red, blue, yellow, green) standing up in it",
+          "blanket_hidden": "a long soft lavender blanket pulled all the way over a small child lying on the side: one rounded child-sized mound, highest and roundest at the LEFT end where the head is, with a small tuft of dark brown hair peeking out at the LEFT end and nothing else showing; lying on nothing: no bed, no pillow"
+        }
+      },
+      "props_candy": {
+        "who": "props",
+        "columns": 3,
+        "note": "Every thing is seen from the same angle: from the front, slightly from above, so the inside of the open jar and of the bowl shows a little. No faces on anything: not on the jar, the candies, the bowl or the soup. The three jars are the very same jar at the same size, the same pink and the same painted rainbow arc; only the lid and the candies change. The two bowls are the very same bowl at the same size. Every candy is the same kind of small round candy in a shiny wrapper twisted at both ends. Sizes compared with the upright jar: the bowl is about as wide as the jar and about half as tall as the jar; each candy is about one fifth of the jar's width, wrapper ends included; the lying jar with its spilled candies is about twice as wide as the upright jar.",
+        "figures": {
+          "jar_closed": "a round, chubby pastel-pink ceramic candy jar, about as wide as it is tall, opaque so nothing inside shows through, with a little rainbow arc (red, yellow, green, purple) painted on its front and a round pink lid with a small round knob, standing upright with the lid on",
+          "jar_open": "the very same pink jar with the rainbow arc, standing upright with the lid off and no lid anywhere, a heap of small round candies in shiny wrappers twisted at both ends (red, yellow, green and purple) peeking up over its rim",
+          "jar_tipped": "the very same pink jar with the rainbow arc, lid off and no lid anywhere, lying on its side with its open mouth toward the RIGHT; a small loose cluster of the same red, yellow, green and purple wrapped candies has spilled out in front of its mouth, the candies touching each other and the jar's mouth so the jar and the candies make one piece",
+          "soup_full": "a round cream ceramic bowl with a thin sky-blue rim, full almost to the rim with smooth orange pumpkin soup with a few small round green peas on top, about five or six peas; nothing else in it: no tomato, no corn, no carrot, no broccoli, no spoon, no steam",
+          "soup_empty": "the very same cream bowl with the thin sky-blue rim, clean and empty inside: no soup, no peas, no spoon",
+          "candy_one": "one small round red candy in a shiny red wrapper twisted at both ends, lying on its side"
+        }
+      },
+      "hero_h": {
+        "who": "hero",
+        "columns": 3,
+        "attach": "kit/hero_a.png (copied from tidy_toys: match the sitting child sit_look_up there), kit/props_candy.png (make it before this sheet: only for the candy's look)",
+        "note": "The child's head is exactly the same size in every figure; sitting figures are simply smaller in the cell, never enlarged to fill it. The child is exactly the same size as in the second attached sheet (kit/hero_a.png): the head in every figure is the same size as the head of the cross-legged child looking up there (sit_look_up), and the sitting body the same size. Every figure sits cross-legged on the floor, turned a little to the right, barefoot. Hands hold nothing unless the figure says so: only figures 2, 3 and 5 hold something. The candy in figure 2 is the very same small round red candy in a shiny red wrapper as in the third attached sheet (kit/props_candy.png), here with its wrapper opened out behind it. The candy in figure 3 is the same kind of small round candy, but green, in a shiny green wrapper, opened out behind it in the same way. Use that sheet only for the candy: draw no jar and no bowl here, only the five child figures.",
+        "figures": {
+          "sit_reach": "the child sits cross-legged and leans forward to the RIGHT, one arm stretched forward to the right with the hand a little below shoulder height, fingers open and ready to pick something up, an eager little smile, looking at the hand, the other hand on the knee; nothing in or under the hand",
+          "eat_candy": "the child sits cross-legged, holding one small round red candy just in front of the lips with two fingers, its shiny red wrapper untwisted and opened out behind the candy like a little red bow, eyes closed in delight, mouth open in a happy smile, ready to pop it in, the other hand on the knee; nothing else in the hands",
+          "eat_candy_green": "the child sits cross-legged exactly as in figure 2, holding one small round green candy just in front of the lips with two fingers, its shiny green wrapper untwisted and opened out behind the candy like a little green bow, eyes closed in delight, mouth open in a happy smile, ready to pop it in, the other hand on the knee; nothing else in the hands",
+          "sit_ouch": "the child sits cross-legged, leaning forward a little, both arms wrapped softly around the tummy; eyes a little teary with one or two small clear tears on the cheeks, eyebrows tilted up, mouth closed in a small wobbly frown; gentle and a little sad, not sobbing and not scary: no open crying mouth, no streams of tears; nothing in the hands",
+          "sit_spoon": "the child sits cross-legged, holding a small cream spoon up at the lips in one hand as if sipping, eyes closed, a warm content smile, the other hand on the knee; nothing else in the hands, no bowl"
+        }
+      }
+    }
+  }
+}

@@ -11,6 +11,10 @@ stage.json:
   {"room": "kit/room.png",                    # under the art folder
    "crop": [0.05, 0.0, 0.80, 1.0],            # optional: part of the room file to use (then fit to 4:3)
    "erase_specks": [[0.0, 0.1, 0.2, 0.4]],    # optional: boxes where small bright specks are painted out
+   -- or several rooms (day / night, or two crops of one file), first = default:
+   "rooms": {"night": {"file": "kit/room.png", "crop": [...], "erase_specks": [...]},
+             "day": {"file": "kit/room_day.png", "crop": [...]}},
+   with "room": "day" on a scene,
    "tint": 0.0,                              # 0..1: warm the sprites with the room's lamp tone
    "sheets": {"hero_a": {"scale": 0.9},       # sheet px -> picture px (picture = 1600x1200)
               "lulu_a": {"scale": 0.5, "anchor": "center"}},
@@ -41,10 +45,11 @@ pivot of every part is printed (feet for standing things, middle for Lulu).
 
 Writes into assets/stories/<id>/images/:
   layers/kit_room.webp            the room, bottom layer of every staged scene
+                                  (several rooms: kit_room_<name>.webp)
   layers/kit_<sheet>_<name>.webp  one file per sprite; sprites that swap with
                                   each other share one canvas, anchors lined up
   layers/kit_shadow.webp          the floor shadow
-  layers/kit_cover_<name>.webp    room pieces from "covers"
+  layers/kit_cover_<name>.webp    room pieces from "covers" (several rooms: kit_cover_<name>_<room>.webp)
   layers.json                     entries of the staged scenes (others kept)
   <scene>.webp                    small flat composite (fallback picture)
   icon_*.webp                     from "icons"
@@ -81,7 +86,7 @@ FLAT_MAX = 45 * KB
 ICON = 400
 ICON_MAX = 40 * KB
 ICON_BG = (62, 76, 120)      # the slate blue of the Gemini choice icons
-SPRITE_Q = 78                # like cut layers (tool/cutout.py)
+SPRITE_Q = 78                # first WebP quality tried for sprite layers
 SOFT = 1.15                  # warn when a sprite is shown bigger than this x its sheet size
 SHADOW = (40, 22, 18)
 PROP_MOTION = ('none', 'wiggle')
@@ -231,7 +236,7 @@ class Cover:
     """A piece of the room drawn again on top (the bed's front board, the
     blanket): parts listed before it in a scene go behind it."""
 
-    def __init__(self, name: str, polygon: list[list[float]], room: Image.Image):
+    def __init__(self, name: str, polygon: list[list[float]], room: Image.Image, suffix: str = ''):
         mask = Image.new('L', (W, H), 0)
         ImageDraw.Draw(mask).polygon([(x * W, y * H) for x, y in polygon], fill=255)
         mask = mask.filter(ImageFilter.GaussianBlur(1.2))
@@ -242,7 +247,7 @@ class Cover:
         self.img = pic.crop(b)
         self.xy = b[:2]
         self.rect = [round(b[0] / W, 6), round(b[1] / H, 6), round((b[2] - b[0]) / W, 6), round((b[3] - b[1]) / H, 6)]
-        self.file = f'layers/kit_cover_{name}.webp'
+        self.file = f'layers/kit_cover_{name}{suffix}.webp'
         self.kind = 'cover'
 
     def layer(self) -> dict:
@@ -451,6 +456,42 @@ def tiles(pics: list[tuple[str, Image.Image]], cols: int, size: tuple[int, int])
     return sheet
 
 
+# ---------- rooms ----------
+
+class Room:
+    """One empty room picture, cropped to 4:3 and cleaned."""
+
+    def __init__(self, name: str | None, conf: dict, art: Path):
+        src = Path(conf['file']).expanduser()
+        src = src if src.is_absolute() else art / src
+        if not src.exists():
+            sys.exit(f'no room picture {src}')
+        with Image.open(src) as im:
+            room, _ = remove_watermark(ImageOps.exif_transpose(im).convert('RGB'))
+        if conf.get('crop'):   # [x0, y0, x1, y1] fractions of the room file (Gemini may return 16:9)
+            x0, y0, x1, y1 = conf['crop']
+            room = room.crop((round(x0 * room.width), round(y0 * room.height),
+                              round(x1 * room.width), round(y1 * room.height)))
+        room = ImageOps.fit(room, (W, H), Image.LANCZOS)
+        if conf.get('erase_specks'):
+            room = erase_specks(room, conf['erase_specks'])
+        self.name, self.img = name, room
+        self.file = 'layers/kit_room.webp' if name is None else f'layers/kit_room_{name}.webp'
+
+
+def load_rooms(spec: dict, art: Path) -> dict[str | None, Room]:
+    """{"rooms": {name: {file, crop, erase_specks}}} or the single-room keys
+    {"room": file, "crop", "erase_specks"} (key None). First = default."""
+    if 'rooms' in spec:
+        if not spec['rooms']:
+            sys.exit('stage.json "rooms" is empty')
+        return {name: Room(name, conf, art) for name, conf in spec['rooms'].items()}
+    if 'room' not in spec:
+        sys.exit('stage.json needs "room" or "rooms"')
+    return {None: Room(None, {'file': spec['room'], 'crop': spec.get('crop'),
+                              'erase_specks': spec.get('erase_specks')}, art)}
+
+
 # ---------- main ----------
 
 def main():
@@ -473,33 +514,35 @@ def main():
         sys.exit(f'missing {spec_path}')
     spec = json.loads(spec_path.read_text(encoding='utf-8'))
     art = (args.art_dir or ART_DIR / args.story).expanduser()
-    room_src = Path(spec['room']).expanduser()
-    room_src = room_src if room_src.is_absolute() else art / room_src
-    if not room_src.exists():
-        sys.exit(f'no room picture {room_src}')
-    with Image.open(room_src) as im:
-        room, _ = remove_watermark(ImageOps.exif_transpose(im).convert('RGB'))
-    if spec.get('crop'):   # [x0, y0, x1, y1] fractions of the room file (Gemini may return 16:9)
-        x0, y0, x1, y1 = spec['crop']
-        room = room.crop((round(x0 * room.width), round(y0 * room.height),
-                          round(x1 * room.width), round(y1 * room.height)))
-    room = ImageOps.fit(room, (W, H), Image.LANCZOS)
-    if spec.get('erase_specks'):
-        room = erase_specks(room, spec['erase_specks'])
-    mean = np.asarray(room.resize((32, 24)), np.float32).reshape(-1, 3).mean(axis=0)
+    rooms = load_rooms(spec, art)
+    first = next(iter(rooms.values()))
+    mean = np.asarray(first.img.resize((32, 24)), np.float32).reshape(-1, 3).mean(axis=0)
     tint = spec.get('tint', 0.0) if args.tint is None else args.tint
     kit = Kit(spec, art, tint, tuple(mean / mean.max()))
 
-    covers = {name: Cover(name, poly, room) for name, poly in spec.get('covers', {}).items()}
+    def room_of(scene: str, sc: dict) -> Room:
+        if 'room' not in sc:
+            return first
+        if sc['room'] not in rooms:
+            sys.exit(f'{scene}: no room "{sc["room"]}" in stage.json "rooms"')
+        return rooms[sc['room']]
 
-    def make(scene: str, raw: dict):
+    covers: dict[tuple[str, str | None], Cover] = {}   # one per (cover, room)
+
+    def make(scene: str, raw: dict, room: Room):
         if 'cover' in raw:
-            if raw['cover'] not in covers:
-                sys.exit(f'{scene}: no cover "{raw["cover"]}" in stage.json "covers"')
-            return covers[raw['cover']]
+            name = raw['cover']
+            if name not in spec.get('covers', {}):
+                sys.exit(f'{scene}: no cover "{name}" in stage.json "covers"')
+            if (name, room.name) not in covers:
+                suffix = '' if room.name is None or len(rooms) == 1 else f'_{room.name}'
+                covers[name, room.name] = Cover(name, spec['covers'][name], room.img, suffix)
+            return covers[name, room.name]
         return Part(scene, raw, kit)
 
-    scenes = {name: [make(name, raw) for raw in sc['parts']] for name, sc in spec['scenes'].items()}
+    scene_room = {name: room_of(name, sc) for name, sc in spec['scenes'].items()}
+    scenes = {name: [make(name, raw, scene_room[name]) for raw in sc['parts']]
+              for name, sc in spec['scenes'].items()}
     icons = {name: icon_image(items, kit) for name, items in spec.get('icons', {}).items()}
     if kit.missing:
         sys.exit('missing sprites (cut the sheets with tool/sprite_sheet.py):\n  ' + '\n  '.join(sorted(kit.missing)))
@@ -509,7 +552,7 @@ def main():
     # Layer entries per scene.
     entries: dict[str, list[dict]] = {}
     for name, parts in scenes.items():
-        entry = [{'file': 'layers/kit_room.webp'}]
+        entry = [{'file': scene_room[name].file}]
         seen: dict[str, int] = {}
         for p in parts:
             if isinstance(p, Cover):
@@ -544,9 +587,12 @@ def main():
     if not args.dry:
         layers_dir = images / 'layers'
         layers_dir.mkdir(parents=True, exist_ok=True)
-        used = {'kit_room.webp'}
-        _, q, size, over = save_webp(room, layers_dir / 'kit_room.webp', LAYER_MAX)
-        print(f'layers/kit_room.webp  q{q}, {size // KB} KB' + ('  OVER budget' if over else ''))
+        used = set()
+        for r in {id(r): r for r in scene_room.values()}.values():
+            _, q, size, over = save_webp(r.img, images / r.file, LAYER_MAX)
+            used.add(Path(r.file).name)
+            print(f'{r.file}  q{q}, {size // KB} KB' + ('  OVER budget' if over else ''))
+        n_rooms = len(used)
         for c in {id(p): p for ps in scenes.values() for p in ps if isinstance(p, Cover)}.values():
             save_webp(c.img, images / c.file, LAYER_MAX, q_hi=92)
             used.add(Path(c.file).name)
@@ -562,13 +608,13 @@ def main():
                 total += size
                 if over or q < SPRITE_Q:
                     print(f'  {s.file}: q{q}, {size // KB} KB' + ('  OVER budget' if over else ''))
-        print(f'{len(used) - 1} sprite files, {total // KB} KB')
+        print(f'{len(used) - n_rooms} sprite files, {total // KB} KB')
         for old in layers_dir.glob('kit_*.webp'):
             if old.name not in used:
                 old.unlink()
                 print(f'  removed unused layers/{old.name}')
         for name, parts in scenes.items():
-            flat = compose(room, parts, shadow).convert('RGB').resize(FLAT, Image.LANCZOS)
+            flat = compose(scene_room[name].img, parts, shadow).convert('RGB').resize(FLAT, Image.LANCZOS)
             save_webp(flat, images / f'{name}.webp', FLAT_MAX)
         for name, pic in icons.items():
             _, q, size, over = save_webp(pic, images / f'{name}.webp', ICON_MAX)
@@ -589,6 +635,7 @@ def main():
         for name, parts in scenes.items():
             if args.only and name not in args.only:
                 continue
+            room = scene_room[name].img
             pic = compose(room, parts, shadow)
             if args.guides:
                 pic = guides(pic, parts)

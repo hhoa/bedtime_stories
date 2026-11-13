@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
 """Build a phone-friendly HTML page of a story's Gemini prompts (kit room and
-sheets, pictures, plates, poses) with copy buttons and done ticks, for making
+sheets, cover and sticker) with copy buttons and done ticks, for making
 the art by hand in the Gemini app. Publish the page as an Artifact to use it on a phone.
 
     python3 tool/prompts_page.py <id> <out.html> [--title 'Backpack Story Prompts']
+    python3 tool/prompts_page.py clock_time,prepare_stuff_vacation <out.html>   # one page, several stories
 
 Runs gen_image.py --prompts-out for every step (no API call), so every
 prompt starts with its file name. Character sheets come from tool/image_refs/.
@@ -23,18 +24,12 @@ from PIL import Image
 ROOT = Path(__file__).resolve().parent.parent
 REFS = ROOT / 'tool/image_refs'
 
-STEPS = [   # a step with no prompts (no kit, or a kit story's plates and poses) is left out
+STEPS = [   # a step with no prompts is left out
     ('kit', ['--kit'], 'Kit · Room and sheets',
      'The whole story is built from these: one empty room, then sheets of poses and things on a plain '
      'background. Every figure must be whole, apart from the others and the same size. Save in a kit/ folder.'),
-    ('pictures', [], 'Step 1 · Pictures',
-     'Attach the sheets listed on each card, paste the prompt, save under the name shown. '
-     'Keep all scenes in one Gemini chat so the room and props stay the same.'),
-    ('plates', ['--plates'], 'Step 2 · Plates',
-     'Attach the scene picture from step 1; Gemini removes the child and/or Lulu. Save in a plates/ folder.'),
-    ('poses', ['--poses'], 'Step 3 · Poses',
-     'Attach the scene picture from step 1; only the pose changes. If the character moves or changes size, '
-     'redo it. Save in a poses/ folder.'),
+    ('pictures', [], 'Pictures · Cover and sticker',
+     'Attach the pictures listed on each card, paste the prompt, save under the name shown.'),
 ]
 
 CSS = '''
@@ -154,27 +149,49 @@ def main():
         del args[i:i + 2]
     if len(args) != 2:
         sys.exit(__doc__)
-    story, out = args[0], Path(args[1]).expanduser()
-    meta = json.loads((ROOT / 'assets/stories' / story / 'story.json').read_text(encoding='utf-8'))
-    hero = meta.get('hero', 'kid')
-    title_vi = meta['title']['vi'].replace('{name}', 'Bé')
-    page_title = page_title or story.replace('_', ' ').capitalize() + ' prompts'
+    stories, out = args[0].split(','), Path(args[1]).expanduser()
+    metas = [json.loads((ROOT / 'assets/stories' / sid / 'story.json').read_text(encoding='utf-8'))
+             for sid in stories]
+    hero = metas[0].get('hero', 'kid')
+    title_vi = ' + '.join(m['title']['vi'].replace('{name}', 'Bé') for m in metas)
+    story = '+'.join(stories)
+    many = len(stories) > 1
+    page_title = page_title or stories[0].replace('_', ' ').capitalize() + ' prompts'
     sections, n, sheets = [], 0, set()
     with tempfile.TemporaryDirectory() as tmp:
-        for folder, flags, title, note in STEPS:
-            d = Path(tmp) / folder
-            subprocess.run([sys.executable, str(ROOT / 'tool/gen_image.py'), '--story', story, *flags,
+        for sid, (folder, flags, title, note) in [(sid, st) for sid in stories for st in STEPS]:
+            d = Path(tmp) / sid / folder
+            subprocess.run([sys.executable, str(ROOT / 'tool/gen_image.py'), '--story', sid, *flags,
                             '--prompts-out', str(d)], check=True, stdout=subprocess.DEVNULL)
+            if many:
+                title = f'{sid} · {title}'
             items = []
             for f in sorted(d.glob('*.txt')):
                 n += 1
                 c = parse(f)
+                if many:
+                    c['save'] = f'{sid}/{c["save"]}'
                 sheets.update(a.strip() for a in c['attach'].split(',') if a.strip() in ('girl.png', 'boy.png', 'kid.png', 'lulu.png'))
                 items.append(card(n, c))
             if not items:
                 continue
             sections.append(f'<section><h2>{title}</h2><p class="note">{len(items)} prompts. {note}</p>'
                             f'<div class="list">{"".join(items)}</div></section>')
+        # a sheet the prompts attach but tool/image_refs/ lacks (e.g. kid.png): its prompt goes first
+        missing = sorted(s for s in sheets if not (REFS / s).exists())
+        items = []
+        for s in missing:
+            d = Path(tmp) / 'refs' / s
+            subprocess.run([sys.executable, str(ROOT / 'tool/gen_image.py'), '--refs', '--only', s[:-4],
+                            '--prompts-out', str(d)], check=True, stdout=subprocess.DEVNULL)
+            for f in sorted(d.glob('*.txt')):
+                n += 1
+                items.append(card(n, parse(f)))
+        if items:
+            sections.insert(0, f'<section><h2>Character sheet first</h2><p class="note">{len(items)} prompt(s). '
+                               f'The other prompts attach this sheet, so make it first. Save it as named; it goes into '
+                               f'<code>tool/image_refs/</code> and later stories reuse it.</p>'
+                               f'<div class="list">{"".join(items)}</div></section>')
     figs = ''.join(f'<figure><img src="{thumb(REFS / s)}" alt="{s} character sheet"><figcaption>{s}</figcaption></figure>'
                    for s in sorted(sheets) if (REFS / s).exists())
     page = (
@@ -187,7 +204,8 @@ def main():
         f'<main data-story="{story}">\n<header><h1>{html.escape(title_vi)} · Gemini prompts</h1>'
         f'<p class="lead">{hero.capitalize()} pictures for <code>{story}</code> ({n} prompts). Each prompt starts with '
         f'its file name in [brackets], so the Gemini chat shows which picture it is. Save everything to '
-        f'<code>~/Downloads/story_art/{story}/</code>. Long-press a character sheet to save it, then attach it in '
+        f'<code>~/Downloads/story_art/{"" if many else story + "/"}</code>'
+        f'{" (the story folder is part of each name)" if many else ""}. Long-press a character sheet to save it, then attach it in '
         f'Gemini. Ticks are remembered on this device only.</p><p class="progress" id="progress"></p></header>\n'
         f'<section><h2>Character sheets</h2><div class="refs">{figs}</div></section>\n'
         f'{"".join(sections)}\n</main>\n'

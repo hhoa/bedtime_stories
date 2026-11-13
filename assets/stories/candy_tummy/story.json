@@ -1,0 +1,339 @@
+{
+  "id": "candy_tummy",
+  "theme": "treats",
+  "hero": "girl",
+  "title": {"vi": "{name} và hũ kẹo cầu vồng", "en": "{name} and the Rainbow Candy Jar"},
+  "cover": "images/cover.webp",
+  "start": "s1",
+  "nodes": [
+    {
+      "id": "s1",
+      "type": "scene",
+      "image": "images/s1_gift.webp",
+      "next": "s2",
+      "ambient": "sparkles",
+      "text": {
+        "vi": "{name} ngồi trên thảm, sắp đến giờ đi ngủ. Vù! Lulu bay vào qua cửa sổ. Theo sau Lulu là một hũ nhỏ, bay lơ lửng. Lulu cười: \"Quà của các vì sao đây!\"",
+        "en": "{name} is sitting on the rug. It's almost bedtime. Whoosh! Lulu flies in through the window. Behind Lulu floats a little jar, bobbing in the air. Lulu smiles, \"A present from the stars!\""
+      },
+      "cues": {
+        "vi": [
+          {"word": "Vù", "part": "lulu", "action": "move", "to": [0.66, 0.48], "at": 0.261},
+          {"word": "hũ nhỏ", "part": "jar", "action": "move", "to": [0.61, 0.96], "at": 0.629},
+          {"word": "lơ lửng", "part": "jar", "action": "hop", "at": 0.707},
+          {"word": "Quà", "part": "lulu", "action": "pose", "pose": "talk", "at": 0.868}
+        ],
+        "en": [
+          {"word": "Whoosh", "part": "lulu", "action": "move", "to": [0.66, 0.48], "at": 0.266},
+          {"word": "little jar", "part": "jar", "action": "move", "to": [0.61, 0.96], "at": 0.622},
+          {"word": "bobbing", "part": "jar", "action": "hop", "at": 0.681},
+          {"word": "present", "part": "lulu", "action": "pose", "pose": "talk", "at": 0.89}
+        ]
+      }
+    },
+    {
+      "id": "s2",
+      "type": "scene",
+      "image": "images/s2_open.webp",
+      "next": "c1",
+      "ambient": "sparkles",
+      "text": {
+        "vi": "Lulu chỉ vào hũ, nắp mở ra. Ồ! Kẹo cầu vồng đầy ắp: đỏ, vàng, xanh, tím. Mắt bé sáng long lanh. Lulu nói: \"Kẹo ngọt lắm đấy!\"",
+        "en": "Lulu points at the jar, and the lid pops open. Oh! It's full of rainbow candies: red, yellow, green and purple. The little one's eyes shine. Lulu says, \"Candy is very sweet!\""
+      },
+      "cues": {
+        "vi": [
+          {"word": "chỉ", "part": "lulu", "action": "pose", "pose": "point", "at": 0.036},
+          {"word": "nắp", "part": "jar", "action": "pose", "pose": "jar_open", "at": 0.145},
+          {"word": "mở ra", "part": "jar", "action": "hop", "at": 0.175},
+          {"word": "sáng long lanh", "part": "hero", "action": "pose", "pose": "kneel_happy", "at": 0.644},
+          {"word": "Lulu nói", "part": "lulu", "action": "pose", "pose": "talk", "at": 0.795}
+        ],
+        "en": [
+          {"word": "points", "part": "lulu", "action": "pose", "pose": "point", "at": 0.018},
+          {"word": "lid", "part": "jar", "action": "pose", "pose": "jar_open", "at": 0.153},
+          {"word": "pops open", "part": "jar", "action": "hop", "at": 0.175},
+          {"word": "shine", "part": "hero", "action": "pose", "pose": "kneel_happy", "at": 0.768},
+          {"word": "says", "part": "lulu", "action": "pose", "pose": "talk", "at": 0.851}
+        ]
+      }
+    },
+    {
+      "id": "c1",
+      "type": "choice",
+      "image": "images/s2_open.webp",
+      "ambient": "sparkles",
+      "poses": {"hero": "kneel_happy", "jar": "jar_open"},
+      "text": {
+        "vi": "{name} ơi, mình ăn mấy viên kẹo nhỉ?",
+        "en": "{name}, how many candies should we eat?"
+      },
+      "options": [
+        {
+          "id": "one",
+          "kind": "kind",
+          "icon": "images/icon_one.webp",
+          "label": {"vi": "Một viên thôi", "en": "Just one"},
+          "next": "a1"
+        },
+        {
+          "id": "lots",
+          "kind": "learn",
+          "icon": "images/icon_lots.webp",
+          "label": {"vi": "Thật nhiều viên", "en": "Lots and lots"},
+          "next": "b1"
+        }
+      ]
+    },
+    {
+      "id": "a1",
+      "type": "scene",
+      "image": "images/a1_one.webp",
+      "next": "n1",
+      "ambient": "stars",
+      "text": {
+        "vi": "{name} chọn một viên kẹo đỏ. Măm! Ngọt ơi là ngọt! Một viên là đủ vui miệng rồi. Bé đậy nắp hũ lại, để dành mai ăn tiếp.",
+        "en": "{name} picks one red candy. Yum! So sweet! One is just right for a happy mouth. The little one puts the lid back on. The rest can wait for tomorrow."
+      },
+      "cues": {
+        "vi": [
+          {"word": "chọn", "part": "jar", "action": "wiggle", "at": 0.009},
+          {"word": "Măm", "part": "hero", "action": "pose", "pose": "eat_candy", "at": 0.171},
+          {"word": "đủ vui", "part": "lulu", "action": "pose", "pose": "clap", "at": 0.519},
+          {"word": "đậy", "part": "hero", "action": "pose", "pose": "kneel_place", "at": 0.695},
+          {"word": "nắp hũ", "part": "jar", "action": "pose", "pose": "jar_closed", "at": 0.726},
+          {"word": "để dành", "part": "jar", "action": "pulse", "at": 0.837}
+        ],
+        "en": [
+          {"word": "picks", "part": "jar", "action": "wiggle", "at": 0.0},
+          {"word": "Yum", "part": "hero", "action": "pose", "pose": "eat_candy", "at": 0.119},
+          {"word": "just right", "part": "lulu", "action": "pose", "pose": "clap", "at": 0.316},
+          {"word": "puts", "part": "hero", "action": "pose", "pose": "kneel_place", "at": 0.696},
+          {"word": "lid", "part": "jar", "action": "pose", "pose": "jar_closed", "at": 0.741},
+          {"word": "wait", "part": "jar", "action": "pulse", "at": 0.901}
+        ]
+      }
+    },
+    {
+      "id": "b1",
+      "type": "scene",
+      "image": "images/b1_lots.webp",
+      "next": "b2",
+      "ambient": "stars",
+      "text": {
+        "vi": "{name} ăn một viên, rồi thêm một viên nữa. Viên xanh, viên vàng, viên tím… Ăn mãi, ăn mãi. Ơ, bụng bé hơi đau đau. Bụng nhỏ nhăn nhó vì nhiều kẹo quá. Bé rơm rớm nước mắt.",
+        "en": "{name} eats one candy, then one more. A green one, a yellow one, a purple one… More and more. Oh! The little tummy starts to ache a bit. It feels grumpy from too much candy. A little tear rolls down."
+      },
+      "cues": {
+        "vi": [
+          {"word": "thêm", "part": "hero", "action": "pose", "pose": "sit_reach", "at": 0.108},
+          {"word": "Viên xanh", "part": "hero", "action": "pose", "pose": "eat_candy_green", "at": 0.208},
+          {"word": "Ăn mãi", "part": "jar", "action": "wiggle", "at": 0.408},
+          {"word": "đau đau", "part": "hero", "action": "pose", "pose": "sit_ouch", "at": 0.644},
+          {"word": "nhăn nhó", "part": "hero", "action": "wiggle", "at": 0.76},
+          {"word": "rơm rớm", "part": "hero", "action": "wiggle", "at": 0.907}
+        ],
+        "en": [
+          {"word": "one more", "part": "hero", "action": "pose", "pose": "sit_reach", "at": 0.106},
+          {"word": "green", "part": "hero", "action": "pose", "pose": "eat_candy_green", "at": 0.184},
+          {"word": "More", "part": "jar", "action": "wiggle", "at": 0.409},
+          {"word": "ache", "part": "hero", "action": "pose", "pose": "sit_ouch", "at": 0.666},
+          {"word": "grumpy", "part": "hero", "action": "wiggle", "at": 0.773},
+          {"word": "tear", "part": "hero", "action": "wiggle", "at": 0.941}
+        ]
+      }
+    },
+    {
+      "id": "b2",
+      "type": "scene",
+      "image": "images/b2_glow.webp",
+      "next": "n1",
+      "offer_rewind_to": "c1",
+      "ambient": "sparkles",
+      "text": {
+        "vi": "Bé đậy hũ lại. Lulu tỏa sáng thật dịu. \"Không sao, nước mắt khô ngay thôi. Một viên kẹo là đủ vui. Nhiều quá, bụng nhăn nhó đấy. Mình nghỉ chút, ăn canh rau ấm nhé. Bụng sẽ đỡ dần.\"",
+        "en": "The little one puts the lid back on. Lulu glows softly. \"It's okay. The tears will dry soon. One candy is plenty. Too much makes tummies grumpy. Let's rest, then have warm veggie soup. Little by little, you'll feel better.\""
+      },
+      "cues": {
+        "vi": [
+          {"word": "đậy", "part": "hero", "action": "pose", "pose": "kneel_place", "at": 0.018},
+          {"word": "hũ lại", "part": "jar", "action": "pose", "pose": "jar_closed", "at": 0.042},
+          {"word": "tỏa sáng", "part": "lulu", "action": "pose", "pose": "glow", "at": 0.132},
+          {"word": "Không sao", "part": "lulu", "action": "pose", "pose": "talk", "at": 0.247},
+          {"word": "nước mắt", "part": "hero", "action": "pose", "pose": "sit_ouch", "at": 0.312},
+          {"word": "đỡ dần", "part": "hero", "action": "pose", "pose": "sit_look_up", "at": 0.945}
+        ],
+        "en": [
+          {"word": "puts", "part": "hero", "action": "pose", "pose": "kneel_place", "at": 0.046},
+          {"word": "lid", "part": "jar", "action": "pose", "pose": "jar_closed", "at": 0.076},
+          {"word": "glows", "part": "lulu", "action": "pose", "pose": "glow", "at": 0.163},
+          {"word": "It's okay", "part": "lulu", "action": "pose", "pose": "talk", "at": 0.249},
+          {"word": "tears", "part": "hero", "action": "pose", "pose": "sit_ouch", "at": 0.333},
+          {"word": "better", "part": "hero", "action": "pose", "pose": "sit_look_up", "at": 0.973}
+        ]
+      }
+    },
+    {
+      "id": "n1",
+      "type": "scene",
+      "image": "images/n1_soup.webp",
+      "next": "c2",
+      "ambient": "stars",
+      "text": {
+        "vi": "Lulu bưng bát canh bí đỏ, có đậu Hà Lan xanh xanh. Canh nấu nhừ, mềm và ấm. Bé húp từng thìa nhỏ, chậm rãi. Hết veo! Bụng bé ấm áp, dễ chịu ghê.",
+        "en": "Lulu brings out a bowl of pumpkin soup, with little green peas. It's soft and warm. The little one sips it, spoon by spoon. All gone! The little tummy feels warm and cozy."
+      },
+      "cues": {
+        "vi": [
+          {"word": "canh bí đỏ", "part": "soup", "action": "hop", "at": 0.077},
+          {"word": "đậu Hà Lan", "part": "soup", "action": "pulse", "at": 0.187},
+          {"word": "húp", "part": "hero", "action": "pose", "pose": "sit_spoon", "at": 0.529},
+          {"word": "Hết veo", "part": "soup", "action": "pose", "pose": "soup_empty", "at": 0.723},
+          {"word": "ấm áp", "part": "hero", "action": "pose", "pose": "kneel_happy", "at": 0.867},
+          {"word": "dễ chịu", "part": "lulu", "action": "pose", "pose": "clap", "at": 0.915}
+        ],
+        "en": [
+          {"word": "pumpkin soup", "part": "soup", "action": "hop", "at": 0.118},
+          {"word": "peas", "part": "soup", "action": "pulse", "at": 0.275},
+          {"word": "sips", "part": "hero", "action": "pose", "pose": "sit_spoon", "at": 0.531},
+          {"word": "All gone", "part": "soup", "action": "pose", "pose": "soup_empty", "at": 0.695},
+          {"word": "warm and", "part": "hero", "action": "pose", "pose": "kneel_happy", "at": 0.924},
+          {"word": "cozy", "part": "lulu", "action": "pose", "pose": "clap", "at": 0.968}
+        ]
+      }
+    },
+    {
+      "id": "c2",
+      "type": "choice",
+      "image": "images/n1_soup.webp",
+      "ambient": "stars",
+      "poses": {"hero": "kneel_happy", "lulu": "talk", "soup": "soup_empty"},
+      "text": {
+        "vi": "{name} ơi, hũ kẹo ngủ ở đâu đêm nay?",
+        "en": "{name}, where will the candy jar sleep tonight?"
+      },
+      "options": [
+        {
+          "id": "table",
+          "kind": "kind",
+          "icon": "images/icon_table.webp",
+          "label": {"vi": "Trên bàn nhỏ, mai ăn", "en": "On the little table, for tomorrow"},
+          "next": "d1"
+        },
+        {
+          "id": "bed",
+          "kind": "learn",
+          "icon": "images/icon_bed.webp",
+          "label": {"vi": "Ngủ chung giường với bé", "en": "In bed with me"},
+          "next": "e1"
+        }
+      ]
+    },
+    {
+      "id": "e1",
+      "type": "scene",
+      "image": "images/e1_lumpy.webp",
+      "next": "e2",
+      "ambient": "stars",
+      "text": {
+        "vi": "{name} mang hũ kẹo lên giường, định ăn thêm một viên. Ối, hũ kẹo đổ nghiêng! Kẹo lăn khắp chăn. Chỗ nào cũng lộm cộm, cấn ơi là cấn. Bé chẳng ngủ được.",
+        "en": "{name} takes the candy jar into bed for one more candy. Oops, the jar tips over! Candies roll all over the blanket. Lumpy, bumpy everywhere! The little one can't get comfy to sleep."
+      },
+      "cues": {
+        "vi": [
+          {"word": "Ối", "part": "jar", "action": "pose", "pose": "jar_tipped", "at": 0.315},
+          {"word": "lăn", "part": "jar", "action": "wiggle", "at": 0.523},
+          {"word": "lộm cộm", "part": "hero", "action": "wiggle", "at": 0.698},
+          {"word": "chẳng ngủ được", "part": "hero", "action": "wiggle", "at": 0.902}
+        ],
+        "en": [
+          {"word": "Oops", "part": "jar", "action": "pose", "pose": "jar_tipped", "at": 0.265},
+          {"word": "roll", "part": "jar", "action": "wiggle", "at": 0.495},
+          {"word": "Lumpy", "part": "hero", "action": "wiggle", "at": 0.646},
+          {"word": "comfy", "part": "hero", "action": "wiggle", "at": 0.927}
+        ]
+      }
+    },
+    {
+      "id": "e2",
+      "type": "scene",
+      "image": "images/e2_magic.webp",
+      "next": "d1",
+      "offer_rewind_to": "c2",
+      "ambient": "sparkles",
+      "text": {
+        "vi": "Vù! Lulu bay tới, tỏa sáng. Từng viên kẹo nhảy tưng tưng về hũ. Nắp đậy lại. Lulu nói: \"Giường là chỗ để ngủ. Kẹo cũng cần chỗ ngủ riêng, trên bàn nhỏ nhé.\"",
+        "en": "Whoosh! Lulu flies over, glowing. One by one, the candies hop back into the jar. The lid closes. Lulu says, \"Beds are for sleeping. Candy needs its own sleepy spot, on the little table.\""
+      },
+      "cues": {
+        "vi": [
+          {"word": "Vù", "part": "lulu", "action": "move", "to": [0.42, 0.32], "at": 0.0},
+          {"word": "tỏa sáng", "part": "lulu", "action": "pose", "pose": "glow", "at": 0.119},
+          {"word": "nhảy", "part": "jar", "action": "pose", "pose": "jar_closed", "at": 0.261},
+          {"word": "tưng tưng", "part": "jar", "action": "hop", "at": 0.296},
+          {"word": "Nắp đậy", "part": "jar", "action": "hop", "at": 0.436},
+          {"word": "Lulu nói", "part": "lulu", "action": "pose", "pose": "talk", "at": 0.537},
+          {"word": "bàn nhỏ", "part": "table", "action": "pulse", "at": 0.924}
+        ],
+        "en": [
+          {"word": "Whoosh", "part": "lulu", "action": "move", "to": [0.42, 0.32], "at": 0.0},
+          {"word": "glowing", "part": "lulu", "action": "pose", "pose": "glow", "at": 0.133},
+          {"word": "hop back", "part": "jar", "action": "pose", "pose": "jar_closed", "at": 0.311},
+          {"word": "into the jar", "part": "jar", "action": "hop", "at": 0.366},
+          {"word": "lid closes", "part": "jar", "action": "hop", "at": 0.492},
+          {"word": "says", "part": "lulu", "action": "pose", "pose": "talk", "at": 0.6},
+          {"word": "little table", "part": "table", "action": "pulse", "at": 0.947}
+        ]
+      }
+    },
+    {
+      "id": "d1",
+      "type": "scene",
+      "image": "images/d1_table.webp",
+      "next": "end",
+      "ambient": "stars",
+      "text": {
+        "vi": "{name} đặt hũ kẹo lên bàn nhỏ, thật ngay ngắn. Kẹo nằm yên trong hũ, chờ đến mai. Lulu vỗ tay: \"Để dành giỏi quá!\" Oáp! Bé buồn ngủ rồi.",
+        "en": "{name} sets the candy jar on the little table, nice and neat. The candies rest in their jar until tomorrow. Lulu claps, \"You saved them for tomorrow!\" Yaaawn! The little one is sleepy now."
+      },
+      "cues": {
+        "vi": [
+          {"word": "đặt", "part": "jar", "action": "wiggle", "at": 0.005},
+          {"word": "nằm yên", "part": "jar", "action": "pulse", "at": 0.321},
+          {"word": "vỗ tay", "part": "lulu", "action": "pose", "pose": "clap", "at": 0.591},
+          {"word": "Oáp", "part": "hero", "action": "pose", "pose": "stand_yawn", "at": 0.822}
+        ],
+        "en": [
+          {"word": "sets", "part": "jar", "action": "wiggle", "at": 0.0},
+          {"word": "rest", "part": "jar", "action": "pulse", "at": 0.358},
+          {"word": "claps", "part": "lulu", "action": "pose", "pose": "clap", "at": 0.59},
+          {"word": "Yaaawn", "part": "hero", "action": "pose", "pose": "stand_yawn", "at": 0.784}
+        ]
+      }
+    },
+    {
+      "id": "end",
+      "type": "ending",
+      "image": "images/end_asleep.webp",
+      "sticker": "images/sticker.webp",
+      "ambient": "zzz",
+      "ambient_origin": [0.14, 0.57],
+      "text": {
+        "vi": "Bé chui vào chăn ấm, bụng nhỏ êm ru. Hũ kẹo ngủ trên bàn, bé ngủ trên giường. Lulu thì thầm: \"Ngủ ngon nhé, {name}.\"",
+        "en": "The little one snuggles under the warm blanket, tummy calm and cozy. The candy jar sleeps on the table. The little one sleeps in bed. Lulu whispers, \"Good night, {name}.\""
+      },
+      "cues": {
+        "vi": [
+          {"word": "chui vào chăn", "part": "blanket", "action": "pulse", "at": 0.022},
+          {"word": "Hũ kẹo", "part": "jar", "action": "pulse", "at": 0.372},
+          {"word": "thì thầm", "part": "lulu", "action": "pose", "pose": "whisper", "at": 0.758}
+        ],
+        "en": [
+          {"word": "snuggles", "part": "blanket", "action": "pulse", "at": 0.072},
+          {"word": "candy jar", "part": "jar", "action": "pulse", "at": 0.456},
+          {"word": "whispers", "part": "lulu", "action": "pose", "pose": "whisper", "at": 0.868}
+        ]
+      }
+    }
+  ]
+}

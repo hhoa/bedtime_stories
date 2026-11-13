@@ -1,22 +1,23 @@
 ---
 name: new-story
-description: Create a new bundled bedtime story end to end — idea, outline, bilingual script (Vietnamese + English), review, AI art with moving cut-out parts, wiring, tests, audio — with parent approval after the outline and after the script. Use when the user says "/new-story", "new story", "make a story about X".
+description: Create a new bundled bedtime story end to end — idea, outline, bilingual script (Vietnamese + English), review, kit AI art (one room + pose/prop sheets, scenes composed and animated in the app), wiring, tests, audio — with parent approval after the outline and after the script. Use when the user says "/new-story", "new story", "make a story about X".
 argument-hint: <idea or theme> [story_id] [hero girl|boy|kid]
 ---
 
 # /new-story
 
-Pipeline: duplicate check (stop + warn if the idea exists) → plan → ⏸ approve → script → review → ⏸ approve → art-director ↔ art-reviewer → tracking page → parent makes pictures, `/story-art <id>` after each batch (watermark off, best quality under budget, consistency look, cut-outs) → wire + test → audio (parent records → clean (trim, denoise, loudness) → missing? clone fills gaps → parent listens → test).
+Pipeline: duplicate check (stop + warn if the idea exists) → plan → ⏸ approve → script → review → ⏸ approve → art-director ↔ art-reviewer (kit prompts) → tracking page → parent makes ~7 images, `/story-art <id>` after each batch (cut sheets, stage scenes) → ⏸ stills → cues on the stage → wire + test → audio (parent records → clean (trim, denoise, loudness) → missing? clone fills gaps → `cue_times.py` → parent listens → test).
 
 You (main session) orchestrate. Subagents hand work over through files:
 
 | File | Owner |
 |---|---|
 | `docs/stories/<id>/outline.md` | story-planner |
-| `assets/stories/<id>/story.json` | story-writer (you may set `ambient_origin`, `cues`, `poses` after art) |
+| `assets/stories/<id>/story.json` | story-writer (you set `ambient_origin`, cue `to` / `pose`, node `poses` after staging; `cue_times.py` writes cue `at`) |
 | `docs/stories/<id>/review.md` | story-reviewer |
 | `docs/stories/<id>/art_prompts.json` (incl. `reference`) | art-director |
 | `docs/stories/<id>/art_review.md` | art-reviewer |
+| `docs/stories/<id>/stage.json` | you, in `/story-art` (where every part stands per scene) |
 | `docs/stories/<id>/progress.json` | you (gates, prompts page link) and /story-art, /story-audio |
 | `images/` | /story-art, with the parent |
 
@@ -47,26 +48,27 @@ Show the full narration (node by node, vi then en, options indented) plus NOTES.
 
 **⏸ Gate 2.** Approve or edit lines. Small wording edits: do them in story.json yourself, rerun `python3 tool/check_story.py <id>`. Bigger changes → `story-writer`. On approval set `gates.script` in progress.json. The parent can start recording now (`/story-audio <id>` step 1 gives the script), in parallel with the art.
 
-## 3. Art (clock_time workflow, with the parent)
-Read CLAUDE.md "Art" first. Steps:
+## 3. Art (kit workflow, with the parent)
+Every story is a kit story: read `docs/kit.md` first (rules, lessons, the `tidy_toys` / `clock_time` / `prepare_stuff_vacation` example files), then CLAUDE.md "Art". Steps:
 1. Character sheet for the hero must exist in `tool/image_refs/<hero>.png` (`kid.png` for unisex): if missing, `python3 tool/gen_image.py --refs --only <hero> --prompts-out <dir>` first.
-2. Run `art-director` with the id: it writes `docs/stories/<id>/art_prompts.json` (`setting`, `reference`, `pictures`, `outfits`, `plates`, `poses`).
+2. Run `art-director` with the id: it writes `docs/stories/<id>/art_prompts.json` (`setting`, `reference`, `pictures` = cover + sticker, `attach`, `kit` = room + sheets).
 3. Run `art-reviewer` with the id (mode prompts). FIX → `art-director` again ("revise from docs/stories/<id>/art_review.md"), then `art-reviewer` once more. Max 2 rounds, then show remaining FIX items to the user.
-4. Prompts for the parent (no API cost): `python3 tool/gen_image.py --story <id> --prompts-out ~/Downloads/art_prompts/<id>`. Or with a key: `--dry` first, then without. The parent makes pictures in the Gemini app and saves them to `~/Downloads/story_art/<id>/`. Also build the tracking page: `python3 tool/prompts_page.py <id> <scratch>/<id>_prompts.html --title '<Short> Story Prompts'` and publish it as an Artifact (pictures, plates, poses with copy buttons and ticks; each prompt starts with its file name). Save its link in progress.json `prompts_page` and set `gates.art_prompts` once the parent has seen it. After any prompt change, rebuild and republish to that same URL.
-5. After each batch the parent saves ("I saved the images"): run `/story-art <id>` (in a later session: `/story-continue <id>`) (inventory, watermark removal, best-quality compression under budget, a look at every picture for consistency, hotspots, plates + poses cut-out, asset check). Repeat until nothing is missing. Never import pictures any other way: `/story-art` is what removes the watermark and fits the budgets. Do not go on to step 4 (wire + test) while a picture is missing or marked redo, unless the parent says so.
-6. SVG overlays for what AI draws badly (clocks, numbers): like `tool/clock_layer.py` (`docs/examples/clock_time_clock.json`).
-7. Set `ambient_origin` on the ending from the real picture; add `cues` (`pose` on action words) and node `poses`.
-8. `python3 tool/check_story.py <id> --art` and `python3 tool/check_assets.py <id>`. **Report every OVER line to the user** and offer to downsize (the tools already pick the best quality that fits, so: re-import a simpler picture, `crop_layers.py`, a smaller cut part). Busiest scene under ~15 MB decoded.
+4. Prompts for the parent (no API cost): build the tracking page (it runs `gen_image.py --kit` and the cover/sticker prompts itself): `python3 tool/prompts_page.py <id> <scratch>/<id>_prompts.html --title '<Short> Story Prompts'` and publish it as an Artifact (copy buttons and ticks; each prompt starts with its file name and says what to attach). Tell the parent where to save: `~/Downloads/story_art/<id>/kit/<name>.png` for room and sheets, `~/Downloads/story_art/<id>/cover.png`, `sticker.png`; make the sheets in page order (the second hero sheet attaches the first). Save the link in progress.json `prompts_page` and set `gates.art_prompts` once the parent has seen it. After any prompt change, rebuild and republish to that same URL.
+5. After each batch the parent saves ("I saved the images"): run `/story-art <id>` (in a later session: `/story-continue <id>`): imports cover + sticker, cuts each sheet into sprites, checks them, writes `docs/stories/<id>/stage.json` once room and sprites exist, composes the scenes (`tool/stage.py`) and shows the stills. Never import pictures any other way: `/story-art` is what removes the watermark and fits the budgets. Do not go on to step 4 (wire + test) while a kit image or picture is missing or marked redo, unless the parent says so.
+6. **⏸ Stills gate**: the parent looks at every composed scene. Layout fixes are number edits in `stage.json` and a rerun of `stage.py`. A scene that still looks wrong after a round can become a normal Gemini picture (`docs/kit.md` "Fallback"). Record the approval in progress.json `notes`.
+7. Cues on the stage (`docs/kit.md` §5): check every cue part is a `kind` in `stage.json`, every `pose` is one of that part's `poses`, set move `to` from the pivots `stage.py` prints, node `poses` for start poses, `ambient_origin` at the sleeping head. SVG overlays for what AI draws badly (clocks, numbers): like `tool/clock_layer.py` (rerun after `stage.py`).
+8. `python3 tool/check_story.py <id> --art` and `python3 tool/check_assets.py <id>`. **Report every OVER line to the user** and offer to downsize (a smaller sheet `scale`, fewer distinct sprites).
 
 ## 4. Wire + test (yourself)
-1. `python3 tool/wire_story.py <id>`: adds the id to `assets/stories/index.json` and the story's folders to `pubspec.yaml` (`images/layers/` only if it exists). Safe to re-run; rerun after cutting the first layers.
+1. `python3 tool/wire_story.py <id>`: adds the id to `assets/stories/index.json` and the story's folders to `pubspec.yaml` (`images/layers/` only if it exists). Safe to re-run; rerun after the first `stage.py` run.
 2. Audio before tests (the asset test checks every clip, both languages): run `/story-audio <id>` steps 1–4. Whenever the parent says recordings are in, clean them first (`clean_audio.py --story <id>` + `--check`, no asking), then the missing check and clone.
-3. `fvm flutter analyze` and `fvm flutter test`. On failure route the exact error to the file's owner. Max 2 rounds, then report.
+3. After the audio is in: `tool/cutout/.venv/bin/python tool/cue_times.py <id>` (cue `at` from the real clips; rerun after any clip changes).
+4. `fvm flutter analyze` and `fvm flutter test`. On failure route the exact error to the file's owner. Max 2 rounds, then report.
 
 ## 5. Report
 - Title (vi/en), id, hero, scenes, choices (= max stickers).
 - Files created (links), test result, `check_assets.py` summary.
 - Audio: which clips the parent recorded, which the clone made (per language); cleaned clips (silence cut, noise before → after, LUFS before → after), anything flagged to re-record; `clean_audio.py --check` result.
-- Manual step left: play it in both languages (`fvm flutter run -d chrome`): ambient calm, z's at the head, cues move the right part on the right word, taps react, ending gives the right number of stickers, profile shows them.
+- Manual step left: play it in both languages (`fvm flutter run -d chrome`): ambient calm, z's at the head, cues move the right part on the right word (full restart after new layers), parts stand on the floor and nothing important is hidden (hands, small toys), taps react, ending gives the right number of stickers, profile shows them.
 
 Do not commit unless the user asks.

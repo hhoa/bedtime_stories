@@ -39,9 +39,10 @@ from rembg import new_session, remove
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from remove_watermark import remove_watermark  # noqa: E402
 
-MODEL = 'birefnet-general-lite'   # same as tool/cutout.py
+MODEL = 'birefnet-general-lite'   # rembg model (tool/cutout/setup.sh)
 HAZE = 40          # mask values under this are the model's faint haze
 FEATHER = 1.2      # px blur on the cut edge
+SOLID_AB = 10      # --solid: colour (Lab a/b) this far from the wall counts as figure
 CROP_PAD = 0.035   # room around a figure for its own cut, fraction of the sheet width
 MIN_AREA = 0.0015  # pieces smaller than this fraction of the sheet are specks
 MARGIN = 4         # transparent px kept around a saved sprite
@@ -89,7 +90,16 @@ def find_groups(mask: np.ndarray, gap: int, grid: tuple[int, int] | None) -> lis
     return [g[0] for row in rows for g in sorted(row, key=lambda t: t[3])]
 
 
-def cut_figure(img: Image.Image, group: np.ndarray, session, fill_holes: bool) -> Image.Image:
+def wall_colour(img: Image.Image) -> np.ndarray:
+    """Lab colour of the sheet's plain background (median of the four corners)."""
+    lab = cv2.cvtColor(np.array(img), cv2.COLOR_RGB2LAB).astype(np.float32)
+    s = max(8, img.width // 50)
+    corners = [lab[:s, :s], lab[:s, -s:], lab[-s * 3:-s * 2, :s], lab[:s, img.width // 2:img.width // 2 + s]]
+    return np.median(np.concatenate([c.reshape(-1, 3) for c in corners]), axis=0)
+
+
+def cut_figure(img: Image.Image, group: np.ndarray, session, fill_holes: bool,
+               wall: np.ndarray | None = None) -> Image.Image:
     """The figure in [group] as a trimmed RGBA sprite, cut from its own crop."""
     w, h = img.size
     ys, xs = np.nonzero(group)
@@ -102,6 +112,16 @@ def cut_figure(img: Image.Image, group: np.ndarray, session, fill_holes: bool) -
     near = cv2.dilate(group[box[1]:box[3], box[0]:box[2]].astype(np.uint8),
                       cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (31, 31)))
     m[near == 0] = 0
+    if wall is not None:
+        # The model can bite a pale edge that sits close to the wall (straw brim on beige).
+        # Add every pixel whose colour differs from the wall and touches the cut.
+        lab = cv2.cvtColor(np.array(crop), cv2.COLOR_RGB2LAB).astype(np.float32)
+        off = (np.hypot(lab[..., 1] - wall[1], lab[..., 2] - wall[2]) > SOLID_AB) & (near > 0)
+        both = ((m > 0) | off).astype(np.uint8)
+        n, lab_ids = cv2.connectedComponents(both, connectivity=8)
+        keep = np.unique(lab_ids[(m > 0)])
+        add = np.isin(lab_ids, keep[keep > 0]) & off
+        m[add] = 255
     if fill_holes:
         outside = (m > 0).astype(np.uint8)
         cv2.floodFill(outside, np.zeros((m.shape[0] + 2, m.shape[1] + 2), np.uint8), (0, 0), 1)
@@ -173,6 +193,10 @@ def main():
     ap.add_argument('--fill-holes', action='store_true',
                     help='fill enclosed holes (Lulu: the model drops her pink inner ears). Not for the child: '
                          'an arm can enclose real background')
+    ap.add_argument('--solid', action='store_true',
+                    help='props: also keep every pixel whose colour differs from the wall and touches the '
+                         'cut (the model bites pale edges, e.g. a straw hat brim). Holes the wall shows through stay '
+                         'open (strap loops, handles). Plain-coloured wall only')
     ap.add_argument('--keep-corner', action='store_true', help="don't undo Gemini's corner mark")
     ap.add_argument('--force-mark', action='store_true',
                     help='undo the corner mark even when it is not detected (mark over a figure, not background)')
@@ -203,7 +227,8 @@ def main():
                  f'one figure split → a bigger --gap.')
 
     out.mkdir(parents=True, exist_ok=True)
-    sprites = [cut_figure(img, g, session, args.fill_holes) for g in groups]
+    wall = wall_colour(img) if args.solid else None
+    sprites = [cut_figure(img, g, session, args.fill_holes, wall) for g in groups]
     for name, s in zip(names, sprites):
         s.save(out / f'{name}.png')
         print(f'{out / name}.png  {s.width}x{s.height}')

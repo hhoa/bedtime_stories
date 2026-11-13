@@ -1,0 +1,161 @@
+{
+  "hero": "girl",
+  "setting": "a cozy kid bedroom at night, the same room as in the attached room picture if one is attached: soft warm peach walls, wooden floor, a low wooden bed with a rounded headboard along the back wall on the left, seen from its long side, with a white pillow at the headboard on the left and a smooth lavender blanket, raised on short legs with a dark gap under its front side; a small warm glowing lamp on a little wooden shelf on the back wall between the bed's headboard and the window; a window in the middle of the back wall showing a dark blue night sky with a crescent moon; a round cream rug on the floor in front of the bed; a rounded light-wood door on the right wall. Things look the same in every picture: Little Sprout is a small round terracotta-orange clay pot, a little wider than it is tall, with a rolled rim and dark brown soil at the top; on the front of the pot a simple cute face: two dot eyes, rosy cheeks and a small mouth; out of the soil grows one thin green stem with two round fresh-green leaves, the stem about as tall as the pot; the watering can is a small rounded sunny-yellow watering can with a long thin spout and a handle on top; the balloon is one round bright-red balloon with a small knot at the bottom and a thin curly white string hanging straight down from the knot, the string clearly visible and about twice as long as the balloon is tall. Few things, soft warm lamp light, gentle shadows. The bottom-right corner of the picture is plain wooden floor with nothing important in it",
+  "reference": {
+    "kit": "kit story (docs/kit.md): no picture per scene. kit/room.png (copied from tidy_toys, tidy_toys' crop, door cropped out) is the one room of every scene. Sheets: hero_a + hero_b (tidy_toys, girl), hero_d + hero_e (clock_time, girl), lulu_a (tidy_toys), lulu_c (tell_truth), props (tidy_toys, only blanket_lump used) are COPIED, never redrawn; props_promise (Little Sprout x4, watering can, balloon; made first) and hero_f (6 girl poses, its can copied from props_promise) are the only new sheets. Cut by tool/sprite_sheet.py, placed per scene by docs/stories/keep_promise/stage.json (tool/stage.py). Only cover and sticker are normal pictures; icons are composed from sprites. New Gemini images: props_promise, hero_f, cover, sticker (4)",
+    "room": "tidy_toys' kit/room.png with tidy_toys' crop: the vacation bedroom emptied, bed made, raised on short legs with a dark gap under its front side; door cropped out; nothing on the floor",
+    "bed": "along the back wall on the left, seen from its long side; headboard and white pillow at the LEFT end; lavender blanket smooth and flat; its foot (right end) must stay in the crop: the balloon floats above it in s1, d2 end and end (bed_foot). The hero sleeps in it in end",
+    "window": "middle of the back wall, dark blue night sky, crescent moon; Lulu flies out here in s1 (window spot) and comes back from here in b3",
+    "lamp": "small warm glowing lamp on a little wooden shelf on the back wall, between the bed's headboard and the window",
+    "rug": "round cream rug in front of the bed; the hero stands, kneels or sits on it (rug_mid) in every scene but a1 (by_pot) and end (in bed)",
+    "Little Sprout (pot)": "props_promise: a small round terracotta-orange clay pot, a little wider than it is tall, with a rolled rim and dark brown soil at the top; on the front of the pot a simple cute face: two dot eyes, rosy cheeks and a small mouth; out of the soil grows one thin green stem with two round fresh-green leaves, the stem about as tall as the pot; only the pot has a face; leaves always fresh green (never brown, dry or dead). The very same pot at pot_spot (floor, front right, tidy's toy-box spot) in every scene. sprout_thirsty (leaves hang down a little, worried-hopeful 'o' mouth) s1, s2, c1, b1 start, b3 end, a1 start → sprout_droopy (stem bent over to the LEFT, leaves hanging down over the rim beside the face, not over it, eyes closed, small sad mouth, no tears) b1 end, b2, b3 start → sprout_happy (stem straight, both leaves lifted like little arms, eyes open, big smile) a1 end, n1, c2, e1, e2, d1, d2 start → sprout_flower (as happy + one tiny yellow five-petal flower at the top of the stem, eyes closed in happy curves) d2 end, end. Size: the pot about 1.5x the hero's head wide; pot plus sprout about up to the kneeling hero's chin",
+    "watering can": "props_promise watering_can: a small rounded sunny-yellow watering can with a long thin spout and a handle on top, no face, standing upright with the spout pointing RIGHT; about as tall as the pot. On the floor at can_spot (front left of the rug) s1-b3; in the hero's hands in a1 (hero_f kneel_water, the same can, no can prop); at can_by_pot (just left of and in front of the pot) n1 to end",
+    "balloon": "props_promise balloon: one round bright-red balloon with a small knot at the bottom and a curly white string hanging straight down from the knot, the string a little thicker than a thread, softly shaded, clearly visible and about twice as long as the balloon is tall, no face; about as wide as the pot. One sprite at every spot: bed_foot s1 → air_mid (came loose between nodes) s2 to e1 start → ceiling e1 end, e2 start → air_mid e2 end → d1 back and forth air_mid / by_lulu → bed_foot d2 end, end. Nobody ever holds it",
+    "blanket": "tidy_toys' props blanket_lump (lavender mound, folded back at the LEFT end) over the sleeping hero in end only",
+    "hero": "girl (tool/image_refs/girl.png): mint-green long-sleeve pajamas with little white stars, barefoot, in every figure. Copied: sit_look_up (hero_a), asleep (hero_b), kneel_sad (hero_d), stand_yawn (hero_e). New hero_f: pinky, stand_look_up, tap_up, kneel_water, stand_proud, stand_oops (attaches kit/hero_e.png for size and kit/props_promise.png for the can, so props_promise is made first; head the same size as on every girl sheet; stage scale 0.68 like the other girl sheets). Faces right unless noted; asleep head to the LEFT on nothing",
+    "lulu": "about the size of a cat; float, talk, glow, clap, whisper from tidy_toys' lulu_a; sad from tell_truth's lulu_c. No halo or sparkles drawn around her on the sheets (the app adds them). In s1 (leaves to window), absent s2, c1, b1, b2, back in b3, at air_pot a1 to d2, air_pillow in end; never touches the hero or the balloon's string",
+    "light": "soft warm lamp light from the upper left on every sprite, to match the room"
+  },
+  "pictures": {
+    "cover": "Night, crescent moon in the window. {hero} stands on the round cream rug a little left of the middle of the picture, turned to the right, holding one hand up at shoulder height in a loose fist with only the little finger sticking up (a pinky promise), with a big earnest smile. Lulu floats in the air to the right of {hero}, as high as the head of {hero}, smiling, one paw raised; {hero} and Lulu do not touch. Below Lulu, on the floor right of the middle of the picture and well away from the bottom-right corner, stands Little Sprout: a small round terracotta-orange clay pot, a little wider than it is tall, with a rolled rim and dark brown soil at the top; on the front of the pot a simple cute face: two dot eyes, rosy cheeks and a small mouth; out of the soil grows one thin green stem with two round fresh-green leaves, the stem about as tall as the pot; the pot about one and a half times as wide as the girl's head; its face smiles, both leaves are lifted up like little arms and one tiny yellow five-petal flower is open at the top of the stem. Above {hero} and Lulu floats one round bright-red balloon with a small knot at the bottom and a thin curly white string hanging straight down from the knot, the string clearly visible and about twice as long as the balloon is tall; the string's end hangs free in the air and nobody holds it. The floor is clean and tidy. If a room picture or a props sheet is attached, the room, Little Sprout's pot and the balloon look exactly like in them",
+    "sticker": "a round terracotta-orange clay pot, a little wider than it is tall, with a rolled rim and dark brown soil at the top; on the front of the pot a simple cute face: two dot eyes, rosy cheeks and a small mouth; out of the soil grows one thin green stem with two round fresh-green leaves, the stem about as tall as the pot; the face on the pot has its eyes closed in two happy curves, rosy cheeks and a big smile; both leaves are lifted up like little arms and one tiny yellow five-petal flower is open at the top of the stem; a small round bright-red balloon on a thin curly white string is tied to the pot's rim and floats right beside the flower, touching it, so the pot, the plant and the balloon make one sticker shape; no face on the balloon"
+  },
+  "attach": {
+    "cover": [
+      "kit/room.png",
+      "kit/props_promise.png"
+    ]
+  },
+  "kit": {
+    "room": {
+      "from": "tidy_toys/kit/room.png"
+    },
+    "sheets": {
+      "hero_a": {
+        "from": "tidy_toys/kit/hero_a.png",
+        "who": "hero",
+        "columns": 3,
+        "figures": {
+          "sit_play": "the child sits cross-legged on the floor, turned a little to the right, happy and relaxed, looking down to the right, both hands open in front of the tummy, palms up, empty",
+          "sit_look_up": "the child sits cross-legged in the same way, head tilted up and looking up to the right, surprised and delighted, eyes wide, mouth a little open, hands on the knees",
+          "bed_sit": "the child sits up straight on the floor, seen in three-quarter view facing right, both legs stretched straight out to the RIGHT and close together, head turned toward the viewer and tilted, both hands open and lifted at the sides, a puzzled 'where is it?' face",
+          "kneel_search": "the child kneels on the floor leaning forward to the right, lifting one red wooden block in one hand and peeking under it, curious face, the other hand on the floor",
+          "kneel_yawn": "the child kneels sitting back on the heels, in a huge sleepy yawn: mouth wide open, eyes squeezed shut, one fist rubbing an eye, shoulders drooping",
+          "kneel_happy": "the child kneels up tall with both arms thrown up and open wide, a big open-mouth smile, eyes shining"
+        }
+      },
+      "hero_b": {
+        "from": "tidy_toys/kit/hero_b.png",
+        "who": "hero",
+        "columns": 3,
+        "figures": {
+          "bend_place": "the child stands turned to the right and bends forward a little, both arms reaching forward and down to the right with open empty hands at waist height, nothing in or under the hands, soft careful smile, looking at the hands",
+          "stand_ball": "the child stands turned a little to the right, holding a small ball with wide red and white stripes (like a little beach ball) in both hands in front of the chest, smiling",
+          "throw": "the child stands turned to the right in a big throwing follow-through: one arm stretched forward and up toward the right, the other arm back, one foot forward, excited open-mouth face, both hands open and empty, nothing in the air",
+          "tummy_reach": "the child lies flat on the tummy on the floor, head to the LEFT, one arm stretched far out to the left reaching for something, cheek low, tongue tip out with effort, legs straight behind to the right",
+          "hug_teddy": "the child kneels and hugs a small round light-brown teddy bear with round ears, a peach tummy and muzzle and a little smile, tight against the chest with both arms, eyes closed, cheek on the teddy's head, a big happy smile",
+          "asleep": "the child lies asleep on one side, facing the viewer, head to the LEFT, eyes closed with a peaceful little smile, one hand resting in front of the face, body and legs stretched out to the right, lying on nothing: no pillow, no blanket, no bed"
+        }
+      },
+      "hero_d": {
+        "from": "clock_time/kit/hero_d.png",
+        "who": "hero",
+        "columns": 3,
+        "figures": {
+          "kneel_place": "the child kneels leaning forward to the right, both arms reaching down to the right with open empty hands at knee height, as if putting something down; nothing in or under the hands; soft careful smile",
+          "kneel_wave": "the child kneels up tall, turned to the right, waving one hand high toward the right, a sleepy happy smile, the other hand on the knee",
+          "kneel_push": "the child kneels leaning forward to the right, both hands pushing forward and down at waist height, palms open and flat, a determined face with the tongue tip out; nothing in or under the hands",
+          "kneel_press": "the child kneels up tall and leans forward to the right, both arms straight, both hands flat pressing down hard at waist height, cheeks puffed out, eyes squeezed shut; nothing under the hands",
+          "kneel_sad": "the child kneels sitting back on the heels, turned to the right, looking down to the right at something on the floor, a little sad: eyebrows up, small frown, hands in the lap",
+          "kneel_fold": "the child kneels sitting back on the heels, turned to the right, leaning forward a little, both hands open and flat low in front at knee height, as if smoothing and folding clothes on the floor; nothing in or under the hands; careful happy smile"
+        }
+      },
+      "hero_e": {
+        "from": "clock_time/kit/hero_e.png",
+        "who": "hero",
+        "columns": 3,
+        "figures": {
+          "reach": "the child stands turned to the right, both arms reaching forward to the right at chest height, fingertips pinching something tiny, a curious, slightly naughty smile; nothing in the hands",
+          "stand_yawn": "the child stands facing a little to the right in a huge sleepy yawn: mouth wide open, eyes squeezed shut, one fist rubbing an eye, the other arm hanging down, shoulders drooping",
+          "stand_sleepy": "the child stands facing a little to the right, sleepy eyes half closed, a small smile, the arm nearer the LEFT edge of the picture held straight out toward the LEFT edge at waist height, the hand open, palm up; the other arm hanging down",
+          "sit_backpack": "the child sits cross-legged, turned a little to the right, holding a small rounded soft-orange kid backpack with a yellow star on its front pocket and two straps on the lap with both hands; the backpack is open and empty; happy face",
+          "lift_backpack": "the child sits cross-legged, lifting the same small orange backpack high above the head with both hands, a delighted open-mouth smile",
+          "pull": "the child stands leaning far back, turned to the right, feet planted apart, knees a little bent, both arms stretched straight forward and down, both hands closed in loose fists close together low in front, just above knee height, as if pulling a heavy bag on the floor by its top handle, a straining face with puffed cheeks; nothing in the hands"
+        }
+      },
+      "props_promise": {
+        "who": "props",
+        "columns": 3,
+        "note": "Every thing is seen from the same angle: from the front, slightly from above. The four plant pots are the very same pot at the same size and angle, with the same face in the same place; only the stem, the leaves, the face's expression and the flower change. The leaves are fresh green in every pot: never brown, dry or dead. Only the pots have a face: no face on the leaves, the flower, the watering can or the balloon. Sizes compared with the pot: the stem with its leaves is about as tall as the pot; the watering can is about as tall as the pot; the balloon is about as wide as the pot.",
+        "figures": {
+          "sprout_thirsty": "a small round terracotta-orange clay pot, a little wider than it is tall, with a rolled rim and dark brown soil at the top; on the front of the pot a simple cute face: two dot eyes, rosy cheeks and a small mouth; out of the soil grows one thin green stem with two round fresh-green leaves, the stem about as tall as the pot; the two leaves hang down a little, the face looks up with open eyes and a small worried-hopeful round 'o' mouth",
+          "sprout_droopy": "the very same pot; the stem bends over to the LEFT so both leaves hang down over the rim, still fresh green; the leaves hang beside the face, not over it, so the whole face stays visible; the face has its eyes closed and a small sad mouth, no tears",
+          "sprout_happy": "the very same pot; the stem stands straight up and both leaves are lifted up like two little arms; the face has open eyes and a big smile",
+          "sprout_flower": "the very same pot, stem straight and both leaves lifted up like in the happy pot, plus one tiny yellow five-petal flower open at the very top of the stem between the leaves; the face has its eyes closed in two happy curves and a big smile",
+          "watering_can": "a small rounded sunny-yellow watering can with a long thin spout and a handle on top, standing upright, the spout pointing to the RIGHT, empty, no water",
+          "balloon": "one round bright-red balloon with a small knot at the bottom and a curly white string hanging straight down from the knot, the string a little thicker than a thread and softly shaded so it stands out from the background, clearly visible and unbroken, about twice as long as the balloon is tall"
+        }
+      },
+      "hero_f": {
+        "who": "hero",
+        "columns": 3,
+        "attach": "kit/hero_e.png (copied from clock_time: the same girl at the same size; match the standing yawning child there), kit/props_promise.png (make it before this sheet: only for the watering can's look)",
+        "note": "The child's head is exactly the same size in every figure; the kneeling figure is simply smaller in the cell, never enlarged to fill it. The child is exactly the same size as in the second attached sheet (kit/hero_e.png): each standing figure is as tall as the standing yawning child there, and the kneeling child's head is the same size as the yawning child's head there. The child is barefoot in every figure. Hands hold nothing unless the figure says so: only figure 4 holds something. The watering can in figure 4 is the very same small sunny-yellow watering can as in the third attached sheet (kit/props_promise.png): same shape, spout, handle and color, a little taller than the child's head. Use that sheet only for the can: draw no plant pots and no balloon here, only the six child figures.",
+        "figures": {
+          "pinky": "the child stands facing a little to the right, looking up to the right with an earnest happy smile, one hand raised in front at shoulder height in a loose fist with only the little finger sticking straight up (a pinky promise), the other arm relaxed at the side",
+          "stand_look_up": "the child stands facing a little to the right, head tilted back, looking straight up with a delighted open-mouth smile and wide eyes, one arm pointing straight up above the head, the other arm at the side; nothing in the hands",
+          "tap_up": "the child stands on tiptoe facing a little to the right, both arms stretched straight up above the head, both hands open and flat with the palms up, as if bumping a balloon up into the air, laughing, looking up; nothing in or above the hands",
+          "kneel_water": "the child kneels turned to the right, holding a small rounded sunny-yellow watering can with a long thin spout and a handle on top in both hands at chest height, one hand on the handle and one under the can, tilted forward so the spout points down to the right, a short thin stream of light-blue water pouring from the tip of the spout and joined to it, no loose drops in the air, a gentle happy smile, looking down to the right",
+          "stand_proud": "the child stands tall facing a little to the right, arms a little open at the sides, a big bright smile, happy shining eyes; nothing in the hands",
+          "stand_oops": "the child stands facing a little to the right, looking down to the right, both hands on the cheeks, mouth a small round 'O', eyebrows up, surprised but not scared"
+        }
+      },
+      "lulu_a": {
+        "from": "tidy_toys/kit/lulu_a.png",
+        "who": "lulu",
+        "columns": 3,
+        "figures": {
+          "float": "Lulu floats upright, facing the viewer, relaxed and happy, paws at her sides, ears up",
+          "talk": "Lulu floats turned a little to the left and looks down to the left, one paw raised as if explaining, mouth open in a friendly smile",
+          "glow": "Lulu floats with both arms spread wide and her head lifted, eyes closed in a happy smile, the amber crescent moon on her belly shining bright yellow",
+          "point": "Lulu floats and points one paw clearly down to the right, looking that way, smiling",
+          "clap": "Lulu floats and claps both paws together in front of her chest, laughing, eyes closed",
+          "whisper": "Lulu floats leaning forward to the left, one paw beside her mouth as if whispering, eyes soft and half closed"
+        }
+      },
+      "lulu_c": {
+        "from": "tell_truth/kit/lulu_c.png",
+        "who": "lulu",
+        "columns": 2,
+        "figures": {
+          "sad": "Lulu floats upright, her long ears drooping down, a small sad frown, both paws held together at her chest, looking down to the left",
+          "peek": "Lulu floats low, leaning forward to the LEFT, one paw held flat against her forehead just above her eyes to shade them, looking far to the left for something, ears a little down, nothing on her head"
+        }
+      },
+      "props": {
+        "from": "tidy_toys/kit/props.png",
+        "who": "props",
+        "columns": 4,
+        "figures": {
+          "toybox_empty": "a rounded wooden toy chest painted soft sky-blue with one yellow star on its front, lid open and tilted up behind it, completely empty inside",
+          "toybox_full": "the same sky-blue toy chest with the yellow star, lid open and tilted up behind it, colorful wooden blocks peeking over its rim",
+          "toybox_closed": "the same sky-blue toy chest with the yellow star, lid closed",
+          "blocks": "five colorful wooden blocks (red, yellow, blue, green, red) lying close together in one low loose cluster, all touching, one leaning on another",
+          "ball": "one small ball with wide red and white stripes, like a little beach ball",
+          "teddy_lying": "a small round light-brown teddy bear with round ears, a peach tummy and muzzle and a little smile, lying on its back with its arms out",
+          "teddy_sitting": "the same light-brown teddy bear sitting up, legs forward, arms at its sides",
+          "blanket_lump": "a long low mound of soft lavender blanket seen from the side, with a few soft folds: the top edge is folded back at the LEFT end, the mound is higher on the left and gets flatter toward the right end where it drapes down; nobody and nothing shows under or out of it"
+        }
+      },
+      "hero_g": {
+        "who": "hero",
+        "columns": 1,
+        "attach": "kit/hero_f.png (only figure 1, the pinky pose)",
+        "note": "Made 2026-11-12 by the parent as a Gemini edit of hero_f figure 1: one figure only, so the raised finger reads clearly as the little finger. Replaces hero_f/pinky on stage (stage.json hero_g scale 0.333).",
+        "figures": {
+          "pinky": "the child stands facing a little to the right, smiling, one hand raised at shoulder height in a loose fist with ONLY the little finger sticking up (the shortest, thinnest finger on the outer edge of the hand), the other fingers curled under the thumb, the other arm relaxed at the side."
+        }
+      }
+    }
+  }
+}

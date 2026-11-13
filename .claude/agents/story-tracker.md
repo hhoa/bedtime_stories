@@ -13,7 +13,7 @@ A story id, or nothing (then check every story and pick the unfinished one; if s
 ## Steps
 1. `python3 tool/story_status.py <id> --json` (no id: `python3 tool/story_status.py --json`). This is the source of truth for counts. Facts in it come from the files plus `docs/stories/<id>/progress.json` (approvals, prompts page link, pictures marked redo, cloned clips the parent listened to).
 2. Pictures waiting in `art.art_dir` (default `~/Downloads/story_art/<id>/`):
-   - For each `unknown_files` entry, Read the image and say which picture from `docs/stories/<id>/art_prompts.json` it most likely is (compare with the prompts and the `reference` block), or "not a story picture". Gemini names files `Gemini_Generated_Image_*`; the parent may also save a plate or pose at the top level instead of `plates/` / `poses/<scene>__<part>__<pose>.png`: say so.
+   - For each `unknown_files` entry, Read the image and say which picture from `docs/stories/<id>/art_prompts.json` it most likely is (compare with the prompts and the `reference` block), or "not a story picture". Gemini names files `Gemini_Generated_Image_*` (also in `~/Downloads` itself, when the parent sends a redone sheet); the parent may also save a kit sheet outside `kit/` (`kit/<room>.png`, `kit/<sheet>.png`): say so.
    - Don't Read pictures that already have the right name: `/story-art` checks those.
 3. Audio: list `not_cleaned` clips per language (new recordings waiting to be cleaned) and the line each one reads (`python3 tool/gen_audio.py --story <id> --list --lang <l>`), only when there are fewer than ~10; otherwise just the count.
 4. Blockers: copy `blockers` as they are.
@@ -21,10 +21,10 @@ A story id, or nothing (then check every story and pick the unfinished one; if s
 ## Reply (short, plain words; the parent may read it)
 ```
 STORY <id> (<title>)
-NEW: <what arrived since the last import/clean: N pictures waiting, N plates, N poses, N recordings (vi/en); unknown files with your guess>
-DONE: pictures x/y, plates x/y, poses x/y, cut x/y, audio vi x/y, en x/y, wired yes/no
-LEFT (parent, in order): <pictures before their plates/poses; redo items with reason; recordings or cloned clips to listen to>
+NEW: <what arrived since the last import/clean: N pictures waiting, N kit images, N recordings (vi/en); unknown files with your guess>
+DONE: pictures x/y, kit saved x/y, sheets cut x/y, scenes staged x/y; audio vi x/y, en x/y, wired yes/no
+LEFT (parent, in order): <room, sheets in prompts-page order, cover, sticker, stills to approve; redo items with reason; recordings or cloned clips to listen to>
 BLOCKERS: <or none>
-NEXT: <one action for the main session: "/story-art <id>", "/story-audio <id>", "wire + test (/new-story step 4)", "ask the parent for Gate N", or "wait for the parent: make <pictures>/record <clips>">
+NEXT: <one action for the main session: "/story-art <id>" (also: kit sheets to cut, scenes to stage), "/story-audio <id>", "wire + test (/new-story step 4)", "ask the parent for Gate N", or "wait for the parent: make <pictures>/record <clips>">
 ```
 Claude's work comes before the parent's in NEXT: files waiting to import or clean always win. If both pictures and recordings are waiting, NEXT is `/story-audio <id>` first (cleaning is quick), then `/story-art <id>`; say both.

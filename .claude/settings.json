@@ -8,7 +8,6 @@
       "Bash(python3 tool/gen_audio.py *)",
       "Bash(python3 tool/clean_audio.py *)",
       "Bash(python3 tool/prompts_page.py *)",
-      "Bash(python3 tool/preview_hotspots.py *)",
       "Bash(python3 tool/gen_image.py * --dry*)",
       "Bash(python3 tool/gen_image.py * --prompts-out *)",
       "Bash(tool/cutout/.venv/bin/python tool/*)",
@@ -20,7 +19,8 @@
       "Bash(ffprobe *)",
       "Bash(python3 -)",
       "Bash(python3 tool/clean_audio.py --check --story prepare_stuff_vacation)",
-      "Bash(awk '{s+=$5} END {print \"vi KB\", s/1024}')"
+      "Bash(awk '{s+=$5} END {print \"vi KB\", s/1024}')",
+      "Bash(tool/cutout/.venv/bin/python tool/cue_times.py clock_time --lang en)"
     ],
     "ask": [
       "Bash(python3 tool/gen_audio.py * --force*)",

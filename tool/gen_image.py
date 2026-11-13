@@ -38,7 +38,7 @@ No API credit? Make them by hand in the Gemini or ChatGPT app:
    image under the "Save the image as" name, then bring them in:
      tool/cutout/.venv/bin/python tool/import_art.py --refs ~/Downloads/story_art
      tool/cutout/.venv/bin/python tool/import_art.py tidy_toys ~/Downloads/story_art/tidy_toys --new
-   (or /story-art tidy_toys: import, watermark, checks, cut-outs)
+   (or /story-art tidy_toys: import, watermark, checks)
 
 Kit stories (few pictures: one empty room + sheets of poses and props that
 tool/sprite_sheet.py cuts apart and tool/stage.py composes into scenes) keep
@@ -95,7 +95,7 @@ CHARACTERS = {
             'and full straight bangs, big dark brown eyes, round rosy cheeks, wearing soft '
             'mint-green long-sleeve pajamas with little white stars, barefoot.',
     'boy': 'A cheerful 4 year old Vietnamese boy with short dark brown hair and a soft fringe, '
-           'wearing light blue pajamas with little yellow stars.',
+           'wearing soft mint-green long-sleeve pajamas with little white stars, barefoot.',
     'lulu': 'Lulu, a small magical plush bunny friend: round cream-white body, long cream ears '
             'with pink insides, rosy cheeks, tiny pink nose, an amber crescent moon on the belly, '
             'softly glowing and floating a little above the ground.',
@@ -219,21 +219,14 @@ def call(args, prompt, shape, refs, transparent=False) -> Image.Image:
     return fn(prompt, shape, refs, args.model, args.quality, transparent)
 
 
-def build_prompt(text: str, hero: str | None, setting: str | None, name: str,
-                 outfit: str | None = None):
-    """Full prompt + the reference sheets it needs. [outfit] replaces the
-    sheet's pajamas for this picture (e.g. day clothes for school)."""
+def build_prompt(text: str, hero: str | None, setting: str | None, name: str):
+    """Full prompt + the reference sheets it needs."""
     refs, who = [], []
     if hero and '{hero}' in text:
         text = text.replace('{hero}', f'the {hero} from the reference picture')
         refs.append(REFS / f'{hero}.png')
-        if outfit:
-            who.append(f'Draw the {hero} exactly like the reference picture, same face, hair, '
-                       f'colors and proportions, but wearing {outfit} instead of the pajamas: '
-                       + re.sub(r',? wearing .*$', '.', CHARACTERS[hero]))
-        else:
-            who.append(f'Draw the {hero} exactly like the reference picture, same face, hair, '
-                       f'outfit, colors and proportions: {CHARACTERS[hero]}')
+        who.append(f'Draw the {hero} exactly like the reference picture, same face, hair, '
+                   f'outfit, colors and proportions: {CHARACTERS[hero]}')
     if 'lulu' in text.lower():
         refs.append(REFS / 'lulu.png')
         who.append(f'Draw Lulu exactly like the bunny reference picture, same size, shape and '
@@ -318,8 +311,7 @@ def run_story(args):
         if dest.exists() and not args.force:
             print(f'skip {dest.relative_to(ROOT)} (exists)')
             continue
-        prompt, refs, shape = build_prompt(text, hero, spec.get('setting'), name,
-                                           spec.get('outfits', {}).get(name))
+        prompt, refs, shape = build_prompt(text, hero, spec.get('setting'), name)
         if args.prompts_out:
             write_prompt(args, name, prompt, refs, f'{name}.png', shape.aspect,
                          spec.get('attach', {}).get(name))
@@ -334,68 +326,6 @@ def run_story(args):
         out = save_art(call(args, prompt, shape, refs, transparent=sticker), dest,
                        unmark=False)  # API pictures have no visible sparkle
         print(f'  -> {out.stat().st_size // 1024} KB')
-
-
-PLATE_WHO = {'lulu': 'Lulu the bunny (and her glow and sparkles)', 'hero': 'the child'}
-
-
-def run_plates(args):
-    """--plates --prompts-out: Gemini edit prompts for clean plates (the
-    picture without the characters tool/cutout.py cuts out)."""
-    spec = json.loads((ROOT / 'docs/stories' / args.story / 'art_prompts.json').read_text(encoding='utf-8'))
-    out = Path(args.prompts_out).expanduser()
-    out.mkdir(parents=True, exist_ok=True)
-    for i, (scene, parts) in enumerate(spec.get('plates', {}).items(), start=1):
-        if args.only and scene not in args.only:
-            continue
-        who = ' and '.join(PLATE_WHO[k] for k in parts.split(','))
-        f = out / f'{i:02d}_plate_{scene}.txt'
-        f.write_text(
-            f'Attach first: {scene}.png  (the picture you made for this scene)\n'
-            f'Save the image as: plates/{scene}.png\n'
-            f'Then: tool/cutout/.venv/bin/python tool/cutout.py {args.story} {scene} --parts {parts} '
-            f'--plate ~/Downloads/story_art/{args.story}/plates/{scene}.png\n\n'
-            f'{name_tag(f"plates/{scene}.png")}'
-            f'Edit the attached picture. Keep it exactly the same: same size, framing, camera angle, '
-            f'room, furniture, lighting and colors, and keep everything else in place. Only remove {who}, '
-            f'and fill the space where they were with what would naturally be behind them '
-            f'(wall, window, curtain, floor, rug, table). Do not add anything new. No text.\n',
-            encoding='utf-8')
-        print(f)
-
-
-def run_poses(args):
-    """--poses --prompts-out: Gemini edit prompts, one per pose picture
-    (same scene, only one character's pose changes), for cutout.py --pose."""
-    spec = json.loads((ROOT / 'docs/stories' / args.story / 'art_prompts.json').read_text(encoding='utf-8'))
-    out = Path(args.prompts_out).expanduser()
-    out.mkdir(parents=True, exist_ok=True)
-    n = 0
-    for scene, parts in spec.get('poses', {}).items():
-        if args.only and scene not in args.only:
-            continue
-        flags = []
-        for part, poses in parts.items():
-            for pose, change in poses.items():
-                n += 1
-                target = f'poses/{scene}__{part}__{pose}.png'
-                flags.append(f'--pose {part}={pose}:~/Downloads/story_art/{args.story}/{target}')
-                who = 'Lulu the bunny' if part == 'lulu' else 'the child'
-                f = out / f'{n:02d}_pose_{scene}__{part}__{pose}.txt'
-                f.write_text(
-                    f'Attach first: {scene}.png  (the picture you made for this scene)\n'
-                    f'Save the image as: {target}\n\n'
-                    f'{name_tag(target)}'
-                    f'Edit the attached picture. Keep it exactly the same: same size, framing, camera angle, '
-                    f'room, furniture, lighting, colors and style, and keep every other character exactly as '
-                    f'they are. Only change {who}: {change}. {who[0].upper() + who[1:]} stays in the same '
-                    f'place and at the same size, with the same face, hair, clothes and colors. '
-                    f'Do not add anything new. No text.\n', encoding='utf-8')
-                print(f)
-        plate = spec.get('plates', {}).get(scene)
-        if flags and plate:
-            print(f'  then: tool/cutout/.venv/bin/python tool/cutout.py {args.story} {scene} --parts {plate} '
-                  f'--plate ~/Downloads/story_art/{args.story}/plates/{scene}.png {" ".join(flags)}')
 
 
 SHEET_RULES = (
@@ -422,6 +352,14 @@ def kit_sheet_prompt(sheet: dict, hero: str) -> tuple[str, list[Path]]:
         head = (f'A sheet of {len(figures)} separate toys and things for a picture book, each drawn once, '
                 f'in a grid of {cols} columns and {rows} rows.')
         look = 'Soft rounded toy-like shapes, the same art style for all of them.'
+    elif sheet.get('outfit'):
+        # Same child, other clothes ("outfit": "a plain soft-yellow t-shirt and navy shorts").
+        head = (f'A pose sheet: {len(figures)} separate full-body pictures of {noun}, '
+                f'in a grid of {cols} columns and {rows} rows.')
+        who_text = re.sub(r',? wearing .*$', '', CHARACTERS[ref]).rstrip('.')
+        look = (f'Draw {noun} exactly like the reference picture in every figure, same face, hair, '
+                f'colors and body size: {who_text}. But in every figure the child wears '
+                f'{sheet["outfit"]} instead of the pajamas.')
     else:
         head = (f'A pose sheet: {len(figures)} separate full-body pictures of {noun}, '
                 f'in a grid of {cols} columns and {rows} rows.')
@@ -431,6 +369,17 @@ def kit_sheet_prompt(sheet: dict, hero: str) -> tuple[str, list[Path]]:
     prompt = (f'{STYLE} {head} In reading order, row by row, left to right: {listing} '
               f'{SHEET_RULES} {look}{extra}')
     return prompt, ([REFS / f'{ref}.png'] if ref else [])
+
+
+def kit_rooms(kit: dict) -> dict[str, dict]:
+    """Room pictures of a kit, by their file name in kit/: "room" (one room)
+    or "room_<name>" ("rooms": {"night": {...}, "day": {...}}). An entry is
+    {"attach", "prompt"} (made in Gemini) or {"from": "<story>/kit/<file>.png"}
+    (copied from another story's art folder)."""
+    rooms = {f'room_{k}': v for k, v in kit.get('rooms', {}).items()}
+    if kit.get('room'):
+        rooms['room'] = kit['room']
+    return rooms
 
 
 def run_kit(args):
@@ -444,18 +393,32 @@ def run_kit(args):
     out = Path(args.prompts_out).expanduser()
     out.mkdir(parents=True, exist_ok=True)
     n = 0
-    room = kit.get('room')
-    if room and not (args.only and 'room' not in args.only):
+    for name, room in kit_rooms(kit).items():
+        if args.only and name not in args.only:
+            continue
+        if room.get('from'):
+            print(f'{name}: copy ~/Downloads/story_art/{room["from"]} to '
+                  f'~/Downloads/story_art/{args.story}/kit/{name}.png (no Gemini)')
+            continue
         n += 1
-        f = out / f'{n:02d}_kit_room.txt'
+        f = out / f'{n:02d}_kit_{name}.txt'
         f.write_text(
             f'Attach first: {room.get("attach", "nothing")}\n'
-            f'Shape: {SCENE.aspect}\n'
-            f'Save the image as: kit/room.png\n\n'
-            f'{name_tag("kit/room.png")}{room["prompt"]}\n', encoding='utf-8')
+            f'Shape: {room.get("shape", SCENE.aspect)}\n'
+            f'Save the image as: kit/{name}.png\n\n'
+            f'{name_tag(f"kit/{name}.png")}{room["prompt"]}\n', encoding='utf-8')
         print(f)
     for name, sheet in kit.get('sheets', {}).items():
         if args.only and name not in args.only:
+            continue
+        cut = (f'  then: tool/cutout/.venv/bin/python tool/sprite_sheet.py '
+               f'~/Downloads/story_art/{args.story}/kit/{name}.png --names {",".join(sheet["figures"])}'
+               + (' --fill-holes' if sheet.get('who') == 'lulu' else ''))
+        if sheet.get('from'):
+            # Made for another story: copy it, cut it here under the same names.
+            print(f'{name}: copy ~/Downloads/story_art/{sheet["from"]} to '
+                  f'~/Downloads/story_art/{args.story}/kit/{name}.png (no Gemini)')
+            print(cut)
             continue
         n += 1
         prompt, refs = kit_sheet_prompt(sheet, hero)
@@ -469,9 +432,7 @@ def run_kit(args):
             f'Save the image as: kit/{name}.png\n\n'
             f'{name_tag(f"kit/{name}.png")}{prompt}\n', encoding='utf-8')
         print(f)
-        print(f'  then: tool/cutout/.venv/bin/python tool/sprite_sheet.py '
-              f'~/Downloads/story_art/{args.story}/kit/{name}.png --names {",".join(sheet["figures"])}'
-              + (' --fill-holes' if sheet.get('who') == 'lulu' else ''))
+        print(cut)
 
 
 def main():
@@ -480,10 +441,6 @@ def main():
                                  formatter_class=argparse.RawDescriptionHelpFormatter, epilog=__doc__)
     ap.add_argument('--refs', action='store_true', help='make character sheets in tool/image_refs/')
     ap.add_argument('--story')
-    ap.add_argument('--plates', action='store_true',
-                    help='with --story and --prompts-out: clean-plate edit prompts for tool/cutout.py')
-    ap.add_argument('--poses', action='store_true',
-                    help='with --story and --prompts-out: pose edit prompts for tool/cutout.py --pose')
     ap.add_argument('--kit', action='store_true',
                     help='with --story and --prompts-out: room + sheet prompts (art_prompts.json "kit") '
                          'for tool/sprite_sheet.py and tool/stage.py')
@@ -502,14 +459,6 @@ def main():
     args.model = args.model or os.environ.get(model_env) or default_model
     if args.refs:
         run_refs(args)
-    elif args.story and args.plates:
-        if not args.prompts_out:
-            ap.error('--plates needs --prompts-out')
-        run_plates(args)
-    elif args.story and args.poses:
-        if not args.prompts_out:
-            ap.error('--poses needs --prompts-out')
-        run_poses(args)
     elif args.story and args.kit:
         if not args.prompts_out:
             ap.error('--kit needs --prompts-out')

@@ -1,0 +1,648 @@
+{
+ "_note": "Bedroom = tidy_toys kit/room.png with tidy's crop (bed left, pillow ~[0.18,0.50], mattress top y ~0.49-0.56, floor y 0.80-1.0, rug x 0.25-0.98). Spots: rug_left [0.43,0.96], jar_spot [0.61,0.96], bowl_spot [0.515,0.995], window [0.50,0.26], window_low (jar) [0.56,0.40], air_mid [0.66,0.48], table [0.85,0.93] size 0.21 (clock_time), table_top [0.85,0.775], by_table [0.70,0.94] (d1: hero drawn in front of the table, behind the jar, so both hands show on the jar; parent asked 2026-11-12; Lulu [0.55,0.40]), on_bed bed_sit [0.31,0.575] + blanket [0.47,0.59] x1.05, bed_jar [0.60,0.565], in_bed [0.29,0.575] + blanket [0.425,0.61] x1.3, air_bed [0.42,0.30]. Draw order: table, hero, soup, blanket, jar, lulu. jar size 0.13 (about 3/4 head); jar_tipped flipped (Gemini drew mouth LEFT). Reused sprites copied from tidy_toys / clock_time sprites/. Tune: tool/cutout/.venv/bin/python tool/stage.py candy_tummy --preview <dir> --dry --guides",
+ "room": "kit/room.png",
+ "crop": [
+  0.05,
+  0.0,
+  0.7942,
+  1.0
+ ],
+ "erase_specks": [
+  [
+   0.0,
+   0.1,
+   0.2,
+   0.45
+  ]
+ ],
+ "tint": 0.0,
+ "sheets": {
+  "hero_a": {
+   "scale": 0.68
+  },
+  "hero_b": {
+   "scale": 0.68
+  },
+  "hero_d": {
+   "scale": 0.68
+  },
+  "hero_e": {
+   "scale": 0.68
+  },
+  "hero_h": {
+   "scale": 0.68
+  },
+  "lulu_a": {
+   "scale": 0.34,
+   "anchor": "center"
+  },
+  "props": {
+   "scale": 0.72
+  },
+  "props_clock": {
+   "scale": 0.6
+  },
+  "props_candy": {
+   "scale": 0.3
+  }
+ },
+ "icons": {
+  "icon_one": [
+   {
+    "sprite": "props_candy/candy_one",
+    "at": [
+     0.5,
+     0.5
+    ],
+    "size": 0.5
+   }
+  ],
+  "icon_lots": [
+   {
+    "sprite": "props_candy/jar_open",
+    "at": [
+     0.5,
+     0.52
+    ],
+    "size": 0.8
+   }
+  ],
+  "icon_table": [
+   {
+    "sprite": "props_clock/bedside_table",
+    "at": [
+     0.5,
+     0.62
+    ],
+    "size": 0.66
+   },
+   {
+    "sprite": "props_candy/jar_closed",
+    "at": [
+     0.5,
+     0.3
+    ],
+    "size": 0.34
+   }
+  ],
+  "icon_bed": [
+   {
+    "sprite": "props/blanket_lump",
+    "at": [
+     0.5,
+     0.66
+    ],
+    "size": 0.5
+   },
+   {
+    "sprite": "props_candy/jar_open",
+    "at": [
+     0.5,
+     0.44
+    ],
+    "size": 0.42
+   }
+  ]
+ },
+ "scenes": {
+  "s1_gift": {
+   "parts": [
+    {
+     "kind": "table",
+     "sprite": "props_clock/bedside_table",
+     "at": [
+      0.85,
+      0.93
+     ],
+     "size": 0.21,
+     "shadow": true,
+     "tap": null
+    },
+    {
+     "kind": "hero",
+     "sprite": "hero_a/sit_look_up",
+     "at": [
+      0.43,
+      0.96
+     ],
+     "poses": {
+      "kneel_happy": "hero_a/kneel_happy"
+     },
+     "shadow": true
+    },
+    {
+     "kind": "jar",
+     "sprite": "props_candy/jar_closed",
+     "at": [
+      0.56,
+      0.4
+     ],
+     "size": 0.13,
+     "tap": "hop",
+     "poses": {
+      "jar_open": "props_candy/jar_open"
+     }
+    },
+    {
+     "kind": "lulu",
+     "sprite": "lulu_a/float",
+     "at": [
+      0.5,
+      0.26
+     ],
+     "poses": {
+      "talk": "lulu_a/talk",
+      "point": "lulu_a/point"
+     }
+    }
+   ]
+  },
+  "s2_open": {
+   "parts": [
+    {
+     "kind": "table",
+     "sprite": "props_clock/bedside_table",
+     "at": [
+      0.85,
+      0.93
+     ],
+     "size": 0.21,
+     "shadow": true,
+     "tap": null
+    },
+    {
+     "kind": "hero",
+     "sprite": "hero_a/sit_look_up",
+     "at": [
+      0.43,
+      0.96
+     ],
+     "poses": {
+      "kneel_happy": "hero_a/kneel_happy"
+     },
+     "shadow": true
+    },
+    {
+     "kind": "jar",
+     "sprite": "props_candy/jar_closed",
+     "at": [
+      0.61,
+      0.96
+     ],
+     "size": 0.13,
+     "tap": "hop",
+     "poses": {
+      "jar_open": "props_candy/jar_open"
+     },
+     "shadow": true
+    },
+    {
+     "kind": "lulu",
+     "sprite": "lulu_a/talk",
+     "at": [
+      0.66,
+      0.48
+     ],
+     "poses": {
+      "point": "lulu_a/point",
+      "talk": "lulu_a/talk"
+     }
+    }
+   ]
+  },
+  "a1_one": {
+   "parts": [
+    {
+     "kind": "table",
+     "sprite": "props_clock/bedside_table",
+     "at": [
+      0.85,
+      0.93
+     ],
+     "size": 0.21,
+     "shadow": true,
+     "tap": null
+    },
+    {
+     "kind": "hero",
+     "sprite": "hero_h/sit_reach",
+     "at": [
+      0.43,
+      0.96
+     ],
+     "poses": {
+      "eat_candy": "hero_h/eat_candy",
+      "kneel_place": "hero_d/kneel_place"
+     },
+     "shadow": true
+    },
+    {
+     "kind": "jar",
+     "sprite": "props_candy/jar_open",
+     "at": [
+      0.61,
+      0.96
+     ],
+     "size": 0.12516074450084602,
+     "tap": "hop",
+     "poses": {
+      "jar_closed": "props_candy/jar_closed"
+     },
+     "shadow": true
+    },
+    {
+     "kind": "lulu",
+     "sprite": "lulu_a/float",
+     "at": [
+      0.66,
+      0.48
+     ],
+     "poses": {
+      "clap": "lulu_a/clap"
+     }
+    }
+   ]
+  },
+  "b1_lots": {
+   "parts": [
+    {
+     "kind": "table",
+     "sprite": "props_clock/bedside_table",
+     "at": [
+      0.85,
+      0.93
+     ],
+     "size": 0.21,
+     "shadow": true,
+     "tap": null
+    },
+    {
+     "kind": "hero",
+     "sprite": "hero_h/eat_candy",
+     "at": [
+      0.43,
+      0.96
+     ],
+     "poses": {
+      "sit_reach": "hero_h/sit_reach",
+      "eat_candy_green": "hero_h/eat_candy_green",
+      "sit_ouch": "hero_h/sit_ouch"
+     },
+     "shadow": true
+    },
+    {
+     "kind": "jar",
+     "sprite": "props_candy/jar_open",
+     "at": [
+      0.61,
+      0.96
+     ],
+     "size": 0.12516074450084602,
+     "tap": "hop",
+     "poses": {
+      "jar_closed": "props_candy/jar_closed"
+     },
+     "shadow": true
+    },
+    {
+     "kind": "lulu",
+     "sprite": "lulu_a/float",
+     "at": [
+      0.66,
+      0.48
+     ]
+    }
+   ]
+  },
+  "b2_glow": {
+   "parts": [
+    {
+     "kind": "table",
+     "sprite": "props_clock/bedside_table",
+     "at": [
+      0.85,
+      0.93
+     ],
+     "size": 0.21,
+     "shadow": true,
+     "tap": null
+    },
+    {
+     "kind": "hero",
+     "sprite": "hero_h/sit_ouch",
+     "at": [
+      0.43,
+      0.96
+     ],
+     "poses": {
+      "kneel_place": "hero_d/kneel_place",
+      "sit_look_up": "hero_a/sit_look_up",
+      "sit_ouch": "hero_h/sit_ouch"
+     },
+     "shadow": true
+    },
+    {
+     "kind": "jar",
+     "sprite": "props_candy/jar_open",
+     "at": [
+      0.61,
+      0.96
+     ],
+     "size": 0.12516074450084602,
+     "tap": "hop",
+     "poses": {
+      "jar_closed": "props_candy/jar_closed"
+     },
+     "shadow": true
+    },
+    {
+     "kind": "lulu",
+     "sprite": "lulu_a/float",
+     "at": [
+      0.66,
+      0.48
+     ],
+     "poses": {
+      "glow": "lulu_a/glow",
+      "talk": "lulu_a/talk"
+     }
+    }
+   ]
+  },
+  "n1_soup": {
+   "parts": [
+    {
+     "kind": "table",
+     "sprite": "props_clock/bedside_table",
+     "at": [
+      0.85,
+      0.93
+     ],
+     "size": 0.21,
+     "shadow": true,
+     "tap": null
+    },
+    {
+     "kind": "hero",
+     "sprite": "hero_a/sit_look_up",
+     "at": [
+      0.43,
+      0.96
+     ],
+     "poses": {
+      "sit_spoon": "hero_h/sit_spoon",
+      "kneel_happy": "hero_a/kneel_happy"
+     },
+     "shadow": true
+    },
+    {
+     "kind": "soup",
+     "sprite": "props_candy/soup_full",
+     "at": [
+      0.515,
+      0.995
+     ],
+     "size": 0.09568527918781726,
+     "shadow": true,
+     "tap": "hop",
+     "poses": {
+      "soup_empty": "props_candy/soup_empty"
+     }
+    },
+    {
+     "kind": "jar",
+     "sprite": "props_candy/jar_closed",
+     "at": [
+      0.61,
+      0.96
+     ],
+     "size": 0.13,
+     "tap": "hop",
+     "shadow": true
+    },
+    {
+     "kind": "lulu",
+     "sprite": "lulu_a/float",
+     "at": [
+      0.66,
+      0.48
+     ],
+     "poses": {
+      "clap": "lulu_a/clap",
+      "talk": "lulu_a/talk"
+     }
+    }
+   ]
+  },
+  "e1_lumpy": {
+   "parts": [
+    {
+     "kind": "table",
+     "sprite": "props_clock/bedside_table",
+     "at": [
+      0.85,
+      0.93
+     ],
+     "size": 0.21,
+     "shadow": true,
+     "tap": null
+    },
+    {
+     "kind": "hero",
+     "sprite": "hero_a/bed_sit",
+     "at": [
+      0.31,
+      0.575
+     ]
+    },
+    {
+     "kind": "blanket",
+     "sprite": "props/blanket_lump",
+     "at": [
+      0.47,
+      0.59
+     ],
+     "scale": 1.05,
+     "tap": null
+    },
+    {
+     "kind": "jar",
+     "sprite": "props_candy/jar_open",
+     "at": [
+      0.6,
+      0.565
+     ],
+     "size": 0.12516074450084602,
+     "tap": "hop",
+     "poses": {
+      "jar_tipped": "props_candy/jar_tipped"
+     },
+     "flip": true
+    }
+   ]
+  },
+  "e2_magic": {
+   "parts": [
+    {
+     "kind": "table",
+     "sprite": "props_clock/bedside_table",
+     "at": [
+      0.85,
+      0.93
+     ],
+     "size": 0.21,
+     "shadow": true,
+     "tap": null
+    },
+    {
+     "kind": "hero",
+     "sprite": "hero_a/bed_sit",
+     "at": [
+      0.31,
+      0.575
+     ]
+    },
+    {
+     "kind": "blanket",
+     "sprite": "props/blanket_lump",
+     "at": [
+      0.47,
+      0.59
+     ],
+     "scale": 1.05,
+     "tap": null
+    },
+    {
+     "kind": "jar",
+     "sprite": "props_candy/jar_tipped",
+     "at": [
+      0.6,
+      0.565
+     ],
+     "size": 0.1262605752961083,
+     "tap": "hop",
+     "poses": {
+      "jar_closed": "props_candy/jar_closed"
+     },
+     "flip": true
+    },
+    {
+     "kind": "lulu",
+     "sprite": "lulu_a/float",
+     "at": [
+      0.5,
+      0.26
+     ],
+     "poses": {
+      "glow": "lulu_a/glow",
+      "talk": "lulu_a/talk"
+     }
+    }
+   ]
+  },
+  "d1_table": {
+   "parts": [
+    {
+     "kind": "table",
+     "sprite": "props_clock/bedside_table",
+     "at": [
+      0.85,
+      0.93
+     ],
+     "size": 0.21,
+     "shadow": true,
+     "tap": null
+    },
+    {
+     "kind": "hero",
+     "sprite": "hero_b/bend_place",
+     "at": [
+      0.7,
+      0.94
+     ],
+     "poses": {
+      "stand_yawn": "hero_e/stand_yawn"
+     },
+     "shadow": true
+    },
+    {
+     "kind": "jar",
+     "sprite": "props_candy/jar_closed",
+     "at": [
+      0.85,
+      0.775
+     ],
+     "size": 0.13,
+     "tap": "hop"
+    },
+    {
+     "kind": "lulu",
+     "sprite": "lulu_a/float",
+     "at": [
+      0.55,
+      0.4
+     ],
+     "poses": {
+      "clap": "lulu_a/clap"
+     }
+    }
+   ]
+  },
+  "end_asleep": {
+   "parts": [
+    {
+     "kind": "table",
+     "sprite": "props_clock/bedside_table",
+     "at": [
+      0.85,
+      0.93
+     ],
+     "size": 0.21,
+     "shadow": true,
+     "tap": null
+    },
+    {
+     "kind": "hero",
+     "sprite": "hero_b/asleep",
+     "at": [
+      0.29,
+      0.575
+     ],
+     "idle": "breathe",
+     "tap": null
+    },
+    {
+     "kind": "blanket",
+     "sprite": "props/blanket_lump",
+     "at": [
+      0.425,
+      0.61
+     ],
+     "scale": 1.3,
+     "tap": null
+    },
+    {
+     "kind": "jar",
+     "sprite": "props_candy/jar_closed",
+     "at": [
+      0.85,
+      0.775
+     ],
+     "size": 0.13,
+     "tap": "hop"
+    },
+    {
+     "kind": "lulu",
+     "sprite": "lulu_a/float",
+     "at": [
+      0.42,
+      0.3
+     ],
+     "poses": {
+      "whisper": "lulu_a/whisper"
+     }
+    }
+   ]
+  }
+ }
+}

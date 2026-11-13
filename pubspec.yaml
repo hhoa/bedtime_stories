@@ -66,6 +66,21 @@ flutter:
     - assets/stories/tidy_toys/images/layers/
     - assets/stories/tidy_toys/audio/vi/
     - assets/stories/tidy_toys/audio/en/
+    - assets/stories/tell_truth/
+    - assets/stories/tell_truth/images/
+    - assets/stories/tell_truth/images/layers/
+    - assets/stories/tell_truth/audio/vi/
+    - assets/stories/tell_truth/audio/en/
+    - assets/stories/keep_promise/
+    - assets/stories/keep_promise/images/
+    - assets/stories/keep_promise/images/layers/
+    - assets/stories/keep_promise/audio/vi/
+    - assets/stories/keep_promise/audio/en/
+    - assets/stories/candy_tummy/
+    - assets/stories/candy_tummy/images/
+    - assets/stories/candy_tummy/images/layers/
+    - assets/stories/candy_tummy/audio/vi/
+    - assets/stories/candy_tummy/audio/en/
     # Each story adds: assets/stories/<id>/, images/, images/layers/ (if cut),
     # audio/vi/, audio/en/
 

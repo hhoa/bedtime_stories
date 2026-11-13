@@ -50,6 +50,45 @@ Continuity (from v1):
 - The hat sits beside the backpack in a1/c2. In e1 it is squashed on top of the crumpled clothes; e2 makes it round again, so d1 starts with a round hat.
 - Ba mẹ never appear and never scold; they are excited and trust the child.
 
+## Kit (since 2026-11-11: replaces the per-scene pictures)
+
+prepare_stuff_vacation is now a **kit story** (docs/kit.md). Its room is the one tidy_toys' room was made from (this story's `end_asleep` with everything removed), so the kit reuses that room in two crops, the shared girl / Lulu sheets made for clock_time and tidy_toys, and one new props sheet. Story text unchanged (vi recorded and approved): only cues, node `poses`, `ambient_origin` and c2's picture change. Cover and sticker (AI pictures) are kept. The **Scenes** section below keeps the v1-era picture notes for the beats and the prop states; the layouts here replace them.
+
+### Rooms and spots (`kit/room_night.png` = copy of tidy_toys' `room.png`, night only)
+- **door** crop (right three quarters: foot of the bed on the left, window, rug, door on the right): s1 → d2.
+- **bed** crop (tidy_toys' crop: whole bed, door out of frame): end.
+- `suitcase_spot`: floor just left of the door. `rug_mid`: hero on the rug. `rug_right`: the backpack, right of the hero. `rug_front`: bottle, bucket, hat in front. `rug_left`: toys (blocks + ball). `air`: Lulu above the rug.
+- end: backpack (zipped, hat on top) and suitcase on the floor at the right edge of the bed crop, just where the door begins (the door itself is out of frame: "bên cửa").
+
+### Scenes (layout → moves on words)
+| node | room | layout (default) | cues |
+|---|---|---|---|
+| s1 `s1_backpack` | door | hero `sit_backpack` rug_mid; blocks + ball rug_left; bottle, bucket, hat rug_front; suitcase; no Lulu | "Vali" suitcase wiggle; "giơ" hero → `lift_backpack` |
+| s2 `s2_lulu` | door | hero `sit_look_up` rug_mid; backpack `backpack_empty` rug_right; props as s1; Lulu `float` air | "Vèo" Lulu hop; "xếp" Lulu → `point`; "ba lô" backpack wiggle |
+| c1 (reuses s2) | door | node poses Lulu `point` | |
+| b1 `b1_stuffed` | door | hero `kneel_push` rug_mid; backpack `backpack_toys` (blocks + ball are inside: no toy parts); bottle, bucket, hat, suitcase | "Nhét" hero hop; "nhét" backpack wiggle; "phồng" backpack pulse |
+| b2 `b2_heavy` | door | hero `pull` left of the backpack, fists at its top strap; `backpack_toys`; others as b1 | "kéo" backpack wiggle; "Hự" / "hự" hero hop; "phịch" hero → `plop` |
+| b3 `b3_lulu_help` | door | hero `plop`; Lulu `sit` beside her on the rug; blocks + ball back on the rug next to `backpack_empty` | "Lulu" Lulu hop; "lấy" blocks wiggle; "Mình" Lulu → `talk` |
+| a1 `a1_pack` | door | hero `sit_play` rug_mid; `backpack_empty` rug_right; bottle and bucket in front of the backpack (drawn before it); hat beside; clothes `clothes_flat` rug_front; toys far left; Lulu `float` air | "chai nước" hero → `kneel_place` and bottle moves behind the backpack's top (in); "xô cát" bucket wiggle, then moves in the same way; "mũ" hat hop; "áo" Lulu → `point` (at the clothes); "quần đùi" clothes wiggle |
+| c2 `c2_pack` (new staged scene = a1's end state) | door | hero `kneel_place`; bottle and bucket gone (in the backpack); hat, clothes, Lulu `point` | |
+| e1 `e1_squash` | door | hero `kneel_press`; `backpack_lumpy`; clothes `clothes_crumpled` on its top; hat `hat_round` on top of the clothes; no Lulu | "vo" clothes wiggle; "Bẹp" hat → `hat_squashed` + pulse; "nhăn" clothes wiggle; "nhìn" hero → `kneel_sad` |
+| e2 `e2_hat` | door | hero `kneel_sad`; hat `hat_squashed` on the rug in front; Lulu `float` low beside the hat; `clothes_crumpled` on the rug; `backpack_empty` | "bộp" Lulu → `pat` + hop; "tròn" hat → `hat_round`; "gấp" clothes wiggle |
+| d1 `d1_fold` | door | hero `kneel_fold` (hands smoothing on the floor); `clothes_flat` in front of her; hat beside `backpack_empty`; Lulu `float` | "gấp" hero wiggle; "Lulu" Lulu hop; "Gấp" clothes → `clothes_folded` + wiggle; "xong" hero → `kneel_happy`; "rồi" Lulu → `clap` |
+| d2 `d2_ready` | door | hero `kneel_place`; `backpack_zipped` next to the suitcase; hat on the rug beside it; Lulu `float` | "Rẹt" backpack wiggle; "mũ" hat moves onto the backpack's top + hop; "vali" suitcase wiggle; "reo" Lulu → `cheer`; "giỏi" hero → `kneel_happy` |
+| end `end_asleep` | bed | hero `asleep` in bed + blanket; Lulu `whisper` at the pillow; `backpack_ready` (zipped + hat on top, one sprite) and suitcase at the right edge | "Ba lô" backpack pulse; "Lulu" Lulu → `whisper`; zzz at the head |
+
+### Kit notes
+- Things put into the backpack slide behind its front (drawn before it): nothing vanishes mid-scene.
+- c2 gets its own staged picture (`c2_pack`) so the choice shows a1's end state (a choice reusing a1 would show the bottle and bucket back on the rug).
+- end: the door is just out of frame; the backpack stands at the edge where the door begins.
+- Lulu's paws never hold the hat (sheets never touch): she pats the air above it.
+
+### Pose and prop lists
+- reused from tidy_toys (copy): room (`room_night`), `hero_a` (`sit_look_up`, `sit_play`, `kneel_happy`), `hero_b` (`asleep`), `lulu_a` (`float`, `point`, `talk`, `clap`, `whisper`), `props` (`blocks`, `ball`, `blanket_lump`).
+- shared with clock_time (copy once clock_time's are made): `hero_c` (`plop`), `hero_d` (`kneel_place`, `kneel_push`, `kneel_press`, `kneel_sad`, `kneel_fold`), `hero_e` (`sit_backpack`, `lift_backpack`, `pull`), `lulu_b` (`sit`, `pat`, `cheer`).
+- `props_trip` (new, the only Gemini image): `suitcase`, `backpack_empty`, `backpack_toys`, `backpack_lumpy`, `backpack_zipped`, `hat_round`, `hat_squashed`, `bottle`, `bucket`, `clothes_flat`, `clothes_crumpled`, `clothes_folded`. `backpack_ready` = `backpack_zipped` + `hat_round` (stage.json `sprites`).
+- Icons from sprites: `icon_backpack` (`backpack_zipped` + `bottle` + `hat_round`), `icon_toys` (`backpack_toys` + `blocks`), `icon_fold` (`clothes_folded`), `icon_scrunch` (`clothes_crumpled` + speed lines).
+
 ## Scenes
 
 Every picture uses the **Setting** below. Hero outfit in every picture: soft mint-green pajamas with tiny white stars (night before the trip). Props stay the same in every picture:
@@ -61,7 +100,7 @@ Every picture uses the **Setting** below. Hero outfit in every picture: soft min
 - **clothes**: a light-blue t-shirt and yellow shorts;
 - **toys**: a few colourful wooden blocks and a small red-and-white ball.
 
-Hotspots (`images/hotspots.json`) are listed per scene for props the cues use; Lulu's hotspot always last. Cue suggestions are for the writer (v1 cue words, re-mapped to v2 parts / hotspots / poses).
+(v1-era picture notes: beats and prop states. Layouts and cues: **Kit** above.)
 
 ### s1 — `s1_backpack.webp` — stars — **changed**
 - **Lời kể (vi):** Mai cả nhà mình đi biển! Vali to của ba mẹ đã xếp xong rồi. Ba mẹ tin bé tự xếp được ba lô nhỏ. Bé giơ ba lô lên, vui quá!
@@ -188,8 +227,6 @@ Hotspots (`images/hotspots.json`) are listed per scene for props the cues use; L
 ## Setting
 
 The same cozy kid bedroom at night in every picture: a low wooden bed with a lavender blanket and a soft white pillow against the left wall, a window on the back wall showing a dark blue night sky with a crescent moon and a few stars, a small warm glowing lamp on a little wall shelf, a soft round cream rug in the middle of the wooden floor, and a rounded light-wood door on the right wall with ba mẹ's big upright teal suitcase (handle, little wheels, small red heart tag) standing on the floor just left of the door. Few props, soft warm light, gentle shadows. The bottom-right corner of the picture is plain wooden floor with nothing important in it. Absolutely no text, letters or numbers anywhere in the picture.
-
-(For `art_prompts.json`: `outfits` = soft mint-green pajamas with tiny white stars for every picture that shows {hero}, including the cover.)
 
 ## Choice icons
 
