@@ -17,10 +17,14 @@ class ChoiceCard extends StatelessWidget {
     required this.state,
     required this.horizontal,
     required this.onTap,
+    this.count,
     super.key,
   });
 
+  /// Picture of the option; with [count], the one counted object drawn
+  /// [count] times under the digit (math answers).
   final String iconAsset;
+  final int? count;
   final String label;
   final ChoiceCardState state;
 
@@ -36,9 +40,12 @@ class ChoiceCard extends StatelessWidget {
     final iconSize = horizontal
         ? AppConstants.choiceIconSize
         : AppConstants.choiceIconSizeCompact;
+    final count = this.count;
     final icon = ClipRRect(
       borderRadius: BorderRadius.circular(AppRadius.lg),
-      child: StoryImage(iconAsset, width: iconSize, height: iconSize),
+      child: count == null
+          ? StoryImage(iconAsset, width: iconSize, height: iconSize)
+          : CountIcon(asset: iconAsset, count: count, size: iconSize),
     );
     final text = Text(
       label,
@@ -112,6 +119,83 @@ class ChoiceCard extends StatelessWidget {
                   .animate(target: state == ChoiceCardState.selected ? 1 : 0)
                   .scaleXY(end: 1.1, curve: Curves.elasticOut)
                   .shimmer(color: AppColors.amber.withValues(alpha: 0.5)),
+        ),
+      ),
+    );
+  }
+}
+
+/// Math answer card picture: a big amber digit over [count] copies of the
+/// counted object, spread out so each one is easy to count. Same slate blue
+/// as the composed choice icons.
+class CountIcon extends StatelessWidget {
+  const CountIcon({
+    required this.asset,
+    required this.count,
+    required this.size,
+    super.key,
+  });
+
+  final String asset;
+  final int count;
+  final double size;
+
+  /// Objects per row: 3 → one row, 4 → 2 + 2, 5 → 3 + 2.
+  static List<int> rows(int count) => switch (count) {
+    <= 3 => [count],
+    4 => [2, 2],
+    _ => [(count + 1) ~/ 2, count ~/ 2],
+  };
+
+  @override
+  Widget build(BuildContext context) {
+    final layout = rows(count);
+    final object = size * (layout.length == 1 && count <= 2 ? 0.38 : 0.28);
+    return Semantics(
+      label: '$count',
+      child: Container(
+        width: size,
+        height: size,
+        color: AppColors.countIconBg,
+        padding: EdgeInsets.all(size * 0.04),
+        child: Column(
+          children: [
+            SizedBox(
+              height: size * 0.34,
+              child: FittedBox(
+                child: Text(
+                  '$count',
+                  style: AppText.kidDisplay.copyWith(
+                    color: AppColors.amber,
+                    height: 1,
+                    shadows: const [
+                      Shadow(color: AppColors.onAccent, blurRadius: 6),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+            Expanded(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  for (final n in layout)
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        for (var i = 0; i < n; i++)
+                          StoryImage(
+                            asset,
+                            width: object,
+                            height: object,
+                            fit: BoxFit.contain,
+                          ),
+                      ],
+                    ),
+                ],
+              ),
+            ),
+          ],
         ),
       ),
     );

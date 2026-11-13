@@ -25,8 +25,10 @@ from pathlib import Path
 
 import numpy as np
 
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from story_text import pieces  # noqa: E402
+
 ROOT = Path(__file__).resolve().parent.parent
-NAME = '{name}'
 RATE = 16000
 HOP = 0.01                     # s per frame
 MIN_PAUSE = 0.12               # s of quiet that counts as a pause
@@ -154,19 +156,19 @@ def cue_fractions(story: dict, lang: str, audio: Path, lead: float) -> dict[tupl
         if not cues:
             continue
         text = n['text'][lang]
-        pieces = text.split(NAME)
+        spans = pieces(text)   # words between {name} / number tokens, as gen_audio.py cuts them
         cache, pos = {}, 0
         for i, c in enumerate(cues):
             at = text.find(c['word'], pos)
             if at < 0:
                 continue
             pos = at + len(c['word'])
-            start = 0
-            for p, piece in enumerate(pieces):
-                if at < start + len(piece):
-                    break
-                start += len(piece) + len(NAME)
-            clip = audio / (f'{n["id"]}.m4a' if len(pieces) == 1 else f'{n["id"]}_p{p}.m4a')
+            p = next((k for k, (a, b) in enumerate(spans) if a <= at < b), None)
+            if p is None:
+                continue
+            start, end = spans[p]
+            piece = text[start:end]
+            clip = audio / (f'{n["id"]}.m4a' if len(spans) == 1 else f'{n["id"]}_p{p}.m4a')
             if not clip.exists():
                 continue
             if clip not in cache:

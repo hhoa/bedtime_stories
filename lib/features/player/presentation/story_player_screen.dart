@@ -136,6 +136,7 @@ class _Picture extends StatelessWidget {
           hotspots: story.hotspots[node.imageAsset],
           cue: state.cue,
           poses: node.poses,
+          placements: story.placements(node.id),
           ambient: node.ambient,
           ambientOrigin: node.ambientOrigin,
           semanticLabel: context.strings.listenAgain,
@@ -168,6 +169,13 @@ void _precacheNext(BuildContext context, PlayerState state) {
   }
 }
 
+/// Back to the list of the story's section (sections page if the story
+/// never loaded).
+void _goBack(BuildContext context) {
+  final story = context.read<PlayerCubit>().state.story;
+  context.go(story == null ? AppRoutes.home : AppRoutes.section(story.section));
+}
+
 class _TopBar extends StatelessWidget {
   const _TopBar();
 
@@ -178,7 +186,7 @@ class _TopBar extends StatelessWidget {
         KidIconButton(
           icon: Icons.home_rounded,
           tooltip: context.strings.home,
-          onPressed: () => context.go(AppRoutes.home),
+          onPressed: () => _goBack(context),
         ),
         const Spacer(),
         KidIconButton(

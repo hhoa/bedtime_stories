@@ -13,6 +13,8 @@ import 'package:bedtime_stories/features/profile/presentation/cubit/sticker_cubi
 import 'package:bedtime_stories/features/profile/presentation/profile_screen.dart';
 import 'package:bedtime_stories/features/stories/domain/entities/story.dart';
 import 'package:bedtime_stories/features/stories/presentation/cubit/story_list_cubit.dart';
+import 'package:bedtime_stories/features/sections/presentation/cubit/sections_cubit.dart';
+import 'package:bedtime_stories/features/sections/presentation/sections_screen.dart';
 import 'package:bedtime_stories/features/stories/presentation/home_screen.dart';
 import 'package:bedtime_stories/features/stories/presentation/widgets/story_card.dart';
 
@@ -22,6 +24,8 @@ void main() {
   late LanguageCubit language;
   late StickerCubit stickers;
   late FakeStoryRepository repository;
+  late FakeNarrator narrator;
+  late FakeAnalytics analytics;
 
   Future<void> pumpScreen(
     WidgetTester tester,
@@ -44,6 +48,8 @@ void main() {
     language = LanguageCubit(storage);
     stickers = StickerCubit(StickerStorage(p));
     repository = FakeStoryRepository(stories);
+    narrator = FakeNarrator();
+    analytics = FakeAnalytics();
     await tester.pumpWidget(
       DefaultAssetBundle(
         bundle: DiskAssetBundle(),
@@ -55,6 +61,10 @@ void main() {
             BlocProvider(
               create: (_) =>
                   StoryListCubit(repository: repository)..load(language.state),
+            ),
+            BlocProvider(
+              create: (_) =>
+                  SectionsCubit(narrator: narrator, analytics: analytics),
             ),
           ],
           child: MaterialApp(home: screen),
@@ -72,25 +82,31 @@ void main() {
 
   group('home', () {
     testWidgets('no stories yet: friendly message, no grid', (tester) async {
-      await pumpScreen(tester, const HomeScreen());
-      expect(find.text(const AppStringsVi().noStories), findsOneWidget);
+      await pumpScreen(
+        tester,
+        const HomeScreen(section: StorySection.behavior),
+      );
+      expect(
+        find.text(const AppStringsVi().sectionEmpty(StorySection.behavior)),
+        findsOneWidget,
+      );
       expect(find.byType(GridView), findsNothing);
       await finish(tester);
     });
 
-    testWidgets('lazy grid of story cards, avatar shows stickers', (
-      tester,
-    ) async {
+    testWidgets('lazy grid of the section\'s story cards', (tester) async {
       await pumpScreen(
         tester,
-        const HomeScreen(),
+        const HomeScreen(section: StorySection.behavior),
         stories: {'demo': loadFixtureStory()},
-        prefs: {'stickers_v1': '{"demo": 3}'},
       );
       expect(find.byType(GridView), findsOneWidget);
       expect(find.byType(StoryCard), findsOneWidget);
       expect(find.text('Na và Lulu đi ngủ'), findsOneWidget);
-      expect(find.text('3'), findsOneWidget);
+      expect(
+        find.text(const AppStringsVi().sectionTitle(StorySection.behavior)),
+        findsOneWidget,
+      );
       await finish(tester);
     });
 
@@ -99,7 +115,7 @@ void main() {
     ) async {
       await pumpScreen(
         tester,
-        const HomeScreen(),
+        const HomeScreen(section: StorySection.behavior),
         stories: {'demo': loadFixtureStory()},
       );
       await language.select(AppLanguage.en);
@@ -119,7 +135,7 @@ void main() {
     testWidgets('phone: one column', (tester) async {
       await pumpScreen(
         tester,
-        const HomeScreen(),
+        const HomeScreen(section: StorySection.behavior),
         stories: {'demo': loadFixtureStory()},
       );
       expect(columns(tester), 1);
@@ -131,7 +147,7 @@ void main() {
     ) async {
       await pumpScreen(
         tester,
-        const HomeScreen(),
+        const HomeScreen(section: StorySection.behavior),
         stories: {'demo': loadFixtureStory()},
         size: const Size(1400, 900),
       );
@@ -149,6 +165,59 @@ void main() {
     });
   });
 
+  group('sections', () {
+    testWidgets('avatar shows stickers, one card per section', (tester) async {
+      await pumpScreen(
+        tester,
+        const SectionsScreen(),
+        prefs: {'stickers_v1': '{"demo": 3}'},
+      );
+      expect(find.text('3'), findsOneWidget);
+      for (final section in StorySection.values) {
+        expect(
+          find.text(const AppStringsVi().sectionTitle(section)),
+          findsOneWidget,
+        );
+      }
+      await finish(tester);
+    });
+
+    const sizes = {
+      'small phone': Size(375, 667),
+      'phone landscape': Size(667, 375),
+      'tall phone': Size(390, 844),
+      'tablet landscape': Size(1024, 768),
+      'tablet portrait': Size(820, 1180),
+    };
+    for (final MapEntry(key: name, value: size) in sizes.entries) {
+      for (final lang in AppLanguage.values) {
+        testWidgets('$name (${lang.name}): fits, no scrolling', (tester) async {
+          await pumpScreen(
+            tester,
+            const SectionsScreen(),
+            size: size,
+            prefs: {'app_language_v1': lang.name},
+          );
+          expect(find.byType(Scrollable), findsNothing);
+          expect(tester.takeException(), isNull);
+          await finish(tester);
+        });
+      }
+    }
+  });
+
+  test('tapping a section says its name and logs it', () async {
+    final narrator = FakeNarrator();
+    final analytics = FakeAnalytics();
+    final cubit = SectionsCubit(narrator: narrator, analytics: analytics)
+      ..open(StorySection.math, AppLanguage.en);
+    await settle();
+    expect(cubit.state, StorySection.math);
+    expect(narrator.played, ['assets/audio/ui/en/section_math.m4a']);
+    expect(analytics.events, ['section_open:math']);
+    await cubit.close();
+  });
+
   group('profile', () {
     testWidgets('shows total and each story sticker with its count', (
       tester,
@@ -163,6 +232,33 @@ void main() {
       expect(find.text(const AppStringsVi().stickerTotal(2)), findsOneWidget);
       expect(find.text('×2'), findsOneWidget);
       expect(find.text(const AppStringsVi().noStickersYet), findsNothing);
+      await finish(tester);
+    });
+
+    testWidgets('sticker book grouped by section', (tester) async {
+      final demo = loadFixtureStory();
+      await pumpScreen(
+        tester,
+        const ProfileScreen(),
+        stories: {
+          'demo': demo,
+          'demo_math': demo.copyWith(
+            id: 'demo_math',
+            section: StorySection.math,
+          ),
+        },
+        prefs: {'stickers_v1': '{"demo_math": 1}'},
+      );
+      const vi = AppStringsVi();
+      final behavior = find.text(vi.sectionTitle(StorySection.behavior));
+      final math = find.text(vi.sectionTitle(StorySection.math));
+      expect(behavior, findsOneWidget);
+      expect(math, findsOneWidget);
+      expect(
+        tester.getTopLeft(behavior).dy,
+        lessThan(tester.getTopLeft(math).dy),
+      );
+      expect(find.text('×1'), findsOneWidget);
       await finish(tester);
     });
 

@@ -1,4 +1,5 @@
 import 'package:bedtime_stories/core/models/child_profile.dart';
+import 'package:bedtime_stories/core/models/story_section.dart';
 
 /// UI chrome text in each [AppLanguage]. Story content is data and lives in
 /// story JSON. Get the current set with `context.strings`.
@@ -48,10 +49,16 @@ abstract final class AppStrings {
   String get close;
   String get letsGo;
 
-  // Home
+  // Sections page
   String greeting(String name);
-  String get homeSubtitle;
-  String get noStories;
+  String get sectionsSubtitle;
+
+  /// Keep in sync with `UI_LINES['section_<name>']` in `tool/gen_audio.py`.
+  String sectionTitle(StorySection section);
+
+  // Section list (home)
+  String sectionSubtitle(StorySection section);
+  String sectionEmpty(StorySection section);
   String get loadError;
   String get retry;
   String get openProfile;
@@ -175,9 +182,22 @@ final class AppStringsVi extends AppStrings {
   @override
   String greeting(String name) => 'Chào $name!';
   @override
-  String get homeSubtitle => 'Tối nay mình nghe truyện gì nhỉ?';
+  String get sectionsSubtitle => 'Hôm nay mình học gì nhỉ?';
   @override
-  String get noStories => 'Truyện mới sắp có rồi!';
+  String sectionTitle(StorySection section) => switch (section) {
+    StorySection.behavior => 'Bé ngoan',
+    StorySection.math => 'Học toán',
+  };
+  @override
+  String sectionSubtitle(StorySection section) => switch (section) {
+    StorySection.behavior => 'Tối nay mình nghe truyện gì nhỉ?',
+    StorySection.math => 'Mình cùng đếm nhé!',
+  };
+  @override
+  String sectionEmpty(StorySection section) => switch (section) {
+    StorySection.behavior => 'Truyện mới sắp có rồi!',
+    StorySection.math => 'Bài toán mới sắp có rồi!',
+  };
   @override
   String get loadError => 'Không mở được truyện.';
   @override
@@ -321,9 +341,22 @@ final class AppStringsEn extends AppStrings {
   @override
   String greeting(String name) => 'Hi $name!';
   @override
-  String get homeSubtitle => 'Which story tonight?';
+  String get sectionsSubtitle => 'What shall we learn today?';
   @override
-  String get noStories => 'New stories are coming soon!';
+  String sectionTitle(StorySection section) => switch (section) {
+    StorySection.behavior => 'Being good',
+    StorySection.math => 'Numbers',
+  };
+  @override
+  String sectionSubtitle(StorySection section) => switch (section) {
+    StorySection.behavior => 'Which story tonight?',
+    StorySection.math => "Let's count together!",
+  };
+  @override
+  String sectionEmpty(StorySection section) => switch (section) {
+    StorySection.behavior => 'New stories are coming soon!',
+    StorySection.math => 'New number stories are coming soon!',
+  };
   @override
   String get loadError => "Couldn't open the stories.";
   @override

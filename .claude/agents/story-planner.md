@@ -27,6 +27,9 @@ An idea or theme and a story id (snake_case), maybe a hero (`girl`, `boy` or `ki
 - Things AI draws badly (clock hands, numbers, text, exact counts) become SVG overlay layers like clock_time's clock; say so in the outline.
 - Hero and Lulu never touch (separate sheets); the hero hugging a toy is one pose figure.
 
+## Math stories
+If the idea is about numbers (counting, more/fewer, big/small, adding, taking away, sharing) or the input says `section math`, it is a math story: read `docs/math.md` first; its rules replace the kind/learn meaning above (kind = right answer, learn = near miss → count again together → rewind). One topic from its curriculum, 1-2 questions, every counted object a numbered part (`apple1`, `apple2`…) with `hop` cues on the number words, answer icons = objects + `numeral`. Put **section** (`math`) next to theme in the outline and say which curriculum step it is. The numbers are drawn fresh each play (`docs/math.md` "New numbers every play"): plan with variables (a + b, then c + d) and their ranges, all counted objects staged at field spots plus waiting spots for newcomers.
+
 ## Output
 Write `docs/stories/<id>/outline.md`:
 

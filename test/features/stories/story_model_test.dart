@@ -1,10 +1,12 @@
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:bedtime_stories/core/models/child_profile.dart';
 import 'package:bedtime_stories/core/utils/app_constants.dart';
 import 'package:bedtime_stories/features/stories/data/models/story_model.dart';
+import 'package:bedtime_stories/features/stories/data/repositories/asset_story_repository.dart';
 import 'package:bedtime_stories/features/stories/domain/entities/story.dart';
 
 import '../../helpers/fakes.dart';
@@ -57,6 +59,13 @@ Story _parse(
 }) => StoryModel.fromJson(
   json,
 ).toEntity(baseDir: 'b', language: language, layers: layers);
+
+/// Reads every asset straight from the project folder.
+final class _FileBundle extends CachingAssetBundle {
+  @override
+  Future<ByteData> load(String key) async =>
+      ByteData.sublistView(await File(key).readAsBytes());
+}
 
 void main() {
   test('fixture story parses in both languages', () {
@@ -140,11 +149,12 @@ void main() {
             for (final h in story.hotspots[node.imageAsset] ?? const []) h.kind,
           };
           for (final cue in node.cues) {
-            expect(
-              kinds,
-              contains(cue.part),
-              reason: '${node.id}: ${cue.part}',
-            );
+            // `arrive` names the counted group: its parts are counter1, …
+            final math = story.math;
+            final part = cue.action == PartAction.arrive && math != null
+                ? math.part(1)
+                : cue.part;
+            expect(kinds, contains(part), reason: '${node.id}: ${cue.part}');
           }
         }
       }
@@ -306,6 +316,45 @@ void main() {
       const ClipPart('b/audio/vi/s1_p1.m4a'),
       const NamePart(),
     ]);
+  });
+
+  group('section', () {
+    test('defaults to behavior', () {
+      expect(_parse(_minimal()).section, StorySection.behavior);
+    });
+
+    test('parses math', () {
+      expect(
+        _parse({..._minimal(), 'section': 'math'}).section,
+        StorySection.math,
+      );
+    });
+
+    test('rejects an unknown section', () {
+      expect(
+        () => _parse({..._minimal(), 'section': 'music'}),
+        throwsFormatException,
+      );
+    });
+  });
+
+  group('AssetStoryRepository', () {
+    test('lists only the asked section', () async {
+      final repo = AssetStoryRepository(bundle: _FileBundle());
+      final all = (await repo.getStories(AppLanguage.vi)).getOrElse(() => []);
+      final math = (await repo.getStories(
+        AppLanguage.vi,
+        section: StorySection.math,
+      )).getOrElse(() => []);
+      final behavior = (await repo.getStories(
+        AppLanguage.vi,
+        section: StorySection.behavior,
+      )).getOrElse(() => []);
+      expect(all, isNotEmpty);
+      expect(math.every((s) => s.section == StorySection.math), isTrue);
+      expect(behavior.every((s) => s.section == StorySection.behavior), isTrue);
+      expect(math.length + behavior.length, all.length);
+    });
   });
 
   test('rejects link to missing node', () {

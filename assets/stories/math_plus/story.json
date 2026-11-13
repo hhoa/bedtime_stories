@@ -1,0 +1,256 @@
+{
+  "id": "math_plus",
+  "theme": "addition", "section": "math",
+  "hero": "girl",
+  "title": {"vi": "{name} đếm cừu bông", "en": "{name} Counts the Little Sheep"},
+  "cover": "images/cover.webp",
+  "start": "s1",
+  "math": {
+    "counter": "sheep",
+    "icon": "images/layers/kit_props_sheep_sheep_stand.webp",
+    "vars": {"a": [1, 3], "b": [1, "4 - a"], "c": "a + b", "d": [1, "5 - c"], "e": "c + d"},
+    "field": [[0.34, 0.7], [0.455, 0.7], [0.57, 0.7], [0.685, 0.7], [0.8, 0.7]],
+    "wait": [[0.4, 0.97], [0.55, 0.97], [0.7, 0.97]]
+  },
+  "nodes": [
+    {
+      "id": "s1", "type": "scene", "image": "images/s1_awake.webp", "next": "s2", "ambient": "sparkles",
+      "poses": {"hero": "bed_awake", "lulu": "float"},
+      "counted": {"field": "0", "wait": "a"},
+      "text": {
+        "vi": "{name} ngồi trong chăn, mắt vẫn tròn xoe. Vù! Lulu bay vào, sáng lấp lánh. Lulu cười: \"Chưa buồn ngủ à? Mình cùng đếm cừu nhé!\" Bên cửa, cừu bông đang vẫy đuôi chờ.",
+        "en": "{name} sits up under the blanket, eyes still wide open. Whoosh! Lulu flies in, all aglow. Lulu smiles, \"Not sleepy yet? Let's count sheep together!\" Look by the door: little woolly sheep! Wag, wag!"
+      },
+      "cues": {
+        "vi": [
+          {"word": "Vù", "part": "lulu", "action": "move", "to": [0.6, 0.3], "at": 0.207},
+          {"word": "lấp lánh", "part": "lulu", "action": "pose", "pose": "glow", "at": 0.387},
+          {"word": "cười", "part": "lulu", "action": "pose", "pose": "talk", "at": 0.494},
+          {"word": "đếm cừu", "part": "hero", "action": "pose", "pose": "bed_point", "at": 0.706},
+          {"word": "vẫy đuôi", "part": "sheep1", "action": "wiggle", "at": 0.916}
+        ],
+        "en": [
+          {"word": "Whoosh", "part": "lulu", "action": "move", "to": [0.6, 0.3], "at": 0.239},
+          {"word": "aglow", "part": "lulu", "action": "pose", "pose": "glow", "at": 0.409},
+          {"word": "smiles", "part": "lulu", "action": "pose", "pose": "talk", "at": 0.486},
+          {"word": "count sheep", "part": "hero", "action": "pose", "pose": "bed_point", "at": 0.64},
+          {"word": "Wag", "part": "sheep1", "action": "wiggle", "at": 0.919}
+        ]
+      }
+    },
+    {
+      "id": "s2", "type": "scene", "image": "images/s2_jump.webp", "next": "s3", "ambient": "stars",
+      "poses": {"hero": "bed_point", "lulu": "float"},
+      "counted": {"field": "0", "wait": "a"},
+      "text": {
+        "vi": "Tưng, tưng! Cừu bông nhảy qua hàng rào, đến bên giường. Bé chỉ tay đếm theo: {count:a}!",
+        "en": "Boing, boing! Over the fence, over to the bed! The little one points and counts along: {count:a}!"
+      },
+      "cues": {
+        "vi": [
+          {"word": "nhảy qua", "part": "sheep", "action": "arrive", "at": 0.273},
+          {"word": "chỉ tay", "part": "hero", "action": "pulse", "at": 0.799}
+        ],
+        "en": [
+          {"word": "Over the fence", "part": "sheep", "action": "arrive", "at": 0.239},
+          {"word": "points", "part": "hero", "action": "pulse", "at": 0.764}
+        ]
+      }
+    },
+    {
+      "id": "s3", "type": "scene", "image": "images/s3_one_more.webp", "next": "c1", "ambient": "stars",
+      "poses": {"hero": "bed_point", "lulu": "float"},
+      "counted": {"field": "a", "wait": "b"},
+      "text": {
+        "vi": "Nhìn kìa, bên cửa có {b} bạn cừu nữa! Nhún, nhún, rồi nhảy qua hàng rào! Thế là {a} bạn cừu, thêm {b} bạn nữa!",
+        "en": "Look, {b} more sheep by the door! Bounce, bounce, then over the fence! So that's {a} sheep, and {b} more!"
+      },
+      "cues": {
+        "vi": [
+          {"word": "Nhìn kìa", "part": "lulu", "action": "pose", "pose": "point", "at": 0.0},
+          {"word": "nhảy qua", "part": "sheep", "action": "arrive", "at": 0.574},
+          {"word": "Thế là", "part": "hero", "action": "pose", "pose": "bed_think", "at": 0.898}
+        ],
+        "en": [
+          {"word": "Look", "part": "lulu", "action": "pose", "pose": "point", "at": 0.0},
+          {"word": "over the fence", "part": "sheep", "action": "arrive", "at": 0.622},
+          {"word": "So", "part": "hero", "action": "pose", "pose": "bed_think", "at": 0.888}
+        ]
+      }
+    },
+    {
+      "id": "c1", "type": "choice", "image": "images/s3_one_more.webp", "ambient": "stars",
+      "poses": {"hero": "bed_think", "lulu": "talk"},
+      "counted": {"field": "c"},
+      "text": {
+        "vi": "{name} ơi, {a} bạn cừu thêm {b} bạn nữa. Bây giờ có mấy bạn cừu nhỉ?",
+        "en": "{name}, {a} sheep and {b} more. How many sheep are there now?"
+      },
+      "options": [
+        {"id": "right", "kind": "kind", "answer": "c",
+         "label": {"vi": "{n} bạn cừu", "en": "{n} sheep"}, "next": "a1"},
+        {"id": "near", "kind": "learn", "answer": "near:c",
+         "label": {"vi": "{n} bạn cừu", "en": "{n} sheep"}, "next": "b1"}
+      ]
+    },
+    {
+      "id": "b1", "type": "scene", "image": "images/b1_count.webp", "next": "a1", "offer_rewind_to": "c1", "ambient": "stars",
+      "poses": {"hero": "bed_think", "lulu": "float"},
+      "counted": {"field": "c"},
+      "text": {
+        "vi": "Mình cùng đếm lại nhé! Lulu chỉ vào từng bạn cừu. {count:c}! Lulu cười: \"{a} bạn cừu, thêm {b} bạn nữa là {c} bạn cừu.\"",
+        "en": "Let's count again together! Lulu points to each sheep. {count:c}! Lulu smiles, \"{a} sheep and {b} more make {c} sheep.\""
+      },
+      "cues": {
+        "vi": [
+          {"word": "đếm lại", "part": "hero", "action": "pose", "pose": "bed_point", "at": 0.153},
+          {"word": "chỉ", "part": "lulu", "action": "pose", "pose": "point", "at": 0.559},
+          {"word": "cười", "part": "lulu", "action": "pose", "pose": "talk", "at": 0.385}
+        ],
+        "en": [
+          {"word": "count again", "part": "hero", "action": "pose", "pose": "bed_point", "at": 0.073},
+          {"word": "points", "part": "lulu", "action": "pose", "pose": "point", "at": 0.595},
+          {"word": "smiles", "part": "lulu", "action": "pose", "pose": "talk", "at": 0.331}
+        ]
+      }
+    },
+    {
+      "id": "a1", "type": "scene", "image": "images/a1_three.webp", "next": "n1", "ambient": "stars",
+      "poses": {"hero": "bed_think", "lulu": "float"},
+      "counted": {"field": "c"},
+      "text": {
+        "vi": "{c} bạn cừu đây rồi! {count:c}! Bé vỗ tay, Lulu cũng vỗ tay. Các bạn cừu đứng bên giường, vẫy đuôi chào {name}.",
+        "en": "{c} sheep, here they are! {count:c}! The little one claps, and Lulu claps too. The sheep stand by the bed and wag their tails at {name}."
+      },
+      "cues": {
+        "vi": [
+          {"word": "vỗ tay", "part": "hero", "action": "pose", "pose": "bed_clap", "at": 0.058},
+          {"word": "cũng", "part": "lulu", "action": "pose", "pose": "clap", "at": 0.25},
+          {"word": "vẫy đuôi", "part": "sheep1", "action": "wiggle", "at": 0.789}
+        ],
+        "en": [
+          {"word": "claps", "part": "hero", "action": "pose", "pose": "bed_clap", "at": 0.119},
+          {"word": "too", "part": "lulu", "action": "pose", "pose": "clap", "at": 0.352},
+          {"word": "wag", "part": "sheep1", "action": "wiggle", "at": 0.781}
+        ]
+      }
+    },
+    {
+      "id": "n1", "type": "scene", "image": "images/n1_late.webp", "next": "c2", "ambient": "stars",
+      "poses": {"hero": "bed_awake", "lulu": "float"},
+      "counted": {"field": "c", "wait": "d"},
+      "text": {
+        "vi": "Lóc cóc, lóc cóc! {d} bạn cừu nữa chạy tới bên cửa. Tưng, tưng, nhảy qua hàng rào!",
+        "en": "Clip-clop, clip-clop! Look, {d} more sheep at the door! Boing, boing, over the fence!"
+      },
+      "cues": {
+        "vi": [
+          {"word": "Tưng", "part": "hero", "action": "pose", "pose": "bed_point", "at": 0.424},
+          {"word": "nhảy qua", "part": "sheep", "action": "arrive", "at": 0.721}
+        ],
+        "en": [
+          {"word": "Boing", "part": "hero", "action": "pose", "pose": "bed_point", "at": 0.385},
+          {"word": "over the fence", "part": "sheep", "action": "arrive", "at": 0.728}
+        ]
+      }
+    },
+    {
+      "id": "c2", "type": "choice", "image": "images/n1_late.webp", "ambient": "stars",
+      "poses": {"hero": "bed_think", "lulu": "talk"},
+      "counted": {"field": "e"},
+      "text": {
+        "vi": "{name} ơi, {c} bạn cừu thêm {d} bạn nữa. Bây giờ có mấy bạn cừu nhỉ?",
+        "en": "{name}, {c} sheep and {d} more. How many sheep are there now?"
+      },
+      "options": [
+        {"id": "right", "kind": "kind", "answer": "e",
+         "label": {"vi": "{n} bạn cừu", "en": "{n} sheep"}, "next": "d1"},
+        {"id": "near", "kind": "learn", "answer": "near:e",
+         "label": {"vi": "{n} bạn cừu", "en": "{n} sheep"}, "next": "e1"}
+      ]
+    },
+    {
+      "id": "e1", "type": "scene", "image": "images/e1_count.webp", "next": "d1", "offer_rewind_to": "c2", "ambient": "stars",
+      "poses": {"hero": "bed_think", "lulu": "float"},
+      "counted": {"field": "e"},
+      "text": {
+        "vi": "Mình cùng đếm lại nhé, thật chậm thôi. Bé chỉ tay, Lulu đếm theo. {count:e}! Lulu nói: \"{c} bạn cừu, thêm {d} bạn nữa là {e} bạn cừu.\"",
+        "en": "Let's count again together, nice and slow. The little one points, and Lulu counts along. {count:e}! Lulu says, \"{c} sheep and {d} more make {e} sheep.\""
+      },
+      "cues": {
+        "vi": [
+          {"word": "chỉ tay", "part": "hero", "action": "pose", "pose": "bed_point", "at": 0.629},
+          {"word": "đếm theo", "part": "lulu", "action": "pose", "pose": "point", "at": 0.834},
+          {"word": "nói", "part": "lulu", "action": "pose", "pose": "talk", "at": 0.431}
+        ],
+        "en": [
+          {"word": "points", "part": "hero", "action": "pose", "pose": "bed_point", "at": 0.628},
+          {"word": "counts along", "part": "lulu", "action": "pose", "pose": "point", "at": 0.82},
+          {"word": "says", "part": "lulu", "action": "pose", "pose": "talk", "at": 0.384}
+        ]
+      }
+    },
+    {
+      "id": "d1", "type": "scene", "image": "images/d1_five.webp", "next": "d2", "ambient": "stars",
+      "poses": {"hero": "bed_think", "lulu": "float"},
+      "counted": {"field": "e"},
+      "text": {
+        "vi": "{e} bạn cừu đây rồi! {count:e}! Bé vỗ tay, Lulu cũng vỗ tay. Các bạn cừu bông dụi dụi mắt, buồn ngủ rồi.",
+        "en": "{e} sheep, here they are! {count:e}! The little one claps, and Lulu claps too. The woolly sheep rub their sleepy eyes."
+      },
+      "cues": {
+        "vi": [
+          {"word": "vỗ tay", "part": "hero", "action": "pose", "pose": "bed_clap", "at": 0.061},
+          {"word": "cũng", "part": "lulu", "action": "pose", "pose": "clap", "at": 0.257},
+          {"word": "dụi", "part": "sheep1", "action": "wiggle", "at": 0.633}
+        ],
+        "en": [
+          {"word": "claps", "part": "hero", "action": "pose", "pose": "bed_clap", "at": 0.14},
+          {"word": "too", "part": "lulu", "action": "pose", "pose": "clap", "at": 0.414},
+          {"word": "rub", "part": "sheep1", "action": "wiggle", "at": 0.73}
+        ]
+      }
+    },
+    {
+      "id": "d2", "type": "scene", "image": "images/d2_sleepy.webp", "next": "end", "ambient": "stars",
+      "poses": {"hero": "bed_clap", "lulu": "float"},
+      "counted": {"field": "e"},
+      "text": {
+        "vi": "Từng bạn cừu nằm cuộn tròn, ngủ ngoan. {count:e:sleep}. Bé cũng ngáp một cái thật dài. Oáp!",
+        "en": "The sheep curl up, one by one, and go to sleep. {count:e:sleep}. The little one gives a big, long yawn. Yaaawn!"
+      },
+      "cues": {
+        "vi": [
+          {"word": "ngáp", "part": "hero", "action": "pose", "pose": "lie_yawn", "at": 0.201},
+          {"word": "Oáp", "part": "lulu", "action": "pose", "pose": "whisper", "at": 0.755}
+        ],
+        "en": [
+          {"word": "yawn", "part": "hero", "action": "pose", "pose": "lie_yawn", "at": 0.546},
+          {"word": "Yaaawn", "part": "lulu", "action": "pose", "pose": "whisper", "at": 0.774}
+        ]
+      }
+    },
+    {
+      "id": "end", "type": "ending", "image": "images/end_asleep.webp", "sticker": "images/sticker.webp",
+      "ambient": "zzz", "ambient_origin": [0.2, 0.32],
+      "poses": {"hero": "asleep", "lulu": "float", "sheep1": "sleep", "sheep2": "sleep", "sheep3": "sleep", "sheep4": "sleep", "sheep5": "sleep"},
+      "counted": {"field": "e"},
+      "text": {
+        "vi": "Bé nằm xuống, chăn ấm ôm lấy bé. {e} bạn cừu ngủ say bên giường. Lulu thì thầm: \"Ngủ ngon nhé, {name}.\"",
+        "en": "The little one lies down, snug under the warm blanket. {e} sheep sleep soundly by the bed. Lulu whispers, \"Good night, {name}.\""
+      },
+      "cues": {
+        "vi": [
+          {"word": "Bé", "part": "lulu", "action": "move", "to": [0.47, 0.3], "at": 0.0},
+          {"word": "ngủ say", "part": "sheep1", "action": "pulse", "at": 0.106},
+          {"word": "thì thầm", "part": "lulu", "action": "pose", "pose": "whisper", "at": 0.521}
+        ],
+        "en": [
+          {"word": "lies down", "part": "lulu", "action": "move", "to": [0.47, 0.3], "at": 0.224},
+          {"word": "sleep soundly", "part": "sheep1", "action": "pulse", "at": 0.089},
+          {"word": "whispers", "part": "lulu", "action": "pose", "pose": "whisper", "at": 0.651}
+        ]
+      }
+    }
+  ]
+}

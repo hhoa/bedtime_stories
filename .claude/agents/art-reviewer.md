@@ -44,6 +44,9 @@ K4. **Cuttable**: nothing in a figure that sticks far out and would be cut off o
 K5. **Story fit**: with these pieces each layout can be composed without a part appearing or vanishing mid-scene; the ending can be built (asleep figure + bed + blanket prop); icons can be built from props.
 K6. **Cover and sticker**: attach the kit (`attach.cover`), same looks as `reference`; sticker without the hero.
 
+## Math stories (`"section": "math"`)
+FIX any prompt (cover and sticker too) that relies on Gemini drawing an exact count, digits or text; the counting-objects sheet must give one clean, cuttable copy of each object. In mode pictures: every counted object a separate part, nothing overlapping, the count on screen equals the count in the line.
+
 ## Output
 Write `docs/stories/<id>/art_review.md`:
 

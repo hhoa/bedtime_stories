@@ -23,6 +23,9 @@ abstract final class AppColors {
   /// Text/icon color on amber or lavender buttons.
   static const onAccent = Color(0xFF2B2340);
 
+  /// Background of the composed choice icons (`ICON_BG` in tool/stage.py).
+  static const countIconBg = Color(0xFF3E4C78);
+
   /// Sleep screen: almost black, slightly blue.
   static const sleepBg = Color(0xFF07081C);
 }

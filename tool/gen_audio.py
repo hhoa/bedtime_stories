@@ -53,6 +53,10 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from clean_audio import CLEAN_TAG, boost, mark_cleaned  # noqa: E402
+from story_text import (MAX_SPOKEN, NUMBER_WORDS, example_text, example_values,  # noqa: E402
+                        has_numbers, option_example, tokens)
+
+RECORDED_EXTS = ('m4a', 'wav', 'mp3', 'aiff', 'aif', 'caf')
 
 ROOT = Path(__file__).resolve().parent.parent
 LANGS = ('vi', 'en')  # keep in sync with AppLanguage
@@ -69,6 +73,8 @@ CLONE_MODELS = {
 # Reference voice per language: Vietnamese in ref/, English in ref/en/.
 REF_SUB = {'vi': '', 'en': 'en'}
 NAME_SLOT = {'vi': '[tên bé]', 'en': '[child name]'}
+NUMBER_SLOT = {'vi': 'số', 'en': 'number'}
+COUNT_SLOT = {'vi': 'đếm 1…', 'en': 'count 1…'}
 # Trim quiet edges (the model can leave a breath or a gap at either end).
 TRIM = ('silenceremove=start_periods=1:start_threshold=-45dB:start_silence=0.05,'
         'areverse,silenceremove=start_periods=1:start_threshold=-45dB:start_silence=0.15,'
@@ -89,6 +95,9 @@ UI_LINES = {
         'sticker_0': 'Lần sau mình thử chọn cách khác để nhận sticker nhé!',
         'sticker_1': 'Bé nhận được một sticker!',
         'sticker_2': 'Bé nhận được hai sticker! Giỏi quá!',
+        'section_behavior': 'Bé ngoan',
+        'section_math': 'Học toán',
+        **{f'num_{n}': f'{w.capitalize()}.' for n, w in enumerate(NUMBER_WORDS['vi']) if 1 <= n <= MAX_SPOKEN},  # '.': the clone garbles a bare short word
     },
     'en': {
         'rewind': 'Shall we try the other choice?',
@@ -96,6 +105,9 @@ UI_LINES = {
         'sticker_0': 'Next time, try another choice to get a sticker!',
         'sticker_1': 'You got a sticker!',
         'sticker_2': 'You got two stickers! Great job!',
+        'section_behavior': 'Being good',
+        'section_math': 'Numbers',
+        **{f'num_{n}': f'{w.capitalize()}.' for n, w in enumerate(NUMBER_WORDS['en']) if 1 <= n <= MAX_SPOKEN},  # '.': the clone garbles a bare short word
     },
 }
 
@@ -121,16 +133,24 @@ def speakable(text: str) -> bool:
 
 
 def line_clips(text: str, key: str, lang: str):
-    """Yields (filename or None for the name slot, text to read)."""
-    pieces = text.split(NAME)
-    if len(pieces) == 1:
+    """Yields (filename or None for a slot, text to read). Slots: the child's name, and in math
+    stories the shared number clips ({a}, {count:a}; see tool/story_text.py)."""
+    toks = tokens(text)
+    if len(toks) == 1:
         yield f'{key}.{EXT}', text
         return
-    for i, piece in enumerate(pieces):
-        if i > 0:
+    i = 0
+    for kind, value, _ in toks:
+        if kind == 'words':
+            if speakable(value):
+                yield f'{key}_p{i}.{EXT}', value.strip()
+            i += 1
+        elif kind == 'name':
             yield None, NAME_SLOT[lang]
-        if speakable(piece):
-            yield f'{key}_p{i}.{EXT}', piece.strip()
+        elif kind == 'number':
+            yield None, f'[{NUMBER_SLOT[lang]} {value}]'
+        else:
+            yield None, f'[{COUNT_SLOT[lang]} {value}]'
 
 
 def story_lines(story: dict, lang: str):
@@ -248,7 +268,40 @@ def main() -> None:
             audio = story_dir / 'audio' / lang
             if args.list:
                 print(f'[{lang}] Story {story["id"]} -> {shown(target(audio))}')
+            example = example_values(story)
+            answers = {f'{n["id"]}_{o["id"]}': o.get('answer')
+                       for n in story['nodes'] for o in n.get('options', [])}
             for text, key in story_lines(story, lang):
+                if has_numbers(text) and not quiet and not (only and key not in only):
+                    # Clone a math template line in one go with the example numbers
+                    # (<key>_full, smoother than piece by piece); split_numbers.py cuts it.
+                    pieces_ = [name for name, _ in line_clips(text, key, lang) if name]
+                    if args.force or not all((audio / name).exists() for name in pieces_):
+                        answer = answers.get(key)
+                        n = option_example(story, answer, example) if answer else None
+                        full = target(audio) / f'{key}_full.{EXT}'
+                        if args.force or not full.exists():
+                            jobs.append((example_text(text, lang, example, n), full))
+                    continue
+                if quiet and has_numbers(text) and not (only and key not in only):
+                    # Math template line: the parent says it in one go with example numbers
+                    # (<key>_full), tool/split_numbers.py cuts it into the pieces.
+                    answer = answers.get(key)
+                    n = option_example(story, answer, example) if answer else None
+                    say = example_text(text, lang, example, n)
+                    full = f'{key}_full.{EXT}'
+                    if args.list:
+                        print(f'  {full:<16} {say}')
+                        continue
+                    pieces_ = [name for name, _ in line_clips(text, key, lang) if name]
+                    if all((audio / name).exists() for name in pieces_):
+                        continue
+                    if any((audio / f'{key}_full.{e}').exists() for e in RECORDED_EXTS):
+                        missing.append((f'{say}\n      (recorded: cut it with tool/voice/.venv/bin/python '
+                                        f'tool/split_numbers.py {story["id"]} --lang {lang})', audio / full))
+                    else:
+                        missing.append((say, audio / full))
+                    continue
                 produce(line_clips(text, key, lang), target(audio), args.force, args.list, jobs,
                         only, missing if args.missing else None)
 

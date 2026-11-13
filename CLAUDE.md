@@ -2,7 +2,7 @@
 
 ## Project: Bedtime Stories (v2)
 
-Interactive bedtime stories for a 3-5 year old who can't read yet. Every scene is narrated; at choice points the kid taps one of two big picture cards. "Kind" and "learn" choices both end happily; a learn path shows a gentle natural consequence, then offers to rewind and try the other option. **One sticker per good answer** (kind option picked first time at a choice); the profile page shows the sticker book. Languages: **Vietnamese (default) and English**, switched on the welcome and profile pages. Platforms: Web, iOS, Android (phone + tablet).
+Interactive bedtime stories for a 3-5 year old who can't read yet. Every scene is narrated; at choice points the kid taps one of two big picture cards. "Kind" and "learn" choices both end happily; a learn path shows a gentle natural consequence, then offers to rewind and try the other option. **One sticker per good answer** (kind option picked first time at a choice); the profile page shows the sticker book. Languages: **Vietnamese (default) and English**, switched on the welcome and profile pages. **Sections** (2026-11-13): after the welcome the kid picks a section card on `/` (`SectionsScreen`): **behavior** ("Bé ngoan", the kind/learn stories) or **math** ("Học toán": counting, more/fewer, big/small, adding/taking away within 5, sharing; same player, kind = right answer, learn = near miss → count again → rewind; rules and curriculum in `docs/math.md`). Math stories are **templates**: a `"math"` block draws new numbers each play (`{a}`, `{count:c}`, option `{n}` + `"answer"`, node `"counted"`, cue `arrive`; shared clips `audio/ui/<lang>/num_1..10`), answer cards drawn by the app (`CountIcon`) and shuffled. Each section lists its stories on `/learn/<section>`. Platforms: Web, iOS, Android (phone + tablet).
 
 v2 of `../bedtime_story` (v1). Differences from v1: welcome page never scrolls + mic-permission guide; `{name}` at most once per line, as its first or last word; stickers per good answer + profile page; one hero per story (no girl/boy art folders); AI art only (kit workflow for every story since 2026-11-11; SVG only for clocks); bilingual stories and audio; lazy home grid + small covers + asset budgets. Plan: `~/.claude/plans/review-bedtime-story-and-create-mutable-prism.md`.
 
@@ -26,18 +26,20 @@ python3 tool/story_status.py [<id>] [--brief|--json]   # where each story is (pi
 python3 tool/wire_story.py <id> [--check]     # add the story to index.json + pubspec.yaml (idempotent)
 python3 tool/check_story.py <id> [--art]      # lint story.json (both languages, {name} rule, graph, rewind); --art: images, layers, cue parts, poses
 python3 tool/check_story.py --selftest        # shared {name} cases (test/fixtures/name_rule_cases.json, also run by the Dart test)
+# tool/story_text.py: line tokens ({name}, {a}, {count:a}) + math expressions shared by gen_audio / cue_times / check_story (mirrors math.dart)
 python3 tool/check_assets.py [<id>]           # size budgets (covers, scenes, layers, audio, story total); exit 1 when over
 python3 tool/gen_image.py --refs [--only kid] [--prompts-out <dir>]   # character sheets in tool/image_refs/
 python3 tool/gen_image.py --story <id> [--dry] [--only cover] [--force] [--prompts-out <dir>]   # cover, sticker (fallback scenes) from docs/stories/<id>/art_prompts.json
 python3 tool/gen_image.py --story <id> --kit --prompts-out <dir>   # room + sheet prompts (art_prompts.json "kit")
 tool/cutout/.venv/bin/python tool/sprite_sheet.py <sheet.png> --names a,b,c [--out DIR] [--grid 3x2] [--gap 0.02] [--fill-holes|--solid] [--force-mark|--keep-corner]   # one sheet → one sprite per figure (+ _contact.jpg)
-tool/cutout/.venv/bin/python tool/stage.py <id> --preview <dir> [--dry] [--only scene] [--guides] [--tint 0.2]   # stage.json → layers.json, shared sprite layers, flat fallbacks, icons, stills
+tool/cutout/.venv/bin/python tool/stage.py <id> --preview <dir> [--dry] [--only scene] [--guides] [--tint 0.2]   # stage.json → layers.json, shared sprite layers, flat fallbacks, icons (+ {"numeral": n} digits), stills
 python3 tool/prompts_page.py <id> <out.html> [--title T]   # phone page of all Gemini prompts (copy + tick), publish as Artifact
 tool/cutout/.venv/bin/python tool/import_art.py <id> <file|dir> [--as s1_toys] [--new] [--keep-corner]   # AI picture → watermark removed → WebP (a folder takes only names in art_prompts.json) (scene 1600×1200, cover 800×600, icon 400², sticker 600²), best quality under budget
 tool/cutout/.venv/bin/python tool/remove_watermark.py <file|dir> [--out DIR] [--check]   # Gemini sparkle off (copies, never in place)
 python3 tool/clock_layer.py <id> [--preview <dir>]   # SVG clock part per scene + clock choice icons (docs/stories/<id>/clock.json); after stage.py
 python3 tool/gen_audio.py --list [--lang vi|en] [--story <id>]   # recording script: filename → line
 python3 tool/gen_audio.py --missing [--story <id>]               # clips not recorded yet
+tool/voice/.venv/bin/python tool/split_numbers.py <id> [--lang vi] [--dry] [--force]   # math lines recorded in one go (<key>_full) -> word pieces (MMS forced alignment, local); before clean_audio
 python3 tool/gen_audio.py [--lang vi|en] [--story <id>]          # fill missing clips (cloned voice if set up, else macOS say)
 python3 tool/gen_audio.py --story <id> --lang vi --force --only s2,c1_p1 [--seed 7] [--out <dir>]   # redo some clips
 python3 tool/clean_audio.py --story <id>      # new recordings: trim, denoise, -16 LUFS (originals in audio_backup/)
@@ -62,13 +64,14 @@ Feature-based clean architecture, Cubit only (freezed states), manual constructo
 
 ```
 lib/
-  core/       theme/ router/ services/(narrator|analytics|name_voice|mic_permission_*) utils/ widgets/ models/
+  core/       theme/ router/ services/(narrator|analytics|name_voice|mic_permission_*) utils/ widgets/ models/ (incl. StorySection)
   features/
+    sections/ SectionsScreen (avatar + one card per StorySection, never scrolls), SectionsCubit (says the section name, logs section_open)
     profile/  data: ProfileStorage (name, gender, language), StickerStorage
               cubit: ProfileCubit, LanguageCubit, StickerCubit (app-wide), WelcomeCubit
               WelcomeScreen, ProfileScreen (sticker book)
     stories/  domain (Story, StoryNode union, StoryRepository), data (StoryModel JSON + validation, AssetStoryRepository)
-              presentation (HomeScreen, StoryListCubit, StoryCard)
+              presentation (HomeScreen = one section's list, StoryListCubit(section), StoryCard)
     player/   PlayerCubit (narration, choices, rewind, first picks), StoryPlayerScreen, ScenePicture, SceneLayers, StoryPanel
     ending/   EndingScreen (stickers), EndingCubit (reads the sticker line), SleepScreen
 assets/
@@ -77,11 +80,13 @@ assets/
   stories/<id>/images/*.webp             flat scene fallbacks, cover, icons, sticker (one folder, no hero split)
   stories/<id>/images/layers/            kit_* room + sprite layers, SVG overlays; images/layers.json[, images/hotspots.json for flat scenes]
   stories/<id>/audio/<vi|en>/<clip>.m4a
-  audio/ui/<vi|en>/<key>.m4a             rewind, be (name fallback), sticker_0|1|2
+  audio/ui/<vi|en>/<key>.m4a             rewind, be (name fallback), sticker_0|1|2, section_behavior|math, num_1..10
+  images/section_math.svg                section card (placeholder; behavior uses tidy_toys' cover)
   images/hero_<girl|boy>.svg             kid avatar (home, profile)
 tool/       image, audio and check scripts (above)
 docs/stories/<id>/   outline.md, review.md, art_prompts.json (incl. reference), art_review.md, progress.json, stage.json[, clock.json]
 docs/kit.md          kit art guide: planning, prompt wording, cutting, staging, cues, lessons
+docs/math.md         math section: question pattern, curriculum, writing + art rules, adding a section
 .claude/    settings.json (allow-list, session-start status line, v1 skills off)
             skills/ new-story (whole pipeline), story-continue (resume: what's new → import/clean/wire → what the parent does next),
                     story-art (each picture batch: cut sheets, stage scenes, stills, cover/sticker import), story-audio (clean, missing, clone)
@@ -92,10 +97,10 @@ test/fixtures/stories/demo/   test-only bilingual story (tiny WebPs, a cut part 
 ### Story JSON
 
 ```json
-{"id": "...", "theme": "sleep", "hero": "girl|boy|kid",
+{"id": "...", "theme": "sleep", "section": "behavior|math", "hero": "girl|boy|kid",
  "title": {"vi": "...", "en": "..."}, "cover": "images/cover.webp", "start": "s1", "nodes": [...]}
 ```
-Every `text` (node) and `label` (option) is `{"vi": "...", "en": "..."}`; the parser and `check_story.py` reject a story missing either language anywhere. `cues` are per language: `{"vi": [{"word", "part", "action"}], "en": [...]}` (words differ). `AssetStoryRepository.getStory(id, language)` builds a `Story` for one language (text, cues, `audioDir = audio/<lang>`); pictures are shared.
+Every `text` (node) and `label` (option) is `{"vi": "...", "en": "..."}`; the parser and `check_story.py` reject a story missing either language anywhere. `cues` are per language: `{"vi": [{"word", "part", "action"}], "en": [...]}` (words differ). `section` missing = `behavior`; unknown = rejected (parser + `check_story.py`); `getStories(language, section:)` filters. `AssetStoryRepository.getStory(id, language)` builds a `Story` for one language (text, cues, `audioDir = audio/<lang>`); pictures are shared.
 
 Nodes: `scene` (`next`, optional `offer_rewind_to` = a choice id), `choice` (`text` = question, 2 `options` with `kind: kind|learn`, `icon`, `label`, `next`), `ending` (`sticker`). Any node may set `ambient` (`stars|sparkles|zzz|motes`); `ambient_origin: [x, y]` (0–1) puts `zzz` at the sleeping head. Cue `action`: `hop|wiggle|pulse` (any part or hotspot), `pose` + `"pose": "<name>"` (switch picture, holds), `move` + `"to": [x, y]` (slide, holds); pose/move need a moving layer. Node `"poses": {"hero": "sit_up"}` = starting pose. `StoryModel.toEntity` rejects broken links, duplicate ids, missing ending, unknown poses.
 
@@ -109,7 +114,7 @@ Playback: `gen_audio.py` splits a line at `{name}` into `_p0`, `_p1`… (letter-
 
 ### Stickers
 
-Good answer = the **first** option picked at a choice node is `kind` (`PlayerState.firstPicks`, kept across rewinds; a rewind then the kind option doesn't count). On finish the player screen adds `goodCount` stickers to `StickerCubit` (prefs `stickers_v1` = `{storyId: count}`; replays add more) and opens the ending with `EndingArgs(story, goodCount, choiceCount)`. Ending: `goodCount` copies of the story's sticker pop in, or no sticker + a gentle "try another choice next time"; `EndingCubit` reads `audio/ui/<lang>/sticker_<n>.m4a`. Profile (`/profile`, from the home avatar, which shows the total): total, each story's sticker ×count (not earned = faded grey), language toggle, "edit profile" → `/welcome`.
+Good answer = the **first** option picked at a choice node is `kind` (`PlayerState.firstPicks`, kept across rewinds; a rewind then the kind option doesn't count). On finish the player screen adds `goodCount` stickers to `StickerCubit` (prefs `stickers_v1` = `{storyId: count}`; replays add more) and opens the ending with `EndingArgs(story, goodCount, choiceCount)`. Ending: `goodCount` copies of the story's sticker pop in, or no sticker + a gentle "try another choice next time"; `EndingCubit` reads `audio/ui/<lang>/sticker_<n>.m4a`. Profile (`/profile`, from the avatar on the sections page, which shows the total): total, each story's sticker ×count grouped under its section's name (not earned = faded grey), language toggle, "edit profile" → `/welcome`.
 
 ### Welcome page
 
@@ -129,7 +134,7 @@ Moving parts are kit sprites (below). Flat pictures (fallback scenes) get tap ar
 
 ### Player flow
 
-`PlayerCubit` enters a node → plays its audio → scene auto-advances after `autoAdvanceDelay` (or shows the rewind offer); a choice reads the question then each option (card glows) with `choiceOptionGap` before each; ending → `finished` → stickers saved → `/story/:id/end`. Each node entry bumps a token so stale narration never advances. Missing audio falls back to `silentSceneDuration`. Narrators: `JustAudioNarrator` (iOS/Android), `WebAudioNarrator` (web: one tap-unlocked `AudioContext`, clips preloaded one step ahead, `audio/ui/` kept across stories). Test audio changes on a release build or deployed site.
+`PlayerCubit` enters a node → plays its audio → scene auto-advances after `autoAdvanceDelay` (or shows the rewind offer); a choice reads the question then each option (card glows) with `choiceOptionGap` before each; ending → `finished` → stickers saved → `/story/:id/end`. The player's home button goes to the story's section list; the sleep screen goes to `/`. Each node entry bumps a token so stale narration never advances. Missing audio falls back to `silentSceneDuration`. Narrators: `JustAudioNarrator` (iOS/Android), `WebAudioNarrator` (web: one tap-unlocked `AudioContext`, clips preloaded one step ahead, `audio/ui/` kept across stories). Test audio changes on a release build or deployed site.
 
 ### Audio
 
@@ -141,10 +146,10 @@ Cloned voice (`tool/voice/`): Vietnamese = F5-TTS ViVoice fine-tune with `ref/` 
 
 ### Analytics
 
-`core/services/analytics.dart`: `Analytics` interface, `FirebaseAppAnalytics` (best-effort), `NoopAnalytics` (Firebase not configured / failed). Events: `story_start {story_id, lang}`, `story_choice {story_id, node_id, option_id, kind}`, `story_rewind {story_id, node_id}`, `story_complete {story_id, ending_id, good_answers}`; user property `hero_gender` (avatar). Tests use `FakeAnalytics`.
+`core/services/analytics.dart`: `Analytics` interface, `FirebaseAppAnalytics` (best-effort), `NoopAnalytics` (Firebase not configured / failed). Events: `section_open {section}`, `story_start {story_id, lang, section}`, `story_choice {story_id, node_id, option_id, kind}`, `story_rewind {story_id, node_id}`, `story_complete {story_id, ending_id, good_answers}`; user property `hero_gender` (avatar). Tests use `FakeAnalytics`.
 
 **Kids app privacy:** never send the child's name or any identifier (GA terms + COPPA / Play Families / Apple Kids). Ad id, SSAID, IDFV and ad personalization are off in `AndroidManifest.xml` and `Info.plist`; don't add AdSupport/ATT.
 
 ### Tests
 
-Run from the project root. The app ships with no stories, so tests use `test/fixtures/stories/demo` (`loadFixtureStory(language:)`), drawn through `DiskAssetBundle` (fixture files from disk, the rest from the app bundle). Bundled stories (from `index.json`) get the asset-exists test in both languages automatically. Welcome layout is tested at 5 screen sizes × 2 languages for no overflow and no scrolling.
+Run from the project root. The app ships with no stories, so tests use `test/fixtures/stories/demo` (`loadFixtureStory(language:)`), drawn through `DiskAssetBundle` (fixture files from disk, the rest from the app bundle). Bundled stories (from `index.json`) get the asset-exists test in both languages automatically. Welcome and sections layouts are tested at 5 screen sizes × 2 languages for no overflow and no scrolling.

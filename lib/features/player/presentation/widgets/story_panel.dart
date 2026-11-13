@@ -56,8 +56,11 @@ class StoryPanel extends StatelessWidget {
   }
 }
 
-String _resolve(BuildContext context, String text) =>
-    resolveName(text, context.profile);
+/// [text] as shown: numbers spelled out (math stories), the child's name.
+String _resolve(BuildContext context, String text) {
+  final story = context.read<PlayerCubit>().state.story;
+  return resolveName(story?.spell(text) ?? text, context.profile);
+}
 
 class _CaptionPanel extends StatelessWidget {
   const _CaptionPanel({
@@ -141,7 +144,11 @@ class _ChoicePanel extends StatelessWidget {
       final option = node.options[i];
       return ChoiceCard(
         iconAsset: option.iconAsset,
-        label: _resolve(context, option.label),
+        count: option.count,
+        label: resolveName(
+          cubit.state.story?.optionLabel(option) ?? option.label,
+          context.profile,
+        ),
         state: _cardState(i),
         horizontal: wide,
         onTap: () => cubit.choose(option.id),

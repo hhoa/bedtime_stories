@@ -1,6 +1,6 @@
 {
   "id": "keep_promise",
-  "theme": "promise",
+  "theme": "promise", "section": "behavior",
   "hero": "girl",
   "title": {"vi": "{name} và lời hứa ngón út", "en": "{name} and the Pinky Promise"},
   "cover": "images/cover.webp",

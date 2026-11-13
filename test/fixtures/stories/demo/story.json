@@ -1,6 +1,6 @@
 {
   "id": "demo",
-  "theme": "sleep",
+  "theme": "sleep", "section": "behavior",
   "hero": "kid",
   "title": {"vi": "{name} và Lulu đi ngủ", "en": "{name} and Lulu go to bed"},
   "cover": "images/cover.webp",

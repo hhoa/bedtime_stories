@@ -20,6 +20,7 @@ stage.json:
               "lulu_a": {"scale": 0.5, "anchor": "center"}},
    "sprites": {"hero_b/throw": {"anchor": [0.4, 1.0]}},   # optional per-sprite anchor
    "icons": {"icon_tidy": ["props/toybox_full"]},          # 400x400 choice icons from sprites
+   "icons": {"icon_three": [..., {"numeral": 3, "at": [0.8, 0.2]}]},  # + a big digit (math answers)
    "covers": {"bed_front": [[0.0, 0.62], [0.3, 0.6], [0.3, 0.8], [0.0, 0.9]]},   # room pieces drawn again on top
    "scenes": {"a1_toybox": {"parts": [
      {"kind": "blocks", "sprite": "props/blocks", "at": [0.40, 0.86], "size": 0.14},
@@ -69,7 +70,7 @@ import sys
 from pathlib import Path
 
 import numpy as np
-from PIL import Image, ImageDraw, ImageFilter, ImageOps
+from PIL import Image, ImageDraw, ImageFilter, ImageFont, ImageOps
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from check_assets import LAYER_MAX  # noqa: E402
@@ -162,13 +163,32 @@ class Kit:
     def combined(self, conf: dict) -> Image.Image | None:
         """A sprite made of sprites: "from" plus "add" items pasted on top
         ({"sprite", "at": centre as fractions of the base, "scale": sheet px factor}),
-        e.g. the full toy box with the ball on the blocks. Same sheet, same scale."""
+        e.g. the full toy box with the ball on the blocks. Same sheet, same scale.
+        "chain": {"count": n, "step": [dx, dy]} first repeats "from" n times, each copy
+        dx, dy sheet px from the last (a long fence from one fence piece); "shear": k then
+        moves each column down by k * x px, so a slope rising k px per px lies level while
+        upright posts stay upright."""
         paths = [self.art / 'kit/sprites' / f'{k}.png' for k in [conf['from']] + [a['sprite'] for a in conf.get('add', [])]]
         gone = [str(p) for p in paths if not p.exists()]
         if gone:
             self.missing.update(gone)
             return None
         base = Image.open(paths[0]).convert('RGBA')
+        chain = conf.get('chain')
+        if chain:
+            n, (dx, dy) = int(chain['count']), chain['step']
+            xs = [round(dx * i) for i in range(n)]
+            ys = [round(dy * i) for i in range(n)]
+            long = Image.new('RGBA', (base.width + max(xs) - min(xs), base.height + max(ys) - min(ys)), (0, 0, 0, 0))
+            for x, y in zip(xs, ys):
+                long.alpha_composite(base, (x - min(xs), y - min(ys)))
+            base = long
+        if conf.get('shear'):
+            k = float(conf['shear'])
+            grow = round(abs(k) * base.width)
+            base = base.transform((base.width, base.height + grow), Image.AFFINE,
+                                  (1, 0, 0, -k, 1, 0 if k > 0 else -grow), resample=Image.BICUBIC)
+            base = base.crop(base.getbbox())
         for item, path in zip(conf.get('add', []), paths[1:]):
             top = Image.open(path).convert('RGBA')
             sc = float(item.get('scale', 1.0))
@@ -415,9 +435,25 @@ def guides(img: Image.Image, parts: list[Part]) -> Image.Image:
     return out
 
 
+NUMERAL_FONT = ROOT / 'assets/fonts/Baloo2.ttf'
+
+
+def draw_numeral(out: Image.Image, text: str, at: list, size: float) -> None:
+    """Amber Baloo 2 digit with a dark outline, centred on [at] (icon fractions)."""
+    font = ImageFont.truetype(str(NUMERAL_FONT), round(size * ICON * 1.35))
+    try:
+        font.set_variation_by_name('ExtraBold')
+    except (OSError, ValueError):
+        pass
+    xy = (at[0] * ICON, at[1] * ICON)
+    ImageDraw.Draw(out).text(xy, text, font=font, anchor='mm', fill=(255, 197, 110, 255),
+                             stroke_width=max(4, round(size * ICON * 0.06)), stroke_fill=(43, 35, 64, 255))
+
+
 def icon_image(items: list, kit: Kit) -> Image.Image | None:
     """Sprites on the choice-icon blue. An item: "sheet/name" or
-    {"sprite", "at": [x, y] (anchor, icon fractions), "size": height fraction, "flip", "rot": degrees}."""
+    {"sprite", "at": [x, y] (anchor, icon fractions), "size": height fraction, "flip", "rot": degrees},
+    {"line": [x0, y0, x1, y1]} or {"numeral": 3, "at": [x, y] (centre), "size": height fraction (0.3)}."""
     out = Image.new('RGBA', (ICON, ICON), ICON_BG + (255,))
     glow = Image.new('L', (ICON, ICON), 0)
     ImageDraw.Draw(glow).ellipse([60, 60, ICON - 60, ICON - 60], fill=38)
@@ -429,6 +465,9 @@ def icon_image(items: list, kit: Kit) -> Image.Image | None:
         if 'line' in item:   # a soft white stroke [x0, y0, x1, y1]: speed lines
             x0, y0, x1, y1 = (v * ICON for v in item['line'])
             ImageDraw.Draw(out).line([(x0, y0), (x1, y1)], fill=(255, 255, 255, 230), width=item.get('width', 9))
+            continue
+        if 'numeral' in item:   # a big rounded digit (math answer cards), drawn after the sprites
+            draw_numeral(out, str(item['numeral']), item.get('at', [0.8, 0.2]), item.get('size', 0.3))
             continue
         s = kit.get(item['sprite'], bool(item.get('flip')))
         if s is None:

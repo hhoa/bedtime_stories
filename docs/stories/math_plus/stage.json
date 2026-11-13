@@ -1,0 +1,1128 @@
+{
+  "_note": "room_wide (2400x1792, 4:3, no crop): small bed back-left (headboard x~0.09-0.19, mattress top y~0.37-0.46, bed x~0.12-0.57), window back middle, door back right (x~0.86-0.95, floor in front y~0.55-0.66), round rug middle (x 0.25-0.76, y 0.50-0.71), big floor in front. Hero: hero_j (front view, sits on the bed's front edge, legs hanging) (scale 0.44) at [0.24, 0.52] = her dangling feet, flipped in the counting scenes so she points right at the sheep (not in d2 / end: the lying poses keep the head on the pillow); lie_yawn / asleep use per-sprite anchors (y 1.47 / 1.53) so the same point puts them on the mattress. Blanket lump only in end. Sheep (props_sheep 0.27): a long straight fence (props_sheep/fence_long: 8 fence pieces chained, sheared level) runs across the floor; counted sheep (math.field) stand in one row on the rug behind it, by the bed; waiting sheep (math.wait) stand at the front, below it, and hop over it on 'arrive'. Draw order: hero, blanket, fence, sheep, Lulu.",
+  "room": "kit/room_wide.png",
+  "tint": 0.0,
+  "sheets": {
+    "hero_b": {
+      "scale": 0.39
+    },
+    "hero_c": {
+      "scale": 0.39
+    },
+    "lulu_a": {
+      "scale": 0.24,
+      "anchor": "center"
+    },
+    "props": {
+      "scale": 0.5
+    },
+    "props_sheep": {
+      "scale": 0.27
+    },
+    "hero_j": {
+      "scale": 0.44
+    }
+  },
+  "scenes": {
+    "s1_awake": {
+      "parts": [
+        {
+          "kind": "hero",
+          "sprite": "hero_j/bed_awake",
+          "at": [
+            0.24,
+            0.52
+          ],
+          "poses": {
+            "bed_awake": "hero_j/bed_awake",
+            "bed_point": "hero_j/bed_point",
+            "bed_think": "hero_j/bed_think",
+            "bed_clap": "hero_j/bed_clap"
+          },
+          "flip": true
+        },
+        {
+          "kind": "fence",
+          "sprite": "props_sheep/fence_long",
+          "at": [
+            0.5,
+            0.83
+          ],
+          "shadow": true,
+          "tap": null
+        },
+        {
+          "kind": "sheep1",
+          "sprite": "props_sheep/sheep_stand",
+          "at": [
+            0.34,
+            0.7
+          ],
+          "shadow": true,
+          "poses": {
+            "sleep": "props_sheep/sheep_sleep"
+          }
+        },
+        {
+          "kind": "sheep2",
+          "sprite": "props_sheep/sheep_stand",
+          "at": [
+            0.455,
+            0.7
+          ],
+          "shadow": true,
+          "poses": {
+            "sleep": "props_sheep/sheep_sleep"
+          }
+        },
+        {
+          "kind": "sheep3",
+          "sprite": "props_sheep/sheep_stand",
+          "at": [
+            0.57,
+            0.7
+          ],
+          "shadow": true,
+          "poses": {
+            "sleep": "props_sheep/sheep_sleep"
+          }
+        },
+        {
+          "kind": "sheep4",
+          "sprite": "props_sheep/sheep_stand",
+          "at": [
+            0.685,
+            0.7
+          ],
+          "shadow": true,
+          "poses": {
+            "sleep": "props_sheep/sheep_sleep"
+          }
+        },
+        {
+          "kind": "sheep5",
+          "sprite": "props_sheep/sheep_stand",
+          "at": [
+            0.8,
+            0.7
+          ],
+          "shadow": true,
+          "poses": {
+            "sleep": "props_sheep/sheep_sleep"
+          }
+        },
+        {
+          "kind": "lulu",
+          "sprite": "lulu_a/float",
+          "at": [
+            0.58,
+            0.18
+          ],
+          "poses": {
+            "float": "lulu_a/float",
+            "talk": "lulu_a/talk",
+            "glow": "lulu_a/glow",
+            "point": "lulu_a/point",
+            "clap": "lulu_a/clap",
+            "whisper": "lulu_a/whisper"
+          }
+        }
+      ]
+    },
+    "s2_jump": {
+      "parts": [
+        {
+          "kind": "hero",
+          "sprite": "hero_j/bed_point",
+          "at": [
+            0.24,
+            0.52
+          ],
+          "poses": {
+            "bed_awake": "hero_j/bed_awake",
+            "bed_point": "hero_j/bed_point",
+            "bed_think": "hero_j/bed_think",
+            "bed_clap": "hero_j/bed_clap"
+          },
+          "flip": true
+        },
+        {
+          "kind": "fence",
+          "sprite": "props_sheep/fence_long",
+          "at": [
+            0.5,
+            0.83
+          ],
+          "shadow": true,
+          "tap": null
+        },
+        {
+          "kind": "sheep1",
+          "sprite": "props_sheep/sheep_stand",
+          "at": [
+            0.34,
+            0.7
+          ],
+          "shadow": true,
+          "poses": {
+            "sleep": "props_sheep/sheep_sleep"
+          }
+        },
+        {
+          "kind": "sheep2",
+          "sprite": "props_sheep/sheep_stand",
+          "at": [
+            0.455,
+            0.7
+          ],
+          "shadow": true,
+          "poses": {
+            "sleep": "props_sheep/sheep_sleep"
+          }
+        },
+        {
+          "kind": "sheep3",
+          "sprite": "props_sheep/sheep_stand",
+          "at": [
+            0.57,
+            0.7
+          ],
+          "shadow": true,
+          "poses": {
+            "sleep": "props_sheep/sheep_sleep"
+          }
+        },
+        {
+          "kind": "sheep4",
+          "sprite": "props_sheep/sheep_stand",
+          "at": [
+            0.685,
+            0.7
+          ],
+          "shadow": true,
+          "poses": {
+            "sleep": "props_sheep/sheep_sleep"
+          }
+        },
+        {
+          "kind": "sheep5",
+          "sprite": "props_sheep/sheep_stand",
+          "at": [
+            0.8,
+            0.7
+          ],
+          "shadow": true,
+          "poses": {
+            "sleep": "props_sheep/sheep_sleep"
+          }
+        },
+        {
+          "kind": "lulu",
+          "sprite": "lulu_a/float",
+          "at": [
+            0.6,
+            0.3
+          ],
+          "poses": {
+            "float": "lulu_a/float",
+            "talk": "lulu_a/talk",
+            "glow": "lulu_a/glow",
+            "point": "lulu_a/point",
+            "clap": "lulu_a/clap",
+            "whisper": "lulu_a/whisper"
+          }
+        }
+      ]
+    },
+    "s3_one_more": {
+      "parts": [
+        {
+          "kind": "hero",
+          "sprite": "hero_j/bed_point",
+          "at": [
+            0.24,
+            0.52
+          ],
+          "poses": {
+            "bed_awake": "hero_j/bed_awake",
+            "bed_point": "hero_j/bed_point",
+            "bed_think": "hero_j/bed_think",
+            "bed_clap": "hero_j/bed_clap"
+          },
+          "flip": true
+        },
+        {
+          "kind": "fence",
+          "sprite": "props_sheep/fence_long",
+          "at": [
+            0.5,
+            0.83
+          ],
+          "shadow": true,
+          "tap": null
+        },
+        {
+          "kind": "sheep1",
+          "sprite": "props_sheep/sheep_stand",
+          "at": [
+            0.34,
+            0.7
+          ],
+          "shadow": true,
+          "poses": {
+            "sleep": "props_sheep/sheep_sleep"
+          }
+        },
+        {
+          "kind": "sheep2",
+          "sprite": "props_sheep/sheep_stand",
+          "at": [
+            0.455,
+            0.7
+          ],
+          "shadow": true,
+          "poses": {
+            "sleep": "props_sheep/sheep_sleep"
+          }
+        },
+        {
+          "kind": "sheep3",
+          "sprite": "props_sheep/sheep_stand",
+          "at": [
+            0.57,
+            0.7
+          ],
+          "shadow": true,
+          "poses": {
+            "sleep": "props_sheep/sheep_sleep"
+          }
+        },
+        {
+          "kind": "sheep4",
+          "sprite": "props_sheep/sheep_stand",
+          "at": [
+            0.685,
+            0.7
+          ],
+          "shadow": true,
+          "poses": {
+            "sleep": "props_sheep/sheep_sleep"
+          }
+        },
+        {
+          "kind": "sheep5",
+          "sprite": "props_sheep/sheep_stand",
+          "at": [
+            0.8,
+            0.7
+          ],
+          "shadow": true,
+          "poses": {
+            "sleep": "props_sheep/sheep_sleep"
+          }
+        },
+        {
+          "kind": "lulu",
+          "sprite": "lulu_a/float",
+          "at": [
+            0.6,
+            0.3
+          ],
+          "poses": {
+            "float": "lulu_a/float",
+            "talk": "lulu_a/talk",
+            "glow": "lulu_a/glow",
+            "point": "lulu_a/point",
+            "clap": "lulu_a/clap",
+            "whisper": "lulu_a/whisper"
+          }
+        }
+      ]
+    },
+    "b1_count": {
+      "parts": [
+        {
+          "kind": "hero",
+          "sprite": "hero_j/bed_think",
+          "at": [
+            0.24,
+            0.52
+          ],
+          "poses": {
+            "bed_awake": "hero_j/bed_awake",
+            "bed_point": "hero_j/bed_point",
+            "bed_think": "hero_j/bed_think",
+            "bed_clap": "hero_j/bed_clap"
+          },
+          "flip": true
+        },
+        {
+          "kind": "fence",
+          "sprite": "props_sheep/fence_long",
+          "at": [
+            0.5,
+            0.83
+          ],
+          "shadow": true,
+          "tap": null
+        },
+        {
+          "kind": "sheep1",
+          "sprite": "props_sheep/sheep_stand",
+          "at": [
+            0.34,
+            0.7
+          ],
+          "shadow": true,
+          "poses": {
+            "sleep": "props_sheep/sheep_sleep"
+          }
+        },
+        {
+          "kind": "sheep2",
+          "sprite": "props_sheep/sheep_stand",
+          "at": [
+            0.455,
+            0.7
+          ],
+          "shadow": true,
+          "poses": {
+            "sleep": "props_sheep/sheep_sleep"
+          }
+        },
+        {
+          "kind": "sheep3",
+          "sprite": "props_sheep/sheep_stand",
+          "at": [
+            0.57,
+            0.7
+          ],
+          "shadow": true,
+          "poses": {
+            "sleep": "props_sheep/sheep_sleep"
+          }
+        },
+        {
+          "kind": "sheep4",
+          "sprite": "props_sheep/sheep_stand",
+          "at": [
+            0.685,
+            0.7
+          ],
+          "shadow": true,
+          "poses": {
+            "sleep": "props_sheep/sheep_sleep"
+          }
+        },
+        {
+          "kind": "sheep5",
+          "sprite": "props_sheep/sheep_stand",
+          "at": [
+            0.8,
+            0.7
+          ],
+          "shadow": true,
+          "poses": {
+            "sleep": "props_sheep/sheep_sleep"
+          }
+        },
+        {
+          "kind": "lulu",
+          "sprite": "lulu_a/float",
+          "at": [
+            0.6,
+            0.3
+          ],
+          "poses": {
+            "float": "lulu_a/float",
+            "talk": "lulu_a/talk",
+            "glow": "lulu_a/glow",
+            "point": "lulu_a/point",
+            "clap": "lulu_a/clap",
+            "whisper": "lulu_a/whisper"
+          }
+        }
+      ]
+    },
+    "a1_three": {
+      "parts": [
+        {
+          "kind": "hero",
+          "sprite": "hero_j/bed_think",
+          "at": [
+            0.24,
+            0.52
+          ],
+          "poses": {
+            "bed_awake": "hero_j/bed_awake",
+            "bed_point": "hero_j/bed_point",
+            "bed_think": "hero_j/bed_think",
+            "bed_clap": "hero_j/bed_clap"
+          },
+          "flip": true
+        },
+        {
+          "kind": "fence",
+          "sprite": "props_sheep/fence_long",
+          "at": [
+            0.5,
+            0.83
+          ],
+          "shadow": true,
+          "tap": null
+        },
+        {
+          "kind": "sheep1",
+          "sprite": "props_sheep/sheep_stand",
+          "at": [
+            0.34,
+            0.7
+          ],
+          "shadow": true,
+          "poses": {
+            "sleep": "props_sheep/sheep_sleep"
+          }
+        },
+        {
+          "kind": "sheep2",
+          "sprite": "props_sheep/sheep_stand",
+          "at": [
+            0.455,
+            0.7
+          ],
+          "shadow": true,
+          "poses": {
+            "sleep": "props_sheep/sheep_sleep"
+          }
+        },
+        {
+          "kind": "sheep3",
+          "sprite": "props_sheep/sheep_stand",
+          "at": [
+            0.57,
+            0.7
+          ],
+          "shadow": true,
+          "poses": {
+            "sleep": "props_sheep/sheep_sleep"
+          }
+        },
+        {
+          "kind": "sheep4",
+          "sprite": "props_sheep/sheep_stand",
+          "at": [
+            0.685,
+            0.7
+          ],
+          "shadow": true,
+          "poses": {
+            "sleep": "props_sheep/sheep_sleep"
+          }
+        },
+        {
+          "kind": "sheep5",
+          "sprite": "props_sheep/sheep_stand",
+          "at": [
+            0.8,
+            0.7
+          ],
+          "shadow": true,
+          "poses": {
+            "sleep": "props_sheep/sheep_sleep"
+          }
+        },
+        {
+          "kind": "lulu",
+          "sprite": "lulu_a/float",
+          "at": [
+            0.6,
+            0.3
+          ],
+          "poses": {
+            "float": "lulu_a/float",
+            "talk": "lulu_a/talk",
+            "glow": "lulu_a/glow",
+            "point": "lulu_a/point",
+            "clap": "lulu_a/clap",
+            "whisper": "lulu_a/whisper"
+          }
+        }
+      ]
+    },
+    "n1_late": {
+      "parts": [
+        {
+          "kind": "hero",
+          "sprite": "hero_j/bed_awake",
+          "at": [
+            0.24,
+            0.52
+          ],
+          "poses": {
+            "bed_awake": "hero_j/bed_awake",
+            "bed_point": "hero_j/bed_point",
+            "bed_think": "hero_j/bed_think",
+            "bed_clap": "hero_j/bed_clap"
+          },
+          "flip": true
+        },
+        {
+          "kind": "fence",
+          "sprite": "props_sheep/fence_long",
+          "at": [
+            0.5,
+            0.83
+          ],
+          "shadow": true,
+          "tap": null
+        },
+        {
+          "kind": "sheep1",
+          "sprite": "props_sheep/sheep_stand",
+          "at": [
+            0.34,
+            0.7
+          ],
+          "shadow": true,
+          "poses": {
+            "sleep": "props_sheep/sheep_sleep"
+          }
+        },
+        {
+          "kind": "sheep2",
+          "sprite": "props_sheep/sheep_stand",
+          "at": [
+            0.455,
+            0.7
+          ],
+          "shadow": true,
+          "poses": {
+            "sleep": "props_sheep/sheep_sleep"
+          }
+        },
+        {
+          "kind": "sheep3",
+          "sprite": "props_sheep/sheep_stand",
+          "at": [
+            0.57,
+            0.7
+          ],
+          "shadow": true,
+          "poses": {
+            "sleep": "props_sheep/sheep_sleep"
+          }
+        },
+        {
+          "kind": "sheep4",
+          "sprite": "props_sheep/sheep_stand",
+          "at": [
+            0.685,
+            0.7
+          ],
+          "shadow": true,
+          "poses": {
+            "sleep": "props_sheep/sheep_sleep"
+          }
+        },
+        {
+          "kind": "sheep5",
+          "sprite": "props_sheep/sheep_stand",
+          "at": [
+            0.8,
+            0.7
+          ],
+          "shadow": true,
+          "poses": {
+            "sleep": "props_sheep/sheep_sleep"
+          }
+        },
+        {
+          "kind": "lulu",
+          "sprite": "lulu_a/float",
+          "at": [
+            0.6,
+            0.3
+          ],
+          "poses": {
+            "float": "lulu_a/float",
+            "talk": "lulu_a/talk",
+            "glow": "lulu_a/glow",
+            "point": "lulu_a/point",
+            "clap": "lulu_a/clap",
+            "whisper": "lulu_a/whisper"
+          }
+        }
+      ]
+    },
+    "e1_count": {
+      "parts": [
+        {
+          "kind": "hero",
+          "sprite": "hero_j/bed_think",
+          "at": [
+            0.24,
+            0.52
+          ],
+          "poses": {
+            "bed_awake": "hero_j/bed_awake",
+            "bed_point": "hero_j/bed_point",
+            "bed_think": "hero_j/bed_think",
+            "bed_clap": "hero_j/bed_clap"
+          },
+          "flip": true
+        },
+        {
+          "kind": "fence",
+          "sprite": "props_sheep/fence_long",
+          "at": [
+            0.5,
+            0.83
+          ],
+          "shadow": true,
+          "tap": null
+        },
+        {
+          "kind": "sheep1",
+          "sprite": "props_sheep/sheep_stand",
+          "at": [
+            0.34,
+            0.7
+          ],
+          "shadow": true,
+          "poses": {
+            "sleep": "props_sheep/sheep_sleep"
+          }
+        },
+        {
+          "kind": "sheep2",
+          "sprite": "props_sheep/sheep_stand",
+          "at": [
+            0.455,
+            0.7
+          ],
+          "shadow": true,
+          "poses": {
+            "sleep": "props_sheep/sheep_sleep"
+          }
+        },
+        {
+          "kind": "sheep3",
+          "sprite": "props_sheep/sheep_stand",
+          "at": [
+            0.57,
+            0.7
+          ],
+          "shadow": true,
+          "poses": {
+            "sleep": "props_sheep/sheep_sleep"
+          }
+        },
+        {
+          "kind": "sheep4",
+          "sprite": "props_sheep/sheep_stand",
+          "at": [
+            0.685,
+            0.7
+          ],
+          "shadow": true,
+          "poses": {
+            "sleep": "props_sheep/sheep_sleep"
+          }
+        },
+        {
+          "kind": "sheep5",
+          "sprite": "props_sheep/sheep_stand",
+          "at": [
+            0.8,
+            0.7
+          ],
+          "shadow": true,
+          "poses": {
+            "sleep": "props_sheep/sheep_sleep"
+          }
+        },
+        {
+          "kind": "lulu",
+          "sprite": "lulu_a/float",
+          "at": [
+            0.6,
+            0.3
+          ],
+          "poses": {
+            "float": "lulu_a/float",
+            "talk": "lulu_a/talk",
+            "glow": "lulu_a/glow",
+            "point": "lulu_a/point",
+            "clap": "lulu_a/clap",
+            "whisper": "lulu_a/whisper"
+          }
+        }
+      ]
+    },
+    "d1_five": {
+      "parts": [
+        {
+          "kind": "hero",
+          "sprite": "hero_j/bed_think",
+          "at": [
+            0.24,
+            0.52
+          ],
+          "poses": {
+            "bed_awake": "hero_j/bed_awake",
+            "bed_point": "hero_j/bed_point",
+            "bed_think": "hero_j/bed_think",
+            "bed_clap": "hero_j/bed_clap"
+          },
+          "flip": true
+        },
+        {
+          "kind": "fence",
+          "sprite": "props_sheep/fence_long",
+          "at": [
+            0.5,
+            0.83
+          ],
+          "shadow": true,
+          "tap": null
+        },
+        {
+          "kind": "sheep1",
+          "sprite": "props_sheep/sheep_stand",
+          "at": [
+            0.34,
+            0.7
+          ],
+          "shadow": true,
+          "poses": {
+            "sleep": "props_sheep/sheep_sleep"
+          }
+        },
+        {
+          "kind": "sheep2",
+          "sprite": "props_sheep/sheep_stand",
+          "at": [
+            0.455,
+            0.7
+          ],
+          "shadow": true,
+          "poses": {
+            "sleep": "props_sheep/sheep_sleep"
+          }
+        },
+        {
+          "kind": "sheep3",
+          "sprite": "props_sheep/sheep_stand",
+          "at": [
+            0.57,
+            0.7
+          ],
+          "shadow": true,
+          "poses": {
+            "sleep": "props_sheep/sheep_sleep"
+          }
+        },
+        {
+          "kind": "sheep4",
+          "sprite": "props_sheep/sheep_stand",
+          "at": [
+            0.685,
+            0.7
+          ],
+          "shadow": true,
+          "poses": {
+            "sleep": "props_sheep/sheep_sleep"
+          }
+        },
+        {
+          "kind": "sheep5",
+          "sprite": "props_sheep/sheep_stand",
+          "at": [
+            0.8,
+            0.7
+          ],
+          "shadow": true,
+          "poses": {
+            "sleep": "props_sheep/sheep_sleep"
+          }
+        },
+        {
+          "kind": "lulu",
+          "sprite": "lulu_a/float",
+          "at": [
+            0.6,
+            0.3
+          ],
+          "poses": {
+            "float": "lulu_a/float",
+            "talk": "lulu_a/talk",
+            "glow": "lulu_a/glow",
+            "point": "lulu_a/point",
+            "clap": "lulu_a/clap",
+            "whisper": "lulu_a/whisper"
+          }
+        }
+      ]
+    },
+    "d2_sleepy": {
+      "parts": [
+        {
+          "kind": "hero",
+          "sprite": "hero_j/bed_clap",
+          "at": [
+            0.24,
+            0.52
+          ],
+          "poses": {
+            "bed_awake": "hero_j/bed_awake",
+            "bed_point": "hero_j/bed_point",
+            "bed_think": "hero_j/bed_think",
+            "bed_clap": "hero_j/bed_clap",
+            "lie_yawn": "hero_c/lie_yawn",
+            "asleep": "hero_b/asleep"
+          }
+        },
+        {
+          "kind": "fence",
+          "sprite": "props_sheep/fence_long",
+          "at": [
+            0.5,
+            0.83
+          ],
+          "shadow": true,
+          "tap": null
+        },
+        {
+          "kind": "sheep1",
+          "sprite": "props_sheep/sheep_stand",
+          "at": [
+            0.34,
+            0.7
+          ],
+          "shadow": true,
+          "poses": {
+            "sleep": "props_sheep/sheep_sleep"
+          }
+        },
+        {
+          "kind": "sheep2",
+          "sprite": "props_sheep/sheep_stand",
+          "at": [
+            0.455,
+            0.7
+          ],
+          "shadow": true,
+          "poses": {
+            "sleep": "props_sheep/sheep_sleep"
+          }
+        },
+        {
+          "kind": "sheep3",
+          "sprite": "props_sheep/sheep_stand",
+          "at": [
+            0.57,
+            0.7
+          ],
+          "shadow": true,
+          "poses": {
+            "sleep": "props_sheep/sheep_sleep"
+          }
+        },
+        {
+          "kind": "sheep4",
+          "sprite": "props_sheep/sheep_stand",
+          "at": [
+            0.685,
+            0.7
+          ],
+          "shadow": true,
+          "poses": {
+            "sleep": "props_sheep/sheep_sleep"
+          }
+        },
+        {
+          "kind": "sheep5",
+          "sprite": "props_sheep/sheep_stand",
+          "at": [
+            0.8,
+            0.7
+          ],
+          "shadow": true,
+          "poses": {
+            "sleep": "props_sheep/sheep_sleep"
+          }
+        },
+        {
+          "kind": "lulu",
+          "sprite": "lulu_a/float",
+          "at": [
+            0.6,
+            0.3
+          ],
+          "poses": {
+            "float": "lulu_a/float",
+            "talk": "lulu_a/talk",
+            "glow": "lulu_a/glow",
+            "point": "lulu_a/point",
+            "clap": "lulu_a/clap",
+            "whisper": "lulu_a/whisper"
+          }
+        }
+      ]
+    },
+    "end_asleep": {
+      "parts": [
+        {
+          "kind": "hero",
+          "sprite": "hero_b/asleep",
+          "at": [
+            0.24,
+            0.52
+          ],
+          "poses": {
+            "bed_awake": "hero_j/bed_awake",
+            "bed_point": "hero_j/bed_point",
+            "bed_think": "hero_j/bed_think",
+            "bed_clap": "hero_j/bed_clap",
+            "lie_yawn": "hero_c/lie_yawn",
+            "asleep": "hero_b/asleep"
+          },
+          "idle": "breathe",
+          "tap": null
+        },
+        {
+          "kind": "blanket",
+          "sprite": "props/blanket_lump",
+          "at": [
+            0.33,
+            0.47
+          ],
+          "scale": 0.75,
+          "tap": null
+        },
+        {
+          "kind": "fence",
+          "sprite": "props_sheep/fence_long",
+          "at": [
+            0.5,
+            0.83
+          ],
+          "shadow": true,
+          "tap": null
+        },
+        {
+          "kind": "sheep1",
+          "sprite": "props_sheep/sheep_sleep",
+          "at": [
+            0.34,
+            0.7
+          ],
+          "shadow": true,
+          "poses": {
+            "sleep": "props_sheep/sheep_sleep",
+            "stand": "props_sheep/sheep_stand"
+          }
+        },
+        {
+          "kind": "sheep2",
+          "sprite": "props_sheep/sheep_sleep",
+          "at": [
+            0.455,
+            0.7
+          ],
+          "shadow": true,
+          "poses": {
+            "sleep": "props_sheep/sheep_sleep",
+            "stand": "props_sheep/sheep_stand"
+          }
+        },
+        {
+          "kind": "sheep3",
+          "sprite": "props_sheep/sheep_sleep",
+          "at": [
+            0.57,
+            0.7
+          ],
+          "shadow": true,
+          "poses": {
+            "sleep": "props_sheep/sheep_sleep",
+            "stand": "props_sheep/sheep_stand"
+          }
+        },
+        {
+          "kind": "sheep4",
+          "sprite": "props_sheep/sheep_sleep",
+          "at": [
+            0.685,
+            0.7
+          ],
+          "shadow": true,
+          "poses": {
+            "sleep": "props_sheep/sheep_sleep",
+            "stand": "props_sheep/sheep_stand"
+          }
+        },
+        {
+          "kind": "sheep5",
+          "sprite": "props_sheep/sheep_sleep",
+          "at": [
+            0.8,
+            0.7
+          ],
+          "shadow": true,
+          "poses": {
+            "sleep": "props_sheep/sheep_sleep",
+            "stand": "props_sheep/sheep_stand"
+          }
+        },
+        {
+          "kind": "lulu",
+          "sprite": "lulu_a/float",
+          "at": [
+            0.6,
+            0.3
+          ],
+          "poses": {
+            "float": "lulu_a/float",
+            "talk": "lulu_a/talk",
+            "glow": "lulu_a/glow",
+            "point": "lulu_a/point",
+            "clap": "lulu_a/clap",
+            "whisper": "lulu_a/whisper"
+          }
+        }
+      ]
+    }
+  },
+  "crop": [
+    0.0,
+    0.0,
+    1.0,
+    1.0
+  ],
+  "sprites": {
+    "props_sheep/fence_long": {
+      "from": "props_sheep/fence",
+      "chain": {
+        "count": 8,
+        "step": [
+          440,
+          -141
+        ]
+      },
+      "shear": 0.3205
+    },
+    "hero_c/lie_yawn": {
+      "anchor": [
+        0.5,
+        1.47
+      ]
+    },
+    "hero_b/asleep": {
+      "anchor": [
+        0.5,
+        1.53
+      ]
+    }
+  }
+}

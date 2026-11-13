@@ -1,6 +1,6 @@
 {
   "id": "clock_time",
-  "theme": "time",
+  "theme": "time", "section": "behavior",
   "hero": "girl",
   "title": {
     "vi": "{name} và Bác Đồng Hồ tích tắc",

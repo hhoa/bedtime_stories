@@ -15,11 +15,12 @@ The parent records most lines by hand. Your job: give the script, **clean every 
 python3 tool/gen_audio.py --story <id> --list            # both languages
 python3 tool/gen_audio.py --story <id> --list --lang en
 ```
-Give the parent the folders (`assets/stories/<id>/audio/vi/`, `.../en/`) and the list (filename → line). `[tên bé]` / `[child name]` = don't record, the app inserts the name (`_p1` clips start right after it). Recordings: same filename, `.m4a` (or `.wav/.mp3/.aiff/.caf`); no trimming needed. Tips: quiet room (fan / air con off if possible), phone ~20 cm from the mouth (past recordings came in very soft, ~-40 LUFS, so room noise showed after the boost), calm bedtime voice, a second of quiet before and after is fine (the pauses teach the denoiser what the room sounds like).
+Give the parent the folders (`assets/stories/<id>/audio/vi/`, `.../en/`) and the list (filename → line). `[tên bé]` / `[child name]` = don't record, the app inserts the name (`_p1` clips start right after it). Recordings: same filename, `.m4a` (or `.wav/.mp3/.aiff/.caf`); no trimming needed. **Math stories** (`"math"` block): each line with numbers shows once as `<key>_full.m4a` with example numbers; the parent reads the whole line in one go (no name, as printed). The UI part lists `num_1` … `num_10` (record once, shared by every math story). Tips: quiet room (fan / air con off if possible), phone ~20 cm from the mouth (past recordings came in very soft, ~-40 LUFS, so room noise showed after the boost), calm bedtime voice, a second of quiet before and after is fine (the pauses teach the denoiser what the room sounds like).
 
 ## 2. Clean new recordings (mandatory, no asking)
 Whenever the parent says they recorded / added / saved clips, or new files are in `audio/<lang>/`, before anything else:
 ```bash
+tool/voice/.venv/bin/python tool/split_numbers.py <id>   # math stories, first: cut every *_full into its _p pieces (full take -> audio_backup/)
 python3 tool/clean_audio.py --story <id>           # only clips not cleaned yet
 python3 tool/clean_audio.py --check --story <id>
 ```

@@ -1,0 +1,117 @@
+{
+  "hero": "girl",
+  "setting": "a cozy kid bedroom at night, the same room as in the attached room picture if one is attached: soft warm peach walls, wooden floor, seen from a little further back and a little higher than eye level; a low wooden bed with a rounded headboard, small in the back-left corner against the back wall, its long side facing the viewer and fully visible, with a white pillow at the headboard on the left and a smooth lavender blanket, raised on short legs with a dark gap under its front side; a small warm glowing lamp on a little wooden shelf on the back wall between the bed's headboard and the window; a window in the middle of the back wall showing a dark blue night sky with a crescent moon and a few stars; a large open wooden floor with a big round cream rug in the middle and front of the room, in front of the bed; a rounded light-wood door at the back right with free wooden floor in front of it. Things look the same in every picture: the little woolly sheep is a small plush toy sheep: a round body of soft white curly wool, a cream face and cream ears, small dark-grey legs, dot eyes, a tiny smile and a little tuft of wool on its head, seen from the side, facing LEFT toward the bed; its back is about as high as a standing child's knee. The fence is one short piece of a low white wooden toy fence: three rounded posts and two rails, standing on the rug's right part, about as tall as the sheep's back, turned at an angle so it runs from the back toward the front, across the sheep's path from the door to the bed, about one sheep wide on the picture. No faces on the fence. Few things, soft warm lamp light, gentle shadows. No numbers, no digits and no text anywhere. The bottom-right corner of the picture is plain wooden floor with nothing important in it",
+  "reference": {
+    "kit": "kit story, math section (docs/kit.md, docs/math.md): no picture per scene, and new numbers every play: the app shows, hides and moves the sheep per node from story.json 'counted'. kit/room_wide.png (new Gemini edit of tidy_toys' room, seen from further back, 4:3, no crop) is the one room of every scene. Sheets COPIED, never redrawn: hero_b (only asleep used) + lulu_a + props (only blanket_lump used) from tidy_toys; hero_c (only lie_yawn used) from clock_time. New Gemini sheets: hero_j (4 girl poses sitting on the front edge of the bed, facing the viewer, legs hanging down; attaches kit/hero_i.png for size) and props_sheep (sheep_stand, sheep_sleep, fence + identical spares sheep_stand_2, sheep_sleep_2; cut with --grid 3x2). Cut by tool/sprite_sheet.py, placed per scene by docs/stories/math_plus/stage.json (tool/stage.py): all five sheep parts (sheep1-sheep5, one shared sprite) in every scene at meadow_1-meadow_5. Answer cards are drawn by the app from math.icon (the transparent sheep_stand layer) N times under a digit: no icon_* pictures. Only cover and sticker are normal pictures, and they show ONE sheep (no count, no digits). No SVG overlays. New Gemini images: room_wide, hero_j, props_sheep, cover, sticker (5; kit/hero_i.png, the earlier side-view bed sheet, was made but is not used and is no longer in the kit list: the girl faced sideways, away from the sheep)",
+    "room": "kit/room_wide.png: a NEW Gemini picture made for this story (the parent approved it after the first stills: the tidy_toys room was too cramped for five sheep, the fence and the waiting spots). An edit of tidy_toys' kit/room.png (attached): the same night bedroom, same furniture, colors and light, seen from further back and a little higher; 4:3, no crop. The bed is small in the back-left corner, the window in the middle of the back wall, the door at the back right, and about the lower 55-60% of the picture is open wooden floor with a big round cream rug in the middle and front. Empty: no people, animals, toys, fence or text. All spots (on_bed, meadow_1-5, fence, door_1-3, window, air_count, air_bed) are measured on a --guides still of this room at staging, then copied into story.json math.field / math.wait",
+    "bed": "small in the back-left corner against the back wall, its long side facing the viewer and fully visible; headboard and white pillow at the LEFT end; lavender blanket smooth and flat; raised on short legs with a dark gap under its front side; the hero sits up in it (legs to the right under the blanket lump) from s1 to d2 and sleeps in it in end (spot on_bed; the end ambient_origin is her head, measured at staging)",
+    "window": "middle of the back wall, dark blue night sky, crescent moon, a few stars; Lulu flies in from here in s1",
+    "lamp": "small warm glowing lamp on a little wooden shelf on the back wall, between the bed's headboard and the window",
+    "rug": "big round cream rug filling the middle and front of the floor, in front of the bed: the sheep meadow (meadow_1-meadow_5 left to right, alternating a little back / front, apart, each sheep at least one tenth of the picture wide) lies on it; the fence stands on its right part, between the meadow and the door; spots measured at staging",
+    "door": "rounded light-wood door at the back right (right wall / back-right corner), fully in the picture; the waiting spots door_1-door_3 stand on the open floor in front of it, never on the door, door_1 nearest the fence, none in the bottom-right corner (plain floor, watermark); spots measured at staging",
+    "sheep": "props_sheep: a small plush toy sheep: a round body of soft white curly wool, a cream face and cream ears, small dark-grey legs, dot eyes, a tiny smile and a little tuft of wool on its head; seen from the side, facing LEFT (toward the bed); no other face details, no bell, no collar. On stage each standing sheep is about one tenth of the picture wide (about 160 px of 1600) and never smaller, so five fit apart on the rug; the curled-up sheep is just as long. Smaller than that a sheep is hard to count on a phone. All five sheep (parts sheep1-sheep5, counting order left to right) are the very same sprite. States: sheep_stand (on four legs) / sheep_sleep (the very same sheep curled up in a plump round ball of wool, about two thirds of the standing height, legs tucked in, head resting on its front, eyes closed, head to the LEFT, same size and angle). The sheet also has identical spares sheep_stand_2 / sheep_sleep_2: staging uses the cleanest standing sheep (also math.icon) and the sleeping sheep that matches it best. Per node (numbers change every play: a, b, c = a + b, d, e = c + d, e at most 5): s1 and s2 a sheep_stand waiting at door_1.. (none in the meadow), s2 they walk over the fence to meadow_1.. on 'qua hàng rào' / 'Over the fence' -> s3 a in the meadow, b more waiting at the door, arrive on 'qua hàng rào' / 'over the fence' -> c1, b1, a1: c sheep_stand in the meadow, nobody at the door -> n1 c in the meadow + d waiting at the door, arrive -> c2, e1, d1: e sheep_stand in the meadow, nobody at the door -> d2 each sheep switches sheep_stand -> sheep_sleep on its own number word ({count:e:sleep}) -> end: e sheep_sleep in the meadow. The rest of the five are hidden. The sheep hop on their numbers in every count; they never touch each other, the fence, the hero or Lulu",
+    "fence": "props_sheep fence: one short piece of a low white wooden toy fence: three rounded posts and two rails; no face; about as tall as the standing sheep's back, turned at an angle so it runs from the back toward the front, across the sheep's path from the door to the bed, about one sheep wide on the picture, like a little gate; one state, at the spot fence (about [0.67, 0.90], on the rug's right part, between the meadow and the door) in every scene; the sheep are drawn in front of it, so sliding across it reads as hopping over",
+    "blanket": "tidy_toys' props blanket_lump (lavender mound, folded back at the LEFT end): not used while she sits on the bed's front edge (s1 to d2 before 'yawn'; the room's own blanket lies flat behind her); over her body from d2 'yawn' / 'ngáp' (lie_yawn) and in end (asleep)",
+    "hero": "girl (tool/image_refs/girl.png): mint-green long-sleeve pajamas with little white stars, barefoot, in every figure. Always on the bed at on_bed, every figure on nothing. New hero_j (sits on the bed's front edge facing the viewer, turned only slightly to her left, knees bent, lower legs hanging down, bare feet dangling, looking down at the sheep on the floor in front; same head size as hero_i): bed_awake (s1, n1), bed_point (s1 from 'count sheep', s2, s3, b1, n1, e1), bed_think (s3 end, c1, b1, a1, c2, e1, d1), bed_clap (a1, d1, d2 start). Copied: lie_yawn (clock_time hero_c, lying on the bed, head to the LEFT, d2 from 'yawn' / 'ngáp'), asleep (tidy_toys hero_b, head to the LEFT, end). kit/hero_i.png (side view, legs to the RIGHT) is not used",
+    "lulu": "tidy_toys lulu_a, about the size of a cat; no halo or sparkles drawn around her on the sheet (the app adds them). s1 at window -> air_count (float, glow, talk); air_count from s2 to d2 (float, talk, point, clap, whisper); end -> air_bed (whisper). Never touches the hero or a sheep",
+    "light": "soft warm lamp light from the upper left on every sprite, to match the room"
+  },
+  "pictures": {
+    "cover": "Night, crescent moon in the window. {hero} sits on the front edge of the bed, facing the viewer, legs hanging down, bare feet dangling, smiling and pointing down at the rug in front of her. In the middle of the picture, on the round cream rug, exactly one little woolly sheep leaps over the small white fence: a small plush toy sheep: a round body of soft white curly wool, a cream face and cream ears, small dark-grey legs, dot eyes, a tiny smile and a little tuft of wool on its head, seen from the side, jumping toward the LEFT (toward the bed), all four legs tucked up in the air above the fence. The fence is one short piece of a low white wooden toy fence: three rounded posts and two rails, standing on the rug, about as tall as the sheep's back, turned at an angle across the sheep's path, the same fence as on the attached props sheet. Only this one sheep in the whole picture: no other sheep anywhere. Lulu floats in the air above the rug, between {hero} and the sheep, smiling and glowing softly; {hero}, Lulu and the sheep do not touch. No faces on the fence. No numbers, no digits and no text anywhere. The sheep and the fence stay well away from the bottom-right corner, which is plain floor. If a room picture or a props sheet is attached, the room, the sheep and the fence look exactly like in them",
+    "sticker": "one little woolly sheep leaping happily over a small white fence: a small plush toy sheep: a round body of soft white curly wool, a cream face and cream ears, small dark-grey legs, dot eyes, a tiny smile and a little tuft of wool on its head, seen from the side, jumping toward the left, all four legs tucked up in the air above the fence, a happy look; the fence is one short piece of a low white wooden toy fence: three rounded posts and two rails, about as tall as the sheep's back; one small glowing yellow star rests on the tuft of wool on the sheep's head, touching it. The sheep, the fence and the star make one sticker shape. Nothing else: no child, no bunny, no numbers, no text"
+  },
+  "attach": {
+    "cover": [
+      "kit/room_wide.png",
+      "kit/props_sheep.png"
+    ]
+  },
+  "kit": {
+    "rooms": {
+      "wide": {
+        "attach": "kit/room.png (the night room, copied from tidy_toys: ~/Downloads/story_art/tidy_toys/kit/room.png)",
+        "prompt": "Edit the attached picture into a new view of the very same room. Keep exactly the same cozy kid bedroom at night: the same soft warm peach walls, wooden floor, low wooden bed with a rounded headboard, white pillow and smooth lavender blanket, the bed raised on short legs with a dark gap under its front side, the small warm glowing lamp on the little wooden shelf, the window with the dark blue night sky, crescent moon and a few stars, the rounded light-wood door, the same colors, warm night lighting and soft 3D art style. Change only the camera: seen from further back and a little higher, so the whole room looks roomier. The bed is small in the BACK-LEFT corner, against the back wall, its long side facing the viewer and fully visible, headboard and pillow at its LEFT end. The window is in the middle of the back wall, the lamp shelf on the back wall between the bed's headboard and the window. The door is at the back right, on the right wall near the back-right corner, fully visible, with free wooden floor in front of it. A large open wooden floor fills about the lower 55 to 60 percent of the picture, with a big round cream rug in the middle and front of the room. The room is empty: no people, no animals, no toys, no fence, nothing on the floor or the rug, no sparkles on the walls, no text. Landscape 4:3 picture. The bottom-right corner of the picture is plain wooden floor with nothing in it.",
+        "shape": "4:3 landscape"
+      }
+    },
+    "sheets": {
+      "hero_b": {
+        "from": "tidy_toys/kit/hero_b.png",
+        "who": "hero",
+        "columns": 3,
+        "figures": {
+          "bend_place": "the child stands turned to the right and bends forward a little, both arms reaching forward and down to the right with open empty hands at waist height, nothing in or under the hands, soft careful smile, looking at the hands",
+          "stand_ball": "the child stands turned a little to the right, holding a small ball with wide red and white stripes (like a little beach ball) in both hands in front of the chest, smiling",
+          "throw": "the child stands turned to the right in a big throwing follow-through: one arm stretched forward and up toward the right, the other arm back, one foot forward, excited open-mouth face, both hands open and empty, nothing in the air",
+          "tummy_reach": "the child lies flat on the tummy on the floor, head to the LEFT, one arm stretched far out to the left reaching for something, cheek low, tongue tip out with effort, legs straight behind to the right",
+          "hug_teddy": "the child kneels and hugs a small round light-brown teddy bear with round ears, a peach tummy and muzzle and a little smile, tight against the chest with both arms, eyes closed, cheek on the teddy's head, a big happy smile",
+          "asleep": "the child lies asleep on one side, facing the viewer, head to the LEFT, eyes closed with a peaceful little smile, one hand resting in front of the face, body and legs stretched out to the right, lying on nothing: no pillow, no blanket, no bed"
+        }
+      },
+      "hero_c": {
+        "from": "clock_time/kit/hero_c.png",
+        "who": "hero",
+        "columns": 3,
+        "figures": {
+          "lie_yawn": "the child lies on one side, facing the viewer, head to the LEFT, legs stretched out to the right, in a huge sleepy yawn: mouth wide open, eyes squeezed shut, one hand in front of the face; lying on nothing",
+          "lie_rub_eye": "the child lies the same way, head to the LEFT, one eye half open, one fist rubbing the other eye, sleepy; lying on nothing",
+          "bed_sit_up": "the child sits up straight on the floor, both legs stretched straight out to the RIGHT and close together, upper body upright and turned a little toward the viewer, looking up to the right with a sleepy smile, both hands resting on the legs",
+          "bed_stretch": "the child sits the same way, legs stretched straight out to the RIGHT, both arms stretched high above the head in a big morning stretch, eyes closed, big happy smile",
+          "sit_color": "the child sits cross-legged on the floor, turned a little to the right, leaning forward, one hand down low in front holding a red crayon as if drawing on the floor, looking down, concentrating with a little smile, nothing under the hand",
+          "plop": "the child sits on the floor, legs stretched out in front to the RIGHT, leaning back on both hands, cheeks puffed out, panting and tired, eyes half closed"
+        }
+      },
+      "hero_j": {
+        "who": "hero",
+        "columns": 2,
+        "note": "IMPORTANT: draw her FROM THE FRONT, never from the side. In every figure we see her face straight on, both eyes, and the whole front of her body, like a photo taken from right in front of her. She is SITTING, as if on the edge of a bed, but do NOT draw any bed, chair, box or floor: she sits on an invisible seat. Her knees are bent at a right angle and point toward us; her two lower legs hang straight down side by side; her bare feet dangle in the air. Her head is tilted down a little: she looks down at the ground in front of her, as if watching small toys on the floor. Same girl and same size in all four figures. Hands hold nothing.",
+        "figures": {
+          "bed_awake": "front view, sitting with legs hanging down, both hands resting on her knees, eyes open wide looking down in front of her, small happy smile",
+          "bed_point": "front view, sitting with legs hanging down, her right arm stretched out toward us and down, index finger pointing at the floor in front of her, mouth open as if counting, other hand on her knee",
+          "bed_think": "front view, sitting with legs hanging down, one finger on her chin, looking down in front of her, gentle thinking smile, other hand on her knee",
+          "bed_clap": "front view, sitting with legs hanging down, clapping her hands in front of her chest, eyes closed, big happy smile"
+        }
+      },
+      "lulu_a": {
+        "from": "tidy_toys/kit/lulu_a.png",
+        "who": "lulu",
+        "columns": 3,
+        "figures": {
+          "float": "Lulu floats upright, facing the viewer, relaxed and happy, paws at her sides, ears up",
+          "talk": "Lulu floats turned a little to the left and looks down to the left, one paw raised as if explaining, mouth open in a friendly smile",
+          "glow": "Lulu floats with both arms spread wide and her head lifted, eyes closed in a happy smile, the amber crescent moon on her belly shining bright yellow",
+          "point": "Lulu floats and points one paw clearly down to the right, looking that way, smiling",
+          "clap": "Lulu floats and claps both paws together in front of her chest, laughing, eyes closed",
+          "whisper": "Lulu floats leaning forward to the left, one paw beside her mouth as if whispering, eyes soft and half closed"
+        }
+      },
+      "props": {
+        "from": "tidy_toys/kit/props.png",
+        "who": "props",
+        "columns": 4,
+        "figures": {
+          "toybox_empty": "a rounded wooden toy chest painted soft sky-blue with one yellow star on its front, lid open and tilted up behind it, completely empty inside",
+          "toybox_full": "the same sky-blue toy chest with the yellow star, lid open and tilted up behind it, colorful wooden blocks peeking over its rim",
+          "toybox_closed": "the same sky-blue toy chest with the yellow star, lid closed",
+          "blocks": "five colorful wooden blocks (red, yellow, blue, green, red) lying close together in one low loose cluster, all touching, one leaning on another",
+          "ball": "one small ball with wide red and white stripes, like a little beach ball",
+          "teddy_lying": "a small round light-brown teddy bear with round ears, a peach tummy and muzzle and a little smile, lying on its back with its arms out",
+          "teddy_sitting": "the same light-brown teddy bear sitting up, legs forward, arms at its sides",
+          "blanket_lump": "a long low mound of soft lavender blanket seen from the side, with a few soft folds: the top edge is folded back at the LEFT end, the mound is higher on the left and gets flatter toward the right end where it drapes down; nobody and nothing shows under or out of it"
+        }
+      },
+      "props_sheep": {
+        "who": "props",
+        "columns": 3,
+        "note": "Every thing is seen from the same angle: from the front, slightly from above; every sheep stands or lies side-on to the viewer, so its whole side shows, facing LEFT. No faces on the fence. All four sheep are the very same little woolly sheep at the same size, the same white wool, the same cream face and the same dark-grey legs, all facing LEFT; only the pose changes. Sizes compared with the standing sheep: the curled-up sheep is about as long as the standing sheep and about two thirds as tall; the fence is about as tall as the standing sheep's back and, turned at its angle, about as wide on the picture as the standing sheep. Draw exactly five things, well apart, in two rows: top row the standing sheep, the sleeping sheep and the fence; bottom row a second identical standing sheep and a second identical sleeping sheep (spares), the last cell empty. All four sheep are the very same sheep. No other sheep, no grass, no ground.",
+        "figures": {
+          "sheep_stand": "a little woolly sheep: a small plush toy sheep: a round body of soft white curly wool, a cream face and cream ears, small dark-grey legs, dot eyes, a tiny smile and a little tuft of wool on its head, standing on all four legs, side-on to the viewer, facing LEFT, head up, a friendly look",
+          "sheep_sleep": "the very same little woolly sheep at the same size and from the same angle, lying curled up asleep in a plump round ball of wool, legs tucked in under the body, its head resting on its front and clearly visible, eyes closed in two soft curves, a peaceful little smile, head to the LEFT",
+          "fence": "one short piece of a low white wooden toy fence: three rounded posts and two rails, standing upright and turned at an angle so it runs from the back toward the front, seen three-quarter from its front end, like a little gate standing across a path that goes from right to left; plain white with no decoration",
+          "sheep_stand_2": "a second copy of the very same standing sheep, identical in size, colors, pose and angle, facing LEFT (a spare)",
+          "sheep_sleep_2": "a second copy of the very same curled-up sleeping sheep, identical in size, colors, pose and angle, head to the LEFT (a spare)"
+        }
+      }
+    }
+  }
+}

@@ -21,6 +21,9 @@ A story id. Read `docs/stories/<id>/outline.md`, `assets/stories/<id>/story.json
 8. **Outline fit**: same nodes, images, ambients, plot.
 9. **Listening test**: read it as audio only, each language. Can a child follow without pictures?
 
+## Math stories (`"section": "math"`)
+Also check against `docs/math.md`: the arithmetic is right in both languages; the `kind` option is the right answer; options clearly different, never 0; the count in each line matches the outline's layout (one part per object) and the cue words; the learn path counts again without "sai" / "wrong" / disappointment and offers the rewind; numbers within the topic's range; one topic. Any mismatch is a FIX. Template stories (`"math"` block): read each line with the smallest and largest numbers the ranges allow; English must stay grammatical for every number (no is/are or singular/plural that depends on it); numbers only as tokens.
+
 ## Output
 Write `docs/stories/<id>/review.md`:
 

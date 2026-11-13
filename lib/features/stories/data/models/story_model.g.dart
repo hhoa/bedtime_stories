@@ -10,9 +10,10 @@ ChoiceOptionModel _$ChoiceOptionModelFromJson(Map<String, dynamic> json) =>
     ChoiceOptionModel(
       id: json['id'] as String,
       kind: json['kind'] as String,
-      icon: json['icon'] as String,
+      icon: json['icon'] as String?,
       label: Map<String, String>.from(json['label'] as Map),
       next: json['next'] as String,
+      answer: json['answer'] as String?,
     );
 
 Map<String, dynamic> _$ChoiceOptionModelToJson(ChoiceOptionModel instance) =>
@@ -22,6 +23,7 @@ Map<String, dynamic> _$ChoiceOptionModelToJson(ChoiceOptionModel instance) =>
       'icon': instance.icon,
       'label': instance.label,
       'next': instance.next,
+      'answer': instance.answer,
     };
 
 CueModel _$CueModelFromJson(Map<String, dynamic> json) => CueModel(
@@ -71,6 +73,9 @@ StoryNodeModel _$StoryNodeModelFromJson(Map<String, dynamic> json) =>
       poses: (json['poses'] as Map<String, dynamic>?)?.map(
         (k, e) => MapEntry(k, e as String),
       ),
+      counted: (json['counted'] as Map<String, dynamic>?)?.map(
+        (k, e) => MapEntry(k, e as String),
+      ),
     );
 
 Map<String, dynamic> _$StoryNodeModelToJson(StoryNodeModel instance) =>
@@ -87,11 +92,13 @@ Map<String, dynamic> _$StoryNodeModelToJson(StoryNodeModel instance) =>
       'ambient_origin': instance.ambientOrigin,
       'cues': instance.cues,
       'poses': instance.poses,
+      'counted': instance.counted,
     };
 
 StoryModel _$StoryModelFromJson(Map<String, dynamic> json) => StoryModel(
   id: json['id'] as String,
   theme: json['theme'] as String,
+  section: json['section'] as String?,
   hero: json['hero'] as String,
   title: Map<String, String>.from(json['title'] as Map),
   cover: json['cover'] as String,
@@ -99,15 +106,18 @@ StoryModel _$StoryModelFromJson(Map<String, dynamic> json) => StoryModel(
   nodes: (json['nodes'] as List<dynamic>)
       .map((e) => StoryNodeModel.fromJson(e as Map<String, dynamic>))
       .toList(),
+  math: json['math'] as Map<String, dynamic>?,
 );
 
 Map<String, dynamic> _$StoryModelToJson(StoryModel instance) =>
     <String, dynamic>{
       'id': instance.id,
       'theme': instance.theme,
+      'section': instance.section,
       'hero': instance.hero,
       'title': instance.title,
       'cover': instance.cover,
       'start': instance.start,
       'nodes': instance.nodes,
+      'math': instance.math,
     };

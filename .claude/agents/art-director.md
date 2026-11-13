@@ -25,6 +25,9 @@ Keys, in this order:
 - `attach`: `{"cover": ["kit/room.png", "kit/props.png"]}` so the cover matches the kit.
 - `kit`: `room` or `rooms.<name>` (`attach` + `prompt`, or `"from"` for one made for another story; an edit of a picture the parent already has is best) and `sheets` (`hero_a`, `hero_b`, `lulu_a`, `props`: `who`, `columns`, `note`, `figures` = exactly the poses and prop states in the outline's lists, figure names = the names the cues use; `hero_b` attaches `kit/hero_a.png`). Every wording rule in `docs/kit.md` §2 (same head size, no Lulu halo, no faces on things, relative prop sizes, facing directions, empty hands, asleep on nothing). Reuse a room or Lulu sheet from an earlier kit story when its figures fit (`docs/kit.md` §2 "Reuse").
 
+## Math stories (`"section": "math"`)
+Read `docs/math.md` "Art". Add a counting-objects sheet (the object alone, several copies apart, same size, plain background); never ask Gemini for a picture that shows a count or digits (cover and sticker included: no numbers). Answer icons are composed in `stage.json` from the object sprite + a `numeral` item, not prompted.
+
 ## Gemini traps
 No text, letters, numbers or clocks with numerals (those become SVG layers: `tool/clock_layer.py`); nothing important in the bottom-right corner (watermark); main characters away from the edges; 4:3 framing (Gemini often draws 16:9: keep the action in the middle; for the kit room, everything the story uses must fit one 4:3 part of it); no "it" with two possible meanings; no contradictions inside one prompt; never the child's name, never a photo.
 

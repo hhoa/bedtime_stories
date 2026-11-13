@@ -29,6 +29,9 @@ Compare the idea's **lesson** (what the child learns / does), **main action**, a
 
 When unsure between DUPLICATE and SIMILAR, pick DUPLICATE: the parent decides.
 
+## Math ideas
+A math idea (`docs/math.md`) is compared with math stories only (`"section": "math"`): same curriculum topic **and** the same objects/setting = DUPLICATE; same topic with new objects and a new little plot = SIMILAR (say which topic step is still free).
+
 ## Reply (short, plain words; the parent may read it)
 ```
 VERDICT: DUPLICATE | SIMILAR | NEW

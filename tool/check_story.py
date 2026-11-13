@@ -15,6 +15,9 @@ Errors (exit 1) are things the app or the house rules reject:
   - gendered words about the hero (say "bé" / "the little one")
   - image paths must be under images/ (one folder per story, no {hero})
   - pose cues need "pose", move cues need "to" in 0..1
+  - math stories ("math", docs/math.md): vars readable, every draw sayable (1..10), answers 1..field,
+    "counted" fits the field / waiting spots, number tokens name known vars ({n} only in labels,
+    which then need "answer"); number tokens only in math stories
   - with --art: every image exists, a pose cue or start pose names a pose
     its layer has, a cue names a part its picture has (layer kind in
     images/layers.json, or a hotspot kind in images/hotspots.json)
@@ -35,12 +38,16 @@ import re
 import sys
 from pathlib import Path
 
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from story_text import MAX_SPOKEN, TOKEN, all_draws, eval_math, plain  # noqa: E402
+
 ROOT = Path(__file__).resolve().parent.parent
 STORIES_DIR = ROOT / 'assets/stories'
 LANGS = ('vi', 'en')
 HEROES = {'girl', 'boy', 'kid'}
+SECTIONS = {'behavior', 'math'}
 AMBIENTS = {'stars', 'sparkles', 'zzz', 'motes'}
-ACTIONS = {'hop', 'wiggle', 'pulse', 'pose', 'move'}
+ACTIONS = {'hop', 'wiggle', 'pulse', 'pose', 'move', 'arrive'}
 NAME = '{name}'
 MAX_WORDS = {'vi': 12, 'en': 12}
 MAX_NODE_WORDS = {'vi': 40, 'en': 40}
@@ -102,13 +109,116 @@ def check_text(where, text, lang, r):
             if re.search(rf'(?<!\w){p}(?!\w)', low):
                 r.warn(f'{where}: "{p}" — fine for Lulu, not for the hero')
                 break
-    for s in split_sentences(text):
+    for s in split_sentences(plain(text)):
         n = len(words_of(s))
         if n > MAX_WORDS[lang]:
             r.warn(f'{where}: {n} words: "{s}"')
     total = len(text.split())
     if total > MAX_NODE_WORDS[lang]:
         r.warn(f'{where}: node text has {total} words (aim ≤ {MAX_NODE_WORDS[lang]})')
+
+
+def number_vars(text):
+    """Variables named by number / count tokens in a line ({name} excluded)."""
+    out = []
+    for m in TOKEN.finditer(text):
+        body = m.group(1)
+        if body != 'name':
+            out.append(body.split(':')[1] if body.startswith('count:') else body)
+    return out
+
+
+def check_math(story, r):
+    """Math block, counted nodes, answers and number tokens (mirrors story_model.dart)."""
+    math = story.get('math')
+    nodes = story.get('nodes', [])
+    lines = []   # (where, text, is_option, option)
+    for n in nodes:
+        for lang, t in (n.get('text') or {}).items():
+            lines.append((f'node {n.get("id")} ({lang})', t, False, None))
+        for o in n.get('options', []):
+            for lang, t in (o.get('label') or {}).items():
+                lines.append((f'node {n.get("id")}/{o.get("id")} ({lang})', t, True, o))
+    if math is None:
+        for where, t, _, _ in lines:
+            if number_vars(t):
+                r.err(f'{where}: number tokens need a story "math" block')
+        for n in nodes:
+            if n.get('counted'):
+                r.err(f'node {n.get("id")}: "counted" needs a story "math" block')
+        if story.get('section') == 'math':
+            r.warn('section math without a "math" block: the numbers never change')
+        return
+    if story.get('section') != 'math':
+        r.err('"math" block in a story that is not "section": "math"')
+    if not math.get('counter'):
+        r.err('math: needs "counter" (part kind prefix, e.g. "sheep")')
+    field, wait = math.get('field') or [], math.get('wait') or []
+    for name, spots in (('field', field), ('wait', wait)):
+        for i, p in enumerate(spots):
+            if not (isinstance(p, list) and len(p) == 2 and all(0 <= v <= 1 for v in p)):
+                r.err(f'math: {name}[{i}] must be [x, y] in 0..1')
+    if not field:
+        r.err('math: needs "field" spots (one per counted object)')
+    if math.get('icon') is not None:
+        check_image('math icon', math['icon'], r)
+    vars_ = math.get('vars') or {}
+    for name in vars_:
+        if name in ('n', 'name', 'count') or not re.fullmatch(r'[a-z]\w*', name):
+            r.err(f'math: bad var name "{name}"')
+    try:
+        draws = all_draws(vars_)
+    except (ValueError, TypeError) as e:
+        r.err(f'math vars: {e}')
+        return
+    if not draws:
+        r.err('math vars: no numbers fit the ranges')
+        return
+    for where, t, is_option, o in lines:
+        for v in number_vars(t):
+            if v == 'n' and is_option:
+                if o.get('answer') is None:
+                    r.err(f'{where}: says {{n}} but the option has no "answer"')
+            elif v not in vars_:
+                r.err(f'{where}: unknown number "{{{v}}}"')
+    for d in draws:
+        for k, v in d.items():
+            if v > MAX_SPOKEN:
+                r.err(f'math: "{k}" can be {v} (number clips stop at {MAX_SPOKEN})')
+                return
+    for n in nodes:
+        for o in n.get('options', []):
+            a = o.get('answer')
+            if a is None:
+                continue
+            if o.get('icon') is None and not math.get('icon'):
+                r.err(f'node {n.get("id")}/{o.get("id")}: no "icon" and no math "icon"')
+            want = 'learn' if str(a).startswith('near:') else 'kind'
+            if o.get('kind') != want:
+                r.err(f'node {n.get("id")}/{o.get("id")}: answer "{a}" should be kind "{want}"')
+            try:
+                vals = {eval_math(str(a).removeprefix('near:'), d) for d in draws}
+            except ValueError as e:
+                r.err(f'node {n.get("id")}/{o.get("id")}: {e}')
+                continue
+            if min(vals) < 1 or max(vals) > len(field):
+                r.err(f'node {n.get("id")}/{o.get("id")}: answer can be {sorted(vals)} (must be 1..{len(field)})')
+        c = n.get('counted')
+        if c is None:
+            continue
+        if 'field' not in c:
+            r.err(f'node {n.get("id")}: counted needs "field"')
+            continue
+        try:
+            for d in draws:
+                f = eval_math(c['field'], d)
+                w = eval_math(c['wait'], d) if c.get('wait') else 0
+                if f + w > len(field) or w > len(wait):
+                    r.err(f'node {n.get("id")}: counted can show {f} + {w} '
+                          f'({len(field)} field spots, {len(wait)} waiting spots)')
+                    break
+        except ValueError as e:
+            r.err(f'node {n.get("id")}: counted: {e}')
 
 
 def local(where, value, r):
@@ -145,6 +255,8 @@ def check(story, r):
     for key in ('id', 'theme', 'hero', 'title', 'cover', 'start'):
         if not story.get(key):
             r.err(f'missing top-level "{key}"')
+    if story.get('section', 'behavior') not in SECTIONS:
+        r.err(f'section "{story.get("section")}" not in {sorted(SECTIONS)}')
     if story.get('hero') and story['hero'] not in HEROES:
         r.err(f'hero "{story["hero"]}" not in {sorted(HEROES)}')
     check_image('cover', story.get('cover'), r)
@@ -225,7 +337,8 @@ def check(story, r):
             for o in opts:
                 ow = f'{where}/{o.get("id")}'
                 link(ow, o.get('next'))
-                check_image(ow, o.get('icon'), r)
+                if o.get('icon') is not None or o.get('answer') is None:
+                    check_image(ow, o.get('icon'), r)
                 for lang, t in local(ow, o.get('label'), r).items():
                     check_text(f'{ow} ({lang})', t, lang, r)
                     if NAME in t:
@@ -235,6 +348,7 @@ def check(story, r):
         else:
             r.err(f'{where}: unknown type "{kind}"')
 
+    check_math(story, r)
     if not any(n.get('type') == 'ending' for n in nodes):
         r.err('no ending node')
     if r.errors:
@@ -316,6 +430,9 @@ def check_art(story_id, story, r):
                 poses.setdefault(l['kind'], {'default'}).update(l.get('poses', {}))
         all_cues = [(lang, c) for lang, cs in (n.get('cues') or {}).items() for c in cs]
         for lang, c in all_cues:
+            counter = (story.get('math') or {}).get('counter')
+            if c.get('action') == 'arrive' and c.get('part') == counter and f'{counter}1' in kinds:
+                continue   # the whole counted group (sheep1, sheep2, …)
             if c.get('part') not in kinds:
                 r.err(f'node {n["id"]} ({lang}): cue part "{c.get("part")}" not in {img} '
                       f'(parts/hotspots: {", ".join(sorted(kinds)) or "none"})')

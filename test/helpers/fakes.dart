@@ -159,9 +159,15 @@ final class FakeStoryRepository implements StoryRepository {
   final languages = <AppLanguage>[];
 
   @override
-  Future<Either<Failure, List<Story>>> getStories(AppLanguage language) async {
+  Future<Either<Failure, List<Story>>> getStories(
+    AppLanguage language, {
+    StorySection? section,
+  }) async {
     languages.add(language);
-    return Right(stories.values.toList());
+    return Right([
+      for (final s in stories.values)
+        if (section == null || s.section == section) s,
+    ]);
   }
 
   @override
@@ -181,8 +187,15 @@ final class FakeAnalytics implements Analytics {
   Gender? heroGender;
 
   @override
-  Future<void> storyStart(String storyId, AppLanguage language) async =>
-      events.add('story_start:$storyId/${language.name}');
+  Future<void> sectionOpen(StorySection section) async =>
+      events.add('section_open:${section.name}');
+
+  @override
+  Future<void> storyStart(
+    String storyId,
+    AppLanguage language,
+    StorySection section,
+  ) async => events.add('story_start:$storyId/${language.name}');
 
   @override
   Future<void> storyChoice({

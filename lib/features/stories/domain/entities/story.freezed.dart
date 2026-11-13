@@ -866,7 +866,11 @@ as double?,
 /// @nodoc
 mixin _$ChoiceOption {
 
- String get id; ChoiceKind get kind; String get iconAsset; String get label; String get nextId;
+ String get id; ChoiceKind get kind; String get iconAsset; String get label; String get nextId;/// Math stories: `"c"` (the right answer is the number c) or `"near:c"`
+/// (one more or one less). Resolved into [count] for each play.
+ String? get answer;/// The number this card stands for in this play (math stories): the
+/// card draws that many objects, `{n}` in the label says it.
+ int? get count;
 /// Create a copy of ChoiceOption
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -877,16 +881,16 @@ $ChoiceOptionCopyWith<ChoiceOption> get copyWith => _$ChoiceOptionCopyWithImpl<C
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is ChoiceOption&&(identical(other.id, id) || other.id == id)&&(identical(other.kind, kind) || other.kind == kind)&&(identical(other.iconAsset, iconAsset) || other.iconAsset == iconAsset)&&(identical(other.label, label) || other.label == label)&&(identical(other.nextId, nextId) || other.nextId == nextId));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is ChoiceOption&&(identical(other.id, id) || other.id == id)&&(identical(other.kind, kind) || other.kind == kind)&&(identical(other.iconAsset, iconAsset) || other.iconAsset == iconAsset)&&(identical(other.label, label) || other.label == label)&&(identical(other.nextId, nextId) || other.nextId == nextId)&&(identical(other.answer, answer) || other.answer == answer)&&(identical(other.count, count) || other.count == count));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,id,kind,iconAsset,label,nextId);
+int get hashCode => Object.hash(runtimeType,id,kind,iconAsset,label,nextId,answer,count);
 
 @override
 String toString() {
-  return 'ChoiceOption(id: $id, kind: $kind, iconAsset: $iconAsset, label: $label, nextId: $nextId)';
+  return 'ChoiceOption(id: $id, kind: $kind, iconAsset: $iconAsset, label: $label, nextId: $nextId, answer: $answer, count: $count)';
 }
 
 
@@ -897,7 +901,7 @@ abstract mixin class $ChoiceOptionCopyWith<$Res>  {
   factory $ChoiceOptionCopyWith(ChoiceOption value, $Res Function(ChoiceOption) _then) = _$ChoiceOptionCopyWithImpl;
 @useResult
 $Res call({
- String id, ChoiceKind kind, String iconAsset, String label, String nextId
+ String id, ChoiceKind kind, String iconAsset, String label, String nextId, String? answer, int? count
 });
 
 
@@ -914,14 +918,16 @@ class _$ChoiceOptionCopyWithImpl<$Res>
 
 /// Create a copy of ChoiceOption
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? kind = null,Object? iconAsset = null,Object? label = null,Object? nextId = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? kind = null,Object? iconAsset = null,Object? label = null,Object? nextId = null,Object? answer = freezed,Object? count = freezed,}) {
   return _then(_self.copyWith(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String,kind: null == kind ? _self.kind : kind // ignore: cast_nullable_to_non_nullable
 as ChoiceKind,iconAsset: null == iconAsset ? _self.iconAsset : iconAsset // ignore: cast_nullable_to_non_nullable
 as String,label: null == label ? _self.label : label // ignore: cast_nullable_to_non_nullable
 as String,nextId: null == nextId ? _self.nextId : nextId // ignore: cast_nullable_to_non_nullable
-as String,
+as String,answer: freezed == answer ? _self.answer : answer // ignore: cast_nullable_to_non_nullable
+as String?,count: freezed == count ? _self.count : count // ignore: cast_nullable_to_non_nullable
+as int?,
   ));
 }
 
@@ -1006,10 +1012,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String id,  ChoiceKind kind,  String iconAsset,  String label,  String nextId)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String id,  ChoiceKind kind,  String iconAsset,  String label,  String nextId,  String? answer,  int? count)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _ChoiceOption() when $default != null:
-return $default(_that.id,_that.kind,_that.iconAsset,_that.label,_that.nextId);case _:
+return $default(_that.id,_that.kind,_that.iconAsset,_that.label,_that.nextId,_that.answer,_that.count);case _:
   return orElse();
 
 }
@@ -1027,10 +1033,10 @@ return $default(_that.id,_that.kind,_that.iconAsset,_that.label,_that.nextId);ca
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String id,  ChoiceKind kind,  String iconAsset,  String label,  String nextId)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String id,  ChoiceKind kind,  String iconAsset,  String label,  String nextId,  String? answer,  int? count)  $default,) {final _that = this;
 switch (_that) {
 case _ChoiceOption():
-return $default(_that.id,_that.kind,_that.iconAsset,_that.label,_that.nextId);case _:
+return $default(_that.id,_that.kind,_that.iconAsset,_that.label,_that.nextId,_that.answer,_that.count);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -1047,10 +1053,10 @@ return $default(_that.id,_that.kind,_that.iconAsset,_that.label,_that.nextId);ca
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String id,  ChoiceKind kind,  String iconAsset,  String label,  String nextId)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String id,  ChoiceKind kind,  String iconAsset,  String label,  String nextId,  String? answer,  int? count)?  $default,) {final _that = this;
 switch (_that) {
 case _ChoiceOption() when $default != null:
-return $default(_that.id,_that.kind,_that.iconAsset,_that.label,_that.nextId);case _:
+return $default(_that.id,_that.kind,_that.iconAsset,_that.label,_that.nextId,_that.answer,_that.count);case _:
   return null;
 
 }
@@ -1062,7 +1068,7 @@ return $default(_that.id,_that.kind,_that.iconAsset,_that.label,_that.nextId);ca
 
 
 class _ChoiceOption implements ChoiceOption {
-  const _ChoiceOption({required this.id, required this.kind, required this.iconAsset, required this.label, required this.nextId});
+  const _ChoiceOption({required this.id, required this.kind, required this.iconAsset, required this.label, required this.nextId, this.answer, this.count});
   
 
 @override final  String id;
@@ -1070,6 +1076,12 @@ class _ChoiceOption implements ChoiceOption {
 @override final  String iconAsset;
 @override final  String label;
 @override final  String nextId;
+/// Math stories: `"c"` (the right answer is the number c) or `"near:c"`
+/// (one more or one less). Resolved into [count] for each play.
+@override final  String? answer;
+/// The number this card stands for in this play (math stories): the
+/// card draws that many objects, `{n}` in the label says it.
+@override final  int? count;
 
 /// Create a copy of ChoiceOption
 /// with the given fields replaced by the non-null parameter values.
@@ -1081,16 +1093,16 @@ _$ChoiceOptionCopyWith<_ChoiceOption> get copyWith => __$ChoiceOptionCopyWithImp
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ChoiceOption&&(identical(other.id, id) || other.id == id)&&(identical(other.kind, kind) || other.kind == kind)&&(identical(other.iconAsset, iconAsset) || other.iconAsset == iconAsset)&&(identical(other.label, label) || other.label == label)&&(identical(other.nextId, nextId) || other.nextId == nextId));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ChoiceOption&&(identical(other.id, id) || other.id == id)&&(identical(other.kind, kind) || other.kind == kind)&&(identical(other.iconAsset, iconAsset) || other.iconAsset == iconAsset)&&(identical(other.label, label) || other.label == label)&&(identical(other.nextId, nextId) || other.nextId == nextId)&&(identical(other.answer, answer) || other.answer == answer)&&(identical(other.count, count) || other.count == count));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,id,kind,iconAsset,label,nextId);
+int get hashCode => Object.hash(runtimeType,id,kind,iconAsset,label,nextId,answer,count);
 
 @override
 String toString() {
-  return 'ChoiceOption(id: $id, kind: $kind, iconAsset: $iconAsset, label: $label, nextId: $nextId)';
+  return 'ChoiceOption(id: $id, kind: $kind, iconAsset: $iconAsset, label: $label, nextId: $nextId, answer: $answer, count: $count)';
 }
 
 
@@ -1101,7 +1113,7 @@ abstract mixin class _$ChoiceOptionCopyWith<$Res> implements $ChoiceOptionCopyWi
   factory _$ChoiceOptionCopyWith(_ChoiceOption value, $Res Function(_ChoiceOption) _then) = __$ChoiceOptionCopyWithImpl;
 @override @useResult
 $Res call({
- String id, ChoiceKind kind, String iconAsset, String label, String nextId
+ String id, ChoiceKind kind, String iconAsset, String label, String nextId, String? answer, int? count
 });
 
 
@@ -1118,14 +1130,16 @@ class __$ChoiceOptionCopyWithImpl<$Res>
 
 /// Create a copy of ChoiceOption
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? kind = null,Object? iconAsset = null,Object? label = null,Object? nextId = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? kind = null,Object? iconAsset = null,Object? label = null,Object? nextId = null,Object? answer = freezed,Object? count = freezed,}) {
   return _then(_ChoiceOption(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String,kind: null == kind ? _self.kind : kind // ignore: cast_nullable_to_non_nullable
 as ChoiceKind,iconAsset: null == iconAsset ? _self.iconAsset : iconAsset // ignore: cast_nullable_to_non_nullable
 as String,label: null == label ? _self.label : label // ignore: cast_nullable_to_non_nullable
 as String,nextId: null == nextId ? _self.nextId : nextId // ignore: cast_nullable_to_non_nullable
-as String,
+as String,answer: freezed == answer ? _self.answer : answer // ignore: cast_nullable_to_non_nullable
+as String?,count: freezed == count ? _self.count : count // ignore: cast_nullable_to_non_nullable
+as int?,
   ));
 }
 
@@ -1136,7 +1150,8 @@ as String,
 mixin _$StoryNode {
 
  String get id; String get imageAsset; String get text; Ambient get ambient; AmbientOrigin? get ambientOrigin; List<StoryCue> get cues;/// Starting pose per part kind (default otherwise).
- Map<String, String> get poses;
+ Map<String, String> get poses;/// Math stories: counted objects shown (see [Counted]).
+ Counted? get counted;
 /// Create a copy of StoryNode
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -1147,16 +1162,16 @@ $StoryNodeCopyWith<StoryNode> get copyWith => _$StoryNodeCopyWithImpl<StoryNode>
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is StoryNode&&(identical(other.id, id) || other.id == id)&&(identical(other.imageAsset, imageAsset) || other.imageAsset == imageAsset)&&(identical(other.text, text) || other.text == text)&&(identical(other.ambient, ambient) || other.ambient == ambient)&&(identical(other.ambientOrigin, ambientOrigin) || other.ambientOrigin == ambientOrigin)&&const DeepCollectionEquality().equals(other.cues, cues)&&const DeepCollectionEquality().equals(other.poses, poses));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is StoryNode&&(identical(other.id, id) || other.id == id)&&(identical(other.imageAsset, imageAsset) || other.imageAsset == imageAsset)&&(identical(other.text, text) || other.text == text)&&(identical(other.ambient, ambient) || other.ambient == ambient)&&(identical(other.ambientOrigin, ambientOrigin) || other.ambientOrigin == ambientOrigin)&&const DeepCollectionEquality().equals(other.cues, cues)&&const DeepCollectionEquality().equals(other.poses, poses)&&(identical(other.counted, counted) || other.counted == counted));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,id,imageAsset,text,ambient,ambientOrigin,const DeepCollectionEquality().hash(cues),const DeepCollectionEquality().hash(poses));
+int get hashCode => Object.hash(runtimeType,id,imageAsset,text,ambient,ambientOrigin,const DeepCollectionEquality().hash(cues),const DeepCollectionEquality().hash(poses),counted);
 
 @override
 String toString() {
-  return 'StoryNode(id: $id, imageAsset: $imageAsset, text: $text, ambient: $ambient, ambientOrigin: $ambientOrigin, cues: $cues, poses: $poses)';
+  return 'StoryNode(id: $id, imageAsset: $imageAsset, text: $text, ambient: $ambient, ambientOrigin: $ambientOrigin, cues: $cues, poses: $poses, counted: $counted)';
 }
 
 
@@ -1167,7 +1182,7 @@ abstract mixin class $StoryNodeCopyWith<$Res>  {
   factory $StoryNodeCopyWith(StoryNode value, $Res Function(StoryNode) _then) = _$StoryNodeCopyWithImpl;
 @useResult
 $Res call({
- String id, String imageAsset, String text, Ambient ambient, ({double x, double y})? ambientOrigin, List<StoryCue> cues, Map<String, String> poses
+ String id, String imageAsset, String text, Ambient ambient, ({double x, double y})? ambientOrigin, List<StoryCue> cues, Map<String, String> poses, ({String field, String? wait})? counted
 });
 
 
@@ -1184,7 +1199,7 @@ class _$StoryNodeCopyWithImpl<$Res>
 
 /// Create a copy of StoryNode
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? imageAsset = null,Object? text = null,Object? ambient = null,Object? ambientOrigin = freezed,Object? cues = null,Object? poses = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? imageAsset = null,Object? text = null,Object? ambient = null,Object? ambientOrigin = freezed,Object? cues = null,Object? poses = null,Object? counted = freezed,}) {
   return _then(_self.copyWith(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String,imageAsset: null == imageAsset ? _self.imageAsset : imageAsset // ignore: cast_nullable_to_non_nullable
@@ -1193,7 +1208,8 @@ as String,ambient: null == ambient ? _self.ambient : ambient // ignore: cast_nul
 as Ambient,ambientOrigin: freezed == ambientOrigin ? _self.ambientOrigin : ambientOrigin // ignore: cast_nullable_to_non_nullable
 as ({double x, double y})?,cues: null == cues ? _self.cues : cues // ignore: cast_nullable_to_non_nullable
 as List<StoryCue>,poses: null == poses ? _self.poses : poses // ignore: cast_nullable_to_non_nullable
-as Map<String, String>,
+as Map<String, String>,counted: freezed == counted ? _self.counted : counted // ignore: cast_nullable_to_non_nullable
+as ({String field, String? wait})?,
   ));
 }
 
@@ -1281,12 +1297,12 @@ return ending(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( String id,  String imageAsset,  String text,  String nextId,  String? offerRewindTo,  Ambient ambient,  AmbientOrigin? ambientOrigin,  List<StoryCue> cues,  Map<String, String> poses)?  scene,TResult Function( String id,  String imageAsset,  String text,  List<ChoiceOption> options,  Ambient ambient,  AmbientOrigin? ambientOrigin,  List<StoryCue> cues,  Map<String, String> poses)?  choice,TResult Function( String id,  String imageAsset,  String text,  String stickerAsset,  Ambient ambient,  AmbientOrigin? ambientOrigin,  List<StoryCue> cues,  Map<String, String> poses)?  ending,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( String id,  String imageAsset,  String text,  String nextId,  String? offerRewindTo,  Ambient ambient,  AmbientOrigin? ambientOrigin,  List<StoryCue> cues,  Map<String, String> poses,  Counted? counted)?  scene,TResult Function( String id,  String imageAsset,  String text,  List<ChoiceOption> options,  Ambient ambient,  AmbientOrigin? ambientOrigin,  List<StoryCue> cues,  Map<String, String> poses,  Counted? counted)?  choice,TResult Function( String id,  String imageAsset,  String text,  String stickerAsset,  Ambient ambient,  AmbientOrigin? ambientOrigin,  List<StoryCue> cues,  Map<String, String> poses,  Counted? counted)?  ending,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case SceneNode() when scene != null:
-return scene(_that.id,_that.imageAsset,_that.text,_that.nextId,_that.offerRewindTo,_that.ambient,_that.ambientOrigin,_that.cues,_that.poses);case ChoiceNode() when choice != null:
-return choice(_that.id,_that.imageAsset,_that.text,_that.options,_that.ambient,_that.ambientOrigin,_that.cues,_that.poses);case EndingNode() when ending != null:
-return ending(_that.id,_that.imageAsset,_that.text,_that.stickerAsset,_that.ambient,_that.ambientOrigin,_that.cues,_that.poses);case _:
+return scene(_that.id,_that.imageAsset,_that.text,_that.nextId,_that.offerRewindTo,_that.ambient,_that.ambientOrigin,_that.cues,_that.poses,_that.counted);case ChoiceNode() when choice != null:
+return choice(_that.id,_that.imageAsset,_that.text,_that.options,_that.ambient,_that.ambientOrigin,_that.cues,_that.poses,_that.counted);case EndingNode() when ending != null:
+return ending(_that.id,_that.imageAsset,_that.text,_that.stickerAsset,_that.ambient,_that.ambientOrigin,_that.cues,_that.poses,_that.counted);case _:
   return orElse();
 
 }
@@ -1304,12 +1320,12 @@ return ending(_that.id,_that.imageAsset,_that.text,_that.stickerAsset,_that.ambi
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( String id,  String imageAsset,  String text,  String nextId,  String? offerRewindTo,  Ambient ambient,  AmbientOrigin? ambientOrigin,  List<StoryCue> cues,  Map<String, String> poses)  scene,required TResult Function( String id,  String imageAsset,  String text,  List<ChoiceOption> options,  Ambient ambient,  AmbientOrigin? ambientOrigin,  List<StoryCue> cues,  Map<String, String> poses)  choice,required TResult Function( String id,  String imageAsset,  String text,  String stickerAsset,  Ambient ambient,  AmbientOrigin? ambientOrigin,  List<StoryCue> cues,  Map<String, String> poses)  ending,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( String id,  String imageAsset,  String text,  String nextId,  String? offerRewindTo,  Ambient ambient,  AmbientOrigin? ambientOrigin,  List<StoryCue> cues,  Map<String, String> poses,  Counted? counted)  scene,required TResult Function( String id,  String imageAsset,  String text,  List<ChoiceOption> options,  Ambient ambient,  AmbientOrigin? ambientOrigin,  List<StoryCue> cues,  Map<String, String> poses,  Counted? counted)  choice,required TResult Function( String id,  String imageAsset,  String text,  String stickerAsset,  Ambient ambient,  AmbientOrigin? ambientOrigin,  List<StoryCue> cues,  Map<String, String> poses,  Counted? counted)  ending,}) {final _that = this;
 switch (_that) {
 case SceneNode():
-return scene(_that.id,_that.imageAsset,_that.text,_that.nextId,_that.offerRewindTo,_that.ambient,_that.ambientOrigin,_that.cues,_that.poses);case ChoiceNode():
-return choice(_that.id,_that.imageAsset,_that.text,_that.options,_that.ambient,_that.ambientOrigin,_that.cues,_that.poses);case EndingNode():
-return ending(_that.id,_that.imageAsset,_that.text,_that.stickerAsset,_that.ambient,_that.ambientOrigin,_that.cues,_that.poses);}
+return scene(_that.id,_that.imageAsset,_that.text,_that.nextId,_that.offerRewindTo,_that.ambient,_that.ambientOrigin,_that.cues,_that.poses,_that.counted);case ChoiceNode():
+return choice(_that.id,_that.imageAsset,_that.text,_that.options,_that.ambient,_that.ambientOrigin,_that.cues,_that.poses,_that.counted);case EndingNode():
+return ending(_that.id,_that.imageAsset,_that.text,_that.stickerAsset,_that.ambient,_that.ambientOrigin,_that.cues,_that.poses,_that.counted);}
 }
 /// A variant of `when` that fallback to returning `null`
 ///
@@ -1323,12 +1339,12 @@ return ending(_that.id,_that.imageAsset,_that.text,_that.stickerAsset,_that.ambi
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( String id,  String imageAsset,  String text,  String nextId,  String? offerRewindTo,  Ambient ambient,  AmbientOrigin? ambientOrigin,  List<StoryCue> cues,  Map<String, String> poses)?  scene,TResult? Function( String id,  String imageAsset,  String text,  List<ChoiceOption> options,  Ambient ambient,  AmbientOrigin? ambientOrigin,  List<StoryCue> cues,  Map<String, String> poses)?  choice,TResult? Function( String id,  String imageAsset,  String text,  String stickerAsset,  Ambient ambient,  AmbientOrigin? ambientOrigin,  List<StoryCue> cues,  Map<String, String> poses)?  ending,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( String id,  String imageAsset,  String text,  String nextId,  String? offerRewindTo,  Ambient ambient,  AmbientOrigin? ambientOrigin,  List<StoryCue> cues,  Map<String, String> poses,  Counted? counted)?  scene,TResult? Function( String id,  String imageAsset,  String text,  List<ChoiceOption> options,  Ambient ambient,  AmbientOrigin? ambientOrigin,  List<StoryCue> cues,  Map<String, String> poses,  Counted? counted)?  choice,TResult? Function( String id,  String imageAsset,  String text,  String stickerAsset,  Ambient ambient,  AmbientOrigin? ambientOrigin,  List<StoryCue> cues,  Map<String, String> poses,  Counted? counted)?  ending,}) {final _that = this;
 switch (_that) {
 case SceneNode() when scene != null:
-return scene(_that.id,_that.imageAsset,_that.text,_that.nextId,_that.offerRewindTo,_that.ambient,_that.ambientOrigin,_that.cues,_that.poses);case ChoiceNode() when choice != null:
-return choice(_that.id,_that.imageAsset,_that.text,_that.options,_that.ambient,_that.ambientOrigin,_that.cues,_that.poses);case EndingNode() when ending != null:
-return ending(_that.id,_that.imageAsset,_that.text,_that.stickerAsset,_that.ambient,_that.ambientOrigin,_that.cues,_that.poses);case _:
+return scene(_that.id,_that.imageAsset,_that.text,_that.nextId,_that.offerRewindTo,_that.ambient,_that.ambientOrigin,_that.cues,_that.poses,_that.counted);case ChoiceNode() when choice != null:
+return choice(_that.id,_that.imageAsset,_that.text,_that.options,_that.ambient,_that.ambientOrigin,_that.cues,_that.poses,_that.counted);case EndingNode() when ending != null:
+return ending(_that.id,_that.imageAsset,_that.text,_that.stickerAsset,_that.ambient,_that.ambientOrigin,_that.cues,_that.poses,_that.counted);case _:
   return null;
 
 }
@@ -1340,7 +1356,7 @@ return ending(_that.id,_that.imageAsset,_that.text,_that.stickerAsset,_that.ambi
 
 
 class SceneNode implements StoryNode {
-  const SceneNode({required this.id, required this.imageAsset, required this.text, required this.nextId, this.offerRewindTo, this.ambient = Ambient.none, this.ambientOrigin, final  List<StoryCue> cues = const <StoryCue>[], final  Map<String, String> poses = const <String, String>{}}): _cues = cues,_poses = poses;
+  const SceneNode({required this.id, required this.imageAsset, required this.text, required this.nextId, this.offerRewindTo, this.ambient = Ambient.none, this.ambientOrigin, final  List<StoryCue> cues = const <StoryCue>[], final  Map<String, String> poses = const <String, String>{}, this.counted}): _cues = cues,_poses = poses;
   
 
 @override final  String id;
@@ -1366,6 +1382,8 @@ class SceneNode implements StoryNode {
   return EqualUnmodifiableMapView(_poses);
 }
 
+/// Math stories: counted objects shown (see [Counted]).
+@override final  Counted? counted;
 
 /// Create a copy of StoryNode
 /// with the given fields replaced by the non-null parameter values.
@@ -1377,16 +1395,16 @@ $SceneNodeCopyWith<SceneNode> get copyWith => _$SceneNodeCopyWithImpl<SceneNode>
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is SceneNode&&(identical(other.id, id) || other.id == id)&&(identical(other.imageAsset, imageAsset) || other.imageAsset == imageAsset)&&(identical(other.text, text) || other.text == text)&&(identical(other.nextId, nextId) || other.nextId == nextId)&&(identical(other.offerRewindTo, offerRewindTo) || other.offerRewindTo == offerRewindTo)&&(identical(other.ambient, ambient) || other.ambient == ambient)&&(identical(other.ambientOrigin, ambientOrigin) || other.ambientOrigin == ambientOrigin)&&const DeepCollectionEquality().equals(other._cues, _cues)&&const DeepCollectionEquality().equals(other._poses, _poses));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is SceneNode&&(identical(other.id, id) || other.id == id)&&(identical(other.imageAsset, imageAsset) || other.imageAsset == imageAsset)&&(identical(other.text, text) || other.text == text)&&(identical(other.nextId, nextId) || other.nextId == nextId)&&(identical(other.offerRewindTo, offerRewindTo) || other.offerRewindTo == offerRewindTo)&&(identical(other.ambient, ambient) || other.ambient == ambient)&&(identical(other.ambientOrigin, ambientOrigin) || other.ambientOrigin == ambientOrigin)&&const DeepCollectionEquality().equals(other._cues, _cues)&&const DeepCollectionEquality().equals(other._poses, _poses)&&(identical(other.counted, counted) || other.counted == counted));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,id,imageAsset,text,nextId,offerRewindTo,ambient,ambientOrigin,const DeepCollectionEquality().hash(_cues),const DeepCollectionEquality().hash(_poses));
+int get hashCode => Object.hash(runtimeType,id,imageAsset,text,nextId,offerRewindTo,ambient,ambientOrigin,const DeepCollectionEquality().hash(_cues),const DeepCollectionEquality().hash(_poses),counted);
 
 @override
 String toString() {
-  return 'StoryNode.scene(id: $id, imageAsset: $imageAsset, text: $text, nextId: $nextId, offerRewindTo: $offerRewindTo, ambient: $ambient, ambientOrigin: $ambientOrigin, cues: $cues, poses: $poses)';
+  return 'StoryNode.scene(id: $id, imageAsset: $imageAsset, text: $text, nextId: $nextId, offerRewindTo: $offerRewindTo, ambient: $ambient, ambientOrigin: $ambientOrigin, cues: $cues, poses: $poses, counted: $counted)';
 }
 
 
@@ -1397,7 +1415,7 @@ abstract mixin class $SceneNodeCopyWith<$Res> implements $StoryNodeCopyWith<$Res
   factory $SceneNodeCopyWith(SceneNode value, $Res Function(SceneNode) _then) = _$SceneNodeCopyWithImpl;
 @override @useResult
 $Res call({
- String id, String imageAsset, String text, String nextId, String? offerRewindTo, Ambient ambient, AmbientOrigin? ambientOrigin, List<StoryCue> cues, Map<String, String> poses
+ String id, String imageAsset, String text, String nextId, String? offerRewindTo, Ambient ambient, AmbientOrigin? ambientOrigin, List<StoryCue> cues, Map<String, String> poses, Counted? counted
 });
 
 
@@ -1414,7 +1432,7 @@ class _$SceneNodeCopyWithImpl<$Res>
 
 /// Create a copy of StoryNode
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? imageAsset = null,Object? text = null,Object? nextId = null,Object? offerRewindTo = freezed,Object? ambient = null,Object? ambientOrigin = freezed,Object? cues = null,Object? poses = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? imageAsset = null,Object? text = null,Object? nextId = null,Object? offerRewindTo = freezed,Object? ambient = null,Object? ambientOrigin = freezed,Object? cues = null,Object? poses = null,Object? counted = freezed,}) {
   return _then(SceneNode(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String,imageAsset: null == imageAsset ? _self.imageAsset : imageAsset // ignore: cast_nullable_to_non_nullable
@@ -1425,7 +1443,8 @@ as String?,ambient: null == ambient ? _self.ambient : ambient // ignore: cast_nu
 as Ambient,ambientOrigin: freezed == ambientOrigin ? _self.ambientOrigin : ambientOrigin // ignore: cast_nullable_to_non_nullable
 as AmbientOrigin?,cues: null == cues ? _self._cues : cues // ignore: cast_nullable_to_non_nullable
 as List<StoryCue>,poses: null == poses ? _self._poses : poses // ignore: cast_nullable_to_non_nullable
-as Map<String, String>,
+as Map<String, String>,counted: freezed == counted ? _self.counted : counted // ignore: cast_nullable_to_non_nullable
+as Counted?,
   ));
 }
 
@@ -1436,7 +1455,7 @@ as Map<String, String>,
 
 
 class ChoiceNode implements StoryNode {
-  const ChoiceNode({required this.id, required this.imageAsset, required this.text, required final  List<ChoiceOption> options, this.ambient = Ambient.none, this.ambientOrigin, final  List<StoryCue> cues = const <StoryCue>[], final  Map<String, String> poses = const <String, String>{}}): _options = options,_cues = cues,_poses = poses;
+  const ChoiceNode({required this.id, required this.imageAsset, required this.text, required final  List<ChoiceOption> options, this.ambient = Ambient.none, this.ambientOrigin, final  List<StoryCue> cues = const <StoryCue>[], final  Map<String, String> poses = const <String, String>{}, this.counted}): _options = options,_cues = cues,_poses = poses;
   
 
 @override final  String id;
@@ -1467,6 +1486,8 @@ class ChoiceNode implements StoryNode {
   return EqualUnmodifiableMapView(_poses);
 }
 
+/// Math stories: counted objects shown (see [Counted]).
+@override final  Counted? counted;
 
 /// Create a copy of StoryNode
 /// with the given fields replaced by the non-null parameter values.
@@ -1478,16 +1499,16 @@ $ChoiceNodeCopyWith<ChoiceNode> get copyWith => _$ChoiceNodeCopyWithImpl<ChoiceN
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is ChoiceNode&&(identical(other.id, id) || other.id == id)&&(identical(other.imageAsset, imageAsset) || other.imageAsset == imageAsset)&&(identical(other.text, text) || other.text == text)&&const DeepCollectionEquality().equals(other._options, _options)&&(identical(other.ambient, ambient) || other.ambient == ambient)&&(identical(other.ambientOrigin, ambientOrigin) || other.ambientOrigin == ambientOrigin)&&const DeepCollectionEquality().equals(other._cues, _cues)&&const DeepCollectionEquality().equals(other._poses, _poses));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is ChoiceNode&&(identical(other.id, id) || other.id == id)&&(identical(other.imageAsset, imageAsset) || other.imageAsset == imageAsset)&&(identical(other.text, text) || other.text == text)&&const DeepCollectionEquality().equals(other._options, _options)&&(identical(other.ambient, ambient) || other.ambient == ambient)&&(identical(other.ambientOrigin, ambientOrigin) || other.ambientOrigin == ambientOrigin)&&const DeepCollectionEquality().equals(other._cues, _cues)&&const DeepCollectionEquality().equals(other._poses, _poses)&&(identical(other.counted, counted) || other.counted == counted));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,id,imageAsset,text,const DeepCollectionEquality().hash(_options),ambient,ambientOrigin,const DeepCollectionEquality().hash(_cues),const DeepCollectionEquality().hash(_poses));
+int get hashCode => Object.hash(runtimeType,id,imageAsset,text,const DeepCollectionEquality().hash(_options),ambient,ambientOrigin,const DeepCollectionEquality().hash(_cues),const DeepCollectionEquality().hash(_poses),counted);
 
 @override
 String toString() {
-  return 'StoryNode.choice(id: $id, imageAsset: $imageAsset, text: $text, options: $options, ambient: $ambient, ambientOrigin: $ambientOrigin, cues: $cues, poses: $poses)';
+  return 'StoryNode.choice(id: $id, imageAsset: $imageAsset, text: $text, options: $options, ambient: $ambient, ambientOrigin: $ambientOrigin, cues: $cues, poses: $poses, counted: $counted)';
 }
 
 
@@ -1498,7 +1519,7 @@ abstract mixin class $ChoiceNodeCopyWith<$Res> implements $StoryNodeCopyWith<$Re
   factory $ChoiceNodeCopyWith(ChoiceNode value, $Res Function(ChoiceNode) _then) = _$ChoiceNodeCopyWithImpl;
 @override @useResult
 $Res call({
- String id, String imageAsset, String text, List<ChoiceOption> options, Ambient ambient, AmbientOrigin? ambientOrigin, List<StoryCue> cues, Map<String, String> poses
+ String id, String imageAsset, String text, List<ChoiceOption> options, Ambient ambient, AmbientOrigin? ambientOrigin, List<StoryCue> cues, Map<String, String> poses, Counted? counted
 });
 
 
@@ -1515,7 +1536,7 @@ class _$ChoiceNodeCopyWithImpl<$Res>
 
 /// Create a copy of StoryNode
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? imageAsset = null,Object? text = null,Object? options = null,Object? ambient = null,Object? ambientOrigin = freezed,Object? cues = null,Object? poses = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? imageAsset = null,Object? text = null,Object? options = null,Object? ambient = null,Object? ambientOrigin = freezed,Object? cues = null,Object? poses = null,Object? counted = freezed,}) {
   return _then(ChoiceNode(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String,imageAsset: null == imageAsset ? _self.imageAsset : imageAsset // ignore: cast_nullable_to_non_nullable
@@ -1525,7 +1546,8 @@ as List<ChoiceOption>,ambient: null == ambient ? _self.ambient : ambient // igno
 as Ambient,ambientOrigin: freezed == ambientOrigin ? _self.ambientOrigin : ambientOrigin // ignore: cast_nullable_to_non_nullable
 as AmbientOrigin?,cues: null == cues ? _self._cues : cues // ignore: cast_nullable_to_non_nullable
 as List<StoryCue>,poses: null == poses ? _self._poses : poses // ignore: cast_nullable_to_non_nullable
-as Map<String, String>,
+as Map<String, String>,counted: freezed == counted ? _self.counted : counted // ignore: cast_nullable_to_non_nullable
+as Counted?,
   ));
 }
 
@@ -1536,7 +1558,7 @@ as Map<String, String>,
 
 
 class EndingNode implements StoryNode {
-  const EndingNode({required this.id, required this.imageAsset, required this.text, required this.stickerAsset, this.ambient = Ambient.none, this.ambientOrigin, final  List<StoryCue> cues = const <StoryCue>[], final  Map<String, String> poses = const <String, String>{}}): _cues = cues,_poses = poses;
+  const EndingNode({required this.id, required this.imageAsset, required this.text, required this.stickerAsset, this.ambient = Ambient.none, this.ambientOrigin, final  List<StoryCue> cues = const <StoryCue>[], final  Map<String, String> poses = const <String, String>{}, this.counted}): _cues = cues,_poses = poses;
   
 
 @override final  String id;
@@ -1561,6 +1583,8 @@ class EndingNode implements StoryNode {
   return EqualUnmodifiableMapView(_poses);
 }
 
+/// Math stories: counted objects shown (see [Counted]).
+@override final  Counted? counted;
 
 /// Create a copy of StoryNode
 /// with the given fields replaced by the non-null parameter values.
@@ -1572,16 +1596,16 @@ $EndingNodeCopyWith<EndingNode> get copyWith => _$EndingNodeCopyWithImpl<EndingN
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is EndingNode&&(identical(other.id, id) || other.id == id)&&(identical(other.imageAsset, imageAsset) || other.imageAsset == imageAsset)&&(identical(other.text, text) || other.text == text)&&(identical(other.stickerAsset, stickerAsset) || other.stickerAsset == stickerAsset)&&(identical(other.ambient, ambient) || other.ambient == ambient)&&(identical(other.ambientOrigin, ambientOrigin) || other.ambientOrigin == ambientOrigin)&&const DeepCollectionEquality().equals(other._cues, _cues)&&const DeepCollectionEquality().equals(other._poses, _poses));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is EndingNode&&(identical(other.id, id) || other.id == id)&&(identical(other.imageAsset, imageAsset) || other.imageAsset == imageAsset)&&(identical(other.text, text) || other.text == text)&&(identical(other.stickerAsset, stickerAsset) || other.stickerAsset == stickerAsset)&&(identical(other.ambient, ambient) || other.ambient == ambient)&&(identical(other.ambientOrigin, ambientOrigin) || other.ambientOrigin == ambientOrigin)&&const DeepCollectionEquality().equals(other._cues, _cues)&&const DeepCollectionEquality().equals(other._poses, _poses)&&(identical(other.counted, counted) || other.counted == counted));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,id,imageAsset,text,stickerAsset,ambient,ambientOrigin,const DeepCollectionEquality().hash(_cues),const DeepCollectionEquality().hash(_poses));
+int get hashCode => Object.hash(runtimeType,id,imageAsset,text,stickerAsset,ambient,ambientOrigin,const DeepCollectionEquality().hash(_cues),const DeepCollectionEquality().hash(_poses),counted);
 
 @override
 String toString() {
-  return 'StoryNode.ending(id: $id, imageAsset: $imageAsset, text: $text, stickerAsset: $stickerAsset, ambient: $ambient, ambientOrigin: $ambientOrigin, cues: $cues, poses: $poses)';
+  return 'StoryNode.ending(id: $id, imageAsset: $imageAsset, text: $text, stickerAsset: $stickerAsset, ambient: $ambient, ambientOrigin: $ambientOrigin, cues: $cues, poses: $poses, counted: $counted)';
 }
 
 
@@ -1592,7 +1616,7 @@ abstract mixin class $EndingNodeCopyWith<$Res> implements $StoryNodeCopyWith<$Re
   factory $EndingNodeCopyWith(EndingNode value, $Res Function(EndingNode) _then) = _$EndingNodeCopyWithImpl;
 @override @useResult
 $Res call({
- String id, String imageAsset, String text, String stickerAsset, Ambient ambient, AmbientOrigin? ambientOrigin, List<StoryCue> cues, Map<String, String> poses
+ String id, String imageAsset, String text, String stickerAsset, Ambient ambient, AmbientOrigin? ambientOrigin, List<StoryCue> cues, Map<String, String> poses, Counted? counted
 });
 
 
@@ -1609,7 +1633,7 @@ class _$EndingNodeCopyWithImpl<$Res>
 
 /// Create a copy of StoryNode
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? imageAsset = null,Object? text = null,Object? stickerAsset = null,Object? ambient = null,Object? ambientOrigin = freezed,Object? cues = null,Object? poses = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? imageAsset = null,Object? text = null,Object? stickerAsset = null,Object? ambient = null,Object? ambientOrigin = freezed,Object? cues = null,Object? poses = null,Object? counted = freezed,}) {
   return _then(EndingNode(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String,imageAsset: null == imageAsset ? _self.imageAsset : imageAsset // ignore: cast_nullable_to_non_nullable
@@ -1619,7 +1643,8 @@ as String,ambient: null == ambient ? _self.ambient : ambient // ignore: cast_nul
 as Ambient,ambientOrigin: freezed == ambientOrigin ? _self.ambientOrigin : ambientOrigin // ignore: cast_nullable_to_non_nullable
 as AmbientOrigin?,cues: null == cues ? _self._cues : cues // ignore: cast_nullable_to_non_nullable
 as List<StoryCue>,poses: null == poses ? _self._poses : poses // ignore: cast_nullable_to_non_nullable
-as Map<String, String>,
+as Map<String, String>,counted: freezed == counted ? _self.counted : counted // ignore: cast_nullable_to_non_nullable
+as Counted?,
   ));
 }
 
@@ -1629,10 +1654,12 @@ as Map<String, String>,
 /// @nodoc
 mixin _$Story {
 
- String get id; String get theme; AppLanguage get language; StoryHero get hero; String get title; String get coverAsset; String get startId; Map<String, StoryNode> get nodes; String get audioDir;/// Layered pictures keyed by node `imageAsset`. Pictures not in here
+ String get id; String get theme; StorySection get section; AppLanguage get language; StoryHero get hero; String get title; String get coverAsset; String get startId; Map<String, StoryNode> get nodes; String get audioDir;/// Layered pictures keyed by node `imageAsset`. Pictures not in here
 /// are drawn flat.
  Map<String, List<SceneLayer>> get layers;/// Tappable areas of flat pictures, keyed by node `imageAsset`.
- Map<String, List<SceneHotspot>> get hotspots;
+ Map<String, List<SceneHotspot>> get hotspots;/// Math stories: numbers drawn per play (see `docs/math.md`).
+ MathSpec? get math;/// This play's numbers (empty until [withNumbers]).
+ Map<String, int> get values;
 /// Create a copy of Story
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -1643,16 +1670,16 @@ $StoryCopyWith<Story> get copyWith => _$StoryCopyWithImpl<Story>(this as Story, 
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is Story&&(identical(other.id, id) || other.id == id)&&(identical(other.theme, theme) || other.theme == theme)&&(identical(other.language, language) || other.language == language)&&(identical(other.hero, hero) || other.hero == hero)&&(identical(other.title, title) || other.title == title)&&(identical(other.coverAsset, coverAsset) || other.coverAsset == coverAsset)&&(identical(other.startId, startId) || other.startId == startId)&&const DeepCollectionEquality().equals(other.nodes, nodes)&&(identical(other.audioDir, audioDir) || other.audioDir == audioDir)&&const DeepCollectionEquality().equals(other.layers, layers)&&const DeepCollectionEquality().equals(other.hotspots, hotspots));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is Story&&(identical(other.id, id) || other.id == id)&&(identical(other.theme, theme) || other.theme == theme)&&(identical(other.section, section) || other.section == section)&&(identical(other.language, language) || other.language == language)&&(identical(other.hero, hero) || other.hero == hero)&&(identical(other.title, title) || other.title == title)&&(identical(other.coverAsset, coverAsset) || other.coverAsset == coverAsset)&&(identical(other.startId, startId) || other.startId == startId)&&const DeepCollectionEquality().equals(other.nodes, nodes)&&(identical(other.audioDir, audioDir) || other.audioDir == audioDir)&&const DeepCollectionEquality().equals(other.layers, layers)&&const DeepCollectionEquality().equals(other.hotspots, hotspots)&&(identical(other.math, math) || other.math == math)&&const DeepCollectionEquality().equals(other.values, values));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,id,theme,language,hero,title,coverAsset,startId,const DeepCollectionEquality().hash(nodes),audioDir,const DeepCollectionEquality().hash(layers),const DeepCollectionEquality().hash(hotspots));
+int get hashCode => Object.hash(runtimeType,id,theme,section,language,hero,title,coverAsset,startId,const DeepCollectionEquality().hash(nodes),audioDir,const DeepCollectionEquality().hash(layers),const DeepCollectionEquality().hash(hotspots),math,const DeepCollectionEquality().hash(values));
 
 @override
 String toString() {
-  return 'Story(id: $id, theme: $theme, language: $language, hero: $hero, title: $title, coverAsset: $coverAsset, startId: $startId, nodes: $nodes, audioDir: $audioDir, layers: $layers, hotspots: $hotspots)';
+  return 'Story(id: $id, theme: $theme, section: $section, language: $language, hero: $hero, title: $title, coverAsset: $coverAsset, startId: $startId, nodes: $nodes, audioDir: $audioDir, layers: $layers, hotspots: $hotspots, math: $math, values: $values)';
 }
 
 
@@ -1663,7 +1690,7 @@ abstract mixin class $StoryCopyWith<$Res>  {
   factory $StoryCopyWith(Story value, $Res Function(Story) _then) = _$StoryCopyWithImpl;
 @useResult
 $Res call({
- String id, String theme, AppLanguage language, StoryHero hero, String title, String coverAsset, String startId, Map<String, StoryNode> nodes, String audioDir, Map<String, List<SceneLayer>> layers, Map<String, List<SceneHotspot>> hotspots
+ String id, String theme, StorySection section, AppLanguage language, StoryHero hero, String title, String coverAsset, String startId, Map<String, StoryNode> nodes, String audioDir, Map<String, List<SceneLayer>> layers, Map<String, List<SceneHotspot>> hotspots, MathSpec? math, Map<String, int> values
 });
 
 
@@ -1680,11 +1707,12 @@ class _$StoryCopyWithImpl<$Res>
 
 /// Create a copy of Story
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? theme = null,Object? language = null,Object? hero = null,Object? title = null,Object? coverAsset = null,Object? startId = null,Object? nodes = null,Object? audioDir = null,Object? layers = null,Object? hotspots = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? theme = null,Object? section = null,Object? language = null,Object? hero = null,Object? title = null,Object? coverAsset = null,Object? startId = null,Object? nodes = null,Object? audioDir = null,Object? layers = null,Object? hotspots = null,Object? math = freezed,Object? values = null,}) {
   return _then(_self.copyWith(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String,theme: null == theme ? _self.theme : theme // ignore: cast_nullable_to_non_nullable
-as String,language: null == language ? _self.language : language // ignore: cast_nullable_to_non_nullable
+as String,section: null == section ? _self.section : section // ignore: cast_nullable_to_non_nullable
+as StorySection,language: null == language ? _self.language : language // ignore: cast_nullable_to_non_nullable
 as AppLanguage,hero: null == hero ? _self.hero : hero // ignore: cast_nullable_to_non_nullable
 as StoryHero,title: null == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
 as String,coverAsset: null == coverAsset ? _self.coverAsset : coverAsset // ignore: cast_nullable_to_non_nullable
@@ -1693,7 +1721,9 @@ as String,nodes: null == nodes ? _self.nodes : nodes // ignore: cast_nullable_to
 as Map<String, StoryNode>,audioDir: null == audioDir ? _self.audioDir : audioDir // ignore: cast_nullable_to_non_nullable
 as String,layers: null == layers ? _self.layers : layers // ignore: cast_nullable_to_non_nullable
 as Map<String, List<SceneLayer>>,hotspots: null == hotspots ? _self.hotspots : hotspots // ignore: cast_nullable_to_non_nullable
-as Map<String, List<SceneHotspot>>,
+as Map<String, List<SceneHotspot>>,math: freezed == math ? _self.math : math // ignore: cast_nullable_to_non_nullable
+as MathSpec?,values: null == values ? _self.values : values // ignore: cast_nullable_to_non_nullable
+as Map<String, int>,
   ));
 }
 
@@ -1778,10 +1808,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String id,  String theme,  AppLanguage language,  StoryHero hero,  String title,  String coverAsset,  String startId,  Map<String, StoryNode> nodes,  String audioDir,  Map<String, List<SceneLayer>> layers,  Map<String, List<SceneHotspot>> hotspots)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String id,  String theme,  StorySection section,  AppLanguage language,  StoryHero hero,  String title,  String coverAsset,  String startId,  Map<String, StoryNode> nodes,  String audioDir,  Map<String, List<SceneLayer>> layers,  Map<String, List<SceneHotspot>> hotspots,  MathSpec? math,  Map<String, int> values)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _Story() when $default != null:
-return $default(_that.id,_that.theme,_that.language,_that.hero,_that.title,_that.coverAsset,_that.startId,_that.nodes,_that.audioDir,_that.layers,_that.hotspots);case _:
+return $default(_that.id,_that.theme,_that.section,_that.language,_that.hero,_that.title,_that.coverAsset,_that.startId,_that.nodes,_that.audioDir,_that.layers,_that.hotspots,_that.math,_that.values);case _:
   return orElse();
 
 }
@@ -1799,10 +1829,10 @@ return $default(_that.id,_that.theme,_that.language,_that.hero,_that.title,_that
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String id,  String theme,  AppLanguage language,  StoryHero hero,  String title,  String coverAsset,  String startId,  Map<String, StoryNode> nodes,  String audioDir,  Map<String, List<SceneLayer>> layers,  Map<String, List<SceneHotspot>> hotspots)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String id,  String theme,  StorySection section,  AppLanguage language,  StoryHero hero,  String title,  String coverAsset,  String startId,  Map<String, StoryNode> nodes,  String audioDir,  Map<String, List<SceneLayer>> layers,  Map<String, List<SceneHotspot>> hotspots,  MathSpec? math,  Map<String, int> values)  $default,) {final _that = this;
 switch (_that) {
 case _Story():
-return $default(_that.id,_that.theme,_that.language,_that.hero,_that.title,_that.coverAsset,_that.startId,_that.nodes,_that.audioDir,_that.layers,_that.hotspots);case _:
+return $default(_that.id,_that.theme,_that.section,_that.language,_that.hero,_that.title,_that.coverAsset,_that.startId,_that.nodes,_that.audioDir,_that.layers,_that.hotspots,_that.math,_that.values);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -1819,10 +1849,10 @@ return $default(_that.id,_that.theme,_that.language,_that.hero,_that.title,_that
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String id,  String theme,  AppLanguage language,  StoryHero hero,  String title,  String coverAsset,  String startId,  Map<String, StoryNode> nodes,  String audioDir,  Map<String, List<SceneLayer>> layers,  Map<String, List<SceneHotspot>> hotspots)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String id,  String theme,  StorySection section,  AppLanguage language,  StoryHero hero,  String title,  String coverAsset,  String startId,  Map<String, StoryNode> nodes,  String audioDir,  Map<String, List<SceneLayer>> layers,  Map<String, List<SceneHotspot>> hotspots,  MathSpec? math,  Map<String, int> values)?  $default,) {final _that = this;
 switch (_that) {
 case _Story() when $default != null:
-return $default(_that.id,_that.theme,_that.language,_that.hero,_that.title,_that.coverAsset,_that.startId,_that.nodes,_that.audioDir,_that.layers,_that.hotspots);case _:
+return $default(_that.id,_that.theme,_that.section,_that.language,_that.hero,_that.title,_that.coverAsset,_that.startId,_that.nodes,_that.audioDir,_that.layers,_that.hotspots,_that.math,_that.values);case _:
   return null;
 
 }
@@ -1834,11 +1864,12 @@ return $default(_that.id,_that.theme,_that.language,_that.hero,_that.title,_that
 
 
 class _Story extends Story {
-  const _Story({required this.id, required this.theme, required this.language, required this.hero, required this.title, required this.coverAsset, required this.startId, required final  Map<String, StoryNode> nodes, required this.audioDir, final  Map<String, List<SceneLayer>> layers = const <String, List<SceneLayer>>{}, final  Map<String, List<SceneHotspot>> hotspots = const <String, List<SceneHotspot>>{}}): _nodes = nodes,_layers = layers,_hotspots = hotspots,super._();
+  const _Story({required this.id, required this.theme, this.section = StorySection.behavior, required this.language, required this.hero, required this.title, required this.coverAsset, required this.startId, required final  Map<String, StoryNode> nodes, required this.audioDir, final  Map<String, List<SceneLayer>> layers = const <String, List<SceneLayer>>{}, final  Map<String, List<SceneHotspot>> hotspots = const <String, List<SceneHotspot>>{}, this.math, final  Map<String, int> values = const <String, int>{}}): _nodes = nodes,_layers = layers,_hotspots = hotspots,_values = values,super._();
   
 
 @override final  String id;
 @override final  String theme;
+@override@JsonKey() final  StorySection section;
 @override final  AppLanguage language;
 @override final  StoryHero hero;
 @override final  String title;
@@ -1872,6 +1903,17 @@ class _Story extends Story {
   return EqualUnmodifiableMapView(_hotspots);
 }
 
+/// Math stories: numbers drawn per play (see `docs/math.md`).
+@override final  MathSpec? math;
+/// This play's numbers (empty until [withNumbers]).
+ final  Map<String, int> _values;
+/// This play's numbers (empty until [withNumbers]).
+@override@JsonKey() Map<String, int> get values {
+  if (_values is EqualUnmodifiableMapView) return _values;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableMapView(_values);
+}
+
 
 /// Create a copy of Story
 /// with the given fields replaced by the non-null parameter values.
@@ -1883,16 +1925,16 @@ _$StoryCopyWith<_Story> get copyWith => __$StoryCopyWithImpl<_Story>(this, _$ide
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Story&&(identical(other.id, id) || other.id == id)&&(identical(other.theme, theme) || other.theme == theme)&&(identical(other.language, language) || other.language == language)&&(identical(other.hero, hero) || other.hero == hero)&&(identical(other.title, title) || other.title == title)&&(identical(other.coverAsset, coverAsset) || other.coverAsset == coverAsset)&&(identical(other.startId, startId) || other.startId == startId)&&const DeepCollectionEquality().equals(other._nodes, _nodes)&&(identical(other.audioDir, audioDir) || other.audioDir == audioDir)&&const DeepCollectionEquality().equals(other._layers, _layers)&&const DeepCollectionEquality().equals(other._hotspots, _hotspots));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Story&&(identical(other.id, id) || other.id == id)&&(identical(other.theme, theme) || other.theme == theme)&&(identical(other.section, section) || other.section == section)&&(identical(other.language, language) || other.language == language)&&(identical(other.hero, hero) || other.hero == hero)&&(identical(other.title, title) || other.title == title)&&(identical(other.coverAsset, coverAsset) || other.coverAsset == coverAsset)&&(identical(other.startId, startId) || other.startId == startId)&&const DeepCollectionEquality().equals(other._nodes, _nodes)&&(identical(other.audioDir, audioDir) || other.audioDir == audioDir)&&const DeepCollectionEquality().equals(other._layers, _layers)&&const DeepCollectionEquality().equals(other._hotspots, _hotspots)&&(identical(other.math, math) || other.math == math)&&const DeepCollectionEquality().equals(other._values, _values));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,id,theme,language,hero,title,coverAsset,startId,const DeepCollectionEquality().hash(_nodes),audioDir,const DeepCollectionEquality().hash(_layers),const DeepCollectionEquality().hash(_hotspots));
+int get hashCode => Object.hash(runtimeType,id,theme,section,language,hero,title,coverAsset,startId,const DeepCollectionEquality().hash(_nodes),audioDir,const DeepCollectionEquality().hash(_layers),const DeepCollectionEquality().hash(_hotspots),math,const DeepCollectionEquality().hash(_values));
 
 @override
 String toString() {
-  return 'Story(id: $id, theme: $theme, language: $language, hero: $hero, title: $title, coverAsset: $coverAsset, startId: $startId, nodes: $nodes, audioDir: $audioDir, layers: $layers, hotspots: $hotspots)';
+  return 'Story(id: $id, theme: $theme, section: $section, language: $language, hero: $hero, title: $title, coverAsset: $coverAsset, startId: $startId, nodes: $nodes, audioDir: $audioDir, layers: $layers, hotspots: $hotspots, math: $math, values: $values)';
 }
 
 
@@ -1903,7 +1945,7 @@ abstract mixin class _$StoryCopyWith<$Res> implements $StoryCopyWith<$Res> {
   factory _$StoryCopyWith(_Story value, $Res Function(_Story) _then) = __$StoryCopyWithImpl;
 @override @useResult
 $Res call({
- String id, String theme, AppLanguage language, StoryHero hero, String title, String coverAsset, String startId, Map<String, StoryNode> nodes, String audioDir, Map<String, List<SceneLayer>> layers, Map<String, List<SceneHotspot>> hotspots
+ String id, String theme, StorySection section, AppLanguage language, StoryHero hero, String title, String coverAsset, String startId, Map<String, StoryNode> nodes, String audioDir, Map<String, List<SceneLayer>> layers, Map<String, List<SceneHotspot>> hotspots, MathSpec? math, Map<String, int> values
 });
 
 
@@ -1920,11 +1962,12 @@ class __$StoryCopyWithImpl<$Res>
 
 /// Create a copy of Story
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? theme = null,Object? language = null,Object? hero = null,Object? title = null,Object? coverAsset = null,Object? startId = null,Object? nodes = null,Object? audioDir = null,Object? layers = null,Object? hotspots = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? theme = null,Object? section = null,Object? language = null,Object? hero = null,Object? title = null,Object? coverAsset = null,Object? startId = null,Object? nodes = null,Object? audioDir = null,Object? layers = null,Object? hotspots = null,Object? math = freezed,Object? values = null,}) {
   return _then(_Story(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String,theme: null == theme ? _self.theme : theme // ignore: cast_nullable_to_non_nullable
-as String,language: null == language ? _self.language : language // ignore: cast_nullable_to_non_nullable
+as String,section: null == section ? _self.section : section // ignore: cast_nullable_to_non_nullable
+as StorySection,language: null == language ? _self.language : language // ignore: cast_nullable_to_non_nullable
 as AppLanguage,hero: null == hero ? _self.hero : hero // ignore: cast_nullable_to_non_nullable
 as StoryHero,title: null == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
 as String,coverAsset: null == coverAsset ? _self.coverAsset : coverAsset // ignore: cast_nullable_to_non_nullable
@@ -1933,7 +1976,9 @@ as String,nodes: null == nodes ? _self._nodes : nodes // ignore: cast_nullable_t
 as Map<String, StoryNode>,audioDir: null == audioDir ? _self.audioDir : audioDir // ignore: cast_nullable_to_non_nullable
 as String,layers: null == layers ? _self._layers : layers // ignore: cast_nullable_to_non_nullable
 as Map<String, List<SceneLayer>>,hotspots: null == hotspots ? _self._hotspots : hotspots // ignore: cast_nullable_to_non_nullable
-as Map<String, List<SceneHotspot>>,
+as Map<String, List<SceneHotspot>>,math: freezed == math ? _self.math : math // ignore: cast_nullable_to_non_nullable
+as MathSpec?,values: null == values ? _self._values : values // ignore: cast_nullable_to_non_nullable
+as Map<String, int>,
   ));
 }
 

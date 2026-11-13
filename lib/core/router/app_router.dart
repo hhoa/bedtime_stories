@@ -1,6 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/widgets.dart';
 import 'package:go_router/go_router.dart';
+import 'package:bedtime_stories/core/models/story_section.dart';
 import 'package:bedtime_stories/core/router/app_routes.dart';
 import 'package:bedtime_stories/core/services/analytics.dart';
 import 'package:bedtime_stories/core/services/name_voice.dart';
@@ -15,6 +16,8 @@ import 'package:bedtime_stories/features/profile/presentation/cubit/profile_cubi
 import 'package:bedtime_stories/features/profile/presentation/cubit/welcome_cubit.dart';
 import 'package:bedtime_stories/features/profile/presentation/profile_screen.dart';
 import 'package:bedtime_stories/features/profile/presentation/welcome_screen.dart';
+import 'package:bedtime_stories/features/sections/presentation/cubit/sections_cubit.dart';
+import 'package:bedtime_stories/features/sections/presentation/sections_screen.dart';
 import 'package:bedtime_stories/features/stories/domain/repositories/story_repository.dart';
 import 'package:bedtime_stories/features/stories/presentation/cubit/story_list_cubit.dart';
 import 'package:bedtime_stories/features/stories/presentation/home_screen.dart';
@@ -52,10 +55,26 @@ GoRouter createRouter({
         path: AppRoutes.home,
         builder: (context, state) => BlocProvider(
           create: (_) =>
-              StoryListCubit(repository: storyRepository)
-                ..load(languageCubit.state),
-          child: const HomeScreen(),
+              SectionsCubit(narrator: createNarrator(), analytics: analytics),
+          child: const SectionsScreen(),
         ),
+      ),
+      GoRoute(
+        path: AppRoutes.sectionPattern,
+        // Unknown section (old link, typo): back to the sections page.
+        redirect: (context, state) =>
+            _section(state.pathParameters['section']) == null
+            ? AppRoutes.home
+            : null,
+        builder: (context, state) {
+          final section = _section(state.pathParameters['section'])!;
+          return BlocProvider(
+            create: (_) =>
+                StoryListCubit(repository: storyRepository, section: section)
+                  ..load(languageCubit.state),
+            child: HomeScreen(section: section),
+          );
+        },
       ),
       GoRoute(
         path: AppRoutes.profile,
@@ -105,3 +124,6 @@ GoRouter createRouter({
     ],
   );
 }
+
+StorySection? _section(String? name) =>
+    StorySection.values.where((s) => s.name == name).firstOrNull;

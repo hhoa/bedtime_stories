@@ -20,7 +20,10 @@ final class AssetStoryRepository implements StoryRepository {
   final Map<String, Story> _cache = {};
 
   @override
-  Future<Either<Failure, List<Story>>> getStories(AppLanguage language) async {
+  Future<Either<Failure, List<Story>>> getStories(
+    AppLanguage language, {
+    StorySection? section,
+  }) async {
     final List<String> ids;
     try {
       final raw = await _bundle.loadString(AppConstants.storyIndexAsset);
@@ -37,7 +40,9 @@ final class AssetStoryRepository implements StoryRepository {
       // Skip broken stories rather than hiding all of them.
       result.fold(
         (f) => log('skip $id: ${f.message}', name: 'AssetStoryRepository'),
-        stories.add,
+        (story) {
+          if (section == null || story.section == section) stories.add(story);
+        },
       );
     }
     return Right(stories);

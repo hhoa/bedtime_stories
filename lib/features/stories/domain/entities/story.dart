@@ -1,6 +1,13 @@
+import 'dart:math';
+
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:bedtime_stories/core/models/child_profile.dart';
+import 'package:bedtime_stories/core/models/story_section.dart';
 import 'package:bedtime_stories/core/utils/app_constants.dart';
+import 'package:bedtime_stories/features/stories/domain/entities/math.dart';
+
+export 'package:bedtime_stories/core/models/story_section.dart';
+export 'package:bedtime_stories/features/stories/domain/entities/math.dart';
 
 part 'story.freezed.dart';
 
@@ -64,17 +71,25 @@ enum PartIdle { breathe, float, sway, glow, none }
 
 /// One-shot motion of a picture part: on tap or on a narration cue.
 /// [pose] and [move] are cue-only: switch to another pose picture, or
-/// travel to a new spot, and hold until the next node.
+/// travel to a new spot, and hold until the next node. [arrive] (math
+/// stories, part = the counter) sends every waiting object to its field
+/// spot, one after another.
 enum PartAction {
   hop,
   wiggle,
   pulse,
   pose,
-  move;
+  move,
+  arrive;
 
-  /// Can be a layer's `tap` reaction (pose and move need cue data).
-  bool get isTapReaction => this != pose && this != move;
+  /// Can be a layer's `tap` reaction (pose, move, arrive need cue data).
+  bool get isTapReaction => this != pose && this != move && this != arrive;
 }
+
+/// Math stories: which counted objects a node shows. Objects 1…[field] stand
+/// on their field spots, the next [wait] on the waiting spots; the rest are
+/// hidden. Both are expressions over the story's numbers.
+typedef Counted = ({String field, String? wait});
 
 /// Pose name of a layer's own picture ([SceneLayer.asset]).
 const defaultPose = 'default';
@@ -194,6 +209,29 @@ final class ClipPart extends NarrationPart {
   String toString() => 'ClipPart($assetPath)';
 }
 
+/// Math stories: one number of a count ("one, two, three…"); the counted
+/// object [part] hops (or switches to [pose]) as the number starts.
+final class CountPart extends NarrationPart {
+  const CountPart(this.assetPath, {required this.part, this.pose});
+
+  final String assetPath;
+  final String part;
+  final String? pose;
+
+  @override
+  bool operator ==(Object other) =>
+      other is CountPart &&
+      other.assetPath == assetPath &&
+      other.part == part &&
+      other.pose == pose;
+
+  @override
+  int get hashCode => Object.hash(assetPath, part, pose);
+
+  @override
+  String toString() => 'CountPart($assetPath, $part, $pose)';
+}
+
 final class NamePart extends NarrationPart {
   const NamePart();
 
@@ -215,6 +253,14 @@ abstract class ChoiceOption with _$ChoiceOption {
     required String iconAsset,
     required String label,
     required String nextId,
+
+    /// Math stories: `"c"` (the right answer is the number c) or `"near:c"`
+    /// (one more or one less). Resolved into [count] for each play.
+    String? answer,
+
+    /// The number this card stands for in this play (math stories): the
+    /// card draws that many objects, `{n}` in the label says it.
+    int? count,
   }) = _ChoiceOption;
 }
 
@@ -234,6 +280,9 @@ sealed class StoryNode with _$StoryNode {
 
     /// Starting pose per part kind (default otherwise).
     @Default(<String, String>{}) Map<String, String> poses,
+
+    /// Math stories: counted objects shown (see [Counted]).
+    Counted? counted,
   }) = SceneNode;
 
   /// [text] is the question read before the options.
@@ -248,6 +297,9 @@ sealed class StoryNode with _$StoryNode {
 
     /// Starting pose per part kind (default otherwise).
     @Default(<String, String>{}) Map<String, String> poses,
+
+    /// Math stories: counted objects shown (see [Counted]).
+    Counted? counted,
   }) = ChoiceNode;
 
   const factory StoryNode.ending({
@@ -261,6 +313,9 @@ sealed class StoryNode with _$StoryNode {
 
     /// Starting pose per part kind (default otherwise).
     @Default(<String, String>{}) Map<String, String> poses,
+
+    /// Math stories: counted objects shown (see [Counted]).
+    Counted? counted,
   }) = EndingNode;
 }
 
@@ -273,6 +328,7 @@ abstract class Story with _$Story {
   const factory Story({
     required String id,
     required String theme,
+    @Default(StorySection.behavior) StorySection section,
     required AppLanguage language,
     required StoryHero hero,
     required String title,
@@ -288,7 +344,94 @@ abstract class Story with _$Story {
     /// Tappable areas of flat pictures, keyed by node `imageAsset`.
     @Default(<String, List<SceneHotspot>>{})
     Map<String, List<SceneHotspot>> hotspots,
+
+    /// Math stories: numbers drawn per play (see `docs/math.md`).
+    MathSpec? math,
+
+    /// This play's numbers (empty until [withNumbers]).
+    @Default(<String, int>{}) Map<String, int> values,
   }) = _Story;
+
+  /// A copy for one play: numbers drawn, each math choice's answers
+  /// resolved and its cards shuffled (so the right one isn't always first).
+  /// Stories without `math` come back unchanged.
+  Story withNumbers(Random random) {
+    final spec = math;
+    if (spec == null) return this;
+    final drawn = spec.draw(random);
+    return copyWith(
+      values: drawn,
+      nodes: {
+        for (final MapEntry(:key, :value) in nodes.entries)
+          key: switch (value) {
+            ChoiceNode(:final options)
+                when options.any((o) => o.answer != null) =>
+              value.copyWith(
+                options: [
+                  for (final o in options)
+                    o.copyWith(count: _answer(o.answer, drawn, spec, random)),
+                ]..shuffle(random),
+              ),
+            _ => value,
+          },
+      },
+    );
+  }
+
+  static int? _answer(
+    String? answer,
+    Map<String, int> values,
+    MathSpec spec,
+    Random random,
+  ) {
+    if (answer == null) return null;
+    if (answer.startsWith('near:')) {
+      return nearMiss(evalMath(answer.substring(5), values), spec.max, random);
+    }
+    return evalMath(answer, values);
+  }
+
+  /// [text] as shown on screen: numbers written out (`{name}` kept).
+  String spell(String text) =>
+      values.isEmpty ? text : spellNumbers(text, language, values);
+
+  /// An option's label as shown (its `{n}` = the card's number).
+  String optionLabel(ChoiceOption option) =>
+      spellNumbers(option.label, language, {...values, 'n': ?option.count});
+
+  /// Math stories: where each counted object of [nodeId] starts (part kind →
+  /// spot), null = hidden. Empty when the node has no `counted`.
+  Map<String, CanvasPoint?> placements(String nodeId) {
+    final spec = math;
+    final counted = nodes[nodeId]?.counted;
+    if (spec == null || counted == null || values.isEmpty) return const {};
+    final field = evalMath(counted.field, values);
+    final waitExpr = counted.wait;
+    final wait = waitExpr == null ? 0 : evalMath(waitExpr, values);
+    return {
+      for (var k = 1; k <= spec.max; k++)
+        spec.part(k): k <= field
+            ? spec.field[k - 1]
+            : k <= field + wait && k - field - 1 < spec.wait.length
+            ? spec.wait[k - field - 1]
+            : null,
+    };
+  }
+
+  /// Math stories: the waiting objects of [nodeId] and where each goes when
+  /// an `arrive` cue fires (part kind → field spot), in order.
+  List<(String, CanvasPoint)> arrivals(String nodeId) {
+    final spec = math;
+    final counted = nodes[nodeId]?.counted;
+    final waitExpr = counted?.wait;
+    if (spec == null || counted == null || waitExpr == null) return const [];
+    final field = evalMath(counted.field, values);
+    final wait = evalMath(waitExpr, values);
+    return [
+      for (var k = field + 1; k <= field + wait && k <= spec.max; k++)
+        (spec.part(k), spec.field[k - 1]),
+    ];
+  }
 
   /// The story's sticker (from its ending node).
   String? get stickerAsset {
@@ -307,12 +450,22 @@ abstract class Story with _$Story {
   List<NarrationPart> optionNarration(String nodeId, String optionId) {
     final node = nodes[nodeId]! as ChoiceNode;
     final option = node.options.firstWhere((o) => o.id == optionId);
-    return _narration(option.label, '${nodeId}_$optionId');
+    return _narration(option.label, '${nodeId}_$optionId', {
+      ...values,
+      'n': ?option.count,
+    });
   }
 
-  /// Every narration clip in the story, each once.
-  List<String> get clipPaths =>
-      {for (final id in nodes.keys) ...nodeClips(id)}.toList();
+  /// Every narration clip in the story, each once (math stories: plus
+  /// every number clip a play can use).
+  List<String> get clipPaths => {
+    for (final id in nodes.keys) ...nodeClips(id),
+    if (math case final spec?)
+      for (var n = 1; n <= spec.max; n++) numberClip(n),
+  }.toList();
+
+  /// The UI clip that says [n] in this story's language.
+  String numberClip(int n) => AppConstants.uiAudio('num_$n', language);
 
   /// Clips read on entering [nodeId]: its text, plus each option on a choice.
   List<String> nodeClips(String nodeId) {
@@ -332,52 +485,87 @@ abstract class Story with _$Story {
     EndingNode() => const <String>[],
   };
 
-  static Iterable<String> _clips(List<NarrationPart> parts) =>
-      parts.whereType<ClipPart>().map((p) => p.assetPath);
+  static Iterable<String> _clips(List<NarrationPart> parts) => [
+    for (final p in parts)
+      if (p case ClipPart(:final assetPath) || CountPart(:final assetPath))
+        assetPath,
+  ];
 
   /// Where each cue of a node lands in its narration. Must match how
-  /// [nodeNarration] splits the text into clips.
+  /// [nodeNarration] splits the text into clips (pieces between tokens).
   List<CueTiming> cueTimings(String nodeId) {
     final node = nodes[nodeId]!;
     final text = node.text;
     final base = '$audioDir/$nodeId';
     const ext = AppConstants.audioExt;
-    final pieces = text.split(namePlaceholder);
+    final tokens = tokenize(text);
+    // Words pieces with where they start in the text.
+    final pieces = <({int start, int end})>[];
+    var offset = 0;
+    for (final m in tokenPattern.allMatches(text)) {
+      pieces.add((start: offset, end: m.start));
+      offset = m.end;
+    }
+    pieces.add((start: offset, end: text.length));
     final out = <CueTiming>[];
     var from = 0;
     for (final cue in node.cues) {
       final at = text.indexOf(cue.word, from);
       if (at < 0) continue;
       from = at + cue.word.length;
-      // Find the piece (between names) holding the word.
-      var start = 0;
       for (var i = 0; i < pieces.length; i++) {
-        final end = start + pieces[i].length;
-        if (at < end) {
+        final p = pieces[i];
+        if (at >= p.start && at < p.end) {
           out.add((
             cue: cue,
-            clip: pieces.length == 1 ? '$base.$ext' : '${base}_p$i.$ext',
-            clipFraction: cue.at ?? (at - start) / pieces[i].length,
+            clip: tokens.length == 1 ? '$base.$ext' : '${base}_p$i.$ext',
+            clipFraction: cue.at ?? (at - p.start) / (p.end - p.start),
             textFraction: at / text.length,
           ));
           break;
         }
-        start = end + namePlaceholder.length;
       }
     }
     return out;
   }
 
-  List<NarrationPart> _narration(String text, String key) {
+  /// Splits [text] at its tokens: words pieces are the line's clips
+  /// (`<key>_p<i>`, or `<key>` when the line has no token; letter-less
+  /// pieces skipped), `{name}` the child's name, numbers and counts the
+  /// shared number clips. Must match `tool/gen_audio.py`.
+  List<NarrationPart> _narration(
+    String text,
+    String key, [
+    Map<String, int>? numbers,
+  ]) {
+    final vals = numbers ?? values;
     final base = '$audioDir/$key';
-    final pieces = text.split(namePlaceholder);
     const ext = AppConstants.audioExt;
-    if (pieces.length == 1) return [ClipPart('$base.$ext')];
-    return [
-      for (var i = 0; i < pieces.length; i++) ...[
-        if (i > 0) const NamePart(),
-        if (isSpeakable(pieces[i])) ClipPart('${base}_p$i.$ext'),
-      ],
-    ];
+    final tokens = tokenize(text);
+    if (tokens.length == 1) return [ClipPart('$base.$ext')];
+    final out = <NarrationPart>[];
+    var piece = 0;
+    for (final t in tokens) {
+      switch (t) {
+        case WordsToken(:final text):
+          if (isSpeakable(text)) out.add(ClipPart('${base}_p$piece.$ext'));
+          piece++;
+        case NameToken():
+          out.add(const NamePart());
+        case NumberToken(:final variable):
+          final n = vals[variable];
+          if (n != null && n >= 1 && n <= maxSpokenNumber) {
+            out.add(ClipPart(numberClip(n)));
+          }
+        case CountToken(:final variable, :final pose):
+          final spec = math;
+          final n = vals[variable] ?? 0;
+          if (spec == null) break;
+          for (var k = 1; k <= n && k <= maxSpokenNumber; k++) {
+            out.add(CountPart(numberClip(k), part: spec.part(k), pose: pose));
+          }
+      }
+    }
+    return out;
   }
 }

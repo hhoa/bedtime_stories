@@ -1,0 +1,30 @@
+{
+  "gates": {
+    "outline": "2026-11-13",
+    "script": "2026-11-13",
+    "art_prompts": "2026-11-13"
+  },
+  "listened": {
+    "vi": [],
+    "en": []
+  },
+  "notes": [
+    "2026-11-13: first math story (section math, curriculum step 5, adding within 5). Idea checker NEW. Outline approved as written: counting sheep over a fence, c1 2+1, c2 3+2; hop-then-slide over the fence; late sheep already at the door in n1; only counted sheep on screen at questions. Note: outline calls the new hero sheet hero_h, but candy_tummy already has a hero_h: art-director should name it hero_i.",
+    "2026-11-13: parent asked for new numbers every play. Engine added (math block, tokens {a}/{count:c}/{n}, counted, arrive, CountIcon cards shuffled, num_1..10 UI clips; docs/math.md). story.json rewritten as template (a 1-3, b 1-(4-a), c=a+b, d 1-(5-c), e=c+d); outline has an Update section. icon_* cards dropped; math.icon + ambient_origin are placeholders until staging.",
+    "2026-11-13: script approved (template). Parent heard the split+stitch previews (clone voice) and said OK: approach A (record each number line once as <key>_full, tool/split_numbers.py cuts, MMS_FA forced alignment). Parent will record vi with real voice: num_1..10 + 16 lines.",
+    "2026-11-13: art review PASS (round 2: one crop [0.215,0,0.959,1] keeping the door; sheep ~1/10 picture wide; props_sheep 5 figures with spares, cut with --grid 3x2; gate-like fence). math.field/wait + end ambient_origin [0.1,0.52] updated in story.json. New Gemini: hero_i (attach clock_time hero_c), props_sheep, cover, sticker. Reused: room, hero_b, lulu_a, props (tidy_toys), hero_c (clock_time).",
+    "2026-11-13: vi recorded by parent (Voice Memos: one..ten -> assets/audio/ui/vi/num_1..10, s1_p1 + 15 *_full). split_numbers.py cut all 15 (MMS_FA), full takes in audio_backup/. Cleaned 36 pieces + 10 numbers (~-38 -> ~-16 LUFS). Flags: d1_p1 noisy 21 dB; c1_near_p1, c2_near_p1, e1_p3 26-27 dB (short, no silence); num_7 soft -20.1. Stitched previews in scratchpad for the parent. en not done yet.",
+    "2026-11-13: batch 1 in (~/Downloads/count_sheep -> story_art/math_plus): hero_i + props_sheep cut OK (props_sheep --grid 3x2), cover 39 KB + sticker 20 KB imported. Art review all OK; pair sheep_stand + sheep_sleep (spares unused). stage.json written (one crop [0.215,0,0.959,1], hero_i scale 0.63 at [0.19,0.575], asleep [0.27,0.575], blanket [0.33,0.61], sheep at math.field, fence [0.67,0.9], Lulu [0.44,0.34]); stage.py run, wired, check --art 0 errors, 1.6 MB. math.icon = layers/kit_props_sheep_sheep_stand.webp, end ambient_origin [0.18,0.40], Lulu moves [0.44,0.34] / [0.34,0.36]. Stills gate pending. Tests: only en audio missing.",
+    "2026-11-13: stills round: parent found the tidy_toys room too cramped (sheep small, fence off to the side). Parent chose a NEW Gemini room 'room_wide' (same bedroom, camera further back/higher, small bed back-left, big floor + rug). art_prompts.json updated (kit.rooms.wide), prompts page republished (v2). Waiting for kit/room_wide.png; then restage (hero smaller on the far bed, sheep in one clear row, fence in the middle).",
+    "2026-11-13: room_wide in (~/Downloads/room_wide.png, 2400x1792 4:3, no crop). Restaged: hero_i 0.36 at [0.27,0.44], asleep [0.30,0.44], blanket 0.75, Lulu 0.24 at [0.60,0.30] (s1 [0.58,0.18]), props_sheep 0.27; math.field top row 1 [0.33,0.70] + 5 [0.67,0.70] with fence [0.50,0.70] between, bottom row 2-4 at y 0.88; math.wait by the door [0.80,0.60],[0.93,0.64],[0.87,0.78]; end ambient_origin [0.26,0.36]; Lulu moves [0.6,0.3] / [0.47,0.3]. check --art 0 errors, 1.5 MB. Stills v6 shown; gate pending. Cover still shows the old room (redo optional).",
+    "2026-11-13: parent: longer fence to separate new vs waiting sheep, waiting sheep at the bottom not by the door. stage.py got sprite 'chain' + 'shear' (props_sheep/fence_long = 8 fence pieces chained, sheared level, posts upright). Fence [0.50,0.83] across the floor; math.field one row on the rug behind it (x 0.26-0.74, y 0.70); math.wait in front (x 0.35/0.50/0.65, y 0.97). Sheep hop over the fence toward the bed on 'arrive'.",
+    "2026-11-13: stills approved by parent (stills_v7: room_wide, long fence, counted row behind it, waiting sheep in front). Next: en audio (clone full lines + split), cue_times, tests.",
+    "2026-11-13: en cloned: num_1..10 (UI) + s1_p1 + 15 *_full (gen_audio now clones template lines whole with the example numbers), split_numbers.py --lang en, cleaned (12 en pieces flagged 22-26 dB, clone pause noise). cue_times: 58 cues timed. analyze clean, 173 tests pass. Waiting: parent listens to en (preview ~/Downloads/story_art/math_plus/math_plus_play_en.wav), then mark listened.en; play in the app.",
+    "2026-11-13: parent wants the girl to face the sheep head-on. New hero sheet hero_j (sits on the front edge of the bed facing the viewer, legs hanging, looking down at the floor; same 4 pose names) replaces hero_i (made, now unused). Blanket lump only from d2 yawn / end. Prompts page republished (v3). Waiting for kit/hero_j.png.",
+    "2026-11-13: hero_j in (~/Downloads/hero_j.png, cut --grid 2x2): front-facing, sits on the bed's front edge, legs hanging. stage.json: hero_j scale 0.44 at [0.24,0.63], flipped in the counting scenes (points right at the sheep), not in d2/end; lie_yawn/asleep per-sprite anchors 2.08/2.2 put them on the mattress; blanket lump only in end; sheep row shifted right (math.field x 0.34-0.80), math.wait x 0.40/0.55/0.70; end ambient_origin [0.2,0.37]. hero_i unused.",
+    "2026-11-13: parent: girl sat too low -> hero at [0.24,0.58] (sits on the mattress edge), lying anchors 1.74/1.83, end ambient_origin [0.2,0.34].",
+    "2026-11-13: parent: still low -> hero at [0.24,0.54] (on the mattress edge), lying anchors 1.47/1.53.",
+    "2026-11-14: parent: lift a bit more (sitting and lying) -> hero at [0.24,0.52], anchors unchanged; end ambient_origin [0.2,0.32]. Stills approved after this."
+  ],
+  "prompts_page": "https://claude.ai/artifact/WW9JTGveS74o22ZAtSr1pv"
+}

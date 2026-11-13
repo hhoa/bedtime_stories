@@ -1,0 +1,2961 @@
+{
+ "s1_awake.webp": [
+  {
+   "file": "layers/kit_room.webp"
+  },
+  {
+   "file": "layers/kit_hero_j_bed_awake_flip.webp",
+   "kind": "hero",
+   "box": [
+    0.1783,
+    0.2201,
+    0.1367,
+    0.2999
+   ],
+   "pivot": [
+    0.24,
+    0.52
+   ],
+   "idle": "breathe",
+   "rect": [
+    0.178262,
+    0.220067,
+    0.136675,
+    0.299933
+   ],
+   "tap": "hop",
+   "poses": {
+    "bed_awake": "layers/kit_hero_j_bed_awake_flip.webp",
+    "bed_point": "layers/kit_hero_j_bed_point_flip.webp",
+    "bed_think": "layers/kit_hero_j_bed_think_flip.webp",
+    "bed_clap": "layers/kit_hero_j_bed_clap_flip.webp"
+   }
+  },
+  {
+   "file": "layers/kit_shadow.webp",
+   "kind": "shadow",
+   "rect": [
+    0.223891,
+    0.72957,
+    0.552218,
+    0.161984
+   ],
+   "pivot": [
+    0.5,
+    0.8106
+   ]
+  },
+  {
+   "file": "layers/kit_props_sheep_fence_long.webp",
+   "kind": "fence",
+   "box": [
+    0.1928,
+    0.7443,
+    0.6136,
+    0.0857
+   ],
+   "pivot": [
+    0.5,
+    0.83
+   ],
+   "idle": "none",
+   "rect": [
+    0.192791,
+    0.744275,
+    0.613575,
+    0.085725
+   ]
+  },
+  {
+   "file": "layers/kit_shadow.webp",
+   "kind": "shadow",
+   "rect": [
+    0.295653,
+    0.683869,
+    0.088695,
+    0.026017
+   ],
+   "pivot": [
+    0.34,
+    0.6969
+   ]
+  },
+  {
+   "file": "layers/kit_props_sheep_sheep_stand.webp",
+   "kind": "sheep1",
+   "box": [
+    0.2817,
+    0.563,
+    0.1109,
+    0.137
+   ],
+   "pivot": [
+    0.34,
+    0.7
+   ],
+   "idle": "none",
+   "rect": [
+    0.281697,
+    0.562975,
+    0.110869,
+    0.137025
+   ],
+   "tap": "wiggle",
+   "poses": {
+    "sleep": "layers/kit_props_sheep_sheep_sleep.webp"
+   }
+  },
+  {
+   "file": "layers/kit_shadow.webp",
+   "kind": "shadow",
+   "rect": [
+    0.410653,
+    0.683869,
+    0.088695,
+    0.026017
+   ],
+   "pivot": [
+    0.455,
+    0.6969
+   ]
+  },
+  {
+   "file": "layers/kit_props_sheep_sheep_stand.webp",
+   "kind": "sheep2",
+   "box": [
+    0.3967,
+    0.563,
+    0.1109,
+    0.137
+   ],
+   "pivot": [
+    0.455,
+    0.7
+   ],
+   "idle": "none",
+   "rect": [
+    0.396697,
+    0.562975,
+    0.110869,
+    0.137025
+   ],
+   "tap": "wiggle",
+   "poses": {
+    "sleep": "layers/kit_props_sheep_sheep_sleep.webp"
+   }
+  },
+  {
+   "file": "layers/kit_shadow.webp",
+   "kind": "shadow",
+   "rect": [
+    0.525652,
+    0.683869,
+    0.088695,
+    0.026017
+   ],
+   "pivot": [
+    0.57,
+    0.6969
+   ]
+  },
+  {
+   "file": "layers/kit_props_sheep_sheep_stand.webp",
+   "kind": "sheep3",
+   "box": [
+    0.5117,
+    0.563,
+    0.1109,
+    0.137
+   ],
+   "pivot": [
+    0.57,
+    0.7
+   ],
+   "idle": "none",
+   "rect": [
+    0.511697,
+    0.562975,
+    0.110869,
+    0.137025
+   ],
+   "tap": "wiggle",
+   "poses": {
+    "sleep": "layers/kit_props_sheep_sheep_sleep.webp"
+   }
+  },
+  {
+   "file": "layers/kit_shadow.webp",
+   "kind": "shadow",
+   "rect": [
+    0.640653,
+    0.683869,
+    0.088695,
+    0.026017
+   ],
+   "pivot": [
+    0.685,
+    0.6969
+   ]
+  },
+  {
+   "file": "layers/kit_props_sheep_sheep_stand.webp",
+   "kind": "sheep4",
+   "box": [
+    0.6267,
+    0.563,
+    0.1109,
+    0.137
+   ],
+   "pivot": [
+    0.685,
+    0.7
+   ],
+   "idle": "none",
+   "rect": [
+    0.626697,
+    0.562975,
+    0.110869,
+    0.137025
+   ],
+   "tap": "wiggle",
+   "poses": {
+    "sleep": "layers/kit_props_sheep_sheep_sleep.webp"
+   }
+  },
+  {
+   "file": "layers/kit_shadow.webp",
+   "kind": "shadow",
+   "rect": [
+    0.755653,
+    0.683869,
+    0.088695,
+    0.026017
+   ],
+   "pivot": [
+    0.8,
+    0.6969
+   ]
+  },
+  {
+   "file": "layers/kit_props_sheep_sheep_stand.webp",
+   "kind": "sheep5",
+   "box": [
+    0.7417,
+    0.563,
+    0.1109,
+    0.137
+   ],
+   "pivot": [
+    0.8,
+    0.7
+   ],
+   "idle": "none",
+   "rect": [
+    0.741697,
+    0.562975,
+    0.110869,
+    0.137025
+   ],
+   "tap": "wiggle",
+   "poses": {
+    "sleep": "layers/kit_props_sheep_sheep_sleep.webp"
+   }
+  },
+  {
+   "file": "layers/kit_lulu_a_float.webp",
+   "kind": "lulu",
+   "box": [
+    0.5243,
+    0.1135,
+    0.1102,
+    0.1496
+   ],
+   "pivot": [
+    0.5801,
+    0.1881
+   ],
+   "idle": "float",
+   "rect": [
+    0.524258,
+    0.113497,
+    0.11025,
+    0.149587
+   ],
+   "tap": "hop",
+   "poses": {
+    "float": "layers/kit_lulu_a_float.webp",
+    "talk": "layers/kit_lulu_a_talk.webp",
+    "glow": "layers/kit_lulu_a_glow.webp",
+    "point": "layers/kit_lulu_a_point.webp",
+    "clap": "layers/kit_lulu_a_clap.webp",
+    "whisper": "layers/kit_lulu_a_whisper.webp"
+   }
+  }
+ ],
+ "s2_jump.webp": [
+  {
+   "file": "layers/kit_room.webp"
+  },
+  {
+   "file": "layers/kit_hero_j_bed_point_flip.webp",
+   "kind": "hero",
+   "box": [
+    0.1783,
+    0.2201,
+    0.1367,
+    0.2999
+   ],
+   "pivot": [
+    0.24,
+    0.52
+   ],
+   "idle": "breathe",
+   "rect": [
+    0.178262,
+    0.220067,
+    0.136675,
+    0.299933
+   ],
+   "tap": "hop",
+   "poses": {
+    "bed_awake": "layers/kit_hero_j_bed_awake_flip.webp",
+    "bed_point": "layers/kit_hero_j_bed_point_flip.webp",
+    "bed_think": "layers/kit_hero_j_bed_think_flip.webp",
+    "bed_clap": "layers/kit_hero_j_bed_clap_flip.webp"
+   }
+  },
+  {
+   "file": "layers/kit_shadow.webp",
+   "kind": "shadow",
+   "rect": [
+    0.223891,
+    0.72957,
+    0.552218,
+    0.161984
+   ],
+   "pivot": [
+    0.5,
+    0.8106
+   ]
+  },
+  {
+   "file": "layers/kit_props_sheep_fence_long.webp",
+   "kind": "fence",
+   "box": [
+    0.1928,
+    0.7443,
+    0.6136,
+    0.0857
+   ],
+   "pivot": [
+    0.5,
+    0.83
+   ],
+   "idle": "none",
+   "rect": [
+    0.192791,
+    0.744275,
+    0.613575,
+    0.085725
+   ]
+  },
+  {
+   "file": "layers/kit_shadow.webp",
+   "kind": "shadow",
+   "rect": [
+    0.295653,
+    0.683869,
+    0.088695,
+    0.026017
+   ],
+   "pivot": [
+    0.34,
+    0.6969
+   ]
+  },
+  {
+   "file": "layers/kit_props_sheep_sheep_stand.webp",
+   "kind": "sheep1",
+   "box": [
+    0.2817,
+    0.563,
+    0.1109,
+    0.137
+   ],
+   "pivot": [
+    0.34,
+    0.7
+   ],
+   "idle": "none",
+   "rect": [
+    0.281697,
+    0.562975,
+    0.110869,
+    0.137025
+   ],
+   "tap": "wiggle",
+   "poses": {
+    "sleep": "layers/kit_props_sheep_sheep_sleep.webp"
+   }
+  },
+  {
+   "file": "layers/kit_shadow.webp",
+   "kind": "shadow",
+   "rect": [
+    0.410653,
+    0.683869,
+    0.088695,
+    0.026017
+   ],
+   "pivot": [
+    0.455,
+    0.6969
+   ]
+  },
+  {
+   "file": "layers/kit_props_sheep_sheep_stand.webp",
+   "kind": "sheep2",
+   "box": [
+    0.3967,
+    0.563,
+    0.1109,
+    0.137
+   ],
+   "pivot": [
+    0.455,
+    0.7
+   ],
+   "idle": "none",
+   "rect": [
+    0.396697,
+    0.562975,
+    0.110869,
+    0.137025
+   ],
+   "tap": "wiggle",
+   "poses": {
+    "sleep": "layers/kit_props_sheep_sheep_sleep.webp"
+   }
+  },
+  {
+   "file": "layers/kit_shadow.webp",
+   "kind": "shadow",
+   "rect": [
+    0.525652,
+    0.683869,
+    0.088695,
+    0.026017
+   ],
+   "pivot": [
+    0.57,
+    0.6969
+   ]
+  },
+  {
+   "file": "layers/kit_props_sheep_sheep_stand.webp",
+   "kind": "sheep3",
+   "box": [
+    0.5117,
+    0.563,
+    0.1109,
+    0.137
+   ],
+   "pivot": [
+    0.57,
+    0.7
+   ],
+   "idle": "none",
+   "rect": [
+    0.511697,
+    0.562975,
+    0.110869,
+    0.137025
+   ],
+   "tap": "wiggle",
+   "poses": {
+    "sleep": "layers/kit_props_sheep_sheep_sleep.webp"
+   }
+  },
+  {
+   "file": "layers/kit_shadow.webp",
+   "kind": "shadow",
+   "rect": [
+    0.640653,
+    0.683869,
+    0.088695,
+    0.026017
+   ],
+   "pivot": [
+    0.685,
+    0.6969
+   ]
+  },
+  {
+   "file": "layers/kit_props_sheep_sheep_stand.webp",
+   "kind": "sheep4",
+   "box": [
+    0.6267,
+    0.563,
+    0.1109,
+    0.137
+   ],
+   "pivot": [
+    0.685,
+    0.7
+   ],
+   "idle": "none",
+   "rect": [
+    0.626697,
+    0.562975,
+    0.110869,
+    0.137025
+   ],
+   "tap": "wiggle",
+   "poses": {
+    "sleep": "layers/kit_props_sheep_sheep_sleep.webp"
+   }
+  },
+  {
+   "file": "layers/kit_shadow.webp",
+   "kind": "shadow",
+   "rect": [
+    0.755653,
+    0.683869,
+    0.088695,
+    0.026017
+   ],
+   "pivot": [
+    0.8,
+    0.6969
+   ]
+  },
+  {
+   "file": "layers/kit_props_sheep_sheep_stand.webp",
+   "kind": "sheep5",
+   "box": [
+    0.7417,
+    0.563,
+    0.1109,
+    0.137
+   ],
+   "pivot": [
+    0.8,
+    0.7
+   ],
+   "idle": "none",
+   "rect": [
+    0.741697,
+    0.562975,
+    0.110869,
+    0.137025
+   ],
+   "tap": "wiggle",
+   "poses": {
+    "sleep": "layers/kit_props_sheep_sheep_sleep.webp"
+   }
+  },
+  {
+   "file": "layers/kit_lulu_a_float.webp",
+   "kind": "lulu",
+   "box": [
+    0.5443,
+    0.2335,
+    0.1102,
+    0.1496
+   ],
+   "pivot": [
+    0.6001,
+    0.3081
+   ],
+   "idle": "float",
+   "rect": [
+    0.544258,
+    0.233497,
+    0.11025,
+    0.149587
+   ],
+   "tap": "hop",
+   "poses": {
+    "float": "layers/kit_lulu_a_float.webp",
+    "talk": "layers/kit_lulu_a_talk.webp",
+    "glow": "layers/kit_lulu_a_glow.webp",
+    "point": "layers/kit_lulu_a_point.webp",
+    "clap": "layers/kit_lulu_a_clap.webp",
+    "whisper": "layers/kit_lulu_a_whisper.webp"
+   }
+  }
+ ],
+ "s3_one_more.webp": [
+  {
+   "file": "layers/kit_room.webp"
+  },
+  {
+   "file": "layers/kit_hero_j_bed_point_flip.webp",
+   "kind": "hero",
+   "box": [
+    0.1783,
+    0.2201,
+    0.1367,
+    0.2999
+   ],
+   "pivot": [
+    0.24,
+    0.52
+   ],
+   "idle": "breathe",
+   "rect": [
+    0.178262,
+    0.220067,
+    0.136675,
+    0.299933
+   ],
+   "tap": "hop",
+   "poses": {
+    "bed_awake": "layers/kit_hero_j_bed_awake_flip.webp",
+    "bed_point": "layers/kit_hero_j_bed_point_flip.webp",
+    "bed_think": "layers/kit_hero_j_bed_think_flip.webp",
+    "bed_clap": "layers/kit_hero_j_bed_clap_flip.webp"
+   }
+  },
+  {
+   "file": "layers/kit_shadow.webp",
+   "kind": "shadow",
+   "rect": [
+    0.223891,
+    0.72957,
+    0.552218,
+    0.161984
+   ],
+   "pivot": [
+    0.5,
+    0.8106
+   ]
+  },
+  {
+   "file": "layers/kit_props_sheep_fence_long.webp",
+   "kind": "fence",
+   "box": [
+    0.1928,
+    0.7443,
+    0.6136,
+    0.0857
+   ],
+   "pivot": [
+    0.5,
+    0.83
+   ],
+   "idle": "none",
+   "rect": [
+    0.192791,
+    0.744275,
+    0.613575,
+    0.085725
+   ]
+  },
+  {
+   "file": "layers/kit_shadow.webp",
+   "kind": "shadow",
+   "rect": [
+    0.295653,
+    0.683869,
+    0.088695,
+    0.026017
+   ],
+   "pivot": [
+    0.34,
+    0.6969
+   ]
+  },
+  {
+   "file": "layers/kit_props_sheep_sheep_stand.webp",
+   "kind": "sheep1",
+   "box": [
+    0.2817,
+    0.563,
+    0.1109,
+    0.137
+   ],
+   "pivot": [
+    0.34,
+    0.7
+   ],
+   "idle": "none",
+   "rect": [
+    0.281697,
+    0.562975,
+    0.110869,
+    0.137025
+   ],
+   "tap": "wiggle",
+   "poses": {
+    "sleep": "layers/kit_props_sheep_sheep_sleep.webp"
+   }
+  },
+  {
+   "file": "layers/kit_shadow.webp",
+   "kind": "shadow",
+   "rect": [
+    0.410653,
+    0.683869,
+    0.088695,
+    0.026017
+   ],
+   "pivot": [
+    0.455,
+    0.6969
+   ]
+  },
+  {
+   "file": "layers/kit_props_sheep_sheep_stand.webp",
+   "kind": "sheep2",
+   "box": [
+    0.3967,
+    0.563,
+    0.1109,
+    0.137
+   ],
+   "pivot": [
+    0.455,
+    0.7
+   ],
+   "idle": "none",
+   "rect": [
+    0.396697,
+    0.562975,
+    0.110869,
+    0.137025
+   ],
+   "tap": "wiggle",
+   "poses": {
+    "sleep": "layers/kit_props_sheep_sheep_sleep.webp"
+   }
+  },
+  {
+   "file": "layers/kit_shadow.webp",
+   "kind": "shadow",
+   "rect": [
+    0.525652,
+    0.683869,
+    0.088695,
+    0.026017
+   ],
+   "pivot": [
+    0.57,
+    0.6969
+   ]
+  },
+  {
+   "file": "layers/kit_props_sheep_sheep_stand.webp",
+   "kind": "sheep3",
+   "box": [
+    0.5117,
+    0.563,
+    0.1109,
+    0.137
+   ],
+   "pivot": [
+    0.57,
+    0.7
+   ],
+   "idle": "none",
+   "rect": [
+    0.511697,
+    0.562975,
+    0.110869,
+    0.137025
+   ],
+   "tap": "wiggle",
+   "poses": {
+    "sleep": "layers/kit_props_sheep_sheep_sleep.webp"
+   }
+  },
+  {
+   "file": "layers/kit_shadow.webp",
+   "kind": "shadow",
+   "rect": [
+    0.640653,
+    0.683869,
+    0.088695,
+    0.026017
+   ],
+   "pivot": [
+    0.685,
+    0.6969
+   ]
+  },
+  {
+   "file": "layers/kit_props_sheep_sheep_stand.webp",
+   "kind": "sheep4",
+   "box": [
+    0.6267,
+    0.563,
+    0.1109,
+    0.137
+   ],
+   "pivot": [
+    0.685,
+    0.7
+   ],
+   "idle": "none",
+   "rect": [
+    0.626697,
+    0.562975,
+    0.110869,
+    0.137025
+   ],
+   "tap": "wiggle",
+   "poses": {
+    "sleep": "layers/kit_props_sheep_sheep_sleep.webp"
+   }
+  },
+  {
+   "file": "layers/kit_shadow.webp",
+   "kind": "shadow",
+   "rect": [
+    0.755653,
+    0.683869,
+    0.088695,
+    0.026017
+   ],
+   "pivot": [
+    0.8,
+    0.6969
+   ]
+  },
+  {
+   "file": "layers/kit_props_sheep_sheep_stand.webp",
+   "kind": "sheep5",
+   "box": [
+    0.7417,
+    0.563,
+    0.1109,
+    0.137
+   ],
+   "pivot": [
+    0.8,
+    0.7
+   ],
+   "idle": "none",
+   "rect": [
+    0.741697,
+    0.562975,
+    0.110869,
+    0.137025
+   ],
+   "tap": "wiggle",
+   "poses": {
+    "sleep": "layers/kit_props_sheep_sheep_sleep.webp"
+   }
+  },
+  {
+   "file": "layers/kit_lulu_a_float.webp",
+   "kind": "lulu",
+   "box": [
+    0.5443,
+    0.2335,
+    0.1102,
+    0.1496
+   ],
+   "pivot": [
+    0.6001,
+    0.3081
+   ],
+   "idle": "float",
+   "rect": [
+    0.544258,
+    0.233497,
+    0.11025,
+    0.149587
+   ],
+   "tap": "hop",
+   "poses": {
+    "float": "layers/kit_lulu_a_float.webp",
+    "talk": "layers/kit_lulu_a_talk.webp",
+    "glow": "layers/kit_lulu_a_glow.webp",
+    "point": "layers/kit_lulu_a_point.webp",
+    "clap": "layers/kit_lulu_a_clap.webp",
+    "whisper": "layers/kit_lulu_a_whisper.webp"
+   }
+  }
+ ],
+ "b1_count.webp": [
+  {
+   "file": "layers/kit_room.webp"
+  },
+  {
+   "file": "layers/kit_hero_j_bed_think_flip.webp",
+   "kind": "hero",
+   "box": [
+    0.1783,
+    0.2201,
+    0.1367,
+    0.2999
+   ],
+   "pivot": [
+    0.24,
+    0.52
+   ],
+   "idle": "breathe",
+   "rect": [
+    0.178262,
+    0.220067,
+    0.136675,
+    0.299933
+   ],
+   "tap": "hop",
+   "poses": {
+    "bed_awake": "layers/kit_hero_j_bed_awake_flip.webp",
+    "bed_point": "layers/kit_hero_j_bed_point_flip.webp",
+    "bed_think": "layers/kit_hero_j_bed_think_flip.webp",
+    "bed_clap": "layers/kit_hero_j_bed_clap_flip.webp"
+   }
+  },
+  {
+   "file": "layers/kit_shadow.webp",
+   "kind": "shadow",
+   "rect": [
+    0.223891,
+    0.72957,
+    0.552218,
+    0.161984
+   ],
+   "pivot": [
+    0.5,
+    0.8106
+   ]
+  },
+  {
+   "file": "layers/kit_props_sheep_fence_long.webp",
+   "kind": "fence",
+   "box": [
+    0.1928,
+    0.7443,
+    0.6136,
+    0.0857
+   ],
+   "pivot": [
+    0.5,
+    0.83
+   ],
+   "idle": "none",
+   "rect": [
+    0.192791,
+    0.744275,
+    0.613575,
+    0.085725
+   ]
+  },
+  {
+   "file": "layers/kit_shadow.webp",
+   "kind": "shadow",
+   "rect": [
+    0.295653,
+    0.683869,
+    0.088695,
+    0.026017
+   ],
+   "pivot": [
+    0.34,
+    0.6969
+   ]
+  },
+  {
+   "file": "layers/kit_props_sheep_sheep_stand.webp",
+   "kind": "sheep1",
+   "box": [
+    0.2817,
+    0.563,
+    0.1109,
+    0.137
+   ],
+   "pivot": [
+    0.34,
+    0.7
+   ],
+   "idle": "none",
+   "rect": [
+    0.281697,
+    0.562975,
+    0.110869,
+    0.137025
+   ],
+   "tap": "wiggle",
+   "poses": {
+    "sleep": "layers/kit_props_sheep_sheep_sleep.webp"
+   }
+  },
+  {
+   "file": "layers/kit_shadow.webp",
+   "kind": "shadow",
+   "rect": [
+    0.410653,
+    0.683869,
+    0.088695,
+    0.026017
+   ],
+   "pivot": [
+    0.455,
+    0.6969
+   ]
+  },
+  {
+   "file": "layers/kit_props_sheep_sheep_stand.webp",
+   "kind": "sheep2",
+   "box": [
+    0.3967,
+    0.563,
+    0.1109,
+    0.137
+   ],
+   "pivot": [
+    0.455,
+    0.7
+   ],
+   "idle": "none",
+   "rect": [
+    0.396697,
+    0.562975,
+    0.110869,
+    0.137025
+   ],
+   "tap": "wiggle",
+   "poses": {
+    "sleep": "layers/kit_props_sheep_sheep_sleep.webp"
+   }
+  },
+  {
+   "file": "layers/kit_shadow.webp",
+   "kind": "shadow",
+   "rect": [
+    0.525652,
+    0.683869,
+    0.088695,
+    0.026017
+   ],
+   "pivot": [
+    0.57,
+    0.6969
+   ]
+  },
+  {
+   "file": "layers/kit_props_sheep_sheep_stand.webp",
+   "kind": "sheep3",
+   "box": [
+    0.5117,
+    0.563,
+    0.1109,
+    0.137
+   ],
+   "pivot": [
+    0.57,
+    0.7
+   ],
+   "idle": "none",
+   "rect": [
+    0.511697,
+    0.562975,
+    0.110869,
+    0.137025
+   ],
+   "tap": "wiggle",
+   "poses": {
+    "sleep": "layers/kit_props_sheep_sheep_sleep.webp"
+   }
+  },
+  {
+   "file": "layers/kit_shadow.webp",
+   "kind": "shadow",
+   "rect": [
+    0.640653,
+    0.683869,
+    0.088695,
+    0.026017
+   ],
+   "pivot": [
+    0.685,
+    0.6969
+   ]
+  },
+  {
+   "file": "layers/kit_props_sheep_sheep_stand.webp",
+   "kind": "sheep4",
+   "box": [
+    0.6267,
+    0.563,
+    0.1109,
+    0.137
+   ],
+   "pivot": [
+    0.685,
+    0.7
+   ],
+   "idle": "none",
+   "rect": [
+    0.626697,
+    0.562975,
+    0.110869,
+    0.137025
+   ],
+   "tap": "wiggle",
+   "poses": {
+    "sleep": "layers/kit_props_sheep_sheep_sleep.webp"
+   }
+  },
+  {
+   "file": "layers/kit_shadow.webp",
+   "kind": "shadow",
+   "rect": [
+    0.755653,
+    0.683869,
+    0.088695,
+    0.026017
+   ],
+   "pivot": [
+    0.8,
+    0.6969
+   ]
+  },
+  {
+   "file": "layers/kit_props_sheep_sheep_stand.webp",
+   "kind": "sheep5",
+   "box": [
+    0.7417,
+    0.563,
+    0.1109,
+    0.137
+   ],
+   "pivot": [
+    0.8,
+    0.7
+   ],
+   "idle": "none",
+   "rect": [
+    0.741697,
+    0.562975,
+    0.110869,
+    0.137025
+   ],
+   "tap": "wiggle",
+   "poses": {
+    "sleep": "layers/kit_props_sheep_sheep_sleep.webp"
+   }
+  },
+  {
+   "file": "layers/kit_lulu_a_float.webp",
+   "kind": "lulu",
+   "box": [
+    0.5443,
+    0.2335,
+    0.1102,
+    0.1496
+   ],
+   "pivot": [
+    0.6001,
+    0.3081
+   ],
+   "idle": "float",
+   "rect": [
+    0.544258,
+    0.233497,
+    0.11025,
+    0.149587
+   ],
+   "tap": "hop",
+   "poses": {
+    "float": "layers/kit_lulu_a_float.webp",
+    "talk": "layers/kit_lulu_a_talk.webp",
+    "glow": "layers/kit_lulu_a_glow.webp",
+    "point": "layers/kit_lulu_a_point.webp",
+    "clap": "layers/kit_lulu_a_clap.webp",
+    "whisper": "layers/kit_lulu_a_whisper.webp"
+   }
+  }
+ ],
+ "a1_three.webp": [
+  {
+   "file": "layers/kit_room.webp"
+  },
+  {
+   "file": "layers/kit_hero_j_bed_think_flip.webp",
+   "kind": "hero",
+   "box": [
+    0.1783,
+    0.2201,
+    0.1367,
+    0.2999
+   ],
+   "pivot": [
+    0.24,
+    0.52
+   ],
+   "idle": "breathe",
+   "rect": [
+    0.178262,
+    0.220067,
+    0.136675,
+    0.299933
+   ],
+   "tap": "hop",
+   "poses": {
+    "bed_awake": "layers/kit_hero_j_bed_awake_flip.webp",
+    "bed_point": "layers/kit_hero_j_bed_point_flip.webp",
+    "bed_think": "layers/kit_hero_j_bed_think_flip.webp",
+    "bed_clap": "layers/kit_hero_j_bed_clap_flip.webp"
+   }
+  },
+  {
+   "file": "layers/kit_shadow.webp",
+   "kind": "shadow",
+   "rect": [
+    0.223891,
+    0.72957,
+    0.552218,
+    0.161984
+   ],
+   "pivot": [
+    0.5,
+    0.8106
+   ]
+  },
+  {
+   "file": "layers/kit_props_sheep_fence_long.webp",
+   "kind": "fence",
+   "box": [
+    0.1928,
+    0.7443,
+    0.6136,
+    0.0857
+   ],
+   "pivot": [
+    0.5,
+    0.83
+   ],
+   "idle": "none",
+   "rect": [
+    0.192791,
+    0.744275,
+    0.613575,
+    0.085725
+   ]
+  },
+  {
+   "file": "layers/kit_shadow.webp",
+   "kind": "shadow",
+   "rect": [
+    0.295653,
+    0.683869,
+    0.088695,
+    0.026017
+   ],
+   "pivot": [
+    0.34,
+    0.6969
+   ]
+  },
+  {
+   "file": "layers/kit_props_sheep_sheep_stand.webp",
+   "kind": "sheep1",
+   "box": [
+    0.2817,
+    0.563,
+    0.1109,
+    0.137
+   ],
+   "pivot": [
+    0.34,
+    0.7
+   ],
+   "idle": "none",
+   "rect": [
+    0.281697,
+    0.562975,
+    0.110869,
+    0.137025
+   ],
+   "tap": "wiggle",
+   "poses": {
+    "sleep": "layers/kit_props_sheep_sheep_sleep.webp"
+   }
+  },
+  {
+   "file": "layers/kit_shadow.webp",
+   "kind": "shadow",
+   "rect": [
+    0.410653,
+    0.683869,
+    0.088695,
+    0.026017
+   ],
+   "pivot": [
+    0.455,
+    0.6969
+   ]
+  },
+  {
+   "file": "layers/kit_props_sheep_sheep_stand.webp",
+   "kind": "sheep2",
+   "box": [
+    0.3967,
+    0.563,
+    0.1109,
+    0.137
+   ],
+   "pivot": [
+    0.455,
+    0.7
+   ],
+   "idle": "none",
+   "rect": [
+    0.396697,
+    0.562975,
+    0.110869,
+    0.137025
+   ],
+   "tap": "wiggle",
+   "poses": {
+    "sleep": "layers/kit_props_sheep_sheep_sleep.webp"
+   }
+  },
+  {
+   "file": "layers/kit_shadow.webp",
+   "kind": "shadow",
+   "rect": [
+    0.525652,
+    0.683869,
+    0.088695,
+    0.026017
+   ],
+   "pivot": [
+    0.57,
+    0.6969
+   ]
+  },
+  {
+   "file": "layers/kit_props_sheep_sheep_stand.webp",
+   "kind": "sheep3",
+   "box": [
+    0.5117,
+    0.563,
+    0.1109,
+    0.137
+   ],
+   "pivot": [
+    0.57,
+    0.7
+   ],
+   "idle": "none",
+   "rect": [
+    0.511697,
+    0.562975,
+    0.110869,
+    0.137025
+   ],
+   "tap": "wiggle",
+   "poses": {
+    "sleep": "layers/kit_props_sheep_sheep_sleep.webp"
+   }
+  },
+  {
+   "file": "layers/kit_shadow.webp",
+   "kind": "shadow",
+   "rect": [
+    0.640653,
+    0.683869,
+    0.088695,
+    0.026017
+   ],
+   "pivot": [
+    0.685,
+    0.6969
+   ]
+  },
+  {
+   "file": "layers/kit_props_sheep_sheep_stand.webp",
+   "kind": "sheep4",
+   "box": [
+    0.6267,
+    0.563,
+    0.1109,
+    0.137
+   ],
+   "pivot": [
+    0.685,
+    0.7
+   ],
+   "idle": "none",
+   "rect": [
+    0.626697,
+    0.562975,
+    0.110869,
+    0.137025
+   ],
+   "tap": "wiggle",
+   "poses": {
+    "sleep": "layers/kit_props_sheep_sheep_sleep.webp"
+   }
+  },
+  {
+   "file": "layers/kit_shadow.webp",
+   "kind": "shadow",
+   "rect": [
+    0.755653,
+    0.683869,
+    0.088695,
+    0.026017
+   ],
+   "pivot": [
+    0.8,
+    0.6969
+   ]
+  },
+  {
+   "file": "layers/kit_props_sheep_sheep_stand.webp",
+   "kind": "sheep5",
+   "box": [
+    0.7417,
+    0.563,
+    0.1109,
+    0.137
+   ],
+   "pivot": [
+    0.8,
+    0.7
+   ],
+   "idle": "none",
+   "rect": [
+    0.741697,
+    0.562975,
+    0.110869,
+    0.137025
+   ],
+   "tap": "wiggle",
+   "poses": {
+    "sleep": "layers/kit_props_sheep_sheep_sleep.webp"
+   }
+  },
+  {
+   "file": "layers/kit_lulu_a_float.webp",
+   "kind": "lulu",
+   "box": [
+    0.5443,
+    0.2335,
+    0.1102,
+    0.1496
+   ],
+   "pivot": [
+    0.6001,
+    0.3081
+   ],
+   "idle": "float",
+   "rect": [
+    0.544258,
+    0.233497,
+    0.11025,
+    0.149587
+   ],
+   "tap": "hop",
+   "poses": {
+    "float": "layers/kit_lulu_a_float.webp",
+    "talk": "layers/kit_lulu_a_talk.webp",
+    "glow": "layers/kit_lulu_a_glow.webp",
+    "point": "layers/kit_lulu_a_point.webp",
+    "clap": "layers/kit_lulu_a_clap.webp",
+    "whisper": "layers/kit_lulu_a_whisper.webp"
+   }
+  }
+ ],
+ "n1_late.webp": [
+  {
+   "file": "layers/kit_room.webp"
+  },
+  {
+   "file": "layers/kit_hero_j_bed_awake_flip.webp",
+   "kind": "hero",
+   "box": [
+    0.1783,
+    0.2201,
+    0.1367,
+    0.2999
+   ],
+   "pivot": [
+    0.24,
+    0.52
+   ],
+   "idle": "breathe",
+   "rect": [
+    0.178262,
+    0.220067,
+    0.136675,
+    0.299933
+   ],
+   "tap": "hop",
+   "poses": {
+    "bed_awake": "layers/kit_hero_j_bed_awake_flip.webp",
+    "bed_point": "layers/kit_hero_j_bed_point_flip.webp",
+    "bed_think": "layers/kit_hero_j_bed_think_flip.webp",
+    "bed_clap": "layers/kit_hero_j_bed_clap_flip.webp"
+   }
+  },
+  {
+   "file": "layers/kit_shadow.webp",
+   "kind": "shadow",
+   "rect": [
+    0.223891,
+    0.72957,
+    0.552218,
+    0.161984
+   ],
+   "pivot": [
+    0.5,
+    0.8106
+   ]
+  },
+  {
+   "file": "layers/kit_props_sheep_fence_long.webp",
+   "kind": "fence",
+   "box": [
+    0.1928,
+    0.7443,
+    0.6136,
+    0.0857
+   ],
+   "pivot": [
+    0.5,
+    0.83
+   ],
+   "idle": "none",
+   "rect": [
+    0.192791,
+    0.744275,
+    0.613575,
+    0.085725
+   ]
+  },
+  {
+   "file": "layers/kit_shadow.webp",
+   "kind": "shadow",
+   "rect": [
+    0.295653,
+    0.683869,
+    0.088695,
+    0.026017
+   ],
+   "pivot": [
+    0.34,
+    0.6969
+   ]
+  },
+  {
+   "file": "layers/kit_props_sheep_sheep_stand.webp",
+   "kind": "sheep1",
+   "box": [
+    0.2817,
+    0.563,
+    0.1109,
+    0.137
+   ],
+   "pivot": [
+    0.34,
+    0.7
+   ],
+   "idle": "none",
+   "rect": [
+    0.281697,
+    0.562975,
+    0.110869,
+    0.137025
+   ],
+   "tap": "wiggle",
+   "poses": {
+    "sleep": "layers/kit_props_sheep_sheep_sleep.webp"
+   }
+  },
+  {
+   "file": "layers/kit_shadow.webp",
+   "kind": "shadow",
+   "rect": [
+    0.410653,
+    0.683869,
+    0.088695,
+    0.026017
+   ],
+   "pivot": [
+    0.455,
+    0.6969
+   ]
+  },
+  {
+   "file": "layers/kit_props_sheep_sheep_stand.webp",
+   "kind": "sheep2",
+   "box": [
+    0.3967,
+    0.563,
+    0.1109,
+    0.137
+   ],
+   "pivot": [
+    0.455,
+    0.7
+   ],
+   "idle": "none",
+   "rect": [
+    0.396697,
+    0.562975,
+    0.110869,
+    0.137025
+   ],
+   "tap": "wiggle",
+   "poses": {
+    "sleep": "layers/kit_props_sheep_sheep_sleep.webp"
+   }
+  },
+  {
+   "file": "layers/kit_shadow.webp",
+   "kind": "shadow",
+   "rect": [
+    0.525652,
+    0.683869,
+    0.088695,
+    0.026017
+   ],
+   "pivot": [
+    0.57,
+    0.6969
+   ]
+  },
+  {
+   "file": "layers/kit_props_sheep_sheep_stand.webp",
+   "kind": "sheep3",
+   "box": [
+    0.5117,
+    0.563,
+    0.1109,
+    0.137
+   ],
+   "pivot": [
+    0.57,
+    0.7
+   ],
+   "idle": "none",
+   "rect": [
+    0.511697,
+    0.562975,
+    0.110869,
+    0.137025
+   ],
+   "tap": "wiggle",
+   "poses": {
+    "sleep": "layers/kit_props_sheep_sheep_sleep.webp"
+   }
+  },
+  {
+   "file": "layers/kit_shadow.webp",
+   "kind": "shadow",
+   "rect": [
+    0.640653,
+    0.683869,
+    0.088695,
+    0.026017
+   ],
+   "pivot": [
+    0.685,
+    0.6969
+   ]
+  },
+  {
+   "file": "layers/kit_props_sheep_sheep_stand.webp",
+   "kind": "sheep4",
+   "box": [
+    0.6267,
+    0.563,
+    0.1109,
+    0.137
+   ],
+   "pivot": [
+    0.685,
+    0.7
+   ],
+   "idle": "none",
+   "rect": [
+    0.626697,
+    0.562975,
+    0.110869,
+    0.137025
+   ],
+   "tap": "wiggle",
+   "poses": {
+    "sleep": "layers/kit_props_sheep_sheep_sleep.webp"
+   }
+  },
+  {
+   "file": "layers/kit_shadow.webp",
+   "kind": "shadow",
+   "rect": [
+    0.755653,
+    0.683869,
+    0.088695,
+    0.026017
+   ],
+   "pivot": [
+    0.8,
+    0.6969
+   ]
+  },
+  {
+   "file": "layers/kit_props_sheep_sheep_stand.webp",
+   "kind": "sheep5",
+   "box": [
+    0.7417,
+    0.563,
+    0.1109,
+    0.137
+   ],
+   "pivot": [
+    0.8,
+    0.7
+   ],
+   "idle": "none",
+   "rect": [
+    0.741697,
+    0.562975,
+    0.110869,
+    0.137025
+   ],
+   "tap": "wiggle",
+   "poses": {
+    "sleep": "layers/kit_props_sheep_sheep_sleep.webp"
+   }
+  },
+  {
+   "file": "layers/kit_lulu_a_float.webp",
+   "kind": "lulu",
+   "box": [
+    0.5443,
+    0.2335,
+    0.1102,
+    0.1496
+   ],
+   "pivot": [
+    0.6001,
+    0.3081
+   ],
+   "idle": "float",
+   "rect": [
+    0.544258,
+    0.233497,
+    0.11025,
+    0.149587
+   ],
+   "tap": "hop",
+   "poses": {
+    "float": "layers/kit_lulu_a_float.webp",
+    "talk": "layers/kit_lulu_a_talk.webp",
+    "glow": "layers/kit_lulu_a_glow.webp",
+    "point": "layers/kit_lulu_a_point.webp",
+    "clap": "layers/kit_lulu_a_clap.webp",
+    "whisper": "layers/kit_lulu_a_whisper.webp"
+   }
+  }
+ ],
+ "e1_count.webp": [
+  {
+   "file": "layers/kit_room.webp"
+  },
+  {
+   "file": "layers/kit_hero_j_bed_think_flip.webp",
+   "kind": "hero",
+   "box": [
+    0.1783,
+    0.2201,
+    0.1367,
+    0.2999
+   ],
+   "pivot": [
+    0.24,
+    0.52
+   ],
+   "idle": "breathe",
+   "rect": [
+    0.178262,
+    0.220067,
+    0.136675,
+    0.299933
+   ],
+   "tap": "hop",
+   "poses": {
+    "bed_awake": "layers/kit_hero_j_bed_awake_flip.webp",
+    "bed_point": "layers/kit_hero_j_bed_point_flip.webp",
+    "bed_think": "layers/kit_hero_j_bed_think_flip.webp",
+    "bed_clap": "layers/kit_hero_j_bed_clap_flip.webp"
+   }
+  },
+  {
+   "file": "layers/kit_shadow.webp",
+   "kind": "shadow",
+   "rect": [
+    0.223891,
+    0.72957,
+    0.552218,
+    0.161984
+   ],
+   "pivot": [
+    0.5,
+    0.8106
+   ]
+  },
+  {
+   "file": "layers/kit_props_sheep_fence_long.webp",
+   "kind": "fence",
+   "box": [
+    0.1928,
+    0.7443,
+    0.6136,
+    0.0857
+   ],
+   "pivot": [
+    0.5,
+    0.83
+   ],
+   "idle": "none",
+   "rect": [
+    0.192791,
+    0.744275,
+    0.613575,
+    0.085725
+   ]
+  },
+  {
+   "file": "layers/kit_shadow.webp",
+   "kind": "shadow",
+   "rect": [
+    0.295653,
+    0.683869,
+    0.088695,
+    0.026017
+   ],
+   "pivot": [
+    0.34,
+    0.6969
+   ]
+  },
+  {
+   "file": "layers/kit_props_sheep_sheep_stand.webp",
+   "kind": "sheep1",
+   "box": [
+    0.2817,
+    0.563,
+    0.1109,
+    0.137
+   ],
+   "pivot": [
+    0.34,
+    0.7
+   ],
+   "idle": "none",
+   "rect": [
+    0.281697,
+    0.562975,
+    0.110869,
+    0.137025
+   ],
+   "tap": "wiggle",
+   "poses": {
+    "sleep": "layers/kit_props_sheep_sheep_sleep.webp"
+   }
+  },
+  {
+   "file": "layers/kit_shadow.webp",
+   "kind": "shadow",
+   "rect": [
+    0.410653,
+    0.683869,
+    0.088695,
+    0.026017
+   ],
+   "pivot": [
+    0.455,
+    0.6969
+   ]
+  },
+  {
+   "file": "layers/kit_props_sheep_sheep_stand.webp",
+   "kind": "sheep2",
+   "box": [
+    0.3967,
+    0.563,
+    0.1109,
+    0.137
+   ],
+   "pivot": [
+    0.455,
+    0.7
+   ],
+   "idle": "none",
+   "rect": [
+    0.396697,
+    0.562975,
+    0.110869,
+    0.137025
+   ],
+   "tap": "wiggle",
+   "poses": {
+    "sleep": "layers/kit_props_sheep_sheep_sleep.webp"
+   }
+  },
+  {
+   "file": "layers/kit_shadow.webp",
+   "kind": "shadow",
+   "rect": [
+    0.525652,
+    0.683869,
+    0.088695,
+    0.026017
+   ],
+   "pivot": [
+    0.57,
+    0.6969
+   ]
+  },
+  {
+   "file": "layers/kit_props_sheep_sheep_stand.webp",
+   "kind": "sheep3",
+   "box": [
+    0.5117,
+    0.563,
+    0.1109,
+    0.137
+   ],
+   "pivot": [
+    0.57,
+    0.7
+   ],
+   "idle": "none",
+   "rect": [
+    0.511697,
+    0.562975,
+    0.110869,
+    0.137025
+   ],
+   "tap": "wiggle",
+   "poses": {
+    "sleep": "layers/kit_props_sheep_sheep_sleep.webp"
+   }
+  },
+  {
+   "file": "layers/kit_shadow.webp",
+   "kind": "shadow",
+   "rect": [
+    0.640653,
+    0.683869,
+    0.088695,
+    0.026017
+   ],
+   "pivot": [
+    0.685,
+    0.6969
+   ]
+  },
+  {
+   "file": "layers/kit_props_sheep_sheep_stand.webp",
+   "kind": "sheep4",
+   "box": [
+    0.6267,
+    0.563,
+    0.1109,
+    0.137
+   ],
+   "pivot": [
+    0.685,
+    0.7
+   ],
+   "idle": "none",
+   "rect": [
+    0.626697,
+    0.562975,
+    0.110869,
+    0.137025
+   ],
+   "tap": "wiggle",
+   "poses": {
+    "sleep": "layers/kit_props_sheep_sheep_sleep.webp"
+   }
+  },
+  {
+   "file": "layers/kit_shadow.webp",
+   "kind": "shadow",
+   "rect": [
+    0.755653,
+    0.683869,
+    0.088695,
+    0.026017
+   ],
+   "pivot": [
+    0.8,
+    0.6969
+   ]
+  },
+  {
+   "file": "layers/kit_props_sheep_sheep_stand.webp",
+   "kind": "sheep5",
+   "box": [
+    0.7417,
+    0.563,
+    0.1109,
+    0.137
+   ],
+   "pivot": [
+    0.8,
+    0.7
+   ],
+   "idle": "none",
+   "rect": [
+    0.741697,
+    0.562975,
+    0.110869,
+    0.137025
+   ],
+   "tap": "wiggle",
+   "poses": {
+    "sleep": "layers/kit_props_sheep_sheep_sleep.webp"
+   }
+  },
+  {
+   "file": "layers/kit_lulu_a_float.webp",
+   "kind": "lulu",
+   "box": [
+    0.5443,
+    0.2335,
+    0.1102,
+    0.1496
+   ],
+   "pivot": [
+    0.6001,
+    0.3081
+   ],
+   "idle": "float",
+   "rect": [
+    0.544258,
+    0.233497,
+    0.11025,
+    0.149587
+   ],
+   "tap": "hop",
+   "poses": {
+    "float": "layers/kit_lulu_a_float.webp",
+    "talk": "layers/kit_lulu_a_talk.webp",
+    "glow": "layers/kit_lulu_a_glow.webp",
+    "point": "layers/kit_lulu_a_point.webp",
+    "clap": "layers/kit_lulu_a_clap.webp",
+    "whisper": "layers/kit_lulu_a_whisper.webp"
+   }
+  }
+ ],
+ "d1_five.webp": [
+  {
+   "file": "layers/kit_room.webp"
+  },
+  {
+   "file": "layers/kit_hero_j_bed_think_flip.webp",
+   "kind": "hero",
+   "box": [
+    0.1783,
+    0.2201,
+    0.1367,
+    0.2999
+   ],
+   "pivot": [
+    0.24,
+    0.52
+   ],
+   "idle": "breathe",
+   "rect": [
+    0.178262,
+    0.220067,
+    0.136675,
+    0.299933
+   ],
+   "tap": "hop",
+   "poses": {
+    "bed_awake": "layers/kit_hero_j_bed_awake_flip.webp",
+    "bed_point": "layers/kit_hero_j_bed_point_flip.webp",
+    "bed_think": "layers/kit_hero_j_bed_think_flip.webp",
+    "bed_clap": "layers/kit_hero_j_bed_clap_flip.webp"
+   }
+  },
+  {
+   "file": "layers/kit_shadow.webp",
+   "kind": "shadow",
+   "rect": [
+    0.223891,
+    0.72957,
+    0.552218,
+    0.161984
+   ],
+   "pivot": [
+    0.5,
+    0.8106
+   ]
+  },
+  {
+   "file": "layers/kit_props_sheep_fence_long.webp",
+   "kind": "fence",
+   "box": [
+    0.1928,
+    0.7443,
+    0.6136,
+    0.0857
+   ],
+   "pivot": [
+    0.5,
+    0.83
+   ],
+   "idle": "none",
+   "rect": [
+    0.192791,
+    0.744275,
+    0.613575,
+    0.085725
+   ]
+  },
+  {
+   "file": "layers/kit_shadow.webp",
+   "kind": "shadow",
+   "rect": [
+    0.295653,
+    0.683869,
+    0.088695,
+    0.026017
+   ],
+   "pivot": [
+    0.34,
+    0.6969
+   ]
+  },
+  {
+   "file": "layers/kit_props_sheep_sheep_stand.webp",
+   "kind": "sheep1",
+   "box": [
+    0.2817,
+    0.563,
+    0.1109,
+    0.137
+   ],
+   "pivot": [
+    0.34,
+    0.7
+   ],
+   "idle": "none",
+   "rect": [
+    0.281697,
+    0.562975,
+    0.110869,
+    0.137025
+   ],
+   "tap": "wiggle",
+   "poses": {
+    "sleep": "layers/kit_props_sheep_sheep_sleep.webp"
+   }
+  },
+  {
+   "file": "layers/kit_shadow.webp",
+   "kind": "shadow",
+   "rect": [
+    0.410653,
+    0.683869,
+    0.088695,
+    0.026017
+   ],
+   "pivot": [
+    0.455,
+    0.6969
+   ]
+  },
+  {
+   "file": "layers/kit_props_sheep_sheep_stand.webp",
+   "kind": "sheep2",
+   "box": [
+    0.3967,
+    0.563,
+    0.1109,
+    0.137
+   ],
+   "pivot": [
+    0.455,
+    0.7
+   ],
+   "idle": "none",
+   "rect": [
+    0.396697,
+    0.562975,
+    0.110869,
+    0.137025
+   ],
+   "tap": "wiggle",
+   "poses": {
+    "sleep": "layers/kit_props_sheep_sheep_sleep.webp"
+   }
+  },
+  {
+   "file": "layers/kit_shadow.webp",
+   "kind": "shadow",
+   "rect": [
+    0.525652,
+    0.683869,
+    0.088695,
+    0.026017
+   ],
+   "pivot": [
+    0.57,
+    0.6969
+   ]
+  },
+  {
+   "file": "layers/kit_props_sheep_sheep_stand.webp",
+   "kind": "sheep3",
+   "box": [
+    0.5117,
+    0.563,
+    0.1109,
+    0.137
+   ],
+   "pivot": [
+    0.57,
+    0.7
+   ],
+   "idle": "none",
+   "rect": [
+    0.511697,
+    0.562975,
+    0.110869,
+    0.137025
+   ],
+   "tap": "wiggle",
+   "poses": {
+    "sleep": "layers/kit_props_sheep_sheep_sleep.webp"
+   }
+  },
+  {
+   "file": "layers/kit_shadow.webp",
+   "kind": "shadow",
+   "rect": [
+    0.640653,
+    0.683869,
+    0.088695,
+    0.026017
+   ],
+   "pivot": [
+    0.685,
+    0.6969
+   ]
+  },
+  {
+   "file": "layers/kit_props_sheep_sheep_stand.webp",
+   "kind": "sheep4",
+   "box": [
+    0.6267,
+    0.563,
+    0.1109,
+    0.137
+   ],
+   "pivot": [
+    0.685,
+    0.7
+   ],
+   "idle": "none",
+   "rect": [
+    0.626697,
+    0.562975,
+    0.110869,
+    0.137025
+   ],
+   "tap": "wiggle",
+   "poses": {
+    "sleep": "layers/kit_props_sheep_sheep_sleep.webp"
+   }
+  },
+  {
+   "file": "layers/kit_shadow.webp",
+   "kind": "shadow",
+   "rect": [
+    0.755653,
+    0.683869,
+    0.088695,
+    0.026017
+   ],
+   "pivot": [
+    0.8,
+    0.6969
+   ]
+  },
+  {
+   "file": "layers/kit_props_sheep_sheep_stand.webp",
+   "kind": "sheep5",
+   "box": [
+    0.7417,
+    0.563,
+    0.1109,
+    0.137
+   ],
+   "pivot": [
+    0.8,
+    0.7
+   ],
+   "idle": "none",
+   "rect": [
+    0.741697,
+    0.562975,
+    0.110869,
+    0.137025
+   ],
+   "tap": "wiggle",
+   "poses": {
+    "sleep": "layers/kit_props_sheep_sheep_sleep.webp"
+   }
+  },
+  {
+   "file": "layers/kit_lulu_a_float.webp",
+   "kind": "lulu",
+   "box": [
+    0.5443,
+    0.2335,
+    0.1102,
+    0.1496
+   ],
+   "pivot": [
+    0.6001,
+    0.3081
+   ],
+   "idle": "float",
+   "rect": [
+    0.544258,
+    0.233497,
+    0.11025,
+    0.149587
+   ],
+   "tap": "hop",
+   "poses": {
+    "float": "layers/kit_lulu_a_float.webp",
+    "talk": "layers/kit_lulu_a_talk.webp",
+    "glow": "layers/kit_lulu_a_glow.webp",
+    "point": "layers/kit_lulu_a_point.webp",
+    "clap": "layers/kit_lulu_a_clap.webp",
+    "whisper": "layers/kit_lulu_a_whisper.webp"
+   }
+  }
+ ],
+ "d2_sleepy.webp": [
+  {
+   "file": "layers/kit_room.webp"
+  },
+  {
+   "file": "layers/kit_hero_j_bed_clap.webp",
+   "kind": "hero",
+   "box": [
+    0.1452,
+    0.2201,
+    0.1896,
+    0.2999
+   ],
+   "pivot": [
+    0.24,
+    0.52
+   ],
+   "idle": "breathe",
+   "rect": [
+    0.145181,
+    0.220067,
+    0.189638,
+    0.299933
+   ],
+   "tap": "hop",
+   "poses": {
+    "bed_awake": "layers/kit_hero_j_bed_awake.webp",
+    "bed_point": "layers/kit_hero_j_bed_point.webp",
+    "bed_think": "layers/kit_hero_j_bed_think.webp",
+    "bed_clap": "layers/kit_hero_j_bed_clap.webp",
+    "lie_yawn": "layers/kit_hero_c_lie_yawn.webp",
+    "asleep": "layers/kit_hero_b_asleep.webp"
+   }
+  },
+  {
+   "file": "layers/kit_shadow.webp",
+   "kind": "shadow",
+   "rect": [
+    0.223891,
+    0.72957,
+    0.552218,
+    0.161984
+   ],
+   "pivot": [
+    0.5,
+    0.8106
+   ]
+  },
+  {
+   "file": "layers/kit_props_sheep_fence_long.webp",
+   "kind": "fence",
+   "box": [
+    0.1928,
+    0.7443,
+    0.6136,
+    0.0857
+   ],
+   "pivot": [
+    0.5,
+    0.83
+   ],
+   "idle": "none",
+   "rect": [
+    0.192791,
+    0.744275,
+    0.613575,
+    0.085725
+   ]
+  },
+  {
+   "file": "layers/kit_shadow.webp",
+   "kind": "shadow",
+   "rect": [
+    0.295653,
+    0.683869,
+    0.088695,
+    0.026017
+   ],
+   "pivot": [
+    0.34,
+    0.6969
+   ]
+  },
+  {
+   "file": "layers/kit_props_sheep_sheep_stand.webp",
+   "kind": "sheep1",
+   "box": [
+    0.2817,
+    0.563,
+    0.1109,
+    0.137
+   ],
+   "pivot": [
+    0.34,
+    0.7
+   ],
+   "idle": "none",
+   "rect": [
+    0.281697,
+    0.562975,
+    0.110869,
+    0.137025
+   ],
+   "tap": "wiggle",
+   "poses": {
+    "sleep": "layers/kit_props_sheep_sheep_sleep.webp"
+   }
+  },
+  {
+   "file": "layers/kit_shadow.webp",
+   "kind": "shadow",
+   "rect": [
+    0.410653,
+    0.683869,
+    0.088695,
+    0.026017
+   ],
+   "pivot": [
+    0.455,
+    0.6969
+   ]
+  },
+  {
+   "file": "layers/kit_props_sheep_sheep_stand.webp",
+   "kind": "sheep2",
+   "box": [
+    0.3967,
+    0.563,
+    0.1109,
+    0.137
+   ],
+   "pivot": [
+    0.455,
+    0.7
+   ],
+   "idle": "none",
+   "rect": [
+    0.396697,
+    0.562975,
+    0.110869,
+    0.137025
+   ],
+   "tap": "wiggle",
+   "poses": {
+    "sleep": "layers/kit_props_sheep_sheep_sleep.webp"
+   }
+  },
+  {
+   "file": "layers/kit_shadow.webp",
+   "kind": "shadow",
+   "rect": [
+    0.525652,
+    0.683869,
+    0.088695,
+    0.026017
+   ],
+   "pivot": [
+    0.57,
+    0.6969
+   ]
+  },
+  {
+   "file": "layers/kit_props_sheep_sheep_stand.webp",
+   "kind": "sheep3",
+   "box": [
+    0.5117,
+    0.563,
+    0.1109,
+    0.137
+   ],
+   "pivot": [
+    0.57,
+    0.7
+   ],
+   "idle": "none",
+   "rect": [
+    0.511697,
+    0.562975,
+    0.110869,
+    0.137025
+   ],
+   "tap": "wiggle",
+   "poses": {
+    "sleep": "layers/kit_props_sheep_sheep_sleep.webp"
+   }
+  },
+  {
+   "file": "layers/kit_shadow.webp",
+   "kind": "shadow",
+   "rect": [
+    0.640653,
+    0.683869,
+    0.088695,
+    0.026017
+   ],
+   "pivot": [
+    0.685,
+    0.6969
+   ]
+  },
+  {
+   "file": "layers/kit_props_sheep_sheep_stand.webp",
+   "kind": "sheep4",
+   "box": [
+    0.6267,
+    0.563,
+    0.1109,
+    0.137
+   ],
+   "pivot": [
+    0.685,
+    0.7
+   ],
+   "idle": "none",
+   "rect": [
+    0.626697,
+    0.562975,
+    0.110869,
+    0.137025
+   ],
+   "tap": "wiggle",
+   "poses": {
+    "sleep": "layers/kit_props_sheep_sheep_sleep.webp"
+   }
+  },
+  {
+   "file": "layers/kit_shadow.webp",
+   "kind": "shadow",
+   "rect": [
+    0.755653,
+    0.683869,
+    0.088695,
+    0.026017
+   ],
+   "pivot": [
+    0.8,
+    0.6969
+   ]
+  },
+  {
+   "file": "layers/kit_props_sheep_sheep_stand.webp",
+   "kind": "sheep5",
+   "box": [
+    0.7417,
+    0.563,
+    0.1109,
+    0.137
+   ],
+   "pivot": [
+    0.8,
+    0.7
+   ],
+   "idle": "none",
+   "rect": [
+    0.741697,
+    0.562975,
+    0.110869,
+    0.137025
+   ],
+   "tap": "wiggle",
+   "poses": {
+    "sleep": "layers/kit_props_sheep_sheep_sleep.webp"
+   }
+  },
+  {
+   "file": "layers/kit_lulu_a_float.webp",
+   "kind": "lulu",
+   "box": [
+    0.5443,
+    0.2335,
+    0.1102,
+    0.1496
+   ],
+   "pivot": [
+    0.6001,
+    0.3081
+   ],
+   "idle": "float",
+   "rect": [
+    0.544258,
+    0.233497,
+    0.11025,
+    0.149587
+   ],
+   "tap": "hop",
+   "poses": {
+    "float": "layers/kit_lulu_a_float.webp",
+    "talk": "layers/kit_lulu_a_talk.webp",
+    "glow": "layers/kit_lulu_a_glow.webp",
+    "point": "layers/kit_lulu_a_point.webp",
+    "clap": "layers/kit_lulu_a_clap.webp",
+    "whisper": "layers/kit_lulu_a_whisper.webp"
+   }
+  }
+ ],
+ "end_asleep.webp": [
+  {
+   "file": "layers/kit_room.webp"
+  },
+  {
+   "file": "layers/kit_hero_b_asleep.webp",
+   "kind": "hero",
+   "box": [
+    0.1452,
+    0.2201,
+    0.1896,
+    0.2999
+   ],
+   "pivot": [
+    0.24,
+    0.4506
+   ],
+   "idle": "breathe",
+   "rect": [
+    0.145181,
+    0.220067,
+    0.189638,
+    0.299933
+   ],
+   "poses": {
+    "bed_awake": "layers/kit_hero_j_bed_awake.webp",
+    "bed_point": "layers/kit_hero_j_bed_point.webp",
+    "bed_think": "layers/kit_hero_j_bed_think.webp",
+    "bed_clap": "layers/kit_hero_j_bed_clap.webp",
+    "lie_yawn": "layers/kit_hero_c_lie_yawn.webp",
+    "asleep": "layers/kit_hero_b_asleep.webp"
+   }
+  },
+  {
+   "file": "layers/kit_props_blanket_lump.webp",
+   "kind": "blanket",
+   "box": [
+    0.262,
+    0.3878,
+    0.1334,
+    0.0822
+   ],
+   "pivot": [
+    0.33,
+    0.47
+   ],
+   "idle": "none",
+   "rect": [
+    0.262031,
+    0.387813,
+    0.133359,
+    0.082187
+   ]
+  },
+  {
+   "file": "layers/kit_shadow.webp",
+   "kind": "shadow",
+   "rect": [
+    0.223891,
+    0.72957,
+    0.552218,
+    0.161984
+   ],
+   "pivot": [
+    0.5,
+    0.8106
+   ]
+  },
+  {
+   "file": "layers/kit_props_sheep_fence_long.webp",
+   "kind": "fence",
+   "box": [
+    0.1928,
+    0.7443,
+    0.6136,
+    0.0857
+   ],
+   "pivot": [
+    0.5,
+    0.83
+   ],
+   "idle": "none",
+   "rect": [
+    0.192791,
+    0.744275,
+    0.613575,
+    0.085725
+   ]
+  },
+  {
+   "file": "layers/kit_shadow.webp",
+   "kind": "shadow",
+   "rect": [
+    0.292235,
+    0.682626,
+    0.095529,
+    0.028022
+   ],
+   "pivot": [
+    0.34,
+    0.6966
+   ]
+  },
+  {
+   "file": "layers/kit_props_sheep_sheep_sleep.webp",
+   "kind": "sheep1",
+   "box": [
+    0.2817,
+    0.563,
+    0.1109,
+    0.137
+   ],
+   "pivot": [
+    0.34,
+    0.7
+   ],
+   "idle": "none",
+   "rect": [
+    0.281697,
+    0.562975,
+    0.110869,
+    0.137025
+   ],
+   "tap": "wiggle",
+   "poses": {
+    "sleep": "layers/kit_props_sheep_sheep_sleep.webp",
+    "stand": "layers/kit_props_sheep_sheep_stand.webp"
+   }
+  },
+  {
+   "file": "layers/kit_shadow.webp",
+   "kind": "shadow",
+   "rect": [
+    0.407235,
+    0.682626,
+    0.095529,
+    0.028022
+   ],
+   "pivot": [
+    0.455,
+    0.6966
+   ]
+  },
+  {
+   "file": "layers/kit_props_sheep_sheep_sleep.webp",
+   "kind": "sheep2",
+   "box": [
+    0.3967,
+    0.563,
+    0.1109,
+    0.137
+   ],
+   "pivot": [
+    0.455,
+    0.7
+   ],
+   "idle": "none",
+   "rect": [
+    0.396697,
+    0.562975,
+    0.110869,
+    0.137025
+   ],
+   "tap": "wiggle",
+   "poses": {
+    "sleep": "layers/kit_props_sheep_sheep_sleep.webp",
+    "stand": "layers/kit_props_sheep_sheep_stand.webp"
+   }
+  },
+  {
+   "file": "layers/kit_shadow.webp",
+   "kind": "shadow",
+   "rect": [
+    0.522235,
+    0.682626,
+    0.095529,
+    0.028022
+   ],
+   "pivot": [
+    0.57,
+    0.6966
+   ]
+  },
+  {
+   "file": "layers/kit_props_sheep_sheep_sleep.webp",
+   "kind": "sheep3",
+   "box": [
+    0.5117,
+    0.563,
+    0.1109,
+    0.137
+   ],
+   "pivot": [
+    0.57,
+    0.7
+   ],
+   "idle": "none",
+   "rect": [
+    0.511697,
+    0.562975,
+    0.110869,
+    0.137025
+   ],
+   "tap": "wiggle",
+   "poses": {
+    "sleep": "layers/kit_props_sheep_sheep_sleep.webp",
+    "stand": "layers/kit_props_sheep_sheep_stand.webp"
+   }
+  },
+  {
+   "file": "layers/kit_shadow.webp",
+   "kind": "shadow",
+   "rect": [
+    0.637235,
+    0.682626,
+    0.095529,
+    0.028022
+   ],
+   "pivot": [
+    0.685,
+    0.6966
+   ]
+  },
+  {
+   "file": "layers/kit_props_sheep_sheep_sleep.webp",
+   "kind": "sheep4",
+   "box": [
+    0.6267,
+    0.563,
+    0.1109,
+    0.137
+   ],
+   "pivot": [
+    0.685,
+    0.7
+   ],
+   "idle": "none",
+   "rect": [
+    0.626697,
+    0.562975,
+    0.110869,
+    0.137025
+   ],
+   "tap": "wiggle",
+   "poses": {
+    "sleep": "layers/kit_props_sheep_sheep_sleep.webp",
+    "stand": "layers/kit_props_sheep_sheep_stand.webp"
+   }
+  },
+  {
+   "file": "layers/kit_shadow.webp",
+   "kind": "shadow",
+   "rect": [
+    0.752235,
+    0.682626,
+    0.095529,
+    0.028022
+   ],
+   "pivot": [
+    0.8,
+    0.6966
+   ]
+  },
+  {
+   "file": "layers/kit_props_sheep_sheep_sleep.webp",
+   "kind": "sheep5",
+   "box": [
+    0.7417,
+    0.563,
+    0.1109,
+    0.137
+   ],
+   "pivot": [
+    0.8,
+    0.7
+   ],
+   "idle": "none",
+   "rect": [
+    0.741697,
+    0.562975,
+    0.110869,
+    0.137025
+   ],
+   "tap": "wiggle",
+   "poses": {
+    "sleep": "layers/kit_props_sheep_sheep_sleep.webp",
+    "stand": "layers/kit_props_sheep_sheep_stand.webp"
+   }
+  },
+  {
+   "file": "layers/kit_lulu_a_float.webp",
+   "kind": "lulu",
+   "box": [
+    0.5443,
+    0.2335,
+    0.1102,
+    0.1496
+   ],
+   "pivot": [
+    0.6001,
+    0.3081
+   ],
+   "idle": "float",
+   "rect": [
+    0.544258,
+    0.233497,
+    0.11025,
+    0.149587
+   ],
+   "tap": "hop",
+   "poses": {
+    "float": "layers/kit_lulu_a_float.webp",
+    "talk": "layers/kit_lulu_a_talk.webp",
+    "glow": "layers/kit_lulu_a_glow.webp",
+    "point": "layers/kit_lulu_a_point.webp",
+    "clap": "layers/kit_lulu_a_clap.webp",
+    "whisper": "layers/kit_lulu_a_whisper.webp"
+   }
+  }
+ ]
+}

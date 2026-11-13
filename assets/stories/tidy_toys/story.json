@@ -1,6 +1,6 @@
 {
   "id": "tidy_toys",
-  "theme": "tidiness",
+  "theme": "tidiness", "section": "behavior",
   "hero": "girl",
   "title": {"vi": "{name} và những bạn đồ chơi về nhà", "en": "{name} Helps the Toys Go Home"},
   "cover": "images/cover.webp",

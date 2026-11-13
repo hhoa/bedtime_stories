@@ -39,6 +39,7 @@ class SceneLayers extends StatelessWidget {
     required this.layers,
     required this.reactions,
     this.startPoses = const {},
+    this.placements = const {},
     super.key,
   });
 
@@ -48,6 +49,10 @@ class SceneLayers extends StatelessWidget {
 
   /// Node's starting pose per part kind.
   final Map<String, String> startPoses;
+
+  /// Math stories: where counted parts start (kind → spot), null = hidden.
+  /// Parts not in here stay where the picture put them.
+  final Map<String, CanvasPoint?> placements;
 
   @override
   Widget build(BuildContext context) {
@@ -63,6 +68,8 @@ class SceneLayers extends StatelessWidget {
               reactions: reactions,
               still: still,
               startPose: startPoses[layers[i].kind],
+              placed: placements.containsKey(layers[i].kind),
+              placeAt: placements[layers[i].kind],
             )
           else
             _svg(layers[i].asset),
@@ -139,6 +146,8 @@ class _PartLayer extends StatefulWidget {
     required this.reactions,
     required this.still,
     this.startPose,
+    this.placed = false,
+    this.placeAt,
   });
 
   final SceneLayer layer;
@@ -149,6 +158,13 @@ class _PartLayer extends StatefulWidget {
   /// (they carry meaning), instantly.
   final bool still;
   final String? startPose;
+
+  /// Placed by the node (math stories): shown at [placeAt], hidden when
+  /// that is null.
+  final bool placed;
+  final CanvasPoint? placeAt;
+
+  bool get hidden => placed && placeAt == null;
 
   @override
   State<_PartLayer> createState() => _PartLayerState();
@@ -205,6 +221,15 @@ class _PartLayerState extends State<_PartLayer> with TickerProviderStateMixin {
     if (_layer.blinkAsset != null && _layer.poses.isEmpty && !widget.still) {
       _scheduleBlink();
     }
+    _place();
+  }
+
+  /// Jumps (no tween) to the node's spot for this part.
+  void _place() {
+    final at = widget.placeAt;
+    if (at == null) return;
+    _moveFrom = _moveTo = moveOffset(_layer, at);
+    _move.value = 1;
   }
 
   @override
@@ -214,6 +239,7 @@ class _PartLayerState extends State<_PartLayer> with TickerProviderStateMixin {
     if (widget.startPose != old.startPose && widget.startPose != null) {
       _pose.value = _validPose(widget.startPose);
     }
+    if (widget.placeAt != old.placeAt) _place();
   }
 
   Offset get _moveOffset {
@@ -243,6 +269,8 @@ class _PartLayerState extends State<_PartLayer> with TickerProviderStateMixin {
         } else {
           _move.forward(from: 0);
         }
+      case PartAction.arrive:
+        return; // expanded into moves by the player
       case PartAction.hop || PartAction.wiggle || PartAction.pulse:
         if (widget.still) return;
         _action = r.action;
@@ -280,6 +308,7 @@ class _PartLayerState extends State<_PartLayer> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
+    if (widget.hidden) return const SizedBox.shrink();
     final blink = _layer.blinkAsset;
     final picture = _layer.poses.isNotEmpty
         ? _poseStack()
@@ -413,7 +442,7 @@ final class _Motion {
         final p = 1 + 0.14 * sin(pi * t);
         sx *= p;
         sy *= p;
-      case PartAction.pose || PartAction.move || null:
+      case PartAction.pose || PartAction.move || PartAction.arrive || null:
         break;
     }
   }

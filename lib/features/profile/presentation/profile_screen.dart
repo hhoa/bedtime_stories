@@ -38,9 +38,9 @@ class ProfileScreen extends StatelessWidget {
                 constraints: const BoxConstraints(
                   maxWidth: AppConstants.contentMaxWidth,
                 ),
-                child: const CustomScrollView(
+                child: CustomScrollView(
                   slivers: [
-                    SliverPadding(
+                    const SliverPadding(
                       padding: EdgeInsets.fromLTRB(
                         AppSpace.xl,
                         AppSpace.lg,
@@ -49,7 +49,8 @@ class ProfileScreen extends StatelessWidget {
                       ),
                       sliver: SliverToBoxAdapter(child: _Header()),
                     ),
-                    _StickerGrid(),
+                    for (final section in StorySection.values)
+                      _StickerGrid(section: section),
                   ],
                 ),
               ),
@@ -153,8 +154,11 @@ class _Header extends StatelessWidget {
   }
 }
 
+/// One section's stickers under its name; nothing while it has no stories.
 class _StickerGrid extends StatelessWidget {
-  const _StickerGrid();
+  const _StickerGrid({required this.section});
+
+  final StorySection section;
 
   @override
   Widget build(BuildContext context) {
@@ -164,34 +168,53 @@ class _StickerGrid extends StatelessWidget {
         final stories = switch (state) {
           StoryListLoaded(:final stories) => [
             for (final s in stories)
-              if (s.stickerAsset != null) s,
+              if (s.section == section && s.stickerAsset != null) s,
           ],
           _ => const <Story>[],
         };
-        return SliverPadding(
-          padding: const EdgeInsets.fromLTRB(
-            AppSpace.xl,
-            0,
-            AppSpace.xl,
-            AppSpace.xl,
-          ),
-          sliver: SliverGrid.builder(
-            gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-              maxCrossAxisExtent: AppConstants.stickerTileSize + AppSpace.xl,
-              mainAxisSpacing: AppSpace.lg,
-              crossAxisSpacing: AppSpace.lg,
-              mainAxisExtent: AppConstants.stickerTileSize + 44,
+        if (stories.isEmpty) return const SliverToBoxAdapter();
+        return SliverMainAxisGroup(
+          slivers: [
+            SliverPadding(
+              padding: const EdgeInsets.fromLTRB(
+                AppSpace.xl,
+                0,
+                AppSpace.xl,
+                AppSpace.lg,
+              ),
+              sliver: SliverToBoxAdapter(
+                child: Text(
+                  context.strings.sectionTitle(section),
+                  style: AppText.kidTitle.copyWith(color: AppColors.lavender),
+                ),
+              ),
             ),
-            itemCount: stories.length,
-            itemBuilder: (context, i) => _StickerTile(
-              story: stories[i],
-              count: stickers[stories[i].id] ?? 0,
-            ),
-          ),
+            _grid(stories, stickers),
+          ],
         );
       },
     );
   }
+
+  Widget _grid(List<Story> stories, Map<String, int> stickers) => SliverPadding(
+    padding: const EdgeInsets.fromLTRB(
+      AppSpace.xl,
+      0,
+      AppSpace.xl,
+      AppSpace.xl,
+    ),
+    sliver: SliverGrid.builder(
+      gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
+        maxCrossAxisExtent: AppConstants.stickerTileSize + AppSpace.xl,
+        mainAxisSpacing: AppSpace.lg,
+        crossAxisSpacing: AppSpace.lg,
+        mainAxisExtent: AppConstants.stickerTileSize + 44,
+      ),
+      itemCount: stories.length,
+      itemBuilder: (context, i) =>
+          _StickerTile(story: stories[i], count: stickers[stories[i].id] ?? 0),
+    ),
+  );
 }
 
 class _StickerTile extends StatelessWidget {

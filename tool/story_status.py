@@ -234,6 +234,7 @@ def status(sid: str, art_dir: Path | None = None) -> dict:
         'id': sid,
         'title': (story or {}).get('title', {}).get('vi'),
         'hero': (story or {}).get('hero'),
+        'section': (story or {}).get('section', 'behavior'),
         'outline': (docs / 'outline.md').exists(),
         'script': story is not None,
         'script_review': verdict(docs / 'review.md'),
@@ -370,12 +371,13 @@ def brief(s: dict) -> str:
         parts.append(f'audio {lang} {a["ok"]}/{a["total"]}')
     if 'wired' in s:
         parts.append('wired' if s['wired'] else 'not wired')
-    head = f'{s["id"]}: ' + (', '.join(parts) if parts else 'planning')
+    tag = '' if s.get('section', 'behavior') == 'behavior' else f' [{s["section"]}]'
+    head = f'{s["id"]}{tag}: ' + (', '.join(parts) if parts else 'planning')
     return head + (f' -> next: {s["next"][0]}' if s['next'] else ' -> done')
 
 
 def report(s: dict) -> str:
-    lines = [f'== {s["id"]}  {s["title"] or ""}  (hero {s["hero"] or "?"})']
+    lines = [f'== {s["id"]}  {s["title"] or ""}  (hero {s["hero"] or "?"}, section {s["section"]})']
     g = s['gates']
     lines.append(f'outline {"yes" if s["outline"] else "no"} (approved {g.get("outline") or "no"})'
                  f' | script {"yes" if s["script"] else "no"}, review {s["script_review"] or "-"}'

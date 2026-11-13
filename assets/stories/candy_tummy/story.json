@@ -1,6 +1,6 @@
 {
   "id": "candy_tummy",
-  "theme": "treats",
+  "theme": "treats", "section": "behavior",
   "hero": "girl",
   "title": {"vi": "{name} và hũ kẹo cầu vồng", "en": "{name} and the Rainbow Candy Jar"},
   "cover": "images/cover.webp",

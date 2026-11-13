@@ -21,6 +21,9 @@ Nodes (every `text` and `label` is `{"vi": "...", "en": "..."}`):
 
 Images `images/<file>.webp`, filenames exactly as in the outline.
 
+## Math stories
+If the outline says section `math`: add `"section": "math"` after `"theme"`, and follow `docs/math.md` (kind option = right answer, learn = near miss; learn path counts again with a `hop` cue on each number word; number words not digits; never "sai" / "wrong"; labels are the spoken answer). Every number said must match the parts on the stage in that node. Math stories are templates with numbers drawn each play: write tokens (`{a}`, `{count:c}`, `{n}` in labels), `"math"`, `"counted"`, `"answer"` and `arrive` cues exactly as `docs/math.md` "New numbers every play" says; English must read right for any number.
+
 ## The name rule (checked by tool and app)
 - `{name}` appears **at most once per line** (scene, choice question, ending) and only as the **first or last word of the whole line**, not of a later sentence: "{name} ơi, bảy giờ rồi! Mình làm gì nhỉ?", "{name} kéo chăn trùm kín đầu. Tích tắc…", "Trời tối rồi. Mình ngủ chưa nhỉ, {name}?", "{name}, it's seven o'clock! What should we do?". Never in option labels. This keeps each line = the name + one clip, easy to record.
 - Wrong: "Reng reng! Trời sáng rồi. {name} ngáp." (name starts a later sentence), "Bảy giờ rồi! {name} ơi, …?", "Lulu xoay áo cho {name}. Bé mỉm cười." (name ends a sentence but not the line), a second name in a quote ("…: \"Chào buổi sáng, {name}!\" Lulu vỗ tay."). Fix: open the line with the name ("{name} ơi, trời sáng rồi! Reng reng!…", "{name} giật mình: \"Ối, muộn rồi!\" …"), or say "bé" / "the little one". Not every line needs the name. `check_story.py` rejects these (more examples: `test/fixtures/name_rule_cases.json`); `gen_audio.py --list` must show at most one clip beside each `[tên bé]`.

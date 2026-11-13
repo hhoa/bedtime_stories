@@ -6,12 +6,19 @@ import 'package:bedtime_stories/features/stories/domain/entities/story.dart';
 
 /// What the kid does in stories, for the parent-facing product owner.
 ///
-/// Kids app: only story/node/option ids, language, counts and the avatar
-/// gender are sent. Never
+/// Kids app: only section, story/node/option ids, language, counts and the
+/// avatar gender are sent. Never
 /// the child's name or anything else that identifies them.
 abstract interface class Analytics {
-  /// A story was opened (from home or "play again").
-  Future<void> storyStart(String storyId, AppLanguage language);
+  /// The kid opened a section (sections page card).
+  Future<void> sectionOpen(StorySection section);
+
+  /// A story was opened (from its section list or "play again").
+  Future<void> storyStart(
+    String storyId,
+    AppLanguage language,
+    StorySection section,
+  );
 
   Future<void> storyChoice({
     required String storyId,
@@ -55,8 +62,19 @@ final class FirebaseAppAnalytics implements Analytics {
   );
 
   @override
-  Future<void> storyStart(String storyId, AppLanguage language) =>
-      _log('story_start', {'story_id': storyId, 'lang': language.name});
+  Future<void> sectionOpen(StorySection section) =>
+      _log('section_open', {'section': section.name});
+
+  @override
+  Future<void> storyStart(
+    String storyId,
+    AppLanguage language,
+    StorySection section,
+  ) => _log('story_start', {
+    'story_id': storyId,
+    'lang': language.name,
+    'section': section.name,
+  });
 
   @override
   Future<void> storyChoice({
@@ -109,7 +127,14 @@ final class NoopAnalytics implements Analytics {
   const NoopAnalytics();
 
   @override
-  Future<void> storyStart(String storyId, AppLanguage language) async {}
+  Future<void> sectionOpen(StorySection section) async {}
+
+  @override
+  Future<void> storyStart(
+    String storyId,
+    AppLanguage language,
+    StorySection section,
+  ) async {}
 
   @override
   Future<void> storyChoice({

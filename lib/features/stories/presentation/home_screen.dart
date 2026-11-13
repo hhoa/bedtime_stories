@@ -2,7 +2,6 @@ import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:bedtime_stories/core/models/child_profile.dart';
 import 'package:bedtime_stories/core/router/app_routes.dart';
@@ -13,16 +12,17 @@ import 'package:bedtime_stories/core/utils/app_constants.dart';
 import 'package:bedtime_stories/core/widgets/kid_buttons.dart';
 import 'package:bedtime_stories/core/widgets/night_sky.dart';
 import 'package:bedtime_stories/features/profile/presentation/cubit/language_cubit.dart';
-import 'package:bedtime_stories/features/profile/presentation/cubit/profile_cubit.dart';
-import 'package:bedtime_stories/features/profile/presentation/cubit/sticker_cubit.dart';
 import 'package:bedtime_stories/features/stories/domain/entities/story.dart';
 import 'package:bedtime_stories/features/stories/presentation/cubit/story_list_cubit.dart';
 import 'package:bedtime_stories/features/stories/presentation/widgets/story_card.dart';
 
-/// Story covers in a lazy grid: only cards on screen are built and only
-/// their covers decoded (small `cover.webp`, drawn once at box size).
+/// One section's stories as covers in a lazy grid: only cards on screen
+/// are built and only their covers decoded (small `cover.webp`, drawn once
+/// at box size). The [StoryListCubit] above it lists only [section].
 class HomeScreen extends StatelessWidget {
-  const HomeScreen({super.key});
+  const HomeScreen({required this.section, super.key});
+
+  final StorySection section;
 
   @override
   Widget build(BuildContext context) {
@@ -40,12 +40,14 @@ class HomeScreen extends StatelessWidget {
                   children: [
                     Padding(
                       padding: EdgeInsets.fromLTRB(side, AppSpace.xl, side, 0),
-                      child: const _Header(),
+                      child: _Header(section: section),
                     ),
                     const SizedBox(height: AppSpace.xl),
                     // Full width, so drags on the side margins scroll the list.
                     Expanded(
-                      child: RepaintBoundary(child: _StoryList(side: side)),
+                      child: RepaintBoundary(
+                        child: _StoryList(side: side, section: section),
+                      ),
                     ),
                   ],
                 );
@@ -71,32 +73,37 @@ double homeSidePadding(double width) {
   );
 }
 
+/// Back to the sections page, the section's name and its subtitle.
 class _Header extends StatelessWidget {
-  const _Header();
+  const _Header({required this.section});
+
+  final StorySection section;
 
   @override
   Widget build(BuildContext context) {
-    final profile = context.profile;
     final strings = context.strings;
-    final stickers = context.select<StickerCubit, int>((c) => c.total);
     return Row(
-      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        _Avatar(
-          asset: AppConstants.heroAvatar(profile.gender.name),
-          stickers: stickers,
-          tooltip: strings.openProfile,
-          onTap: () => context.push(AppRoutes.profile),
+        KidIconButton(
+          icon: Icons.arrow_back_rounded,
+          tooltip: strings.back,
+          onPressed: () =>
+              context.canPop() ? context.pop() : context.go(AppRoutes.home),
         ),
         const SizedBox(width: AppSpace.lg),
         Expanded(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(strings.greeting(profile.name), style: AppText.kidDisplay),
+              Text(
+                strings.sectionTitle(section),
+                style: AppText.kidDisplay,
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+              ),
               const SizedBox(height: AppSpace.xs),
               Text(
-                strings.homeSubtitle,
+                strings.sectionSubtitle(section),
                 style: AppText.kidLabel.copyWith(color: AppColors.lavender),
               ),
             ],
@@ -107,81 +114,11 @@ class _Header extends StatelessWidget {
   }
 }
 
-/// Kid's face with their sticker count; opens the profile page.
-class _Avatar extends StatelessWidget {
-  const _Avatar({
-    required this.asset,
-    required this.stickers,
-    required this.tooltip,
-    required this.onTap,
-  });
-
-  final String asset;
-  final int stickers;
-  final String tooltip;
-  final VoidCallback onTap;
-
-  static const _size = AppConstants.kidIconButton + AppSpace.lg;
-
-  @override
-  Widget build(BuildContext context) {
-    return Tooltip(
-      message: tooltip,
-      child: Stack(
-        clipBehavior: Clip.none,
-        children: [
-          Material(
-            color: AppColors.nightSurface,
-            shape: const CircleBorder(
-              side: BorderSide(color: AppColors.amber, width: 3),
-            ),
-            clipBehavior: Clip.antiAlias,
-            child: InkWell(
-              onTap: onTap,
-              child: SvgPicture.asset(asset, width: _size, height: _size),
-            ),
-          ),
-          Positioned(
-            right: -AppSpace.sm,
-            bottom: -AppSpace.sm,
-            child: IgnorePointer(
-              child: Container(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: AppSpace.sm,
-                  vertical: 2,
-                ),
-                decoration: BoxDecoration(
-                  color: AppColors.amber,
-                  borderRadius: BorderRadius.circular(AppRadius.pill),
-                  border: Border.all(color: AppColors.nightDeep, width: 2),
-                ),
-                child: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    const Icon(
-                      Icons.star_rounded,
-                      size: 18,
-                      color: AppColors.onAccent,
-                    ),
-                    Text(
-                      '$stickers',
-                      style: AppText.label.copyWith(color: AppColors.onAccent),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
 class _StoryList extends StatelessWidget {
-  const _StoryList({required this.side});
+  const _StoryList({required this.side, required this.section});
 
   final double side;
+  final StorySection section;
 
   @override
   Widget build(BuildContext context) {
@@ -198,7 +135,7 @@ class _StoryList extends StatelessWidget {
           ),
         ),
         StoryListLoaded(:final stories) when stories.isEmpty => _Message(
-          text: context.strings.noStories,
+          text: context.strings.sectionEmpty(section),
         ),
         StoryListLoaded(:final stories) => _Grid(stories: stories, side: side),
       },

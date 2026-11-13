@@ -1,4 +1,5 @@
 import 'package:bedtime_stories/core/models/child_profile.dart';
+import 'package:bedtime_stories/core/models/story_section.dart';
 
 abstract final class AppConstants {
   // Assets
@@ -23,6 +24,17 @@ abstract final class AppConstants {
   static String stickerAudio(int count, AppLanguage language) =>
       uiAudio('sticker_${count.clamp(0, 2)}', language);
   static String heroAvatar(String gender) => 'assets/images/hero_$gender.svg';
+
+  /// Card picture on the sections page.
+  static String sectionArt(StorySection section) => switch (section) {
+    // Placeholder until the Gemini section card is made.
+    StorySection.behavior => 'assets/stories/tidy_toys/images/cover.webp',
+    StorySection.math => 'assets/images/section_math.svg',
+  };
+
+  /// Section name read aloud when its card is tapped.
+  static String sectionAudio(StorySection section, AppLanguage language) =>
+      uiAudio('section_${section.name}', language);
 
   // Profile
   static const childNameMaxLength = 20;
@@ -70,6 +82,12 @@ abstract final class AppConstants {
   /// Pause before reading each choice option (after the question, between options).
   static const choiceOptionGap = Duration(milliseconds: 900);
   static const choiceCelebrateDelay = Duration(milliseconds: 650);
+
+  /// Math stories: pause between numbers of a count ("one, two, three").
+  static const countGap = Duration(milliseconds: 250);
+
+  /// Math stories: delay between waiting objects as they `arrive`.
+  static const arriveStagger = Duration(milliseconds: 350);
 
   // Motion
   static const kenBurnsDuration = Duration(seconds: 14);

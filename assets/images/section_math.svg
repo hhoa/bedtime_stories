@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="800" height="600">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#2b2a5c"/>
+      <stop offset="1" stop-color="#4a3a74"/>
+    </linearGradient>
+    <radialGradient id="apple" cx="0.38" cy="0.35" r="0.7">
+      <stop offset="0" stop-color="#ff8a7a"/>
+      <stop offset="1" stop-color="#d9433b"/>
+    </radialGradient>
+    <g id="a">
+      <circle r="34" fill="url(#apple)"/>
+      <path d="M0 -30 q4 -18 14 -24" stroke="#7a4a2a" stroke-width="6" fill="none" stroke-linecap="round"/>
+      <path d="M8 -40 q20 -14 34 -2 q-18 12 -34 2z" fill="#7cc46b"/>
+      <ellipse cx="-12" cy="-12" rx="9" ry="6" fill="#fff" opacity="0.45"/>
+    </g>
+    <path id="star" d="M0 -14 L4 -4 L14 -4 L6 3 L9 13 L0 7 L-9 13 L-6 3 L-14 -4 L-4 -4z" fill="#ffd36e"/>
+  </defs>
+  <rect width="800" height="600" fill="url(#sky)"/>
+  <use href="#star" x="80" y="70" opacity="0.8"/>
+  <use href="#star" x="720" y="90" opacity="0.6" transform="scale(1)"/>
+  <use href="#star" x="640" y="40" opacity="0.5"/>
+  <use href="#star" x="160" y="150" opacity="0.4"/>
+  <circle cx="700" cy="160" r="3" fill="#fff" opacity="0.7"/>
+  <circle cx="110" cy="250" r="3" fill="#fff" opacity="0.6"/>
+  <g font-family="Baloo2" font-weight="800" font-size="190" text-anchor="middle">
+    <text x="190" y="320" fill="#ffd36e">1</text>
+    <text x="400" y="320" fill="#9fd8ff">2</text>
+    <text x="610" y="320" fill="#ffb3c7">3</text>
+  </g>
+  <use href="#a" x="190" y="440"/>
+  <use href="#a" x="365" y="440"/>
+  <use href="#a" x="435" y="440"/>
+  <use href="#a" x="545" y="440"/>
+  <use href="#a" x="610" y="440"/>
+  <use href="#a" x="675" y="440"/>
+  <rect x="40" y="525" width="720" height="18" rx="9" fill="#ffffff" opacity="0.12"/>
+</svg>

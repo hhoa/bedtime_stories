@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:math';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:bedtime_stories/core/models/child_profile.dart';
@@ -24,6 +25,9 @@ import 'package:bedtime_stories/features/stories/domain/repositories/story_repos
 /// one sticker per choice whose first pick was kind. Trying again after a
 /// rewind doesn't change it.
 ///
+/// Math stories draw new numbers on every load ([Story.withNumbers]): a
+/// replay is a new sum; a rewind keeps this play's numbers.
+///
 /// Owns [narrator] and disposes it on close.
 class PlayerCubit extends Cubit<PlayerState> {
   PlayerCubit({
@@ -37,7 +41,10 @@ class PlayerCubit extends Cubit<PlayerState> {
     this._silentSceneDuration = AppConstants.silentSceneDuration,
     this._choiceCelebrateDelay = AppConstants.choiceCelebrateDelay,
     this._choiceOptionGap = AppConstants.choiceOptionGap,
-  }) : super(const PlayerState());
+    this._countGap = AppConstants.countGap,
+    Random? random,
+  }) : _random = random ?? Random(),
+       super(const PlayerState());
 
   final StoryRepository _repository;
   final Narrator _narrator;
@@ -49,6 +56,8 @@ class PlayerCubit extends Cubit<PlayerState> {
   final Duration _silentSceneDuration;
   final Duration _choiceCelebrateDelay;
   final Duration _choiceOptionGap;
+  final Duration _countGap;
+  final Random _random;
 
   int _token = 0;
   Timer? _timer;
@@ -77,9 +86,10 @@ class PlayerCubit extends Cubit<PlayerState> {
           errorMessage: failure.message,
         ),
       ),
-      (story) async {
+      (loaded) async {
+        final story = loaded.withNumbers(_random);
         emit(state.copyWith(story: story));
-        unawaited(_analytics.storyStart(story.id, _language));
+        unawaited(_analytics.storyStart(story.id, _language, story.section));
         await _preload(story);
         if (isClosed) return;
         _enter(story.startId);
@@ -301,6 +311,21 @@ class PlayerCubit extends Cubit<PlayerState> {
               played;
         case NamePart():
           await _sayName();
+        case CountPart(:final assetPath, :final part, :final pose):
+          final cue = StoryCue(
+            word: '',
+            part: part,
+            action: pose == null ? PartAction.hop : PartAction.pose,
+            pose: pose,
+          );
+          played =
+              await _narrator.play(
+                assetPath,
+                onStart: (_) => _cueAfter(Duration.zero, cue, token),
+              ) ||
+              played;
+          if (_stale(token)) return played;
+          await Future<void>.delayed(_countGap);
       }
     }
     return played;
@@ -328,6 +353,20 @@ class PlayerCubit extends Cubit<PlayerState> {
   }
 
   void _cueAfter(Duration delay, StoryCue cue, int token) {
+    if (cue.action == PartAction.arrive) {
+      // Each waiting object walks to its field spot, one after another.
+      final nodeId = state.nodeId;
+      final story = state.story;
+      if (nodeId == null || story == null) return;
+      for (final (i, (part, to)) in story.arrivals(nodeId).indexed) {
+        _cueAfter(
+          delay + AppConstants.arriveStagger * i,
+          StoryCue(word: cue.word, part: part, action: PartAction.move, to: to),
+          token,
+        );
+      }
+      return;
+    }
     _cueTimers.add(
       Timer(delay, () {
         if (_stale(token)) return;

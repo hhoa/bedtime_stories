@@ -25,6 +25,7 @@ The story is made over days (pictures and recordings come in batches). Any later
 
 ## 0. Setup
 - Parse idea, optional id and hero from `$ARGUMENTS`. No idea → ask.
+- **Section**: `behavior` (default: manners, kindness, routines) or `math` (numbers: counting, more/fewer, big/small, adding, taking away, sharing). Pick from the idea; ask only if unclear. For math, read `docs/math.md` and pass `section math` to every agent below (planner, writer, reviewers, art-director); `story.json` gets `"section": "math"`.
 - Pick a snake_case id if none. If `assets/stories/<id>/` or `docs/stories/<id>/` exists, stop: never overwrite a story. Show `python3 tool/story_status.py <id>` and offer `/story-continue <id>`.
 - **Duplicate check, before anything is written:** run `story-idea-checker` with the idea (and id, hero if given).
   - `DUPLICATE` → **stop.** Warn the parent: the matching story (id, title, moral, its choices), what is the same, and the options it gave (`/story-continue <id>`, port the v1 story, or a twist that makes it new). Do not run the planner and create no files. Continue only if the parent picks a new idea (check it again) or says to go ahead anyway.
@@ -66,7 +67,7 @@ Every story is a kit story: read `docs/kit.md` first (rules, lessons, the `tidy_
 4. `fvm flutter analyze` and `fvm flutter test`. On failure route the exact error to the file's owner. Max 2 rounds, then report.
 
 ## 5. Report
-- Title (vi/en), id, hero, scenes, choices (= max stickers).
+- Title (vi/en), id, section, hero, scenes, choices (= max stickers).
 - Files created (links), test result, `check_assets.py` summary.
 - Audio: which clips the parent recorded, which the clone made (per language); cleaned clips (silence cut, noise before → after, LUFS before → after), anything flagged to re-record; `clean_audio.py --check` result.
 - Manual step left: play it in both languages (`fvm flutter run -d chrome`): ambient calm, z's at the head, cues move the right part on the right word (full restart after new layers), parts stand on the floor and nothing important is hidden (hands, small toys), taps react, ending gives the right number of stickers, profile shows them.

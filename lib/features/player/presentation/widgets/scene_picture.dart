@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:bedtime_stories/core/theme/app_colors.dart';
@@ -28,6 +29,7 @@ class ScenePicture extends StatefulWidget {
     this.hotspots,
     this.cue,
     this.poses = const {},
+    this.placements = const {},
     this.ambient = Ambient.none,
     this.ambientOrigin,
     super.key,
@@ -46,6 +48,10 @@ class ScenePicture extends StatefulWidget {
 
   /// Node's starting pose per part kind.
   final Map<String, String> poses;
+
+  /// Math stories: counted parts' start spots, null = hidden
+  /// ([Story.placements]).
+  final Map<String, CanvasPoint?> placements;
   final VoidCallback onTap;
   final String semanticLabel;
   final Ambient ambient;
@@ -63,13 +69,20 @@ class _ScenePictureState extends State<ScenePicture> {
   /// still find it. Cleared when the picture changes.
   final _moved = <String, CanvasPoint>{};
 
-  /// [ScenePicture.layers] with tap boxes shifted to where parts moved.
+  /// [ScenePicture.layers] with tap boxes shifted to where parts moved or
+  /// were placed; hidden parts can't be tapped.
   List<SceneLayer>? get _tapLayers {
     final layers = widget.layers;
-    if (layers == null || _moved.isEmpty) return layers;
+    final placed = widget.placements;
+    if (layers == null || (_moved.isEmpty && placed.isEmpty)) return layers;
     return [
       for (final l in layers)
-        if (_moved[l.kind] case final to? when l.box != null)
+        if (placed.containsKey(l.kind) &&
+            placed[l.kind] == null &&
+            !_moved.containsKey(l.kind))
+          l.copyWith(tap: null)
+        else if ((_moved[l.kind] ?? placed[l.kind]) case final to?
+            when l.box != null)
           l.copyWith(box: _shift(l.box!, moveOffset(l, to)))
         else
           l,
@@ -97,7 +110,10 @@ class _ScenePictureState extends State<ScenePicture> {
   @override
   void didUpdateWidget(ScenePicture old) {
     super.didUpdateWidget(old);
-    if (widget.imageAsset != old.imageAsset) _moved.clear();
+    if (widget.imageAsset != old.imageAsset ||
+        !mapEquals(widget.placements, old.placements)) {
+      _moved.clear();
+    }
     final cue = widget.cue;
     if (cue != null && cue.seq != old.cue?.seq) {
       _reactions.value = PartReaction(
@@ -157,6 +173,7 @@ class _ScenePictureState extends State<ScenePicture> {
             layers: layers,
             reactions: _reactions,
             startPoses: widget.poses,
+            placements: widget.placements,
           );
 
     return Center(

@@ -1,6 +1,6 @@
 {
   "id": "tell_truth",
-  "theme": "honesty",
+  "theme": "honesty", "section": "behavior",
   "hero": "boy",
   "title": {"vi": "{name} và bình hoa của Lulu", "en": "{name} and Lulu's Flower Vase"},
   "cover": "images/cover.webp",

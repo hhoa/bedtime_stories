@@ -81,6 +81,11 @@ flutter:
     - assets/stories/candy_tummy/images/layers/
     - assets/stories/candy_tummy/audio/vi/
     - assets/stories/candy_tummy/audio/en/
+    - assets/stories/math_plus/
+    - assets/stories/math_plus/images/
+    - assets/stories/math_plus/images/layers/
+    - assets/stories/math_plus/audio/vi/
+    - assets/stories/math_plus/audio/en/
     # Each story adds: assets/stories/<id>/, images/, images/layers/ (if cut),
     # audio/vi/, audio/en/
 
