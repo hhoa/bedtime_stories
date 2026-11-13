@@ -44,6 +44,7 @@ python3 tool/clean_audio.py --story <id>      # new recordings: trim, denoise, -
 python3 tool/clean_audio.py --check [--story <id>]   # loudness / noise / edge silence / not cleaned yet; exit 1 if any
 python3 tool/clean_audio.py --story <id> --redo|--restore   # re-clean all from originals | put originals back
 tool/cutout/.venv/bin/python tool/cue_times.py <id> [--lang vi] [--dry]   # time cues to the real clips ("at" in story.json); rerun after any clip changes
+tool/cutout/.venv/bin/python tool/app_icons.py [docs/app_logo.png]   # web favicon + icons, iOS AppIcon set, Android mipmaps from the logo (Lulu on the moon, Gemini, watermark removed)
 tool/voice/setup.sh                           # one-time: F5-TTS venv + Vietnamese fork + English base model
 tool/cutout/setup.sh                          # one-time: rembg + OpenCV venv
 ```
@@ -116,7 +117,7 @@ Shown only while no profile is saved (router redirect); name, gender (avatar onl
 
 ### Home performance
 
-`GridView.builder` (lazy: only visible cards build and decode covers); covers are 800×600 WebP drawn once at box size (`StoryImage(bitmap: true)`), behind `RepaintBoundary`; one `TwinkleField` painter for the stars. `tool/check_assets.py` budgets: cover ≤ 800 px / 60 KB, scene ≤ 1600 px / 150 KB, icon ≤ 400 px / 40 KB, sticker ≤ 600 px / 80 KB, part layer cropped and ≤ 120 KB, clip ≤ 150 KB, story ≤ 4 MB. Image tools save WebP at the highest quality (92 down to 72; sprite layers from 78) that fits these budgets (`tool/webp_save.py`). Tell the user about anything still over budget and offer to downsize.
+`GridView.builder` (lazy: only visible cards build and decode covers); covers are 800×600 WebP drawn once at box size (`StoryImage(bitmap: true)`; decoded at a fixed 400 px or native width, never the exact box width, so resizing doesn't refetch them on web), behind `RepaintBoundary`; 2 columns once the content is ≥ 800 px; screens ≥ 1280 px keep 160 px rails per side free for future ads (`homeSidePadding`); a language switch keeps the old cards up until the new list loads; one `TwinkleField` painter for the stars. `tool/check_assets.py` budgets: cover ≤ 800 px / 60 KB, scene ≤ 1600 px / 150 KB, icon ≤ 400 px / 40 KB, sticker ≤ 600 px / 80 KB, part layer cropped and ≤ 120 KB, clip ≤ 150 KB, story ≤ 4 MB. Image tools save WebP at the highest quality (92 down to 72; sprite layers from 78) that fits these budgets (`tool/webp_save.py`). Tell the user about anything still over budget and offer to downsize.
 
 ### Art (kit)
 

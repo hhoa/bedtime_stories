@@ -1,3 +1,5 @@
+import 'dart:math' as math;
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -30,35 +32,43 @@ class HomeScreen extends StatelessWidget {
       child: Scaffold(
         body: NightSky(
           child: SafeArea(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                Center(
-                  child: ConstrainedBox(
-                    constraints: const BoxConstraints(
-                      maxWidth: AppConstants.contentMaxWidth,
+            child: LayoutBuilder(
+              builder: (context, box) {
+                final side = homeSidePadding(box.maxWidth);
+                return Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    Padding(
+                      padding: EdgeInsets.fromLTRB(side, AppSpace.xl, side, 0),
+                      child: const _Header(),
                     ),
-                    child: const Padding(
-                      padding: EdgeInsets.fromLTRB(
-                        AppSpace.xl,
-                        AppSpace.xl,
-                        AppSpace.xl,
-                        0,
-                      ),
-                      child: _Header(),
+                    const SizedBox(height: AppSpace.xl),
+                    // Full width, so drags on the side margins scroll the list.
+                    Expanded(
+                      child: RepaintBoundary(child: _StoryList(side: side)),
                     ),
-                  ),
-                ),
-                const SizedBox(height: AppSpace.xl),
-                // Full width, so drags on the side margins scroll the list.
-                const Expanded(child: RepaintBoundary(child: _StoryList())),
-              ],
+                  ],
+                );
+              },
             ),
           ),
         ),
       ),
     );
   }
+}
+
+/// Home side margin for a screen [width]: content capped at
+/// [AppConstants.contentMaxWidth] and centered; on wide screens at least
+/// [AppConstants.adRailWidth] (+ gutter) per side stays free for future ads.
+double homeSidePadding(double width) {
+  final rail = width >= AppConstants.adRailMinScreenWidth
+      ? AppConstants.adRailWidth + AppSpace.xl
+      : 0.0;
+  return math.max(
+    AppSpace.xl + rail,
+    (width - AppConstants.contentMaxWidth) / 2,
+  );
 }
 
 class _Header extends StatelessWidget {
@@ -169,7 +179,9 @@ class _Avatar extends StatelessWidget {
 }
 
 class _StoryList extends StatelessWidget {
-  const _StoryList();
+  const _StoryList({required this.side});
+
+  final double side;
 
   @override
   Widget build(BuildContext context) {
@@ -188,16 +200,17 @@ class _StoryList extends StatelessWidget {
         StoryListLoaded(:final stories) when stories.isEmpty => _Message(
           text: context.strings.noStories,
         ),
-        StoryListLoaded(:final stories) => _Grid(stories: stories),
+        StoryListLoaded(:final stories) => _Grid(stories: stories, side: side),
       },
     );
   }
 }
 
 class _Grid extends StatelessWidget {
-  const _Grid({required this.stories});
+  const _Grid({required this.stories, required this.side});
 
   final List<Story> stories;
+  final double side;
 
   /// Card part under the cover: padding + play badge row.
   static const _footer = AppSpace.lg * 2 + AppConstants.kidIconButton;
@@ -206,17 +219,9 @@ class _Grid extends StatelessWidget {
   Widget build(BuildContext context) {
     return LayoutBuilder(
       builder: (context, box) {
-        // Content capped at contentMaxWidth, centered; side margins still
-        // scroll the grid.
-        final side = ((box.maxWidth - AppConstants.contentMaxWidth) / 2).clamp(
-          AppSpace.xl,
-          double.infinity,
-        );
+        // Side margins (and ad rails) still scroll the grid.
         final inner = box.maxWidth - side * 2;
-        final columns = (inner / AppConstants.storyCardMinWidth).floor().clamp(
-          1,
-          3,
-        );
+        final columns = inner >= AppConstants.storyGridTwoColumnWidth ? 2 : 1;
         final cardWidth = (inner - AppSpace.xl * (columns - 1)) / columns;
         return GridView.builder(
           padding: EdgeInsets.fromLTRB(side, 0, side, AppSpace.xl),

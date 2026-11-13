@@ -44,7 +44,17 @@ abstract final class AppConstants {
   // Layout
   static const wideLayoutMinWidth = 700.0;
   static const sceneAspectRatio = 4 / 3;
-  static const storyCardMinWidth = 560.0;
+
+  /// Home grid: two columns once the content is at least this wide.
+  static const storyGridTwoColumnWidth = 800.0;
+
+  /// Home side rails kept free for future ads (wide skyscraper 160×600),
+  /// only on screens at least [adRailMinScreenWidth] wide.
+  static const adRailWidth = 160.0;
+  static const adRailMinScreenWidth = 1280.0;
+
+  /// Small covers decode at this width; bigger ones at native size (≤ 800).
+  static const smallCoverDecodeWidth = 400.0;
   static const stickerTileSize = 140.0;
   static const contentMaxWidth = 1200.0;
 

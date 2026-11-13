@@ -20,8 +20,10 @@ class StoryListCubit extends Cubit<StoryListState> {
   final StoryRepository _repository;
 
   /// (Re)loads in [language]; home calls it again when the language flips.
+  /// A reload keeps the current cards on screen (no spinner, no cover
+  /// reload) until the new list arrives.
   Future<void> load(AppLanguage language) async {
-    emit(const StoryListState.loading());
+    if (state is! StoryListLoaded) emit(const StoryListState.loading());
     final result = await _repository.getStories(language);
     if (isClosed) return;
     emit(

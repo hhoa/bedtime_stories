@@ -28,9 +28,10 @@ void main() {
     Widget screen, {
     Map<String, Story> stories = const {},
     Map<String, Object> prefs = const {},
+    Size size = const Size(390, 844),
   }) async {
     tester.view
-      ..physicalSize = const Size(390, 844)
+      ..physicalSize = size
       ..devicePixelRatio = 1;
     addTearDown(tester.view.reset);
     SharedPreferences.setMockInitialValues({
@@ -104,7 +105,47 @@ void main() {
       await language.select(AppLanguage.en);
       await tester.pump(const Duration(milliseconds: 300));
       expect(repository.languages, [AppLanguage.vi, AppLanguage.en]);
+      // The old cards stay up while the new list loads: no spinner.
+      expect(find.byType(CircularProgressIndicator), findsNothing);
       await finish(tester);
+    });
+
+    int columns(WidgetTester tester) {
+      final grid = tester.widget<GridView>(find.byType(GridView));
+      return (grid.gridDelegate as SliverGridDelegateWithFixedCrossAxisCount)
+          .crossAxisCount;
+    }
+
+    testWidgets('phone: one column', (tester) async {
+      await pumpScreen(
+        tester,
+        const HomeScreen(),
+        stories: {'demo': loadFixtureStory()},
+      );
+      expect(columns(tester), 1);
+      await finish(tester);
+    });
+
+    testWidgets('big screen: two columns, side rails kept free', (
+      tester,
+    ) async {
+      await pumpScreen(
+        tester,
+        const HomeScreen(),
+        stories: {'demo': loadFixtureStory()},
+        size: const Size(1400, 900),
+      );
+      expect(columns(tester), 2);
+      final card = tester.getTopLeft(find.byType(StoryCard));
+      expect(card.dx, greaterThanOrEqualTo(184));
+      await finish(tester);
+    });
+
+    test('side padding: gutter, ad rails from 1280, centered past max', () {
+      expect(homeSidePadding(390), 24);
+      expect(homeSidePadding(1000), 24);
+      expect(homeSidePadding(1280), 208);
+      expect(homeSidePadding(2000), 400);
     });
   });
 

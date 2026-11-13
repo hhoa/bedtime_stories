@@ -3,6 +3,7 @@ import 'dart:ui' as ui;
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:bedtime_stories/core/utils/app_constants.dart';
 import 'package:bedtime_stories/core/utils/svg_cache.dart';
 
 bool _isSvg(String asset) => asset.toLowerCase().endsWith('.svg');
@@ -53,12 +54,17 @@ class StoryImage extends StatelessWidget {
                 scale: dpr,
               );
             }
+            // Decode at a fixed bucket, not the exact box width: every new
+            // width is a new image-cache key, which on web fetches and
+            // decodes the file again (window resize, column change).
             return Image.asset(
               asset,
               fit: fit,
               width: box.maxWidth,
               height: box.maxHeight,
-              cacheWidth: pixels.width.toInt(),
+              cacheWidth: pixels.width <= AppConstants.smallCoverDecodeWidth
+                  ? AppConstants.smallCoverDecodeWidth.toInt()
+                  : null,
               gaplessPlayback: true,
               filterQuality: FilterQuality.medium,
             );
